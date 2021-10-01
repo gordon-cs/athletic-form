@@ -1,0 +1,21 @@
+// Run 'dbdocs build ./Database.dbml'
+// Project name: Athletic Form Database
+
+Table Schedule {
+        EventID int [pk]
+        DepartureTime date
+}
+
+Table Students {
+        StudentID long [pk]
+        FirstName varchar(20)
+        LastName varchar (20)
+}
+
+Table Courses {
+        StudentID long
+        CourseCode varchar(6)
+        Time date
+}
+
+Ref: Courses.StudentID > Students.StudentID
