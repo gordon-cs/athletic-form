@@ -53,3 +53,4 @@ Ref: StudentCourses.CourseCode > Courses.CourseCode
 Ref: Courses.ProfessorID > Professors.ProfessorID
 Ref: StudentTeams.StudentID > Students.StudentID
 Ref: Teams.TeamName > StudentTeams.TeamName
+Ref: Schedule.TeamName > Teams.TeamName
