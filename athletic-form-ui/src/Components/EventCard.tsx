@@ -10,6 +10,13 @@ export const EventCard: React.FC<Props> = () => {
 				height: '200px ',
 				bgcolor: '#174354',
 			}}
-		></Card>
+		>
+			<CardHeader
+				sx={{
+					color: 'white',
+				}}
+				title={'Hello, World'}
+			/>
+		</Card>
 	);
 };
