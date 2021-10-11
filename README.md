@@ -15,3 +15,7 @@
 ## Lofi UI Usability Test Report:
 
 - https://docs.google.com/document/d/1ug0rmjLcdnLNTb88qjLkm-SZMFWQkF5q4vyfqeKdxnI/edit?usp=sharing
+
+## End to End Hello World and Tools Proposal (Pt. 1)
+
+- https://docs.google.com/document/d/1stFlhhpJvXplVXh_s5kMDxJs5tCtmMfcPi49tVL6KBc/edit?usp=sharing
