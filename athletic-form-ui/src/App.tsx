@@ -1,9 +1,12 @@
-import { Typography } from '@mui/material';
+import { Grid } from '@mui/material';
+import { EventCard } from './Components/EventCard';
 
 export const App = () => {
 	return (
-		<div>
-			<Typography> It works! </Typography>
-		</div>
+		<Grid container>
+			<Grid item xs={4}>
+				<EventCard />
+			</Grid>
+		</Grid>
 	);
 };
