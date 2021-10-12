@@ -15,7 +15,15 @@ export const EventCard: React.FC<Props> = () => {
 				sx={{
 					color: 'white',
 				}}
-				title={'Hello, World'}
+				title={
+					<Typography
+						sx={{
+							color: 'white',
+						}}
+					>
+						Hello, World
+					</Typography>
+				}
 			/>
 		</Card>
 	);
