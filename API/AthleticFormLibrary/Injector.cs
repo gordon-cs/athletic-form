@@ -3,7 +3,6 @@ using AthleticFormLibrary.DataAccess;
 using Unity;
 using System.Web.Http;
 using Unity.WebApi;
-using AthleticFormLibrary.Models;
 
 namespace AthleticFormLibrary
 {
@@ -38,9 +37,9 @@ namespace AthleticFormLibrary
 
                There are other registration types, but these are the basic ones.
             */
-                    
+
             /* Registrations go in this section */
-            _container.RegisterSingleton<IDataAccess, DatabaseAccess>()
+            _container.RegisterSingleton<IDataAccess, DatabaseAccess>();
             
             
             /* Registrations go in this section */

@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Web.Http;
 using AthleticFormLibrary;
 using AthleticFormLibrary.Interfaces;
-using AthleticFormLibrary.Models;
 
 namespace AthleticFormAPI.Controllers
 {
