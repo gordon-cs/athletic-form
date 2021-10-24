@@ -1,0 +1,8 @@
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.deps.json
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.dll
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.csprojAssemblyReference.cache
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.AssemblyInfoInputs.cache
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.AssemblyInfo.cs
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.pdb
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.dll
+C:\Users\Christopher Hunt\source\repos\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.pdb
