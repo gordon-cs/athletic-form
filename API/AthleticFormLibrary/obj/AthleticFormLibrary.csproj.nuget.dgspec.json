@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Christopher Hunt\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj": {}
+    "C:\\Users\\hkfin\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Christopher Hunt\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj": {
+    "C:\\Users\\hkfin\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Christopher Hunt\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\hkfin\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj",
         "projectName": "AthleticFormLibrary",
-        "projectPath": "C:\\Users\\Christopher Hunt\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj",
-        "packagesPath": "C:\\Users\\Christopher Hunt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Christopher Hunt\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\obj\\",
+        "projectPath": "C:\\Users\\hkfin\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\AthleticFormLibrary.csproj",
+        "packagesPath": "C:\\Users\\hkfin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hkfin\\Documents\\GitHub\\athletic-form\\API\\AthleticFormLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Christopher Hunt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hkfin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "dependencies": {
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
@@ -75,7 +77,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.118\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
