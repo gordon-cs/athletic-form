@@ -1,5 +1,6 @@
 ﻿using AthleticFormLibrary;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace AthleticFormAPI
 {
@@ -12,6 +13,9 @@ namespace AthleticFormAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            EnableCorsAttribute corsAttribute =
+                new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsAttribute);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

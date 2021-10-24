@@ -14,3 +14,13 @@ C:\Users\Christopher Hunt\Documents\GitHub\athletic-form\API\AthleticFormLibrary
 C:\Users\Christopher Hunt\Documents\GitHub\athletic-form\API\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.deps.json
 C:\Users\Christopher Hunt\Documents\GitHub\athletic-form\API\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.dll
 C:\Users\Christopher Hunt\Documents\GitHub\athletic-form\API\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.pdb
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.deps.json
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.dll
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\bin\Debug\netstandard2.0\AthleticFormLibrary.pdb
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.csproj.AssemblyReference.cache
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.AssemblyInfoInputs.cache
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.AssemblyInfo.cs
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.csproj.CoreCompileInputs.cache
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.dll
+C:\Users\hkfin\Documents\GitHub\athletic-form\API\AthleticFormLibrary\obj\Debug\netstandard2.0\AthleticFormLibrary.pdb
