@@ -38,9 +38,12 @@ namespace AthleticFormLibrary
 
                There are other registration types, but these are the basic ones.
             */
-            _container.RegisterSingleton<IDataAccess, DatabaseAccess>();
-            _container.RegisterInstance(typeof(Person));
-
+                    
+            /* Registrations go in this section */
+            _container.RegisterSingleton<IDataAccess, DatabaseAccess>()
+            
+            
+            /* Registrations go in this section */
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(_container);
         }
 
