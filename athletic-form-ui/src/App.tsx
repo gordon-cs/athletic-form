@@ -24,7 +24,12 @@ export const App = () => {
 				{content == null ? (
 					<Typography> content is null </Typography>
 				) : (
-					<Typography><EventCard></EventCard></Typography>
+					<Typography>
+						<EventCard sport={content[0]["Sport"]} opponent={content[0]["Opponent"]}
+							date={content[0]["Date"]} time={content[0]["Time"]} 
+							departHome={content[0]["Depart/Home"]}>
+						</EventCard>
+					</Typography>
 				)}
 			</Grid>
 		</Grid>
