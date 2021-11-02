@@ -1,21 +1,31 @@
 import { Grid, Typography } from '@mui/material';
-import Axios from './Services/Axios';
+import { getEvents } from './Services/AthleticEvents';
 import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
-
+import { EventCard } from './Components/EventCard';
+import axios, { AxiosResponse } from 'axios';
 export const App = () => {
 	const [content, setContent] = useState<AxiosResponse | null>(null);
 
 	useEffect(() => {
-		Axios.get<AxiosResponse>('/values').then((response) => {
-			setContent(response.data);
-		});
+		axios
+			.get<AxiosResponse>('http://localhost:3000/Events')
+			.then((response) => {
+				console.log(response.data);
+				setContent(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, []);
 
 	return (
 		<Grid container>
 			<Grid item xs={4}>
-				<Typography> {content} </Typography>
+				{content == null ? (
+					<Typography> content is null </Typography>
+				) : (
+					<Typography> {content} </Typography>
+				)}
 			</Grid>
 		</Grid>
 	);
