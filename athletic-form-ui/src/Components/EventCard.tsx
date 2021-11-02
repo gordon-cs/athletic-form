@@ -1,11 +1,11 @@
 import { Button, Card, CardActions, CardContent, CardHeader, Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 interface Props {
-	sport: any,
-	opponent: any,
-	date: any,
-	time: any,
-	departHome: any
+	sport: string,
+	opponent: string,
+	date: Date,
+	time: string,
+	departHome: string
 }
 
 export const EventCard: React.FC<Props> = (props) => {
