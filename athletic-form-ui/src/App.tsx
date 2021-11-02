@@ -24,7 +24,7 @@ export const App = () => {
 				{content == null ? (
 					<Typography> content is null </Typography>
 				) : (
-					<Typography> {content[0]['Id']} </Typography>
+					<Typography><EventCard></EventCard></Typography>
 				)}
 			</Grid>
 		</Grid>
