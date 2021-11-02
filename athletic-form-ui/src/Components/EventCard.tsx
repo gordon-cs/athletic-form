@@ -2,13 +2,14 @@ import { Button, Card, CardActions, CardContent, CardHeader, Typography } from '
 import '../styles/eventCard.scss';
 interface Props {}
 
-export const EventCard: React.FC<Props> = () => {
+export const EventCard: React.FC<Props> = (props) => {
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<CardHeader className={'card-header'} title={'Test'} />
+			<CardHeader className={'card-header'} title={'Rowing: Head of the Charles'} />
 			<CardContent className={'card-content'}>
-				<Typography>Does this work?</Typography>
-				<Typography>How about this?</Typography>
+				<CardContent className={'card-detail'}>Date: 2021-10-24</CardContent>
+				<CardContent className={'card-detail'}>Time: 12:15 PM</CardContent>
+				<CardContent className={'card-detail'}>Depart Time: 10:00 AM</CardContent>
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Button sx={{ backgroundColor: '#710F0F', color: 'white' }} variant={'outlined'}>
