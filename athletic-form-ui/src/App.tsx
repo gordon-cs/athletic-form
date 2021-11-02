@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { EventCard } from './Components/EventCard';
 import axios, { AxiosResponse } from 'axios';
 export const App = () => {
-	const [content, setContent] = useState<AxiosResponse | null>(null);
+	const [content, setContent] = useState<any | null>(null);
 
 	useEffect(() => {
 		axios
@@ -24,7 +24,7 @@ export const App = () => {
 				{content == null ? (
 					<Typography> content is null </Typography>
 				) : (
-					<Typography> {content} </Typography>
+					<Typography> {content[0]['Id']} </Typography>
 				)}
 			</Grid>
 		</Grid>
