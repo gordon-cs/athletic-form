@@ -25,10 +25,13 @@ export const App = () => {
 					<Typography> content is null </Typography>
 				) : (
 					<Typography>
-						<EventCard sport={content[0]["Sport"]} opponent={content[0]["Opponent"]}
-							date={content[0]["Date"]} time={content[0]["Time"]} 
-							departHome={content[0]["Depart/Home"]}>
-						</EventCard>
+						{content.map((c : any) => (
+							<EventCard sport={c["Sport"]} opponent={c["Opponent"]}
+								date={c["Date"]} time={c["time"]} 
+								departHome={c["Depart/Home"]}>
+							</EventCard>
+						))
+						}
 					</Typography>
 				)}
 			</Grid>
