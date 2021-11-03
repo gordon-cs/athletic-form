@@ -1,17 +1,17 @@
-import { Grid, Typography } from '@mui/material';
-import { getEvents } from './Services/AthleticEvents';
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { EventCard } from './Components/EventCard';
+import { Event } from './Models/Event';
 import axios, { AxiosResponse } from 'axios';
 export const App = () => {
-	const [content, setContent] = useState<any | null>(null);
+	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
 		axios
 			.get<AxiosResponse>('http://localhost:3000/Events')
 			.then((response) => {
 				console.log(response.data);
-				setContent(response.data);
+				setEvents(response.data);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -19,22 +19,24 @@ export const App = () => {
 	}, []);
 
 	return (
-		<Grid container>
-			<Grid item xs={4}>
-				{content == null ? (
-					<Typography> content is null </Typography>
-				) : (
-					<Typography>
-						{content.map((c : any) => (
-							<EventCard sport={c["Sport"]} opponent={c["Opponent"]}
-								date={c["Date"]} time={c["time"]} 
-								departHome={c["Depart/Home"]}>
-							</EventCard>
-						))
-						}
-					</Typography>
-				)}
-			</Grid>
+		<Grid container spacing={3}>
+			{events == null
+				? 'There are no events to show'
+				: events.map((entry: any) => (
+						<Grid item key={entry['id']}>
+							<EventCard
+								eventData={
+									new Event(
+										entry['Sport'],
+										entry['Opponent'],
+										entry['Date'],
+										entry['Time'],
+										entry['Depart/Home'],
+									)
+								}
+							/>
+						</Grid>
+				  ))}
 		</Grid>
 	);
 };

@@ -1,26 +1,30 @@
-import { Button, Card, CardActions, CardContent, CardHeader, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import '../styles/eventCard.scss';
+import { Event } from '../Models/Event';
 interface Props {
-	sport: any,
-	opponent: any,
-	date: any,
-	time: any,
-	departHome: any
+	eventData: Event;
 }
 
-export const EventCard: React.FC<Props> = (props) => {
+export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
-	if (props.departHome === "Home") {
-		departHome = <CardContent className={'card-detail'}>Home</CardContent>
+	if (eventData.departOrHome === 'Home') {
+		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
 	} else {
-		departHome = <CardContent className={'card-detail'}>Depart Time: {props.departHome}</CardContent>
+		departHome = (
+			<CardContent className={'card-detail'}>
+				Depart Time: {eventData.departOrHome}
+			</CardContent>
+		);
 	}
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<CardHeader className={'card-header'} title={props.sport + ": " + props.opponent} />
+			<CardHeader
+				className={'card-header'}
+				title={eventData.sport + ': ' + eventData.opponent}
+				subheader={'Date: ' + eventData.date}
+			/>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Date: {props.date}</CardContent>
-				<CardContent className={'card-detail'}>Time: {props.time}</CardContent>
+				<CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
