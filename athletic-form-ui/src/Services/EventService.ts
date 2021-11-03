@@ -1,5 +1,5 @@
-import { get } from './AxiosService';
+import { apiClient } from './AxiosService';
 
 export async function getAllEvents(): Promise<any> {
-	return get('Events');
+	return apiClient.get('Events');
 }
