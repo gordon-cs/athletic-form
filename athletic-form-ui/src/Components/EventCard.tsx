@@ -1,30 +1,48 @@
-import { Card, CardHeader, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import '../styles/eventCard.scss';
+import { Event } from '../Models/Event';
+interface Props {
+	eventData: Event;
+}
 
-interface Props {}
-
-export const EventCard: React.FC<Props> = () => {
+export const EventCard: React.FC<Props> = ({ eventData }) => {
+	let departHome;
+	if (eventData.departOrHome === 'Home') {
+		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
+	} else {
+		departHome = (
+			<CardContent className={'card-detail'}>
+				Depart Time: {eventData.departOrHome}
+			</CardContent>
+		);
+	}
 	return (
-		<Card
-			sx={{
-				width: '200px',
-				height: '200px ',
-				bgcolor: '#174354',
-			}}
-		>
+		<Card className={'card'} variant={'outlined'}>
 			<CardHeader
-				sx={{
-					color: 'white',
-				}}
-				title={
-					<Typography
-						sx={{
-							color: 'white',
-						}}
-					>
-						Hello, World
-					</Typography>
-				}
+				className={'card-header'}
+				title={eventData.sport + ': ' + eventData.opponent}
+				subheader={'Date: ' + eventData.date}
 			/>
+			<CardContent className={'card-content'}>
+				<CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
+				{departHome}
+			</CardContent>
+			<CardActions className={'card-content card-action'}>
+				<Button
+					size='small'
+					sx={{ backgroundColor: '#710F0F', color: 'white' }}
+					variant={'outlined'}
+				>
+					Delete
+				</Button>
+				<Button
+					size={'small'}
+					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					variant={'outlined'}
+				>
+					Update
+				</Button>
+			</CardActions>
 		</Card>
 	);
 };

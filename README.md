@@ -33,3 +33,10 @@ After cloning this repo:
 - Clone this repo
 - Go to: `athletic-form => API => AthleticFormAPI`
 - Open `AthleticFormAPI.sln` in Visual Studio 2019
+
+## To Run JSON Server with Project
+- Run `npm install`.
+- Run `npm install -g json-server`.
+- Run `json-server --watch ./src/data/db.json`.
+- Open a new terminal window
+- Run `npm start`.
