@@ -28,10 +28,18 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Button sx={{ backgroundColor: '#710F0F', color: 'white' }} variant={'outlined'}>
+				<Button
+					size='small'
+					sx={{ backgroundColor: '#710F0F', color: 'white' }}
+					variant={'outlined'}
+				>
 					Delete
 				</Button>
-				<Button sx={{ backgroundColor: '#066A1F', color: 'white' }} variant={'outlined'}>
+				<Button
+					size={'small'}
+					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					variant={'outlined'}
+				>
 					Update
 				</Button>
 			</CardActions>
