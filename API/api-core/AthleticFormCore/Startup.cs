@@ -52,7 +52,7 @@ namespace AthleticFormCore
 
             app.UseRouting();
             
-            app.UseCors();
+            app.UseCors();         
             
             app.UseAuthorization();
 
@@ -60,6 +60,8 @@ namespace AthleticFormCore
             {
                 endpoints.MapControllers();
             });
+            
+            app.UseWelcomePage();
         }
     }
 }
