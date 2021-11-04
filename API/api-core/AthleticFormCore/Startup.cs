@@ -33,7 +33,6 @@ namespace AthleticFormCore
                         builder.AllowAnyOrigin();
                         builder.AllowAnyMethod();
                         builder.AllowAnyHeader();
-
                     });
             });
             services.AddMvc()
