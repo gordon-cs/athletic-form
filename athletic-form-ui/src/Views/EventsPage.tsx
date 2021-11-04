@@ -3,6 +3,9 @@ import { getAllEvents } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Event } from '../Models/Event';
+import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { FaPlusCircle } from 'react-icons/fa';
+import "../styles/eventsPage.scss";
 
 interface Props {}
 
@@ -34,6 +37,14 @@ export const EventsPage: React.FC<Props> = () => {
 							/>
 						</Grid>
 				  ))}
+			<Card className={'add-card'}>
+				<CardHeader className={'add-header'} title={'Add'}></CardHeader>
+				<CardActions className={'add-action'}>
+					<Button>
+						<FaPlusCircle></FaPlusCircle>
+					</Button>
+				</CardActions>
+			</Card>
 		</Grid>
 	);
 };
