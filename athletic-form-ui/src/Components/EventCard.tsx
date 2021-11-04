@@ -1,8 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import '../styles/eventCard.scss';
-import { Event } from '../Models/Event';
 interface Props {
-	eventData: Event;
+	eventData: any;
 }
 
 export const EventCard: React.FC<Props> = ({ eventData }) => {
