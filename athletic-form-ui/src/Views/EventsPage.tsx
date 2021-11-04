@@ -10,30 +10,12 @@ export const EventsPage: React.FC<Props> = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
-		getAllEvents().then((res) => {
-			setEvents(res.data);
-		});
+		console.log(getAllEvents());
 	}, []);
 
 	return (
 		<Grid container spacing={3}>
-			{events == null
-				? 'There are no events to show'
-				: events.map((entry: any) => (
-						<Grid item key={entry['id']}>
-							<EventCard
-								eventData={
-									new Event(
-										entry['Sport'],
-										entry['Opponent'],
-										entry['Date'],
-										entry['Time'],
-										entry['Depart/Home'],
-									)
-								}
-							/>
-						</Grid>
-				  ))}
+			{events}
 		</Grid>
 	);
 };
