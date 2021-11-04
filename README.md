@@ -41,6 +41,8 @@ After cloning this repo:
 - Steps are exactly the same as above, however instead of opening the solution in Visual Studo, open one of the two projects in VS code:
      - Be sure to have the C# extention (Microsoft) installed
      - Specify the project to load (follow instructions [here](https://code.visualstudio.com/docs/languages/csharp), in particular, the section starting with `Roslyn and OmniSharp`)
+     - ```cd repoPath/API/api-core/AthleticFormCore``` 
+     -  `dotnet run` 
 
 ## To Run JSON Server with Project
 
