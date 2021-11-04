@@ -40,7 +40,11 @@ export const EventsPage: React.FC<Props> = () => {
 			<Card className={'add-card'}>
 				<CardHeader className={'add-header'} title={'Add'}></CardHeader>
 				<CardActions className={'add-action'}>
-					<Button>
+					<Button
+						size='small'
+						sx={{ backgroundColor: '#710F0F', color: 'white' }}
+						variant={'outlined'}
+					>
 						<FaPlusCircle></FaPlusCircle>
 					</Button>
 				</CardActions>
