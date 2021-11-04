@@ -1,6 +1,8 @@
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Event } from '../Models/Event';
+import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
+
 interface Props {
 	eventData: Event;
 }
@@ -33,6 +35,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 					sx={{ backgroundColor: '#710F0F', color: 'white' }}
 					variant={'outlined'}
 				>
+					<FaTrashAlt></FaTrashAlt>
 					Delete
 				</Button>
 				<Button
@@ -40,6 +43,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 					sx={{ backgroundColor: '#066A1F', color: 'white' }}
 					variant={'outlined'}
 				>
+					<FaPencilAlt></FaPencilAlt>
 					Update
 				</Button>
 			</CardActions>
