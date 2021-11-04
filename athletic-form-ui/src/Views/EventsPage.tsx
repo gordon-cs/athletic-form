@@ -41,7 +41,7 @@ export const EventsPage: React.FC<Props> = () => {
 				<CardHeader className={'add-header'} title={'Add'}></CardHeader>
 				<CardActions className={'add-action'}>
 					<Button
-						size='small'
+						size='large'
 						sx={{ backgroundColor: '#710F0F', color: 'white' }}
 						variant={'outlined'}
 					>
