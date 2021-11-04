@@ -1,36 +1,36 @@
 {
-	"Events": [
-		{
-			"id": 1,
-			"Sport": "Rowing",
-			"Opponent": "Head of the Charles",
-			"Date": "2021-10-24",
-			"Time": "12:15 PM",
-			"Depart/Home": "10:00 AM"
-		}, 
-		{
-			"id": 2,
-			"Sport": "Rowing",
-			"Opponent": "Head of the Fish",
-			"Date": "2021-10-29",
-			"Time": "12:00 PM",
-			"Depart/Home": "7:30 AM"
-		},
-		{
-			"id": 3,
-			"Sport": "Soccer",
-			"Opponent": "Endicott",
-			"Date": "2021-11-05",
-			"Time": "7:00 PM",
-			"Depart/Home": "Home"
-		},
-		{
-			"id": 4,
-			"Sport": "Cross Country",
-			"Opponent": "Pop Crowell Invitational",
-			"Date": "2021-09-18",
-			"Time": "11:30 AM",
-			"Depart/Home": "Home"
-		}
-	]
+  "Events": [
+    {
+      "id": 1,
+      "Sport": "Rowing",
+      "Opponent": "Head of the Charles",
+      "Date": "2021-10-24",
+      "Time": "12:15 PM",
+      "Depart/Home": "10:00 AM"
+    },
+    {
+      "id": 2,
+      "Sport": "Rowing",
+      "Opponent": "Head of the Fish",
+      "Date": "2021-10-29",
+      "Time": "12:00 PM",
+      "Depart/Home": "7:30 AM"
+    },
+    {
+      "id": 3,
+      "Sport": "Soccer",
+      "Opponent": "Endicott",
+      "Date": "2021-11-05",
+      "Time": "7:00 PM",
+      "Depart/Home": "Home"
+    },
+    {
+      "id": 4,
+      "Sport": "Cross Country",
+      "Opponent": "Pop Crowell Invitational",
+      "Date": "2021-09-18",
+      "Time": "11:30 AM",
+      "Depart/Home": "Home"
+    }
+  ]
 }
