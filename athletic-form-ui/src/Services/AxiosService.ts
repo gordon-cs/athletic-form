@@ -10,3 +10,7 @@ const instance = axios.create({
 export const get = (apiEndpoint: string) => {
 	return instance.get(apiEndpoint);
 };
+
+export const post = (apiEndpoint: string, request: any) => {
+	return instance.post(apiEndpoint, request);
+}
