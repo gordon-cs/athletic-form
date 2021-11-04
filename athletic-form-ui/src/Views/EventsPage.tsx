@@ -11,6 +11,11 @@ export const EventsPage: React.FC<Props> = () => {
 
 	useEffect(() => {
 		console.log(getAllEvents());
+		getAllEvents()
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch(console.error);
 	}, []);
 
 	return (

@@ -1,5 +1,8 @@
+import { AxiosPromise } from 'axios';
 import { apiClient } from './AxiosService';
 
-export async function getAllEvents(): Promise<any> {
-	return await apiClient.get('/events/allEvents');
+export function getAllEvents(): AxiosPromise<any> {
+	return apiClient({
+		url: 'events',
+	});
 }
