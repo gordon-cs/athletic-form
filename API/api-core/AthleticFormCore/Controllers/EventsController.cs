@@ -20,9 +20,8 @@ namespace AthleticFormCore.Controllers
            _dataAccess = dataAccess;
         }
 
-        // GET api/events/allEvents
+        // GET api/events
         [HttpGet]
-        [Route("allEvents")]
         public string GetAll()
         {
             return _dataAccess.Retrieve();

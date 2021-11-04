@@ -25,17 +25,16 @@ namespace AthleticFormCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "All", builder =>
-                    {
-                        builder.AllowAnyOrigin();
-                        builder.AllowAnyMethod();
-                        builder.AllowAnyHeader();
-                    });
+            services.AddCors(options => {
+                options.AddDefaultPolicy(policy => {
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyOrigin();
+                });
             });
-            services.AddMvc()
+            
+            services.AddControllers();
+                        services.AddMvc()
                 .AddControllersAsServices();
           
         }
@@ -44,7 +43,7 @@ namespace AthleticFormCore
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             
-            if (env.IsDevelopment())
+            if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -53,7 +52,7 @@ namespace AthleticFormCore
 
             app.UseRouting();
             
-            app.UseCors("All");
+            app.UseCors();
             
             app.UseAuthorization();
 
