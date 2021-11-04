@@ -6,6 +6,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary;
 using AthleticFormLibrary.Interfaces;
+using AthleticFormLibrary.Models;
 
 namespace AthleticFormCore.Controllers
 {
@@ -15,16 +16,24 @@ namespace AthleticFormCore.Controllers
     {
         private readonly IDataAccess _dataAccess;
 
+        private List<AthleticEvent> _events;
         public EventsController(IDataAccess dataAccess)
         {
            _dataAccess = dataAccess;
+           _events = new List<AthleticEvent>();
         }
 
         // GET api/events
         [HttpGet]
-        public string GetAll()
+        public List<AthleticEvent> GetAll()
         {
-            return _dataAccess.Retrieve();
+            _events.Add(new AthleticEvent {
+                Opponent = "Endicott",
+                Sport = "Baseball",
+                Date = DateTime.Now,
+                Time = DateTime.Now.TimeOfDay
+            }); 
+            return _events;
         }
     }
 }

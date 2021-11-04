@@ -26,10 +26,10 @@ namespace AthleticFormCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options => {
-                options.AddDefaultPolicy(policy => {
-                    policy.AllowAnyMethod();
-                    policy.AllowAnyHeader();
-                    policy.AllowAnyOrigin();
+                options.AddDefaultPolicy(builder => {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                 });
             });
             
