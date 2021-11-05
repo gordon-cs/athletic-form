@@ -6,7 +6,8 @@
       "opponent": "Head of the Charles",
       "date": "2021-10-24",
       "time": "12:15 PM",
-      "departOrHome": "10:00 AM"
+      "departOrHome": "10:00 AM",
+      "destination": "Boston, MA"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "opponent": "Head of the Fish",
       "date": "2021-10-29",
       "time": "12:00 PM",
-      "departOrHome": "7:30 AM"
+      "departOrHome": "7:30 AM",
+      "destination": "Saratoga, NY"
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "opponent": "Endicott",
       "date": "2021-11-05",
       "time": "7:00 PM",
-      "departOrHome": "Home"
+      "departOrHome": "Home",
+      "destination": "Wenham, MA"
     },
     {
       "id": 4,
@@ -30,7 +33,8 @@
       "opponent": "Pop Crowell Invitational",
       "date": "2021-09-18",
       "time": "11:30 AM",
-      "departOrHome": "Home"
+      "departOrHome": "Home",
+      "destination": "Wenham, MA"
     },
     {
       "id": 5,
@@ -38,7 +42,8 @@
       "opponent": "Columbia University",
       "date": "2022-04-02",
       "time": "12:00",
-      "departOrHome": "7:00 AM"
+      "departOrHome": "7:00 AM",
+      "destination": "New York City, NY"
     },
     {
       "id": 6,
@@ -46,7 +51,8 @@
       "opponent": "Dad Vail",
       "date": "2022-05-06",
       "time": "13:30",
-      "departOrHome": "8:00 AM"
+      "departOrHome": "8:00 AM",
+      "destination": "Philadelphia, PA"
     },
     {
       "id": 7,
@@ -54,7 +60,17 @@
       "opponent": "Knecht Cup",
       "date": "2022-04-09",
       "time": "14:00",
-      "departOrHome": "7:00 AM"
+      "departOrHome": "7:00 AM",
+      "destination": "Camden, NJ"
+    },
+    {
+      "id": 8,
+      "sport": "Soccer",
+      "opponent": "Wheaton College",
+      "date": "2022-04-20",
+      "time": "17:00",
+      "departOrHome": "12:00 PM",
+      "destination": "Wheaton, IL"
     }
   ]
 }

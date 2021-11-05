@@ -16,6 +16,7 @@ export const AddEvent : React.FC<Props> = () => {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [departOrHome, setHomeOrDepart] = useState("");
+    const [destination, setDestination] = useState("");
 
     useEffect(() => {
 		getAllEvents().then((res) => {
@@ -25,7 +26,8 @@ export const AddEvent : React.FC<Props> = () => {
 
     const handleSubmit = () => {
         setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-        let event : any = new Event(sport, opponent, date, time, departOrHome);
+        let event : any = new Event(sport, opponent, date, time, 
+            departOrHome, destination);
         addEventHandler(event, eventId).then((res) => {
             setEvents([...events, res.data]);
         }).then((a) => {
@@ -48,6 +50,13 @@ export const AddEvent : React.FC<Props> = () => {
                    Opponent:
                    <input type = "text" value = { opponent } 
                         onChange = { (e: any) => setOpponent(e.target.value) }>
+                   </input>
+               </label>
+               <br></br>
+               <label>
+                   Destination:
+                   <input type = "text" value = { destination } 
+                        onChange = { (e: any) => setDestination(e.target.value) }>
                    </input>
                </label>
                <br></br>

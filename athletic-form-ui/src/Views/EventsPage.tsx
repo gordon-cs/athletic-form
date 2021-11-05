@@ -19,6 +19,8 @@ export const EventsPage: React.FC<Props> = () => {
 		});
 	}, []);
 
+	console.log(events);
+
 	return (
 		<Grid container spacing={3}>
 			{events == null
@@ -33,6 +35,7 @@ export const EventsPage: React.FC<Props> = () => {
 										entry['date'],
 										entry['time'],
 										entry['departOrHome'],
+										entry['destination']
 									)
 								}
 							/>
