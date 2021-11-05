@@ -47,6 +47,14 @@
       "date": "2022-05-06",
       "time": "13:30",
       "departOrHome": "8:00 AM"
+    },
+    {
+      "id": 7,
+      "sport": "Rowing",
+      "opponent": "Knecht Cup",
+      "date": "2022-04-09",
+      "time": "14:00",
+      "departOrHome": "7:00 AM"
     }
   ]
 }

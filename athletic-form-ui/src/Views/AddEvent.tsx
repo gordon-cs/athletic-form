@@ -23,14 +23,14 @@ export const AddEvent : React.FC<Props> = () => {
 		});
     }, []);
 
-    console.log(events);
-
     const handleSubmit = () => {
         setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
         let event : any = new Event(sport, opponent, date, time, departOrHome);
         addEventHandler(event, eventId).then((res) => {
             setEvents([...events, res.data]);
-        });
+        }).then((a) => {
+            window.location.href = "/events";
+        })
     }
 
     return (
