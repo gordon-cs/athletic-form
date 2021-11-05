@@ -4,6 +4,7 @@ import { getAllEvents, addEventHandler } from '../Services/EventService';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Event } from '../Models/Event';
+import "../styles/addEvent.scss";
 
 interface Props {}
 
@@ -33,7 +34,7 @@ export const AddEvent : React.FC<Props> = () => {
     }
 
     return (
-       <Grid>
+       <Grid className = "add-event">
            <h1>Add Event</h1>
            <form onSubmit = {handleSubmit}>
                <label>
@@ -68,9 +69,20 @@ export const AddEvent : React.FC<Props> = () => {
                         onChange = { (e: any) => setHomeOrDepart(e.target.value) }></input>
                </label>
                <br></br>
-               <input type = "submit" value="Save" />
+               <Button size = "small"
+                    sx = {{ backgroundColor: "green", color: "white" }}
+                    variant={"outlined"}
+                    type = "submit">
+                    Save
+                </Button>
                <Link to = "/events">
-                   <Button>Cancel</Button>
+                   <Button
+                        size='small'
+                        sx={{ backgroundColor: 'red', color: 'white' }}
+                        variant={'outlined'}
+                   >
+                       Cancel
+                    </Button>
                </Link>
            </form>
        </Grid>
