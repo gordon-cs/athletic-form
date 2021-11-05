@@ -71,6 +71,15 @@
       "time": "17:00",
       "departOrHome": "12:00 PM",
       "destination": "Wheaton, IL"
+    },
+    {
+      "id": 9,
+      "sport": "Cross Country",
+      "opponent": "Westmont College",
+      "date": "2022-01-01",
+      "time": "6:00 PM",
+      "departOrHome": "3:00 PM",
+      "destination": "Santa Barbara, CA"
     }
   ]
 }

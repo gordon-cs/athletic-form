@@ -68,7 +68,7 @@ export const AddEvent : React.FC<Props> = () => {
                <br></br>
                <label>
                    Time: 
-                   <input type = "time" value = { time } 
+                   <input type = "text" value = { time } 
                         onChange = { (e: any) => setTime(e.target.value) }></input>
                </label>
                <br></br>
