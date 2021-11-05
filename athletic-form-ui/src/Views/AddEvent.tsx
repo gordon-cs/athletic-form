@@ -15,7 +15,7 @@ export const AddEvent : React.FC<Props> = () => {
     const [opponent, setOpponent] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
-    const [homeOrDepart, setHomeOrDepart] = useState("");
+    const [departOrHome, setHomeOrDepart] = useState("");
 
     useEffect(() => {
 		getAllEvents().then((res) => {
@@ -27,7 +27,7 @@ export const AddEvent : React.FC<Props> = () => {
 
     const handleSubmit = () => {
         setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-        let event : any = new Event(sport, opponent, date, time, homeOrDepart);
+        let event : any = new Event(sport, opponent, date, time, departOrHome);
         addEventHandler(event, eventId).then((res) => {
             setEvents([...events, res.data]);
         });
@@ -65,14 +65,14 @@ export const AddEvent : React.FC<Props> = () => {
                <br></br>
                <label>
                    Home/Departure Time
-                   <input type = "text" value = { homeOrDepart } 
+                   <input type = "text" value = { departOrHome } 
                         onChange = { (e: any) => setHomeOrDepart(e.target.value) }></input>
                </label>
                <br></br>
                <Button size = "small"
                     sx = {{ backgroundColor: "green", color: "white" }}
                     variant={"outlined"}
-                    type = "submit">
+                    type = "submit" >
                     Save
                 </Button>
                <Link to = "/events">

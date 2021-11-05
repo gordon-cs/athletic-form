@@ -28,11 +28,11 @@ export const EventsPage: React.FC<Props> = () => {
 							<EventCard
 								eventData={
 									new Event(
-										entry['Sport'],
-										entry['Opponent'],
-										entry['Date'],
-										entry['Time'],
-										entry['Depart/Home'],
+										entry['sport'],
+										entry['opponent'],
+										entry['date'],
+										entry['time'],
+										entry['departOrHome'],
 									)
 								}
 							/>
