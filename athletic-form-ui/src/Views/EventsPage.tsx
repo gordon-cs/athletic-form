@@ -18,9 +18,7 @@ export const EventsPage: React.FC<Props> = () => {
 			setEvents(res.data);
 		});
 	}, []);
-
-	console.log(events);
-
+	
 	return (
 		<Grid container spacing={3}>
 			{events == null
