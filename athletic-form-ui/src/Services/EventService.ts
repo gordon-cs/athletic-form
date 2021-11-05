@@ -5,7 +5,6 @@ export async function getAllEvents(): Promise<any> {
 }
 
 export async function addEventHandler(event : Event, eventId : number) {
-	console.log(event);
 	const request = {
 		id: eventId,
 		...event

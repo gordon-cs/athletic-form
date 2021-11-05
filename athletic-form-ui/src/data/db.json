@@ -80,6 +80,15 @@
       "time": "6:00 PM",
       "departOrHome": "3:00 PM",
       "destination": "Santa Barbara, CA"
+    },
+    {
+      "id": 10,
+      "sport": "Rowing",
+      "opponent": "Head of the Aardvark",
+      "date": "2022-01-01",
+      "time": "3:00 PM",
+      "departOrHome": "8:00 AM",
+      "destination": "Mobile, AL"
     }
   ]
 }
