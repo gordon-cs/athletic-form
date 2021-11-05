@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Unity;
 using AthleticFormLibrary;
 
+
 namespace AthleticFormCore
 {
     public class Startup
@@ -25,14 +26,7 @@ namespace AthleticFormCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options => {
-                options.AddDefaultPolicy(builder => {
-                    builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
-            });
-            
+            services.AddCors();
             services.AddControllers();
                         services.AddMvc()
                 .AddControllersAsServices();
@@ -52,9 +46,11 @@ namespace AthleticFormCore
 
             app.UseRouting();
             
-            app.UseCors();         
-            
-            app.UseAuthorization();
+            app.UseCors(builder => {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });     
 
             app.UseEndpoints(endpoints =>
             {
