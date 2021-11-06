@@ -14,7 +14,7 @@ export const EventsPage: React.FC<Props> = () => {
 			.then((res) => {
 				console.log(res.data);
 			})
-			.catch(console.error);
+			.catch((error) => console.log(error.message));
 	}, []);
 
 	return (
