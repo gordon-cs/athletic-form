@@ -42,8 +42,6 @@ namespace AthleticFormCore
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
             
             app.UseCors(builder => {
