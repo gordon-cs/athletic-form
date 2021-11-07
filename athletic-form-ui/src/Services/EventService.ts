@@ -7,11 +7,10 @@ export function getAllEvents(): AxiosPromise<any> {
 	});
 }
 
-export async function addEventHandler(event: Event, eventId: number) {
-	const data = {
-		id: eventId,
-		...event,
-	};
-
-	return apiClient.post('Events', data);
+export async function addEvent(event: any) {
+	apiClient({
+		method: 'post',
+		url: '/events',
+		data: event,
+	});
 }

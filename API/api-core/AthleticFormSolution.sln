@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "athletic-form-core", "athletic-form-core\athletic-form-core.csproj", "{796AD884-4734-4922-A8C7-7394102517B4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AthleticFormLibrary", "AthleticFormLibrary\AthleticFormLibrary.csproj", "{3CB55212-E729-4BB1-BB66-A942094D8858}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AthleticFormCore", "AthleticFormCore\AthleticFormCore.csproj", "{2F5C36CC-0885-4BAB-A808-690CB5E71CFA}"

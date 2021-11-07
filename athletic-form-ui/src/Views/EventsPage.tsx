@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { getAllEvents } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
-import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { Button, Card, CardActions, CardHeader } from '@mui/material';
 import { FaPlusCircle } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
