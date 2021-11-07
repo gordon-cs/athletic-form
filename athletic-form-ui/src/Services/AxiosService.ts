@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const instance = axios.create({
-	baseURL: 'http://localhost:3000/',
+export const apiClient = axios.create({
+	baseURL: 'http://localhost:5001/api',
 	headers: {
 		'Content-Type': 'application/json',
 	},
 });
+<<<<<<< HEAD
 
 export const get = (apiEndpoint: string) => {
 	return instance.get(apiEndpoint);
@@ -14,3 +15,5 @@ export const get = (apiEndpoint: string) => {
 export const post = (apiEndpoint: string, request: any) => {
 	return instance.post(apiEndpoint, request);
 }
+=======
+>>>>>>> origin/hudson-api

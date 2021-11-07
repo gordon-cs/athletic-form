@@ -1,10 +1,13 @@
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import '../styles/eventCard.scss';
+<<<<<<< HEAD
 import { Event } from '../Models/Event';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 
+=======
+>>>>>>> origin/hudson-api
 interface Props {
-	eventData: Event;
+	eventData: any;
 }
 
 export const EventCard: React.FC<Props> = ({ eventData }) => {

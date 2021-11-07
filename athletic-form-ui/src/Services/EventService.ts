@@ -1,7 +1,11 @@
 import { get, post } from './AxiosService';
+import { AxiosPromise } from 'axios';
+import { apiClient } from './AxiosService';
 
-export async function getAllEvents(): Promise<any> {
-	return get('Events');
+export function getAllEvents(): AxiosPromise<any> {
+	return apiClient({
+		url: '/events',
+	});
 }
 
 export async function addEventHandler(event : Event, eventId : number) {
