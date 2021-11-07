@@ -21,23 +21,21 @@ export const EventsPage: React.FC<Props> = () => {
 			.catch((error) => console.log(error.message));
 	}, []);
 	
-	/*return (
+	return (
 		<Grid container spacing={3}>
 			{events == null
 				? 'There are no events to show'
 				: events.map((entry: any) => (
 						<Grid item key={entry['id']}>
 							<EventCard
-								eventData={
-									new Event(
-										entry['sport'],
-										entry['opponent'],
-										entry['date'],
-										entry['time'],
-										entry['departOrHome'],
-										entry['destination']
-									)
-								}
+								eventData={{
+										sport: entry['sport'],
+										opponent: entry['opponent'],
+										date: entry['date'],
+										time: entry['time'],
+										departOrHome: entry['departOrHome'],
+										destination: entry['destination']
+								}}
 							/>
 						</Grid>
 				  ))}
@@ -56,6 +54,5 @@ export const EventsPage: React.FC<Props> = () => {
 				</CardActions>
 			</Card>
 		</Grid>
-	);*/
-	return <p>Hello World</p>;
+	);
 };
