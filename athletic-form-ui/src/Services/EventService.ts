@@ -7,11 +7,11 @@ export function getAllEvents(): AxiosPromise<any> {
 	});
 }
 
-export async function addEventHandler(event : Event, eventId : number) {
-	const request = {
+export async function addEventHandler(event: Event, eventId: number) {
+	const data = {
 		id: eventId,
-		...event
-	}
+		...event,
+	};
 
-	//return post("Events", request);
+	return apiClient.post('Events', data);
 }

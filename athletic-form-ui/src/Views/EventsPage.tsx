@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import { FaPlusCircle } from 'react-icons/fa';
-import "../styles/eventsPage.scss";
+import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 
 interface Props {}
@@ -13,14 +13,13 @@ export const EventsPage: React.FC<Props> = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
-		console.log(getAllEvents());
 		getAllEvents()
 			.then((res) => {
-				console.log(res.data);
+				setEvents(res.data);
 			})
 			.catch((error) => console.log(error.message));
 	}, []);
-	
+
 	return (
 		<Grid container spacing={3}>
 			{events == null
@@ -29,12 +28,12 @@ export const EventsPage: React.FC<Props> = () => {
 						<Grid item key={entry['id']}>
 							<EventCard
 								eventData={{
-										sport: entry['sport'],
-										opponent: entry['opponent'],
-										date: entry['date'],
-										time: entry['time'],
-										departOrHome: entry['departOrHome'],
-										destination: entry['destination']
+									sport: entry['sport'],
+									opponent: entry['opponent'],
+									date: entry['date'],
+									time: entry['time'],
+									departOrHome: entry['departOrHome'],
+									destination: entry['destination'],
 								}}
 							/>
 						</Grid>
@@ -42,7 +41,7 @@ export const EventsPage: React.FC<Props> = () => {
 			<Card className={'add-card'}>
 				<CardHeader className={'add-header'} title={'Add'}></CardHeader>
 				<CardActions className={'add-action'}>
-					<Link to = "/events/add">
+					<Link to='/events/add'>
 						<Button
 							size='large'
 							sx={{ backgroundColor: '#710F0F', color: 'white' }}
