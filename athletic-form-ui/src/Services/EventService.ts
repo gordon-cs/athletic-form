@@ -1,4 +1,3 @@
-import { get, post } from './AxiosService';
 import { AxiosPromise } from 'axios';
 import { apiClient } from './AxiosService';
 
@@ -14,5 +13,5 @@ export async function addEventHandler(event : Event, eventId : number) {
 		...event
 	}
 
-	return post("Events", request);
+	//return post("Events", request);
 }

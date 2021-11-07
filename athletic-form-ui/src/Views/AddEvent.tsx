@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { getAllEvents, addEventHandler } from '../Services/EventService';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Event } from '../Models/Event';
 import "../styles/addEvent.scss";
 
 interface Props {}
@@ -26,13 +25,18 @@ export const AddEvent : React.FC<Props> = () => {
 
     const handleSubmit = () => {
         setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-        let event : any = new Event(sport, opponent, date, time, 
-            departOrHome, destination);
-        addEventHandler(event, eventId).then((res) => {
+        let event : any = {
+            id: 1,
+            sport: "Baseball",
+            opponent: "Endicott",
+            date: "11/7/2021",
+            time: "5:19 PM"
+        };
+        /*addEventHandler(event, eventId).then((res) => {
             setEvents([...events, res.data]);
         }).then((a) => {
             window.location.href = "/events";
-        })
+        })*/
     }
 
     return (

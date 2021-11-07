@@ -6,14 +6,3 @@ export const apiClient = axios.create({
 		'Content-Type': 'application/json',
 	},
 });
-<<<<<<< HEAD
-
-export const get = (apiEndpoint: string) => {
-	return instance.get(apiEndpoint);
-};
-
-export const post = (apiEndpoint: string, request: any) => {
-	return instance.post(apiEndpoint, request);
-}
-=======
->>>>>>> origin/hudson-api
