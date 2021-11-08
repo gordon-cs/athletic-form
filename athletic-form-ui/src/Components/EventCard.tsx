@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 interface Props {
 	eventData: any;
@@ -33,15 +34,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Button
-					size='small'
-					sx={{ backgroundColor: '#710F0F', color: 'white' }}
-					variant={'outlined'}
-					onClick={RemoveCard}
-				>
-					<FaTrashAlt></FaTrashAlt>
-					Delete
-				</Button>
+				<Link to = {`/events/${eventData.id}/delete`} >
+					<Button
+						size='small'
+						sx={{ backgroundColor: '#710F0F', color: 'white' }}
+						variant={'outlined'}
+					>
+						<FaTrashAlt></FaTrashAlt>
+						Delete
+					</Button>
+				</Link>
 				<Button
 					size={'small'}
 					sx={{ backgroundColor: '#066A1F', color: 'white' }}

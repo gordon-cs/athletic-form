@@ -28,6 +28,7 @@ export const EventsPage: React.FC<Props> = () => {
 						<Grid item key={entry['id']}>
 							<EventCard
 								eventData={{
+									id: entry['id'],
 									sport: entry['sport'],
 									opponent: entry['opponent'],
 									date: entry['date'],
