@@ -55,7 +55,7 @@ export const AddEvent: React.FC<Props> = () => {
                     <input type="radio" value="Home" name="isAway" /> Home
                     <input type="radio" value="Away" name="isAway" /> Away
                 </div>
-				<br></br>
+                {/* Have the some information only show up if away*/}
 				<label>
 					Destination:
 					<input

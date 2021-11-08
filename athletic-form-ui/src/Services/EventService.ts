@@ -14,3 +14,11 @@ export async function addEvent(event: any) {
 		data: event,
 	});
 }
+
+export async function removeEvent(event: any) {
+	apiClient({
+		method: 'delete',
+		url: '/events',
+		data: event,
+	});
+}
