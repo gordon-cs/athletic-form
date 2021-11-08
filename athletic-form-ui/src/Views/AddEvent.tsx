@@ -4,6 +4,11 @@ import { getAllEvents, addEvent } from '../Services/EventService';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import '../styles/addEvent.scss';
+import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 interface Props {}
 
@@ -34,63 +39,38 @@ export const AddEvent: React.FC<Props> = () => {
 		<Grid className='add-event'>
 			<h1>Add Event</h1>
 			<form onSubmit={handleSubmit}>
-				<label>
-					Sport:
-					<input
-						type='text'
-						value={sport}
-						onChange={(e: any) => setSport(e.target.value)}
-					></input>
-				</label>
+				<TextField value = {sport} 
+					label = "Sport"
+					onChange = {(e: any) => { setSport(e.target.value)}} />
 				<br></br>
-				<label>
-					Opponent:
-					<input
-						type='text'
-						value={opponent}
-						onChange={(e: any) => setOpponent(e.target.value)}
-					></input>
-				</label>
-                <div>
-                    <input type="radio" value="Home" name="isAway" /> Home
-                    <input type="radio" value="Away" name="isAway" /> Away
-                </div>
+				<TextField value = {opponent} 
+					label = "Opponent"
+					onChange = {(e: any) => { setOpponent(e.target.value)}} />
+				<RadioGroup 
+					aria-label="isAway"
+					defaultValue="home"
+					name="radio-buttons-group"
+				>
+					<FormControlLabel value="home" control={<Radio />} label="Home" />
+					<FormControlLabel value="away" control={<Radio />} label="Away" />
+				</RadioGroup>
                 {/* Have the some information only show up if away*/}
-				<label>
-					Destination:
-					<input
-						type='text'
-						value={destination}
-						onChange={(e: any) => setDestination(e.target.value)}
-					></input>
-				</label>
+				<TextField value = {destination} 
+					label = "Destination"
+					onChange = {(e: any) => { setDestination(e.target.value)}} />
 				<br></br>
-				<label>
-					Date:
-					<input
-						type='date'
-						value={date}
-						onChange={(e: any) => setDate(e.target.value)}
-					></input>
-				</label>
+				<TextField value = {date} 
+					type = "date"
+					label = "Date"
+					onChange = {(e: any) => { setDate(e.target.value)}} />
 				<br></br>
-				<label>
-					Time:
-					<input
-						type='text'
-						value={time}
-						onChange={(e: any) => setTime(e.target.value)}
-					></input>
-				</label>
+				<TextField value = {time} 
+					label = "Time"
+					onChange = {(e: any) => { setTime(e.target.value)}} />
 				<br></br>
-				<label>
-					Home/Departure Time
-					<input
-						type='text'
-						value={departOrHome}
-						onChange={(e: any) => setHomeOrDepart(e.target.value)}
-					></input>
-				</label>
+				<TextField value = {departOrHome} 
+					label = "Home/Departure Time"
+					onChange = {(e: any) => { setHomeOrDepart(e.target.value)}} />
 				<br></br>
 				<Button
 					size='small'

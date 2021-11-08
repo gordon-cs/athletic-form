@@ -98,6 +98,24 @@
       "departOrHome": "test",
       "destination": "test",
       "id": 11
+    },
+    {
+      "sport": "Rowing",
+      "opponent": "Head of the Buffalo",
+      "date": "2021-10-31",
+      "time": "7:00 PM",
+      "departOrHome": "1:00 PM",
+      "destination": "Buffalo, NY",
+      "id": 12
+    },
+    {
+      "sport": "Rowing",
+      "opponent": "Tymann Cup",
+      "date": "2021-10-16",
+      "time": "15:00",
+      "departOrHome": "Home",
+      "destination": "Wenham, MA",
+      "id": 13
     }
   ]
 }
