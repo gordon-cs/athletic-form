@@ -9,7 +9,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-
 interface Props {}
 
 export const AddEvent: React.FC<Props> = () => {
@@ -39,38 +38,58 @@ export const AddEvent: React.FC<Props> = () => {
 		<Grid className='add-event'>
 			<h1>Add Event</h1>
 			<form onSubmit={handleSubmit}>
-				<TextField value = {sport} 
-					label = "Sport"
-					onChange = {(e: any) => { setSport(e.target.value)}} />
+				<TextField
+					value={sport}
+					label='Sport'
+					onChange={(e: any) => {
+						setSport(e.target.value);
+					}}
+				/>
 				<br></br>
-				<TextField value = {opponent} 
-					label = "Opponent"
-					onChange = {(e: any) => { setOpponent(e.target.value)}} />
-				<RadioGroup 
-					aria-label="isAway"
-					defaultValue="home"
-					name="radio-buttons-group"
-				>
-					<FormControlLabel value="home" control={<Radio />} label="Home" />
-					<FormControlLabel value="away" control={<Radio />} label="Away" />
+				<TextField
+					value={opponent}
+					label='Opponent'
+					onChange={(e: any) => {
+						setOpponent(e.target.value);
+					}}
+				/>
+				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'>
+					<FormControlLabel value='home' control={<Radio />} label='Home' />
+					<FormControlLabel value='away' control={<Radio />} label='Away' />
 				</RadioGroup>
-                {/* Have the some information only show up if away*/}
-				<TextField value = {destination} 
-					label = "Destination"
-					onChange = {(e: any) => { setDestination(e.target.value)}} />
+				{/* Have the some information only show up if away*/}
+				<TextField
+					value={destination}
+					label='Destination'
+					onChange={(e: any) => {
+						setDestination(e.target.value);
+					}}
+				/>
 				<br></br>
-				<TextField value = {date} 
-					type = "date"
-					label = "Date"
-					onChange = {(e: any) => { setDate(e.target.value)}} />
+				<TextField
+					value={date}
+					type='date'
+					label={date}
+					onChange={(e: any) => {
+						setDate(e.target.value);
+					}}
+				/>
 				<br></br>
-				<TextField value = {time} 
-					label = "Time"
-					onChange = {(e: any) => { setTime(e.target.value)}} />
+				<TextField
+					value={time}
+					label='Time'
+					onChange={(e: any) => {
+						setTime(e.target.value);
+					}}
+				/>
 				<br></br>
-				<TextField value = {departOrHome} 
-					label = "Home/Departure Time"
-					onChange = {(e: any) => { setHomeOrDepart(e.target.value)}} />
+				<TextField
+					value={departOrHome}
+					label='Home/Departure Time'
+					onChange={(e: any) => {
+						setHomeOrDepart(e.target.value);
+					}}
+				/>
 				<br></br>
 				<Button
 					size='small'

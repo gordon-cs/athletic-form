@@ -3,6 +3,7 @@ import { apiClient } from './AxiosService';
 
 export function getAllEvents(): AxiosPromise<any> {
 	return apiClient({
+		method: 'get',
 		url: '/events',
 	});
 }
@@ -21,5 +22,5 @@ export async function removeEvent(event: any) {
 		url: '/events',
 		data: event,
 	});
-	console.log("SHOULD DELETE")
+	console.log('SHOULD DELETE');
 }
