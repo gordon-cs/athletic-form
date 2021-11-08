@@ -51,6 +51,10 @@ export const AddEvent: React.FC<Props> = () => {
 						onChange={(e: any) => setOpponent(e.target.value)}
 					></input>
 				</label>
+                <div>
+                    <input type="radio" value="Home" name="isAway" /> Home
+                    <input type="radio" value="Away" name="isAway" /> Away
+                </div>
 				<br></br>
 				<label>
 					Destination:
