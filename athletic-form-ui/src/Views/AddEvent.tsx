@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { getAllEvents, addEvent } from '../Services/EventService';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/addEvent.scss';
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
@@ -20,6 +20,7 @@ export const AddEvent: React.FC<Props> = () => {
 	const [time, setTime] = useState('');
 	const [departOrHome, setHomeOrDepart] = useState('');
 	const [destination, setDestination] = useState('');
+	let navigate = useNavigate();
 
 	useEffect(() => {
 		getAllEvents().then((res) => {
@@ -29,7 +30,9 @@ export const AddEvent: React.FC<Props> = () => {
 
 	const handleSubmit = () => {
 		setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-		addEvent({ sport, opponent, date, time, departOrHome, destination }).catch((error) => {
+		addEvent({ sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
+			navigate("/events");
+		}).catch((error) => {
 			console.log(error);
 		});
 	};
