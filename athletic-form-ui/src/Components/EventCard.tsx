@@ -6,6 +6,10 @@ interface Props {
 	eventData: any;
 }
 
+export function RemoveCard() {
+	console.log("Add delete functionality here I guess")
+}
+
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	if (eventData.departOrHome === 'Home') {
@@ -33,6 +37,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 					size='small'
 					sx={{ backgroundColor: '#710F0F', color: 'white' }}
 					variant={'outlined'}
+					onClick={RemoveCard}
 				>
 					<FaTrashAlt></FaTrashAlt>
 					Delete
