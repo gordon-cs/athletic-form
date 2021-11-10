@@ -55,22 +55,13 @@
       "destination": "Philadelphia, PA"
     },
     {
-      "id": 9,
       "sport": "Cross Country",
-      "opponent": "Westmont College",
-      "date": "2022-01-01",
-      "time": "6:00 PM",
-      "departOrHome": "3:00 PM",
-      "destination": "Santa Barbara, CA"
-    },
-    {
-      "sport": "Hello",
-      "opponent": "World",
-      "date": "2022-10-20",
+      "opponent": "Endicott College",
+      "date": "2021-12-31",
       "time": "1:00 PM",
       "departOrHome": "Home",
-      "destination": "Wenham, MA",
-      "id": 10
+      "destination": "Wenham, Ma",
+      "id": 7
     }
   ]
 }

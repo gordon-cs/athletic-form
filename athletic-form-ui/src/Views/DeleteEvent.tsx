@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllEvents, removeEvent } from "../Services/EventService";
-import { Card, CardHeader, CardContent, Button } from "@mui/material";
+import { Card, CardHeader, CardContent, Button, CardActions } from "@mui/material";
 import "../styles/eventCard.scss";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -53,20 +53,22 @@ export const DeleteEvent : React.FC<Props> = () => {
                     <CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
                     {departHome}
                 </CardContent>
+                <CardActions className={'card-content card-action'}>
+                    <Button size='small'
+                        sx={{ backgroundColor: 'green', color: 'white' }}
+                        variant={'outlined'}
+                        onClick={ handleClick }>
+                        Yes
+                    </Button>
+                    <Link to = "/events">
+                        <Button size='small'
+                            sx={{ backgroundColor: 'red', color: 'white' }}
+                            variant={'outlined'}>
+                            No
+                        </Button>
+                    </Link>
+                </CardActions>
             </Card>
-            <Button size='small'
-				sx={{ backgroundColor: 'green', color: 'white' }}
-				variant={'outlined'}
-                onClick={ handleClick }>
-                Yes
-            </Button>
-            <Link to = "/events">
-                <Button size='small'
-                    sx={{ backgroundColor: 'red', color: 'white' }}
-                    variant={'outlined'}>
-                    No
-                </Button>
-            </Link>
         </Grid>
     );
 }
