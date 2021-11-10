@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents } from "../Services/EventService";
+import { getAllEvents, removeEvent } from "../Services/EventService";
 import { Card, CardHeader, CardContent, Button } from "@mui/material";
 import "../styles/eventCard.scss";
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Props {}
 
@@ -12,16 +13,22 @@ export const DeleteEvent : React.FC<Props> = () => {
     const index = params.id - 1;
     const [eventData, setEventData] = useState<any | null>(null);
     let departHome;
+    let navigate = useNavigate();
 
     useEffect(() => {
 		getAllEvents()
 			.then((res) => {
-                console.log(res.data[index]);
 				setEventData(res.data[index]);
 			}).catch((error) => console.log(error.message));
     }, [index]);
 
-    console.log(eventData);
+    const handleClick = () => {
+        removeEvent({ eventData }).then((a: any) => {
+            navigate("/events");
+        }).catch((error) =>{
+            console.log(error);
+        });
+    }
 
     if (eventData?.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
@@ -49,14 +56,17 @@ export const DeleteEvent : React.FC<Props> = () => {
             </Card>
             <Button size='small'
 				sx={{ backgroundColor: 'green', color: 'white' }}
-				variant={'outlined'}>
+				variant={'outlined'}
+                onClick={ handleClick }>
                 Yes
             </Button>
-            <Button size='small'
-				sx={{ backgroundColor: 'red', color: 'white' }}
-				variant={'outlined'}>
-                No
-            </Button>
+            <Link to = "/events">
+                <Button size='small'
+                    sx={{ backgroundColor: 'red', color: 'white' }}
+                    variant={'outlined'}>
+                    No
+                </Button>
+            </Link>
         </Grid>
     );
 }
