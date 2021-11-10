@@ -23,12 +23,12 @@ export const DeleteEvent : React.FC<Props> = () => {
 
     console.log(eventData);
 
-    if (eventData.departOrHome === 'Home') {
+    if (eventData?.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {eventData.departOrHome}
+				Depart Time: {eventData?.departOrHome}
 			</CardContent>
 		);
 	}
@@ -39,11 +39,11 @@ export const DeleteEvent : React.FC<Props> = () => {
            <Card className={'card'} variant={'outlined'}>
                 <CardHeader
                     className={'card-header'}
-                    title={eventData.sport + ': ' + eventData.opponent}
-                    subheader={'Date: ' + eventData.date}
+                    title={eventData?.sport + ': ' + eventData?.opponent}
+                    subheader={'Date: ' + eventData?.date}
                 />
                 <CardContent className={'card-content'}>
-                    <CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
+                    <CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
                     {departHome}
                 </CardContent>
             </Card>
