@@ -10,7 +10,7 @@ interface Props {}
 
 export const DeleteEvent : React.FC<Props> = () => {
     const params : any = useParams();
-    const index = params.id - 1;
+    const id = params.id
     const [eventData, setEventData] = useState<any | null>(null);
     let departHome;
     let navigate = useNavigate();
@@ -18,9 +18,9 @@ export const DeleteEvent : React.FC<Props> = () => {
     useEffect(() => {
 		getAllEvents()
 			.then((res) => {
-				setEventData(res.data[index]);
+				setEventData(res.data.find((e: any) => { return e.id === parseInt(id) }));
 			}).catch((error) => console.log(error.message));
-    }, [index]);
+    }, [id]);
 
     const handleClick = () => {
         removeEvent(params.id).then((a: any) => {

@@ -55,15 +55,6 @@
       "destination": "Philadelphia, PA"
     },
     {
-      "id": 7,
-      "sport": "Rowing",
-      "opponent": "Knecht Cup",
-      "date": "2022-04-09",
-      "time": "14:00",
-      "departOrHome": "7:00 AM",
-      "destination": "Camden, NJ"
-    },
-    {
       "id": 9,
       "sport": "Cross Country",
       "opponent": "Westmont College",
@@ -71,6 +62,15 @@
       "time": "6:00 PM",
       "departOrHome": "3:00 PM",
       "destination": "Santa Barbara, CA"
+    },
+    {
+      "sport": "Hello",
+      "opponent": "World",
+      "date": "2022-10-20",
+      "time": "1:00 PM",
+      "departOrHome": "Home",
+      "destination": "Wenham, MA",
+      "id": 10
     }
   ]
 }
