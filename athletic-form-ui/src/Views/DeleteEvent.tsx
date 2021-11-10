@@ -23,7 +23,7 @@ export const DeleteEvent : React.FC<Props> = () => {
     }, [index]);
 
     const handleClick = () => {
-        removeEvent({ eventData }).then((a: any) => {
+        removeEvent(params.id).then((a: any) => {
             navigate("/events");
         }).catch((error) =>{
             console.log(error);

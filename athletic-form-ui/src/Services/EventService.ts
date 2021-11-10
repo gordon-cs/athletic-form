@@ -16,11 +16,10 @@ export async function addEvent(event: any) {
 	});
 }
 
-export async function removeEvent(event: any) {
+export async function removeEvent(id: any) {
 	apiClient({
 		method: 'delete',
-		url: '/events',
-		data: event,
+		url: `/events/${id}`,
 	});
 	console.log('SHOULD DELETE');
 }
