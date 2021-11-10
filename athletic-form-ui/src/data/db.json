@@ -53,15 +53,6 @@
       "time": "13:30",
       "departOrHome": "8:00 AM",
       "destination": "Philadelphia, PA"
-    },
-    {
-      "sport": "Cross Country",
-      "opponent": "Endicott College",
-      "date": "2021-12-31",
-      "time": "1:00 PM",
-      "departOrHome": "Home",
-      "destination": "Wenham, Ma",
-      "id": 7
     }
   ]
 }
