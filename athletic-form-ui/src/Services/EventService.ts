@@ -21,5 +21,4 @@ export async function removeEvent(id: any) {
 		method: 'delete',
 		url: `/events/${id}`,
 	});
-	console.log('SHOULD DELETE');
 }
