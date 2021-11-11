@@ -31,7 +31,7 @@ namespace AthleticFormCore.Controllers
                 Opponent = "Endicott",
                 Sport = "Baseball",
                 Date = DateTime.Now,
-                Time = DateTime.Now.TimeOfDay
+                Time = "Test"
             }); 
             return _events;
         }

@@ -13,11 +13,13 @@ export const EventsPage: React.FC<Props> = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
+		console.log(getAllEvents());
 		getAllEvents()
 			.then((res) => {
+				console.log(res.data);
 				setEvents(res.data);
 			})
-			.catch((error) => console.log(error.message));
+			.catch((error) => console.log(error));
 	}, []);
 
 	return (
@@ -28,7 +30,6 @@ export const EventsPage: React.FC<Props> = () => {
 						<Grid item key={entry['id']}>
 							<EventCard
 								eventData={{
-									id: entry['id'],
 									sport: entry['sport'],
 									opponent: entry['opponent'],
 									date: entry['date'],
