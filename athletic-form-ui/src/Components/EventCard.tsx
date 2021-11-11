@@ -13,22 +13,29 @@ export function RemoveCard() {
 
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
+	let headerHome;
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
+		headerHome = (<CardHeader
+						className={'card-header isHome'}
+						title={eventData.sport + ': ' + eventData.opponent}
+						subheader={'Date: ' + eventData.date}
+					/>)
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {eventData.departOrHome}
 			</CardContent>
 		);
+		headerHome = (<CardHeader
+						className={'card-header'}
+						title={eventData.sport + ': ' + eventData.opponent}
+						subheader={'Date: ' + eventData.date}
+					/>)
 	}
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<CardHeader
-				className={'card-header'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + eventData.date}
-			/>
+			{headerHome}
 			<CardContent className={'card-content'}>
 				<CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
 				{departHome}
