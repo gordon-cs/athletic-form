@@ -1,15 +1,6 @@
 {
   "Events": [
     {
-      "id": 1,
-      "sport": "Rowing",
-      "opponent": "Head of the Charles",
-      "date": "2021-10-24",
-      "time": "12:15 PM",
-      "departOrHome": "10:00 AM",
-      "destination": "Boston, MA"
-    },
-    {
       "id": 2,
       "sport": "Rowing",
       "opponent": "Head of the Fish",
@@ -53,6 +44,15 @@
       "time": "13:30",
       "departOrHome": "8:00 AM",
       "destination": "Philadelphia, PA"
+    },
+    {
+      "sport": "Women's Basketball",
+      "opponent": "Coast Guard Academy",
+      "date": "2021-11-12",
+      "time": "7:00 PM",
+      "departOrHome": "Home",
+      "destination": "Wenham, MA",
+      "id": 7
     }
   ]
 }
