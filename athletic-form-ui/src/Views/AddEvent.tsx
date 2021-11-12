@@ -23,18 +23,24 @@ export const AddEvent: React.FC<Props> = () => {
 	let navigate = useNavigate();
 
 	useEffect(() => {
-		getAllEvents().then((res) => {
-			setEvents(res.data);
-		});
+		getAllEvents()
+			.then((res) => {
+				setEvents(res.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, []);
 
 	const handleSubmit = () => {
 		setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-		addEvent({ sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
-			navigate("/events");
-		}).catch((error) => {
-			console.log(error);
-		});
+		addEvent({ sport, opponent, date, time, departOrHome, destination })
+			.then((a: any) => {
+				navigate('/events');
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (

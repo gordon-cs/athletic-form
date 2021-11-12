@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
-using AthleticFormLibrary;
-using AthleticFormLibrary.Interfaces;
 using AthleticFormLibrary.Models;
 using AthleticFormLibrary.DataAccess;
-using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace AthleticFormCore.Controllers
 {
@@ -24,6 +19,14 @@ namespace AthleticFormCore.Controllers
         [HttpGet]
         public List<AthleticEvent> GetAll() {
             return _context.AthleticEvents.ToList();
-        }   
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/add")]
+        public void Post([FromBody]AthleticEvent athleticEvent) {
+            _context.Add<AthleticEvent>(athleticEvent);
+            _context.SaveChanges();
+        }
     }
 }
+

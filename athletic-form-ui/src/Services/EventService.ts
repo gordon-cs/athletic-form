@@ -11,7 +11,7 @@ export function getAllEvents(): AxiosPromise<any> {
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
-		url: '/events',
+		url: '/events/add',
 		data: event,
 	});
 }
