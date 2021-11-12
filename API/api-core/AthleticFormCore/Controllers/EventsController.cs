@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary;
 using AthleticFormLibrary.Interfaces;
 using AthleticFormLibrary.Models;
+using AthleticFormLibrary.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace AthleticFormCore.Controllers
 {
@@ -14,26 +16,14 @@ namespace AthleticFormCore.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private readonly IDataAccess _dataAccess;
-
-        private List<AthleticEvent> _events;
-        public EventsController(IDataAccess dataAccess)
-        {
-           _dataAccess = dataAccess;
-           _events = new List<AthleticEvent>();
-        }
-
+        private readonly AthleticEventContext _context;
+       public EventsController(AthleticEventContext context) {
+           _context = context;
+       }
         // GET api/events
         [HttpGet]
-        public List<AthleticEvent> GetAll()
-        {
-            _events.Add(new AthleticEvent {
-                Opponent = "Endicott",
-                Sport = "Baseball",
-                Date = DateTime.Now,
-                Time = "Test"
-            }); 
-            return _events;
-        }
+        public List<AthleticEvent> GetAll() {
+            return _context.AthleticEvents.ToList();
+        }   
     }
 }

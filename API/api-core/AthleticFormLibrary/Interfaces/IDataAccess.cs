@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace AthleticFormLibrary.Interfaces
 {
@@ -8,6 +9,6 @@ namespace AthleticFormLibrary.Interfaces
     {
         void Store();
 
-        string Retrieve();
+        List<Type> Retrieve();
     }
 }

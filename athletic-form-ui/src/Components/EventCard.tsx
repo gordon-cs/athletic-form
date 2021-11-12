@@ -27,10 +27,10 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				//subheader={'Date: ' + eventData.date}
+				subheader={'Date: ' + eventData.date}
 			/>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Time: {eventData.time['days']}</CardContent>
+				<CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
