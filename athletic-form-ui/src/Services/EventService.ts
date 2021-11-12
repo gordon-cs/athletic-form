@@ -16,10 +16,10 @@ export async function addEvent(event: any) {
 	});
 }
 
-export async function updateEvent(event: any) {
+export async function updateEvent(id: number, event: any) {
 	apiClient({
 		method: 'put',
-		url: '/events',
+		url: `/events/${id}`,
 		data: event,
 	});
 }

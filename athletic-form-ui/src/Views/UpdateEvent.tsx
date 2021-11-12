@@ -41,7 +41,7 @@ export const UpdateEvent: React.FC<Props> = () => {
     
 
 	const handleSubmit = () => {
-		addEvent({ sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
+		updateEvent(eventData?.eventId, { sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
 			navigate("/events");
 		}).catch((error) => {
 			console.log(error);
