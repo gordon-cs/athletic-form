@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAllEvents, addEvent } from '../Services/EventService';
+import { addEvent, getAllEvents, updateEvent } from '../Services/EventService';
 import { Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/addEvent.scss';
@@ -16,7 +16,7 @@ export const UpdateEvent: React.FC<Props> = () => {
     const [eventData, setEventData] = useState<any | null>(null);
 	const [events, setEvents] = useState<any | null>(null);
 	const [eventId, setEventId] = useState<any | null>(null);
-	const [sport, setSport] = useState<any | null>(null);
+	const [sport, setSport] = useState<any | null>();
 	const [opponent, setOpponent] = useState<any | null>(null);
 	const [date, setDate] = useState<any | null>(null);
 	const [time, setTime] = useState<any | null>(null);
@@ -26,10 +26,6 @@ export const UpdateEvent: React.FC<Props> = () => {
     const params: any = useParams();
 	const id = params.id;
 	let departHome;
-
-    //setSport(eventData?.sport)
-    //setOpponent(eventData?.opponent)
-
 
 	useEffect(() => {
 		getAllEvents()
@@ -42,10 +38,9 @@ export const UpdateEvent: React.FC<Props> = () => {
 			})
 			.catch((error) => console.log(error.message));
 	}, [id]);
+    
 
 	const handleSubmit = () => {
-        setEventId(eventData?.eventId)
-        setSport(eventData?.sport) 
 		addEvent({ sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
 			navigate("/events");
 		}).catch((error) => {
@@ -53,21 +48,24 @@ export const UpdateEvent: React.FC<Props> = () => {
 		});
 	};
 
+
 	return (
 		<Grid className='update-event'>
-			<h1>Update Event</h1>
+			<h1>Edit Event</h1>
 			<form onSubmit={handleSubmit}>
 				<TextField
-					value={eventData?.sport}
-					label='' //'Sport'
+					value={sport}
+					label='Sport'
+					placeholder = {eventData?.sport}
 					onChange={(e: any) => {
 						setSport(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={eventData?.opponent}
-					label='' //'Opponent'
+					value={opponent}
+					label='Opponent'
+					placeholder = {eventData?.opponent}
 					onChange={(e: any) => {
 						setOpponent(e.target.value);
 					}}
@@ -78,33 +76,37 @@ export const UpdateEvent: React.FC<Props> = () => {
 				</RadioGroup>
 				{/* Have the some information only show up if away*/}
 				<TextField
-					value={eventData?.destination}
-					label='' //'Destination'
+					value={destination}
+					label='Destination'
+					placeholder = {eventData?.destination}
 					onChange={(e: any) => {
 						setDestination(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={eventData?.date}
-					type= '' //'date'
+					value={date}
+					type= 'date'
 					label={date}
+					placeholder = {eventData?.date}
 					onChange={(e: any) => {
 						setDate(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={eventData?.time}
-					label='' //'Time'
+					value={time}
+					label='Time'
+					placeholder = {eventData?.time}
 					onChange={(e: any) => {
 						setTime(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={eventData?.departOrHome}
-					label='' //'Home/Departure Time'
+					value={departOrHome}
+					label='Home/Departure Time'
+					placeholder = {eventData?.opponent}
 					onChange={(e: any) => {
 						setHomeOrDepart(e.target.value);
 					}}

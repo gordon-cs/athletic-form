@@ -16,6 +16,14 @@ export async function addEvent(event: any) {
 	});
 }
 
+export async function updateEvent(event: any) {
+	apiClient({
+		method: 'put',
+		url: '/events',
+		data: event,
+	});
+}
+
 export async function removeEvent(id: number) {
 	apiClient({
 		method: 'delete',
