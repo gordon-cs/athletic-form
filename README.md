@@ -35,7 +35,7 @@ After cloning this repo:
 - Go to: `athletic-form => API`
 - Open `AthleticFormAPI.sln` in Visual Studio 2019
 
-## Backend (VS Code)
+## Backend (VS Code) (Note, I've only tested this on Linux, so I'm not sure if these steps work on Windows yet)
 - First, make sure you have docker-compose installed on your system (follow instructions [here](https://docs.docker.com/compose/install/) (make sure to select the correct operating system)
 - ```cd clone-path/API/api-core/AthleticFormCore/AthleticSQLServer/ServerConfiguration```
 - replace SA_PASSWORD with a password of your choosing (Make sure to use special characters and at least one number)
