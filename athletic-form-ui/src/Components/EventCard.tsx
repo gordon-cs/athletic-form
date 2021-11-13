@@ -27,14 +27,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + eventData.date}
+				subheader={'Date: ' + eventData.eventDate}
 			/>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
+				<CardContent className={'card-detail'}>
+					Time: {JSON.stringify(eventData.eventTime)}
+				</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Link to={`/events/${eventData.id}/delete`}>
+				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'
 						sx={{ backgroundColor: '#710F0F', color: 'white' }}

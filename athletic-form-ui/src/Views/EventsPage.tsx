@@ -7,9 +7,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 
-interface Props {}
-
-export const EventsPage: React.FC<Props> = () => {
+export const EventsPage: React.FC = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
@@ -27,14 +25,14 @@ export const EventsPage: React.FC<Props> = () => {
 			{events == null
 				? 'There are no events to show'
 				: events.map((entry: any) => (
-						<Grid item key={entry['id']}>
+						<Grid item key={entry['eventId']}>
 							<EventCard
 								eventData={{
 									sport: entry['sport'],
 									opponent: entry['opponent'],
-									date: entry['date'],
-									time: entry['time'],
-									departOrHome: entry['departOrHome'],
+									date: entry['EventDate'],
+									time: entry['EventTime'],
+									departOrHome: entry['homeOrAway'],
 									destination: entry['destination'],
 								}}
 							/>
