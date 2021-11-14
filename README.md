@@ -55,7 +55,7 @@ After cloning this repo:
      - In secrets.json, add  
      ```
      {
-	     "ConnectionString": "Server=server-address; Database=AthleticDatabase;User Id=sa; Password=your_password 
+	     "ConnectionString": "Server=localhost; Database=AthleticDatabase;User Id=sa; Password=your_password 
      } 
      ```
      - ```cd repoPath/API/api-core/AthleticFormCore``` 
