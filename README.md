@@ -39,10 +39,11 @@ After cloning this repo:
 - First, make sure you have docker-compose installed on your system (follow instructions [here](https://docs.docker.com/compose/install/) (make sure to select the correct operating system)
 - ```cd clone-path/API/api-core/AthleticFormCore/AthleticSQLServer/ServerConfiguration```
 - replace SA_PASSWORD with a password of your choosing (Make sure to use special characters and at least one number)
+- Make sure docker is running.  If on docker desktop, make sure you are logged in with your docker account
 - ```sudo docker-compose up```
 - in Azure Data Studio, add a new connection
 - Server: localhost, username: SA, Password: Password as specified in the docker-compose.yml file
-- Once you are connected, open and run the two queries that are included, first the SchemaCreation.SQL and than the AthleticForm.SQL query
+- Once you are connected, open and run the three queries that are included, first the DatabaseCreation.sql, then the SchemaCreation.SQL and then the InsertData.SQL query
 - Be sure to leave the server running to connect with the backend in the next step
 
 
