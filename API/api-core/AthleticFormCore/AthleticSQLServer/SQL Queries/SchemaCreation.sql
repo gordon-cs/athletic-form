@@ -1,7 +1,7 @@
 drop table if exists [AthleticDatabase.AthleticEvents]
 
 -- Create table statements --
-create table [AthleticDatabase.AthleticEvents] (
+create table dbo.[AthleticDatabase.AthleticEvents] (
     EventID int identity(1,1),
     Sport varchar(25),
     Opponent varchar(50),
