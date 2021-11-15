@@ -35,7 +35,9 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	}
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			{headerHome}
+			<Link to={`/events/${eventData.id}/details`}>
+				{headerHome}
+			</Link>
 			<CardContent className={'card-content'}>
 				<CardContent className={'card-detail'}>Time: <br></br> {eventData.time}</CardContent>
 				{departHome}
