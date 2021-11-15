@@ -15,7 +15,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	let headerHome;
 	if (eventData.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
+		departHome = null; /*Used to be -> <CardContent className={'card-detail'}>Home</CardContent>;-->*/
 		headerHome = (<CardHeader
 						className={'card-header isHome'}
 						title={eventData.sport + ': ' + eventData.opponent}
@@ -24,7 +24,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {eventData.departOrHome}
+				Departure: <br></br>{eventData.departOrHome}
 			</CardContent>
 		);
 		headerHome = (<CardHeader
@@ -37,7 +37,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		<Card className={'card'} variant={'outlined'}>
 			{headerHome}
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Time: {eventData.time}</CardContent>
+				<CardContent className={'card-detail'}>Time: <br></br> {eventData.time}</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
