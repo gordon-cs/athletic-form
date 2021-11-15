@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { addEvent, getAllEvents, updateEvent } from '../Services/EventService';
 import { Button } from '@mui/material';
@@ -27,7 +27,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 	const id = params.id;
 	let departHome;
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		getAllEvents()
 			.then((res) => {
 				setEventData(
@@ -39,6 +39,9 @@ export const UpdateEvent: React.FC<Props> = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
     
+	const setValues = () => {
+		setSport(eventData?.sport)
+	}
 
 	const handleSubmit = () => {
 		updateEvent(eventData?.eventId, { sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
@@ -55,8 +58,8 @@ export const UpdateEvent: React.FC<Props> = () => {
 			<form onSubmit={handleSubmit}>
 				<TextField
 					value={sport}
-					label='Sport'
-					placeholder = {eventData?.sport}
+					label= 'Sport'
+					defaultValue= {eventData?.sport}
 					onChange={(e: any) => {
 						setSport(e.target.value);
 					}}
@@ -65,7 +68,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={opponent}
 					label='Opponent'
-					placeholder = {eventData?.opponent}
+					defaultValue = {eventData?.opponent}
 					onChange={(e: any) => {
 						setOpponent(e.target.value);
 					}}
@@ -78,7 +81,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={destination}
 					label='Destination'
-					placeholder = {eventData?.destination}
+					defaultValue = {eventData?.destination}
 					onChange={(e: any) => {
 						setDestination(e.target.value);
 					}}
@@ -88,7 +91,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					value={date}
 					type= 'date'
 					label={date}
-					placeholder = {eventData?.date}
+					defaultValue = {eventData?.date}
 					onChange={(e: any) => {
 						setDate(e.target.value);
 					}}
@@ -97,7 +100,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={time}
 					label='Time'
-					placeholder = {eventData?.time}
+					defaultValue = {eventData?.time}
 					onChange={(e: any) => {
 						setTime(e.target.value);
 					}}
@@ -106,7 +109,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={departOrHome}
 					label='Home/Departure Time'
-					placeholder = {eventData?.opponent}
+					defaultValue = {eventData?.opponent}
 					onChange={(e: any) => {
 						setHomeOrDepart(e.target.value);
 					}}
