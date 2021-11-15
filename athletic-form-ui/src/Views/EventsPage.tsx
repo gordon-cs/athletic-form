@@ -22,6 +22,20 @@ export const EventsPage: React.FC<Props> = () => {
 
 	return (
 		<Grid container spacing={3}>
+			<Card className={'add-card'}>
+				<CardHeader className={'add-header'} title={'Add'}></CardHeader>
+				<CardActions className={'add-action'}>
+					<Link to='/events/add'>
+						<Button
+							size='large'
+							sx={{ backgroundColor: '#710F0F', color: 'white' }}
+							variant={'outlined'}
+						>
+							<FaPlusCircle></FaPlusCircle>
+						</Button>
+					</Link>
+				</CardActions>
+			</Card>
 			{events == null
 				? 'There are no events to show'
 				: events.map((entry: any) => (
@@ -39,20 +53,6 @@ export const EventsPage: React.FC<Props> = () => {
 							/>
 						</Grid>
 				  ))}
-			<Card className={'add-card'}>
-				<CardHeader className={'add-header'} title={'Add'}></CardHeader>
-				<CardActions className={'add-action'}>
-					<Link to='/events/add'>
-						<Button
-							size='large'
-							sx={{ backgroundColor: '#710F0F', color: 'white' }}
-							variant={'outlined'}
-						>
-							<FaPlusCircle></FaPlusCircle>
-						</Button>
-					</Link>
-				</CardActions>
-			</Card>
 		</Grid>
 	);
 };
