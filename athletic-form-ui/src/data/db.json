@@ -53,6 +53,15 @@
       "time": "13:30",
       "departOrHome": "8:00 AM",
       "destination": "Philadelphia, PA"
+    },
+    {
+      "sport": "FakeSport",
+      "opponent": "jocks",
+      "date": "2021-01-01",
+      "time": "11:15",
+      "departOrHome": "",
+      "destination": "place",
+      "id": 7
     }
   ]
 }
