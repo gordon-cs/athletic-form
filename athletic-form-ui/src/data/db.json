@@ -71,15 +71,6 @@
       "departOrHome": null,
       "destination": null,
       "id": 8
-    },
-    {
-      "sport": "foo",
-      "opponent": "bar",
-      "date": null,
-      "time": null,
-      "departOrHome": null,
-      "destination": "qwerty",
-      "id": 9
     }
   ]
 }

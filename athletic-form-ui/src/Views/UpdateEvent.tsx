@@ -37,6 +37,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				);
 			})
 			.catch((error) => console.log(error.message));
+			setEventId(id);
 	}, [id]);
     
 	const setValues = () => {
@@ -44,7 +45,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 	}
 
 	const handleSubmit = () => {
-		updateEvent(eventData?.eventId, { sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
+		updateEvent(eventId, { sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
 			navigate("/events");
 		}).catch((error) => {
 			console.log(error);
