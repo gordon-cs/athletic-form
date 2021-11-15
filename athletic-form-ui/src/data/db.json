@@ -1,15 +1,6 @@
 {
   "Events": [
     {
-      "id": 2,
-      "sport": "Rowing",
-      "opponent": "Head of the Fish",
-      "date": "2021-10-29",
-      "time": "12:00 PM",
-      "departOrHome": "7:30 AM",
-      "destination": "Saratoga, NY"
-    },
-    {
       "id": 3,
       "sport": "Soccer",
       "opponent": "Endicott",
