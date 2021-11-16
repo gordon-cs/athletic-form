@@ -1,2 +1,2 @@
 ALTER TABLE dbo.[AthleticDatabase.AthleticEvents]
-    ADD DepartureTime time;
+    ADD DepartureTime datetime;

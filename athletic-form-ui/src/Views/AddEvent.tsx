@@ -97,6 +97,7 @@ export const AddEvent: React.FC<Props> = () => {
 				/>
 				<br></br>
 				<TextField
+					type="datetime-local"
 					value={departureTime}
 					label='Departure Time'
 					onChange={(e: any) => {
