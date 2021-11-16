@@ -34,6 +34,7 @@ export const EventsPage: React.FC = () => {
 									time: entry['EventTime'],
 									departOrHome: entry['homeOrAway'],
 									destination: entry['destination'],
+									departureTime: entry['DepartureTime']
 								}}
 							/>
 						</Grid>

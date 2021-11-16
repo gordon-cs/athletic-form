@@ -20,6 +20,7 @@ export const AddEvent: React.FC<Props> = () => {
 	const [time, setTime] = useState('');
 	const [homeOrAway, setHomeOrAway] = useState('');
 	const [destination, setDestination] = useState('');
+	const [departureTime, setDepartureTime] = useState('');
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -34,7 +35,7 @@ export const AddEvent: React.FC<Props> = () => {
 
 	const handleSubmit = () => {
 		setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-		addEvent({ sport, opponent, homeOrAway, destination, date, time })
+		addEvent({ sport, opponent, homeOrAway, destination, date, time, departureTime })
 			.then((a: any) => {
 				navigate('/events');
 			})
@@ -95,13 +96,13 @@ export const AddEvent: React.FC<Props> = () => {
 					}}
 				/>
 				<br></br>
-				{/*<TextField
-					value={departOrHome}
-					label='Home/Departure Time'
+				<TextField
+					value={departureTime}
+					label='Departure Time'
 					onChange={(e: any) => {
-						setHomeOrDepart(e.target.value);
+						setDepartureTime(e.target.value);
 					}}
-				/>*/}
+				/>
 				<br></br>
 				<Button
 					size='small'

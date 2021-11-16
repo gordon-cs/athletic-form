@@ -14,11 +14,11 @@ export function RemoveCard() {
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	if (eventData.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
+		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {eventData.departOrHome}
+				Depart Time: {eventData.departureTime}
 			</CardContent>
 		);
 	}
