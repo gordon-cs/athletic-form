@@ -18,7 +18,7 @@ export const AddEvent: React.FC<Props> = () => {
 	const [opponent, setOpponent] = useState('');
 	const [date, setDate] = useState('');
 	const [time, setTime] = useState('');
-	const [departOrHome, setHomeOrDepart] = useState('');
+	const [homeOrAway, setHomeOrAway] = useState('');
 	const [destination, setDestination] = useState('');
 	let navigate = useNavigate();
 
@@ -34,7 +34,7 @@ export const AddEvent: React.FC<Props> = () => {
 
 	const handleSubmit = () => {
 		setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-		addEvent({ sport, opponent, date, time, departOrHome, destination })
+		addEvent({ sport, opponent, homeOrAway, destination, date, time })
 			.then((a: any) => {
 				navigate('/events');
 			})
@@ -62,9 +62,12 @@ export const AddEvent: React.FC<Props> = () => {
 						setOpponent(e.target.value);
 					}}
 				/>
-				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'>
-					<FormControlLabel value='home' control={<Radio />} label='Home' />
-					<FormControlLabel value='away' control={<Radio />} label='Away' />
+				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'
+					value={homeOrAway} onChange ={(e: any) => {
+						setHomeOrAway(e.target.value);
+					}}>
+					<FormControlLabel value='Home' control={<Radio />} label='Home' />
+					<FormControlLabel value='Away' control={<Radio />} label='Away' />
 				</RadioGroup>
 				{/* Have the some information only show up if away*/}
 				<TextField
@@ -92,13 +95,13 @@ export const AddEvent: React.FC<Props> = () => {
 					}}
 				/>
 				<br></br>
-				<TextField
+				{/*<TextField
 					value={departOrHome}
 					label='Home/Departure Time'
 					onChange={(e: any) => {
 						setHomeOrDepart(e.target.value);
 					}}
-				/>
+				/>*/}
 				<br></br>
 				<Button
 					size='small'
