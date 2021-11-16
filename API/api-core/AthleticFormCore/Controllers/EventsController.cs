@@ -22,7 +22,7 @@ namespace AthleticFormCore.Controllers
         }
 
         [HttpPost]
-        [Route("api/[controller]/add")]
+        [Route("add")]
         public void Post([FromBody]AthleticEvent athleticEvent) {
             _context.Add<AthleticEvent>(athleticEvent);
             _context.SaveChanges();
