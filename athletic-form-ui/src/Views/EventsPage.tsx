@@ -31,11 +31,11 @@ export const EventsPage: React.FC = () => {
 									eventId: entry['eventId'],
 									sport: entry['sport'],
 									opponent: entry['opponent'],
-									date: entry['EventDate'],
-									time: entry['EventTime'],
+									date: entry['eventDate'],
+									time: entry['eventTime'],
 									departOrHome: entry['homeOrAway'],
 									destination: entry['destination'],
-									departureTime: entry['DepartureTime']
+									departureTime: entry['departureTime']
 								}}
 							/>
 						</Grid>
