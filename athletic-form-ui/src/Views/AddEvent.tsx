@@ -13,7 +13,6 @@ interface Props {}
 
 export const AddEvent: React.FC<Props> = () => {
 	const [events, setEvents] = useState<any | null>(null);
-	const [eventId, setEventId] = useState(0);
 	const [sport, setSport] = useState('');
 	const [opponent, setOpponent] = useState('');
 	const [date, setDate] = useState('');
@@ -34,7 +33,6 @@ export const AddEvent: React.FC<Props> = () => {
 	}, []);
 
 	const handleSubmit = () => {
-		setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
 		addEvent({ sport, opponent, homeOrAway, destination, date, time, departureTime })
 			.then((a: any) => {
 				navigate('/events');
