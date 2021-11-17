@@ -2,7 +2,6 @@ import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/materia
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { getDate } from 'date-fns/esm';
 
 interface Props {
 	eventData: any;
