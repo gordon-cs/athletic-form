@@ -2,6 +2,7 @@ import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/materia
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { getDate } from 'date-fns/esm';
 
 interface Props {
 	eventData: any;
@@ -41,12 +42,22 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		return timeAsJs;
 	}
 
+	function getDateAsJs(date: any) {
+		let dateAsJs = null;
+		if (date !== null) {
+			let parsedDate = new Date(Date.parse(date));
+			dateAsJs = (parsedDate.getMonth() + 1) + "/" + parsedDate.getUTCDate() + "/"
+				+ parsedDate.getFullYear();
+		}
+		return dateAsJs;
+	}
+
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + eventData.date}
+				subheader={'Date: ' + getDateAsJs(eventData.date)}
 			/>
 			<CardContent className={'card-content'}>
 				<CardContent className={'card-detail'}>
