@@ -22,6 +22,25 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			</CardContent>
 		);
 	}
+	
+	function getTime(time: any) {
+		let timeAsJs = null;
+		if (time !== null) {
+			let hour12 = time.value.hours % 12;
+			let ending = "";
+			if (time.value.hours >= 12) {
+				ending = " PM"
+			} else {
+				ending = " AM"
+			}
+			if (hour12 === 0) {
+				hour12 = 12;
+			}
+			timeAsJs = hour12 + ":" + time.value.minutes + ending;
+		}
+		return timeAsJs;
+	}
+
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<CardHeader
@@ -31,7 +50,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			/>
 			<CardContent className={'card-content'}>
 				<CardContent className={'card-detail'}>
-					Time: {JSON.stringify(eventData.time)}
+					Time: {getTime(eventData.time)}
 				</CardContent>
 				{departHome}
 			</CardContent>
