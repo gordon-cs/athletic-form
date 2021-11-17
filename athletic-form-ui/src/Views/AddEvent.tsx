@@ -89,6 +89,7 @@ export const AddEvent: React.FC<Props> = () => {
 				/>
 				<br></br>
 				<TextField
+					type="time"
 					value={time}
 					label='Time'
 					onChange={(e: any) => {
