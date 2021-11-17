@@ -1,13 +1,14 @@
-﻿using AthleticFormLibrary.Interfaces;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using AthleticFormLibrary.Interfaces;
 
 namespace AthleticFormLibrary.DataAccess
 {
     public class DatabaseAccess : IDataAccess
     {
-        public string Retrieve()
+        public List<Type> Retrieve()
         {
-            return "Hello, World!";
+            throw new NotImplementedException();
         }
 
         public void Store()
