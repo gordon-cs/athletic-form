@@ -19,19 +19,9 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		let dateAsJs = null;
 		if (dateTime != null) {
 			let parsedDate = new Date(Date.parse(dateTime));
-			let hour = convertHour(parsedDate.getUTCHours());
-			let ending = "";
-			if (parsedDate.getUTCHours() >= 12) {
-				ending = " PM"
-			} else {
-				ending = " AM"
-			}
+			let time = convertTime(parsedDate.getUTCHours(), parsedDate.getUTCMinutes());
 			let date = getDateAsJs(dateTime);
-			dateAsJs = date + " " + hour + ":";
-			if (parsedDate.getUTCMinutes() < 10) {
-				dateAsJs += "0";
-			}
-			dateAsJs += parsedDate.getUTCMinutes() + ending;
+			dateAsJs = date + " " + time;
 		}
 		return dateAsJs;
 	}
@@ -49,14 +39,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	function getTime(time: any) {
 		let timeAsJs = null;
 		if (time !== null) {
-			let hour = convertHour(time.value.hours);
-			let ending = "";
-			if (time.value.hours >= 12) {
-				ending = " PM"
-			} else {
-				ending = " AM"
-			}
-			timeAsJs = hour + ":" + time.value.minutes + ending;
+			timeAsJs = convertTime(time.value.hours, time.value.minutes);
 		}
 		return timeAsJs;
 	}
@@ -71,12 +54,24 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		return dateAsJs;
 	}
 
-	function convertHour(hour: number) {
+	function convertTime(hour: number, minute: number) {
+		let timeAsJs = "";
 		let hour12 = hour % 12;
 		if (hour12 === 0) {
 			hour12 = 12;
 		}
-		return hour12;
+		let ending = "";
+		if (hour >= 12) {
+			ending = " PM"
+		} else {
+			ending = " AM"
+		}
+		timeAsJs = hour12 + ":"
+		if (minute < 10) {
+			timeAsJs += "0";
+		}
+		timeAsJs += minute + ending;
+		return timeAsJs
 	}
 
 	return (
