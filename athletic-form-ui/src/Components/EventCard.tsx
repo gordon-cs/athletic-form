@@ -14,12 +14,34 @@ export function RemoveCard() {
 
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
+
+	function getDateTimeAsJs(dateTime: any) {
+		let dateAsJs = null;
+		if (dateTime != null) {
+			let parsedDate = new Date(Date.parse(dateTime));
+			let hour = convertHour(parsedDate.getUTCHours());
+			let ending = "";
+			if (parsedDate.getUTCHours() >= 12) {
+				ending = " PM"
+			} else {
+				ending = " AM"
+			}
+			let date = getDateAsJs(dateTime);
+			dateAsJs = date + " " + hour + ":";
+			if (parsedDate.getUTCMinutes() < 10) {
+				dateAsJs += "0";
+			}
+			dateAsJs += parsedDate.getUTCMinutes() + ending;
+		}
+		return dateAsJs;
+	}
+
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {eventData.departureTime}
+				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
 	}
@@ -27,17 +49,14 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	function getTime(time: any) {
 		let timeAsJs = null;
 		if (time !== null) {
-			let hour12 = time.value.hours % 12;
+			let hour = convertHour(time.value.hours);
 			let ending = "";
 			if (time.value.hours >= 12) {
 				ending = " PM"
 			} else {
 				ending = " AM"
 			}
-			if (hour12 === 0) {
-				hour12 = 12;
-			}
-			timeAsJs = hour12 + ":" + time.value.minutes + ending;
+			timeAsJs = hour + ":" + time.value.minutes + ending;
 		}
 		return timeAsJs;
 	}
@@ -50,6 +69,14 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 				+ parsedDate.getFullYear();
 		}
 		return dateAsJs;
+	}
+
+	function convertHour(hour: number) {
+		let hour12 = hour % 12;
+		if (hour12 === 0) {
+			hour12 = 12;
+		}
+		return hour12;
 	}
 
 	return (
