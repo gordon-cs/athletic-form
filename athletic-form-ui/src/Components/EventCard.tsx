@@ -34,14 +34,6 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			</CardContent>
 		);
 	}
-	
-	function getTime(time: any) {
-		let timeAsJs = null;
-		if (time !== null) {
-			timeAsJs = convertTime(time.value.hours, time.value.minutes);
-		}
-		return timeAsJs;
-	}
 
 	function getDateAsJs(date: any) {
 		let dateAsJs = null;
@@ -78,12 +70,9 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateAsJs(eventData.date)}
+				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
 			/>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>
-					Time: {getTime(eventData.time)}
-				</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>

@@ -32,7 +32,6 @@ export const EventsPage: React.FC = () => {
 									sport: entry['sport'],
 									opponent: entry['opponent'],
 									date: entry['eventDate'],
-									time: entry['eventTime'],
 									departOrHome: entry['homeOrAway'],
 									destination: entry['destination'],
 									departureTime: entry['departureTime']
