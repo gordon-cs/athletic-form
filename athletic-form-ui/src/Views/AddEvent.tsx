@@ -15,7 +15,7 @@ export const AddEvent: React.FC<Props> = () => {
 	const [events, setEvents] = useState<any | null>(null);
 	const [sport, setSport] = useState('');
 	const [opponent, setOpponent] = useState('');
-	const [date, setDate] = useState('');
+	const [eventDate, setEventDate] = useState('');
 	const [homeOrAway, setHomeOrAway] = useState('');
 	const [destination, setDestination] = useState('');
 	const [departureTime, setDepartureTime] = useState('');
@@ -32,7 +32,7 @@ export const AddEvent: React.FC<Props> = () => {
 	}, []);
 
 	const handleSubmit = () => {
-		addEvent({ sport, opponent, homeOrAway, destination, date, departureTime })
+		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime })
 			.then((a: any) => {
 				navigate('/events');
 			})
@@ -77,11 +77,11 @@ export const AddEvent: React.FC<Props> = () => {
 				/>
 				<br></br>
 				<TextField
-					value={date}
+					value={eventDate}
 					type="datetime-local"
-					label={date}
+					label={eventDate}
 					onChange={(e: any) => {
-						setDate(e.target.value);
+						setEventDate(e.target.value);
 					}}
 				/>
 				<br></br>
