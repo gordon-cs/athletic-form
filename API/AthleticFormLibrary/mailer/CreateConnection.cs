@@ -3,6 +3,9 @@ using System;
 using System.Net.Mail;  
 using System.Net.Mime;
 
+/*Adding credit where credit is due
+https://www.acodersjourney.com/how-to-send-email-using-csharp-and-outlook/
+*/
 
 //I'm going to figure out how this all works later
 namespace EmailSender  
