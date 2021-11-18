@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function RemoveCard() {
-	console.log("Add delete functionality here I guess")
+	console.log('Add delete functionality here I guess');
 }
 
 export const EventCard: React.FC<Props> = ({ eventData }) => {
@@ -36,14 +36,20 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<Link to={`/events/${eventData.id}/details`}>
-				{headerHome}
+				<CardHeader
+					className={'card-header'}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={'Date: ' + eventData.eventDate}
+				/>
 			</Link>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Time: <br></br> {eventData.time}</CardContent>
+				<CardContent className={'card-detail'}>
+					Time: <br></br> {JSON.stringify(eventData.eventTime)}
+				</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Link to = {`/events/${eventData.id}/delete`} >
+				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'
 						sx={{ backgroundColor: '#710F0F', color: 'white' }}

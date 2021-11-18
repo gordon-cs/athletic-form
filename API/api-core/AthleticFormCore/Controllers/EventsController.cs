@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
-using AthleticFormLibrary;
-using AthleticFormLibrary.Interfaces;
 using AthleticFormLibrary.Models;
+using AthleticFormLibrary.DataAccess;
+using System;
 
 namespace AthleticFormCore.Controllers
 {
@@ -14,26 +11,22 @@ namespace AthleticFormCore.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private readonly IDataAccess _dataAccess;
-
-        private List<AthleticEvent> _events;
-        public EventsController(IDataAccess dataAccess)
-        {
-           _dataAccess = dataAccess;
-           _events = new List<AthleticEvent>();
-        }
-
+        private readonly AthleticEventContext _context;
+       public EventsController(AthleticEventContext context) {
+           _context = context;
+       }
         // GET api/events
         [HttpGet]
-        public List<AthleticEvent> GetAll()
-        {
-            _events.Add(new AthleticEvent {
-                Opponent = "Endicott",
-                Sport = "Baseball",
-                Date = DateTime.Now,
-                Time = DateTime.Now.TimeOfDay
-            }); 
-            return _events;
+        public List<AthleticEvent> GetAll() {
+            return _context.AthleticEvents.ToList();
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/add")]
+        public void Post([FromBody]AthleticEvent athleticEvent) {
+            _context.Add<AthleticEvent>(athleticEvent);
+            _context.SaveChanges();
         }
     }
 }
+

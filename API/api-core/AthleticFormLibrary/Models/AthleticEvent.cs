@@ -1,10 +1,17 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AthleticFormLibrary.Models {
+    [Table("AthleticDatabase.AthleticEvents",Schema ="dbo")]
     public class AthleticEvent {
-        public string Sport {get; set;}
-        public string Opponent {get; set;}
-        public DateTime Date {get; set;}
-        public  TimeSpan Time { get; set; }
+        [Key]
+        public int EventId { get; set; }
+        public string Sport { get; set; }
+        public string Opponent { get; set; }
+        public string HomeOrAway {get; set; }
+        public string Destination { get; set; }
+        public DateTime? EventDate { get; set; }
+        public TimeSpan? EventTime { get; set; }
     }
 }

@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  SQLServer:
+    container_name: athletic-sql-server
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=REPLACE THIS WITH A PASSWORD
+    ports:
+      - "1433:1433"
