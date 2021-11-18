@@ -48,9 +48,9 @@ export const EventDetails: React.FC<Props> = () => {
 	}
 
 	return (
+        /*I want to rework the layout of this page*/
 		<Grid>
 			<h1>Event Details</h1>
-			<Card className={'card'} variant={'outlined'}>
 				<CardHeader
 					className={'card-header'}
 					title={eventData?.sport + ': ' + eventData?.opponent}
@@ -71,7 +71,6 @@ export const EventDetails: React.FC<Props> = () => {
 						</Button>
 					</Link>
 				</CardActions>
-			</Card>
 		</Grid>
 	);
 };
