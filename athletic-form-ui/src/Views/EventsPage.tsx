@@ -28,12 +28,13 @@ export const EventsPage: React.FC = () => {
 						<Grid item key={entry['eventId']}>
 							<EventCard
 								eventData={{
+									eventId: entry['eventId'],
 									sport: entry['sport'],
 									opponent: entry['opponent'],
-									date: entry['EventDate'],
-									time: entry['EventTime'],
+									date: entry['eventDate'],
 									departOrHome: entry['homeOrAway'],
 									destination: entry['destination'],
+									departureTime: entry['departureTime']
 								}}
 							/>
 						</Grid>
