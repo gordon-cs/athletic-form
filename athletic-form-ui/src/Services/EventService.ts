@@ -22,3 +22,10 @@ export async function removeEvent(id: number) {
 		url: `/events/delete/${id}`,
 	});
 }
+
+export async function restoreEvent(id: number) {
+	apiClient({
+		method: 'post',
+		url: `/events/restore/${id}`,
+	});
+}
