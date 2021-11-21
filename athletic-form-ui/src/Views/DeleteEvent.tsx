@@ -5,6 +5,7 @@ import { getAllEvents, removeEvent } from '../Services/EventService';
 import { Card, CardHeader, CardContent, Button, CardActions } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 interface Props {}
 
@@ -27,6 +28,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
+	console.log(eventData);
 	const handleClick = () => {
 		removeEvent(params.id)
 			.then((a: any) => {
@@ -38,11 +40,11 @@ export const DeleteEvent: React.FC<Props> = () => {
 	};
 
 	if (eventData?.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
+		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {eventData?.departOrHome}
+				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
 	}
@@ -54,10 +56,9 @@ export const DeleteEvent: React.FC<Props> = () => {
 				<CardHeader
 					className={'card-header'}
 					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={'Date: ' + eventData?.date}
+					subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
 				/>
 				<CardContent className={'card-content'}>
-					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
 					{departHome}
 				</CardContent>
 				<CardActions className={'card-content card-action'}>
