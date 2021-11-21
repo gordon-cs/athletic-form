@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents, removeEvent } from '../Services/EventService';
+import { getAllEvents, restoreEvent } from '../Services/EventService';
 import { Card, CardHeader, CardContent, Button, CardActions } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 interface Props {}
 
-export const DeleteEvent: React.FC<Props> = () => {
+export const RecoverEvent: React.FC<Props> = () => {
 	const params: any = useParams();
 	const id = params.id;
 	const [eventData, setEventData] = useState<any | null>(null);
@@ -30,9 +30,9 @@ export const DeleteEvent: React.FC<Props> = () => {
 
 	console.log(eventData);
 	const handleClick = () => {
-		removeEvent(params.id)
+		restoreEvent(params.id)
 			.then((a: any) => {
-				navigate("/events");
+				navigate("/events/deleted");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -51,7 +51,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 
 	return (
 		<Grid>
-			<h1>Are you sure you want to delete this event?</h1>
+			<h1>Do you want to recover this event?</h1>
 			<Card className={'card'} variant={'outlined'}>
 				<CardHeader
 					className={'card-header'}
@@ -70,7 +70,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 					>
 						Yes
 					</Button>
-					<Link to='/events'>
+					<Link to='/events/deleted'>
 						<Button
 							size='small'
 							sx={{ backgroundColor: 'red', color: 'white' }}

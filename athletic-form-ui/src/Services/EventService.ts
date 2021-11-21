@@ -18,7 +18,14 @@ export async function addEvent(event: any) {
 
 export async function removeEvent(id: number) {
 	apiClient({
-		method: 'delete',
-		url: `/events/${id}`,
+		method: 'post',
+		url: `/events/delete/${id}`,
+	});
+}
+
+export async function restoreEvent(id: number) {
+	apiClient({
+		method: 'post',
+		url: `/events/restore/${id}`,
 	});
 }

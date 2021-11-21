@@ -1,6 +1,6 @@
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
 import '../styles/eventCard.scss';
-import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
+import { FaTrashRestoreAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
@@ -12,7 +12,7 @@ export function RemoveCard() {
 	console.log('Add delete functionality here I guess');
 }
 
-export const EventCard: React.FC<Props> = ({ eventData }) => {
+export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 
 	if (eventData.departOrHome === 'Home') {
@@ -36,24 +36,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Link to={`/events/${eventData.eventId}/delete`}>
+				<Link to={`/events/deleted/${eventData.eventId}/recover`}>
 					<Button
 						size='small'
-						sx={{ backgroundColor: '#710F0F', color: 'white' }}
+						sx={{ backgroundColor: '#F8A30F', color: 'white' }}
 						variant={'outlined'}
 					>
-						<FaTrashAlt></FaTrashAlt>
-						Delete
+                        <FaTrashRestoreAlt></FaTrashRestoreAlt>
+						Recover
 					</Button>
 				</Link>
-				<Button
-					size={'small'}
-					sx={{ backgroundColor: '#066A1F', color: 'white' }}
-					variant={'outlined'}
-				>
-					<FaPencilAlt></FaPencilAlt>
-					Update
-				</Button>
 			</CardActions>
 		</Card>
 	);

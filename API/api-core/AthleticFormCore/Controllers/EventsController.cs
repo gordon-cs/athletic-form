@@ -27,6 +27,26 @@ namespace AthleticFormCore.Controllers
             _context.Add<AthleticEvent>(athleticEvent);
             _context.SaveChanges();
         }
+
+        /*Doesn't Actually Delete.  Just Marks
+        as deleted*/
+        [HttpPost]
+        [Route("delete/{id}")]
+        public void Delete(int id) {
+            if (ModelState.IsValid) {
+                AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
+                athleticEvent.IsDeleted = true;
+                _context.SaveChanges();
+            }
+        }
+
+        [HttpPost]
+        [Route("restore/{id}")]
+        public void Restore(int id) {
+            AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
+            athleticEvent.IsDeleted = false;
+            _context.SaveChanges();
+        }
     }
 }
 
