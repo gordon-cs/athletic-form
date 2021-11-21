@@ -13,5 +13,6 @@ namespace AthleticFormLibrary.Models {
         public string Destination { get; set; }
         public DateTime? EventDate { get; set; }
         public DateTime? DepartureTime { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

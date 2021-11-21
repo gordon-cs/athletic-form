@@ -20,7 +20,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 			.then((res) => {
 				setEventData(
 					res.data.find((e: any) => {
-						return e.id === parseInt(id);
+						return e.eventId === parseInt(id);
 					}),
 				);
 			})
@@ -30,7 +30,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 	const handleClick = () => {
 		removeEvent(params.id)
 			.then((a: any) => {
-				navigate('/events');
+				navigate("/events");
 			})
 			.catch((error) => {
 				console.log(error);

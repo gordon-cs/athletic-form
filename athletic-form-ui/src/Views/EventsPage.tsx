@@ -14,8 +14,11 @@ export const EventsPage: React.FC = () => {
 		console.log(getAllEvents());
 		getAllEvents()
 			.then((res) => {
-				console.log(res.data);
-				setEvents(res.data);
+				let eventList = res.data.filter((e: any) => {
+					return e.isDeleted === false;
+				})
+				console.log(eventList);
+				setEvents(eventList);
 			})
 			.catch((error) => console.log(error));
 	}, []);
