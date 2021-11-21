@@ -46,14 +46,6 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 						Recover
 					</Button>
 				</Link>
-				<Button
-					size={'small'}
-					sx={{ backgroundColor: '#066A1F', color: 'white' }}
-					variant={'outlined'}
-				>
-					<FaPencilAlt></FaPencilAlt>
-					Update
-				</Button>
 			</CardActions>
 		</Card>
 	);
