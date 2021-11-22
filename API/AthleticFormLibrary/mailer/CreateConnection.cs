@@ -5,6 +5,9 @@ using System.Net.Mime;
 
 /*Adding credit where credit is due
 https://www.acodersjourney.com/how-to-send-email-using-csharp-and-outlook/
+
+This link helps run it, still working through it
+https://www.ipointsystems.com/blog/2018/july/sending-mails-with-c
 */
 
 //I'm going to figure out how this all works later
