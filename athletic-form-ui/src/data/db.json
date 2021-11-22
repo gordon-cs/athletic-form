@@ -64,11 +64,10 @@
       "id": 7
     },
     {
-      "sport": "Skiing",
-      "opponent": "Endicott",
+      "opponent": "ww",
       "date": null,
-      "time": null,
-      "departOrHome": null,
+      "time": "ew",
+      "departOrHome": "qwe",
       "destination": null,
       "id": 8
     }

@@ -27,7 +27,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 	const id = params.id;
 	let departHome;
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		getAllEvents()
 			.then((res) => {
 				setEventData(
@@ -39,10 +39,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 			.catch((error) => console.log(error.message));
 			setEventId(id);
 	}, [id]);
-    
-	const setValues = () => {
-		setSport(eventData?.sport)
-	}
+	
 
 	const handleSubmit = () => {
 		updateEvent(eventId, { sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
@@ -58,19 +55,15 @@ export const UpdateEvent: React.FC<Props> = () => {
 			<h1>Edit Event</h1>
 			<form onSubmit={handleSubmit}>
 				<TextField
-					value={sport}
-					label= 'Sport'
-					defaultValue= {eventData?.sport}
+					label= {eventData?.sport}
 					onChange={(e: any) => {
 						setSport(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={opponent}
-					label='Opponent'
-					defaultValue = {eventData?.opponent}
-					onChange={(e: any) => {
+					label={eventData?.opponent}
+					onChange={(e: any) => {	
 						setOpponent(e.target.value);
 					}}
 				/>
@@ -80,37 +73,29 @@ export const UpdateEvent: React.FC<Props> = () => {
 				</RadioGroup>
 				{/* Have the some information only show up if away*/}
 				<TextField
-					value={destination}
-					label='Destination'
-					defaultValue = {eventData?.destination}
+					label={eventData?.destination}
 					onChange={(e: any) => {
 						setDestination(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={date}
+					value={eventData?.date}
 					type= 'date'
-					label={date}
-					defaultValue = {eventData?.date}
 					onChange={(e: any) => {
 						setDate(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={time}
-					label='Time'
-					defaultValue = {eventData?.time}
+					label={eventData?.time}
 					onChange={(e: any) => {
 						setTime(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={departOrHome}
-					label='Home/Departure Time'
-					defaultValue = {eventData?.opponent}
+					label={eventData?.opponent}
 					onChange={(e: any) => {
 						setHomeOrDepart(e.target.value);
 					}}
