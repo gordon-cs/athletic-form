@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
-using AthleticFormLibrary;
-using AthleticFormLibrary.Interfaces;
 using AthleticFormLibrary.Models;
+using AthleticFormLibrary.DataAccess;
+using System;
 
 namespace AthleticFormCore.Controllers
 {
@@ -14,26 +11,42 @@ namespace AthleticFormCore.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private readonly IDataAccess _dataAccess;
-
-        private List<AthleticEvent> _events;
-        public EventsController(IDataAccess dataAccess)
-        {
-           _dataAccess = dataAccess;
-           _events = new List<AthleticEvent>();
-        }
-
+        private readonly AthleticEventContext _context;
+       public EventsController(AthleticEventContext context) {
+           _context = context;
+       }
         // GET api/events
         [HttpGet]
-        public List<AthleticEvent> GetAll()
-        {
-            _events.Add(new AthleticEvent {
-                Opponent = "Endicott",
-                Sport = "Baseball",
-                Date = DateTime.Now,
-                Time = DateTime.Now.TimeOfDay
-            }); 
-            return _events;
+        public List<AthleticEvent> GetAll() {
+            return _context.AthleticEvents.ToList();
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public void Post([FromBody]AthleticEvent athleticEvent) {
+            _context.Add<AthleticEvent>(athleticEvent);
+            _context.SaveChanges();
+        }
+
+        /*Doesn't Actually Delete.  Just Marks
+        as deleted*/
+        [HttpPost]
+        [Route("delete/{id}")]
+        public void Delete(int id) {
+            if (ModelState.IsValid) {
+                AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
+                athleticEvent.IsDeleted = true;
+                _context.SaveChanges();
+            }
+        }
+
+        [HttpPost]
+        [Route("restore/{id}")]
+        public void Restore(int id) {
+            AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
+            athleticEvent.IsDeleted = false;
+            _context.SaveChanges();
         }
     }
 }
+

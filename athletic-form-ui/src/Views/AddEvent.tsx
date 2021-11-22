@@ -13,28 +13,32 @@ interface Props {}
 
 export const AddEvent: React.FC<Props> = () => {
 	const [events, setEvents] = useState<any | null>(null);
-	const [eventId, setEventId] = useState(0);
 	const [sport, setSport] = useState('');
 	const [opponent, setOpponent] = useState('');
-	const [date, setDate] = useState('');
-	const [time, setTime] = useState('');
-	const [departOrHome, setHomeOrDepart] = useState('');
+	const [eventDate, setEventDate] = useState('');
+	const [homeOrAway, setHomeOrAway] = useState('');
 	const [destination, setDestination] = useState('');
+	const [departureTime, setDepartureTime] = useState('');
 	let navigate = useNavigate();
 
 	useEffect(() => {
-		getAllEvents().then((res) => {
-			setEvents(res.data);
-		});
+		getAllEvents()
+			.then((res) => {
+				setEvents(res.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}, []);
 
 	const handleSubmit = () => {
-		setEventId(Math.max(events.map((e: any) => e.Id)) + 1);
-		addEvent({ sport, opponent, date, time, departOrHome, destination }).then((a: any) => {
-			navigate("/events");
-		}).catch((error) => {
-			console.log(error);
-		});
+		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime })
+			.then((a: any) => {
+				navigate('/events');
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -56,9 +60,12 @@ export const AddEvent: React.FC<Props> = () => {
 						setOpponent(e.target.value);
 					}}
 				/>
-				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'>
-					<FormControlLabel value='home' control={<Radio />} label='Home' />
-					<FormControlLabel value='away' control={<Radio />} label='Away' />
+				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'
+					value={homeOrAway} onChange ={(e: any) => {
+						setHomeOrAway(e.target.value);
+					}}>
+					<FormControlLabel value='Home' control={<Radio />} label='Home' />
+					<FormControlLabel value='Away' control={<Radio />} label='Away' />
 				</RadioGroup>
 				{/* Have the some information only show up if away*/}
 				<TextField
@@ -70,27 +77,20 @@ export const AddEvent: React.FC<Props> = () => {
 				/>
 				<br></br>
 				<TextField
-					value={date}
-					type='date'
-					label={date}
+					value={eventDate}
+					type="datetime-local"
+					label={eventDate}
 					onChange={(e: any) => {
-						setDate(e.target.value);
+						setEventDate(e.target.value);
 					}}
 				/>
 				<br></br>
 				<TextField
-					value={time}
-					label='Time'
+					type="datetime-local"
+					value={departureTime}
+					label='Departure Time'
 					onChange={(e: any) => {
-						setTime(e.target.value);
-					}}
-				/>
-				<br></br>
-				<TextField
-					value={departOrHome}
-					label='Home/Departure Time'
-					onChange={(e: any) => {
-						setHomeOrDepart(e.target.value);
+						setDepartureTime(e.target.value);
 					}}
 				/>
 				<br></br>

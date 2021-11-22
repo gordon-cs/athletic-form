@@ -11,7 +11,7 @@ export function getAllEvents(): AxiosPromise<any> {
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
-		url: '/events',
+		url: '/events/add',
 		data: event,
 	});
 }
@@ -26,7 +26,14 @@ export async function updateEvent(id: number, event: any) {
 
 export async function removeEvent(id: number) {
 	apiClient({
-		method: 'delete',
-		url: `/events/${id}`,
+		method: 'post',
+		url: `/events/delete/${id}`,
+	});
+}
+
+export async function restoreEvent(id: number) {
+	apiClient({
+		method: 'post',
+		url: `/events/restore/${id}`,
 	});
 }
