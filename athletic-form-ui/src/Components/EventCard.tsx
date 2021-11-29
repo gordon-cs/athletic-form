@@ -46,7 +46,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 						Delete
 					</Button>
 				</Link>
-				<Link to = {`/events/${eventData.id}/update`} >
+				<Link to = {`/events/${eventData.eventId}/update`} >
 					<Button
 						size={'small'}
 						sx={{ backgroundColor: '#066A1F', color: 'white' }}
