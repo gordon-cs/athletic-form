@@ -47,8 +47,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 			<h1>Update Event</h1>
 			<form onSubmit={handleSubmit}>	
 				<TextField
-					value={eventData?.sport} //{sport}
-					//label='Sport'
+					value={eventData?.sport}
 					onChange={(e: any) => {
 						setEventData([
 							{ sport: e.target.value }
@@ -58,15 +57,16 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<br></br>
 				<TextField
 					value={eventData?.opponent}
-					//label='Opponent'
 					onChange={(e: any) => {
 						setEventData([
 							{ opponent: e.target.value }
 						]);
 					}}
 				/>
-				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'
-					value={eventData?.homeOrAway} onChange={(e: any) => {
+				<RadioGroup aria-label='isAway'
+					value= {eventData?.homeOrAway}
+					name='radio-buttons-group'
+					onChange={(e: any) => {
 						setEventData([
 							{ homeOrAway: e.target.value }
 						]);
@@ -77,7 +77,6 @@ export const UpdateEvent: React.FC<Props> = () => {
 				{/* Have the some information only show up if away*/}
 				<TextField
 					value={eventData?.destination}
-					//label='Destination'
 					onChange={(e: any) => {
 						setEventData([
 							{ destination: e.target.value }
@@ -88,7 +87,6 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventData?.eventDate}
 					type="datetime-local"
-					//label={eventDate}
 					onChange={(e: any) => {
 						setEventData([
 							{ eventDate: e.target.value }
@@ -99,7 +97,6 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					type="datetime-local"
 					value={eventData?.departureTime}
-					//label='Departure Time'
 					onChange={(e: any) => {
 						setEventData([
 							{ departureTime: e.target.value }
