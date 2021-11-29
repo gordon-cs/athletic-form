@@ -2,7 +2,7 @@ export function getDateTimeAsJs(dateTime: any) {
     let dateAsJs = null;
     if (dateTime != null) {
         let parsedDate = new Date(Date.parse(dateTime));
-        let time = convertTime(parsedDate.getUTCHours(), parsedDate.getUTCMinutes());
+        let time = convertTime(parsedDate.getHours(), parsedDate.getUTCMinutes());
         let date = getDateAsJs(dateTime);
         dateAsJs = date + " " + time;
     }
@@ -13,7 +13,7 @@ function getDateAsJs(date: any) {
     let dateAsJs = null;
     if (date !== null) {
         let parsedDate = new Date(Date.parse(date));
-        dateAsJs = (parsedDate.getMonth() + 1) + "/" + parsedDate.getUTCDate() + "/"
+        dateAsJs = (parsedDate.getMonth() + 1) + "/" + parsedDate.getDate() + "/"
             + parsedDate.getFullYear();
     }
     return dateAsJs;
