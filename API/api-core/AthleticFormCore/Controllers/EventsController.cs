@@ -28,8 +28,10 @@ namespace AthleticFormCore.Controllers
             _context.SaveChanges();
         }
 
-        /*Doesn't Actually Delete.  Just Marks
-        as deleted*/
+        /*
+            Doesn't Actually Delete.  Just Marks
+            as deleted
+        */
         [HttpPost]
         [Route("delete/{id}")]
         public void Delete(int id) {
