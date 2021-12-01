@@ -1,4 +1,4 @@
-import { AxiosPromise } from 'axios';
+import axios, { AxiosPromise } from 'axios';
 import { apiClient } from './AxiosService';
 
 export function getAllEvents(): AxiosPromise<any> {
@@ -12,6 +12,14 @@ export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
 		url: '/events/add',
+		data: event,
+	});
+}
+
+export async function updateEvent(id: number, event: any) {
+	apiClient({
+		method: 'put',
+		url: `/events/update/${id}`,
 		data: event,
 	});
 }

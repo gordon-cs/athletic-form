@@ -46,14 +46,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 						Delete
 					</Button>
 				</Link>
-				<Button
-					size={'small'}
-					sx={{ backgroundColor: '#066A1F', color: 'white' }}
-					variant={'outlined'}
-				>
-					<FaPencilAlt></FaPencilAlt>
-					Update
-				</Button>
+				<Link to = {`/events/${eventData.eventId}/update`} >
+					<Button
+						size={'small'}
+						sx={{ backgroundColor: '#066A1F', color: 'white' }}
+						variant={'outlined'}
+					>
+						<FaPencilAlt></FaPencilAlt>
+						Update
+					</Button>
+				</Link>
 			</CardActions>
 		</Card>
 	);
