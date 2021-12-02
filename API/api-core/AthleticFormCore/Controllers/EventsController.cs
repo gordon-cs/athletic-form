@@ -15,7 +15,7 @@ namespace AthleticFormCore.Controllers
        public EventsController(AthleticEventContext context) {
            _context = context;
        }
-        // GET api/events
+        
         [HttpGet]
         public List<AthleticEvent> GetAll() {
             return _context.AthleticEvents.ToList();
@@ -28,20 +28,21 @@ namespace AthleticFormCore.Controllers
             _context.SaveChanges();
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("update/{id}")]
         public void Update(int id, [FromBody]AthleticEvent athleticEvent) {
             AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault
-                (e => e.EventId == athleticEvent.EventId);
-                Console.WriteLine($"Event Before: {eventToUpdate.Sport} {eventToUpdate.Opponent}");
-                eventToUpdate.Sport = athleticEvent.Sport;
-                eventToUpdate.Opponent = athleticEvent.Opponent;
-                eventToUpdate.EventDate = athleticEvent.EventDate;
-                eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
-                eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
-                Console.WriteLine($"Event After: {eventToUpdate.Sport} {eventToUpdate.Opponent}");
-                _context.Update<AthleticEvent>(eventToUpdate);
-                _context.SaveChanges();
+                (x => x.EventId == id);
+            Console.WriteLine(eventToUpdate.Sport);
+            eventToUpdate.Sport = athleticEvent.Sport;
+            eventToUpdate.Opponent = athleticEvent.Opponent;
+            eventToUpdate.EventDate = athleticEvent.EventDate;
+            eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
+            eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
+            _context.Update<AthleticEvent>(eventToUpdate);
+            _context.SaveChanges();
+
+
         }
 
 

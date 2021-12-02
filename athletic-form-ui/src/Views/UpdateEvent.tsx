@@ -31,6 +31,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 	}, [id]);
 
 	const handleSubmit = () => {
+		console.log(updateEvent(id, eventData));
 		updateEvent(id, eventData)
 			.then((a: any) => {
 				navigate('/events');

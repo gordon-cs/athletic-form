@@ -11,12 +11,11 @@ export const EventsPage: React.FC = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
-		console.log(getAllEvents());
 		getAllEvents()
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {
 					return e.isDeleted === false;
-				})
+				});
 				console.log(eventList);
 				setEvents(eventList);
 			})
@@ -49,11 +48,11 @@ export const EventsPage: React.FC = () => {
 										date: entry['eventDate'],
 										departOrHome: entry['homeOrAway'],
 										destination: entry['destination'],
-										departureTime: entry['departureTime']
+										departureTime: entry['departureTime'],
 									}}
 								/>
 							</Grid>
-					))}
+					  ))}
 				<Card className={'add-card'}>
 					<CardHeader className={'add-header'} title={'Add'}></CardHeader>
 					<CardActions className={'add-action'}>
