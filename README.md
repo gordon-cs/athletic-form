@@ -47,7 +47,7 @@ After cloning this repo:
 - ```sudo docker-compose up```
 - in Azure Data Studio, add a new connection
 - Server: localhost, username: SA, Password: Password as specified in the docker-compose.yml file
-- Once you are connected, open and run the three queries that are included, first the DatabaseCreation.sql, then the SchemaCreation.SQL and then the InsertData.SQL query
+- Once you are connected, open and run the three queries that are included, first the DatabaseCreation.sql, then the CreateTable.SQL and then the InsertData.SQL query
 - Be sure to leave the server running to connect with the backend in the next step
 
 
