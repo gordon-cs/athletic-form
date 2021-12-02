@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAllEvents, updateEvent } from '../Services/EventService';
 import { Button } from '@mui/material';
@@ -15,62 +15,57 @@ interface Props {}
 export const UpdateEvent: React.FC<Props> = () => {
 	const [eventData, setEventData] = useState<any | null>(null);
 	let navigate = useNavigate();
-    const params: any = useParams();
+	const params: any = useParams();
 	const id = params.id;
-	let departHome;
-
 
 	useEffect(() => {
 		getAllEvents()
-			.then( (res) => {
+			.then((res) => {
 				setEventData(
 					res.data.find((e: any) => {
 						return e.eventId === parseInt(id);
-					})
+					}),
 				);
 			})
 			.catch((error) => console.log(error.message));
 	}, [id]);
-	
 
 	const handleSubmit = () => {
-		updateEvent(id, eventData).then((a: any) => {
-			navigate("/events");
-		}).catch((error) => {
-			console.log(error);
-		});
+		console.log(updateEvent(id, eventData));
+		updateEvent(id, eventData)
+			.then((a: any) => {
+				navigate('/events');
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
-
 
 	return (
 		<Grid className='add-event'>
 			<h1>Update Event</h1>
-			<form onSubmit={handleSubmit}>	
+			<form onSubmit={handleSubmit}>
 				<TextField
 					value={eventData?.sport}
 					onChange={(e: any) => {
-						setEventData([
-							{ sport: e.target.value }
-						]);
+						setEventData([{ sport: e.target.value }]);
 					}}
 				/>
 				<br></br>
 				<TextField
 					value={eventData?.opponent}
 					onChange={(e: any) => {
-						setEventData([
-							{ opponent: e.target.value }
-						]);
+						setEventData([{ opponent: e.target.value }]);
 					}}
 				/>
-				<RadioGroup aria-label='isAway'
-					value= {eventData?.homeOrAway}
+				<RadioGroup
+					aria-label='isAway'
+					value={eventData?.homeOrAway}
 					name='radio-buttons-group'
 					onChange={(e: any) => {
-						setEventData([
-							{ homeOrAway: e.target.value }
-						]);
-					}}>
+						setEventData([{ homeOrAway: e.target.value }]);
+					}}
+				>
 					<FormControlLabel value='Home' control={<Radio />} label='Home' />
 					<FormControlLabel value='Away' control={<Radio />} label='Away' />
 				</RadioGroup>
@@ -78,29 +73,23 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventData?.destination}
 					onChange={(e: any) => {
-						setEventData([
-							{ destination: e.target.value }
-						]);
+						setEventData([{ destination: e.target.value }]);
 					}}
 				/>
 				<br></br>
 				<TextField
 					value={eventData?.eventDate}
-					type="datetime-local"
+					type='datetime-local'
 					onChange={(e: any) => {
-						setEventData([
-							{ eventDate: e.target.value }
-						]);
+						setEventData([{ eventDate: e.target.value }]);
 					}}
 				/>
 				<br></br>
 				<TextField
-					type="datetime-local"
+					type='datetime-local'
 					value={eventData?.departureTime}
 					onChange={(e: any) => {
-						setEventData([
-							{ departureTime: e.target.value }
-						]);
+						setEventData([{ departureTime: e.target.value }]);
 					}}
 				/>
 				<br></br>
