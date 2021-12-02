@@ -2,6 +2,7 @@ import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/materia
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 interface Props {
 	eventData: any;
@@ -13,18 +14,19 @@ export function RemoveCard() {
 
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
+
 	let headerHome;
 	if (eventData.departOrHome === 'Home') {
-		departHome = null; /*Used to be -> <CardContent className={'card-detail'}>Home</CardContent>;-->*/
+		departHome = null; /*Used to be -> <CardContent className={'card-detail'}>Home</CardContent>;-->*/</CardContent>
 		headerHome = (<CardHeader
-						className={'card-header isHome'}
-						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + eventData.date}
-					/>)
+			className={'card-header isHome'}
+			title={eventData.sport + ': ' + eventData.opponent}
+			subheader={'Date: ' + eventData.date}
+			/>)
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Departure: <br></br>{eventData.departOrHome}
+				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
 		headerHome = (<CardHeader
@@ -33,6 +35,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 						subheader={'Date: ' + eventData.date}
 					/>)
 	}
+
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<Link to={`/events/${eventData.id}/details`}>
@@ -43,9 +46,6 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 				/>
 			</Link>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>
-					Time: <br></br> {JSON.stringify(eventData.eventTime)}
-				</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
@@ -59,14 +59,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 						Delete
 					</Button>
 				</Link>
-				<Button
-					size={'small'}
-					sx={{ backgroundColor: '#066A1F', color: 'white' }}
-					variant={'outlined'}
-				>
-					<FaPencilAlt></FaPencilAlt>
-					Update
-				</Button>
+				<Link to = {`/events/${eventData.eventId}/update`} >
+					<Button
+						size={'small'}
+						sx={{ backgroundColor: '#066A1F', color: 'white' }}
+						variant={'outlined'}
+					>
+						<FaPencilAlt></FaPencilAlt>
+						Update
+					</Button>
+				</Link>
 			</CardActions>
 		</Card>
 	);
