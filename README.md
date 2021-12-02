@@ -24,8 +24,6 @@
 - https://docs.google.com/document/d/1oufvRYJsGX0nVzdhnvAYvq-iQNrkgXniI2O8BjjsqHw/edit?usp=sharing
 
 
-
-
 ## Starting the frontend
 
 After cloning this repo:
