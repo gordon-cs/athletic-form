@@ -5,6 +5,6 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Password_01
+      - SA_PASSWORD=REPLACE
     ports:
       - "1433:1433"
