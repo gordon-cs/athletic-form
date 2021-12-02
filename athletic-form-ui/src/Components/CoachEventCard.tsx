@@ -20,7 +20,8 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
+				Depart Time: {getDateTimeAsJs(eventData.departureTime)}    
+                . Conflicts:Anthony Aardvark Johnny Appleseed
 			</CardContent>
 		);
 	}
@@ -34,12 +35,6 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			/>
 			<CardContent className={'card-content'}>
 				{departHome}
-			</CardContent>
-            <CardContent className={'card-conflict'}>
-				Conflicts:
-            
-                Anthony Aardvark
-                Johnny Appleseed
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Link to={``}>
