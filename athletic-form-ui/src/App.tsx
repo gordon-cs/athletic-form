@@ -1,21 +1,26 @@
-import { Grid, Typography } from '@mui/material';
-import Axios from './Services/Axios';
-import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
+import { Grid } from '@mui/material';
+import { EventsPage } from './Views/EventsPage';
+import { AddEvent } from './Views/AddEvent';
+import { DeleteEvent } from './Views/DeleteEvent';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { UpdateEvent } from './Views/UpdateEvent';
+import { DeletedEventsPage } from './Views/DeletedEventsPage';
+import { RecoverEvent } from './Views/RecoverEvent';
 
 export const App = () => {
-	const [content, setContent] = useState<AxiosResponse | null>(null);
-
-	useEffect(() => {
-		Axios.get<AxiosResponse>('/values').then((response) => {
-			setContent(response.data);
-		});
-	}, []);
-
 	return (
-		<Grid container>
-			<Grid item xs={4}>
-				<Typography> {content} </Typography>
+		<Grid container sx={{ margin: '10px' }}>
+			<Grid item>
+				<Router>
+					<Routes>
+						<Route path = "/events" element = {<EventsPage />}/>
+						<Route path = "/events/add" element = {<AddEvent />}/>
+						<Route path = "/events/:id/delete" element = {<DeleteEvent />}/>
+						<Route path = "/events/:id/update" element = {<UpdateEvent />}/>
+						<Route path = "/events/deleted" element = {<DeletedEventsPage />}/>
+						<Route path = "/events/deleted/:id/recover" element = {<RecoverEvent />}/>
+					</Routes>
+				</Router>
 			</Grid>
 		</Grid>
 	);
