@@ -68,20 +68,11 @@ export const CoachEventDetails: React.FC = () => {
 					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
 					{departHome}
 				</CardContent>
-				<CardActions className={'card-content card-action'}>
-					<Link to='/coach/events'>
-						<Button
-							size='small'
-							sx={{ backgroundColor: 'red', color: 'white' }}
-							variant={'outlined'}
-						>
-							Back
-						</Button>
-					</Link>
-				</CardActions>
+				{/*<CardActions className={'card-content card-action'}>*/}
+				{/*</CardActions>*/}
             </Card>
             <TableContainer component={Paper}>
-                <Table>
+                <Table sx = {{width: 1000}}>
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
@@ -107,6 +98,15 @@ export const CoachEventDetails: React.FC = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Link to='/coach/events'>
+					<Button
+						size='small'
+						sx={{ backgroundColor: 'red', color: 'white' }}
+						variant={'outlined'}
+					>
+						Back
+				</Button>
+		    </Link>
         </Grid>
     );
 }
