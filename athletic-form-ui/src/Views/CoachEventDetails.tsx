@@ -6,7 +6,6 @@ import { CardContent, Grid, CardHeader, CardActions,
     TableRow, TableCell, TableBody } from '@mui/material';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import '../styles/coachEventCard.scss';
-import '../styles/coachEventDetails.scss';
 
 export const CoachEventDetails: React.FC = () => {
     let params = useParams();
@@ -95,16 +94,16 @@ export const CoachEventDetails: React.FC = () => {
                         <TableRow>
                             <TableCell>No students to show</TableCell>
                         </TableRow> : 
-                            students?.map((student: any) => {
-                            <TableRow>
+                            students?.map((student: any) => (
+                            <TableRow key = {student.id}>
                                 <TableCell>{student.name}</TableCell>
-                                {students.approved ?
-                                    <TableCell className = {'approved'}>Approved</TableCell> :
-                                    <TableCell className = {'unApproved'}>Not Approved</TableCell>
+                                {student.approved ?
+                                    <TableCell sx={{color: "green"}}>Approved</TableCell> :
+                                    <TableCell sx={{color: "red"}}>Not Approved</TableCell>
                                 }
                                 <TableCell><Link to = {''}>View Class Conflicts</Link></TableCell>
                             </TableRow>
-                        })}
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
