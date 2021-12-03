@@ -28,11 +28,13 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<CardHeader
-				className={'card-header'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-			/>
+			<Link to = {`/coach/events/${eventData.eventId}/details`}>
+				<CardHeader
+					className={'card-header'}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+				/>
+			</Link>
 			<CardContent className={'card-content'}>
 				{departHome}
 			</CardContent>
