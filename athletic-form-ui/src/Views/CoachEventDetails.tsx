@@ -1,8 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllEvents } from '../Services/EventService';
-import { CardContent, Grid, CardHeader, CardActions, 
-    Button, Card, Paper, TableContainer, Table, TableHead,
+import { CardContent, Grid, CardHeader, Button, 
+    Card, Paper, TableContainer, Table, TableHead,
     TableRow, TableCell, TableBody } from '@mui/material';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import '../styles/coachEventCard.scss';
@@ -43,8 +43,6 @@ export const CoachEventDetails: React.FC = () => {
         .catch((error) => console.log(error.message));
     }, [id]);
 
-    console.log(students);
-
     if (eventData?.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 	} else {
@@ -68,8 +66,6 @@ export const CoachEventDetails: React.FC = () => {
 					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
 					{departHome}
 				</CardContent>
-				{/*<CardActions className={'card-content card-action'}>*/}
-				{/*</CardActions>*/}
             </Card>
             <TableContainer component={Paper}>
                 <Table sx = {{width: 1000}}>
