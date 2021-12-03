@@ -91,7 +91,10 @@ export const CoachEventDetails: React.FC = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {students === null ? "No students to show" : 
+                        {students === null ?
+                        <TableRow>
+                            <TableCell>No students to show</TableCell>
+                        </TableRow> : 
                             students?.map((student: any) => {
                             <TableRow>
                                 <TableCell>{student.name}</TableCell>
