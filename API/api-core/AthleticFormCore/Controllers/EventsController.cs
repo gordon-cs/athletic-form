@@ -28,7 +28,7 @@ namespace AthleticFormCore.Controllers
             _context.SaveChanges();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("update/{id}")]
         public void Update(int id, [FromBody]AthleticEvent athleticEvent) {
             AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault

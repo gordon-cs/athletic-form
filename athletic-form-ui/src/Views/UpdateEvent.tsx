@@ -31,8 +31,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 	}, [id]);
 
 	const handleSubmit = () => {
-		console.log(updateEvent(id, eventData));
-		updateEvent(id, eventData)
+		updateEvent(id, [ eventData.sport, eventData.opponent, eventData.homeOrAway, eventData.destination, eventData.eventDate, eventData.departureTime ])
 			.then((a: any) => {
 				navigate('/events');
 			})
@@ -60,7 +59,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				/>
 				<RadioGroup
 					aria-label='isAway'
-					value={eventData?.homeOrAway}
+					//value={eventData?.homeOrAway}
 					name='radio-buttons-group'
 					onChange={(e: any) => {
 						setEventData([{ homeOrAway: e.target.value }]);
