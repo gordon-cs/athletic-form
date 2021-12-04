@@ -13,18 +13,25 @@ export function RemoveCard() {
 }
 
 export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
-	let departHome;
+	let departHome, conflicts, random;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData.departureTime)}    
-                . Conflicts:Anthony Aardvark Johnny Appleseed
+				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
 	}
+
+	// FIXME: Currently using a random display value (need to get from db)
+	random = (Math.floor(Math.random() * 10));
+	conflicts = (
+		<CardContent className={'card-detail'}>
+			There are {random} students with conflicts.
+		</CardContent>
+	)
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
@@ -38,8 +45,11 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardContent className={'card-content'}>
 				{departHome}
 			</CardContent>
+			<CardContent className={'card-content'}>
+				{conflicts}
+			</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Link to={``}>
+				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'
 						sx={{ backgroundColor: '#710F0F', color: 'white' }}
@@ -49,7 +59,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 						Delete
 					</Button>
 				</Link>
-				<Link to = {``} >
+				<Link to = {`/events/${eventData.eventId}/update`} >
 					<Button
 						size={'small'}
 						sx={{ backgroundColor: '#066A1F', color: 'white' }}

@@ -1,14 +1,16 @@
-import { Grid } from '@mui/material';
 import { getAllEvents } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { CoachEventCard } from '../Components/CoachEventCard';
-import { Button, Card, CardActions, CardHeader } from '@mui/material';
+import { CardContent, Grid, CardHeader, Button, 
+    Card, Paper, TableContainer, Table, TableHead,
+    TableRow, TableCell, TableBody, CardActions } from '@mui/material';
 import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 
 export const CoachEventsPage: React.FC = () => {
 	const [events, setEvents] = useState<any | null>(null);
+	const [students, setStudents] = useState<any | null>(null);
 
 	useEffect(() => {
 		console.log(getAllEvents());
@@ -26,7 +28,7 @@ export const CoachEventsPage: React.FC = () => {
 	return (
 		<Grid>
 			<h1>Athletic Events: Coach's View</h1>
-			<Link to='/events/deleted'>
+			<Link to=''>
 				<Button
 					size='small'
 					sx={{ backgroundColor: '#710F0F', color: 'white' }}
