@@ -88,7 +88,11 @@ export const CoachEventDetails: React.FC = () => {
                                     <TableCell sx={{color: "green"}}>Approved</TableCell> :
                                     <TableCell sx={{color: "red"}}>Not Approved</TableCell>
                                 }
-                                <TableCell><Link to = {''}>View Class Conflicts</Link></TableCell>
+                                <TableCell>
+                                    <Link to = {`/coach/events/${eventData?.eventId}/details/${student.id}/classconflicts`}>
+                                        View Class Conflicts
+                                    </Link>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
