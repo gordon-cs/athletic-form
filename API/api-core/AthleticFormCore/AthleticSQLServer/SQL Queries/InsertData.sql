@@ -26,4 +26,3 @@ insert into dbo.[AthleticDatabase.AthleticEvents]
     (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime) 
 values 
     ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '1:00 PM');
-

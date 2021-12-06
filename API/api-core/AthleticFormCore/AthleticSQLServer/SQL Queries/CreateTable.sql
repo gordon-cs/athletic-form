@@ -1,5 +1,5 @@
--- Create table
-create table [AthleticDatabase.AthleticEvents] (
+use AthleticDatabase
+create table dbo.[AthleticDatabase.AthleticEvents] (
     EventID int identity(1,1),
     IsDeleted bit default 0 not null,
     Sport varchar(25),
@@ -10,4 +10,3 @@ create table [AthleticDatabase.AthleticEvents] (
     DepartureTime DateTime,
     primary key(EventID)
 );
-

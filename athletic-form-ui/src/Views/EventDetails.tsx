@@ -60,6 +60,9 @@ export const EventDetails: React.FC<Props> = () => {
 					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
 					{departHome}
 				</CardContent>
+				<CardContent className={'card-content'}>
+					Players: Me and only me. Also John Howitzer
+				</CardContent>
 				<CardActions className={'card-content card-action'}>
 					<Link to='/events'>
 						<Button
