@@ -5,12 +5,14 @@ import { getAllEvents, removeEvent } from '../Services/EventService';
 import { Card, CardHeader, CardContent, Button, CardActions } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 
 export const EventDetails: React.FC = () => {
     let params = useParams();
     let id : any = params.id;
     let departHome;
+	let headerHome;
     const [eventData, setEventData] = useState<any | null>(null);
     const [students, setStudents] = useState<any | null>(null);
 
@@ -33,8 +35,18 @@ export const EventDetails: React.FC = () => {
 	};*/
 
 	if (eventData?.departOrHome === 'Home') {
+		headerHome = (<CardHeader
+			className={'card-header isHome'}
+			title={eventData?.sport + ': ' + eventData?.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+		/>)
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
 	} else {
+		headerHome = (<CardHeader
+			className={'card-header'}
+			title={eventData?.sport + ': ' + eventData?.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+		/>)
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {eventData?.departOrHome}
@@ -46,11 +58,7 @@ export const EventDetails: React.FC = () => {
         /*I want to rework the layout of this page*/
 		<Grid>
 			<h1>Event Details</h1>
-				<CardHeader
-					className={'card-header'}
-					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={'Date: ' + eventData?.date}
-				/>
+				{headerHome}
 				<CardContent className={'card-content'}>
 					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
 					{departHome}
