@@ -1,2 +1,4 @@
-drop database if exists [AthleticDatabase]
+-- drop database
+use master
+drop database if exists AthleticDatabase;
 create database [AthleticDatabase]

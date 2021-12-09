@@ -15,7 +15,7 @@ namespace AthleticFormCore.Controllers
        public EventsController(AthleticEventContext context) {
            _context = context;
        }
-        // GET api/events
+        
         [HttpGet]
         public List<AthleticEvent> GetAll() {
             return _context.AthleticEvents.ToList();
@@ -28,11 +28,31 @@ namespace AthleticFormCore.Controllers
             _context.SaveChanges();
         }
 
-        /*Doesn't Actually Delete.  Just Marks
-        as deleted*/
+        [HttpPost]
+        [Route("update/{id}")]
+        public void Update(int id, [FromBody]AthleticEvent athleticEvent) {
+            AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault
+                (x => x.EventId == id);
+            Console.WriteLine(eventToUpdate.Sport);
+            eventToUpdate.Sport = athleticEvent.Sport;
+            eventToUpdate.Opponent = athleticEvent.Opponent;
+            eventToUpdate.EventDate = athleticEvent.EventDate;
+            eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
+            eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
+            _context.Update<AthleticEvent>(eventToUpdate);
+            _context.SaveChanges();
+
+
+        }
+
+
+        /*
+            Doesn't Actually Delete.  Just Marks
+            as deleted
+        */
         [HttpPost]
         [Route("delete/{id}")]
-        public void Delete(int id) {
+        public void MarkAsDeleted(int id) {
             if (ModelState.IsValid) {
                 AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
                 athleticEvent.IsDeleted = true;
