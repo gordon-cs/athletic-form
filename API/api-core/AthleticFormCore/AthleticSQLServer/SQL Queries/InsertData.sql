@@ -78,16 +78,31 @@ insert into dbo.[AthleticDatabase.InEvent]
 values 
     ('1', '50208495');
 
+insert into dbo.[AthleticDatabase.InEvent] 
+    (EventID, StudentID)
+values 
+    ('1', '20408095');
+
 
 insert into dbo.[AthleticDatabase.InEvent]
     (EventID, StudentID)
 values 
-    ('2', '42208495');    
+    ('2', '26404093');
 
 insert into dbo.[AthleticDatabase.InEvent]
     (EventID, StudentID)
 values 
-    ('3', '50208295');  
+    ('2', '42208495');      
+
+insert into dbo.[AthleticDatabase.InEvent]
+    (EventID, StudentID)
+values 
+    ('3', '50208295');
+
+insert into dbo.[AthleticDatabase.InEvent]
+    (EventID, StudentID)
+values 
+    ('3', '50208495');
 
 insert into dbo.[AthleticDatabase.InEvent]
     (EventID, StudentID)
@@ -97,4 +112,49 @@ values
 insert into dbo.[AthleticDatabase.InEvent]
     (EventID, StudentID)
 values 
+    ('4', '26404093');  
+
+insert into dbo.[AthleticDatabase.InEvent]
+    (EventID, StudentID)
+values 
     ('5', '26404093');  
+
+insert into dbo.[AthleticDatabase.InEvent]
+    (EventID, StudentID)
+values 
+    ('5', '42208495');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS121', '50208495');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS222', '50208495');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS121', '50208295');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS222', '42208495');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS121', '20408095');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS222', '20408095');
+
+insert into dbo.[AthleticDatabase.Enrolled] 
+    (CourseCode, StudentID)
+VALUES
+    ('CPS222', '26404093');

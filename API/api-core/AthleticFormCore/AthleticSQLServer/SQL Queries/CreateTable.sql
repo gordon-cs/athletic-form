@@ -32,3 +32,9 @@ create table [AthleticDatabase.Class] (
     CourseEndTime DateTime,
     primary key(CourseCode)
 );
+
+create table [AthleticDatabase.Enrolled] (
+    CourseCode varchar(8) references [AthleticDatabase.Class](CourseCode),
+    StudentID varchar(8) references [AthleticDatabase.Student](StudentID),
+    primary key(CourseCode, StudentID)
+);
