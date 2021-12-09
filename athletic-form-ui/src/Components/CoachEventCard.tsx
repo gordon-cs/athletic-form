@@ -1,5 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
-import '../styles/eventCard.scss';
+import '../styles/coachEventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
@@ -12,42 +12,41 @@ export function RemoveCard() {
 	console.log('Add delete functionality here I guess');
 }
 
-export const EventCard: React.FC<Props> = ({ eventData }) => {
-	let departHome;
-	let headerHome;
+export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
+	let departHome, conflicts, random;
+
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		headerHome = (<CardHeader
-						className={'card-header isHome'}
-						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + eventData.date}
-					/>)
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
-		headerHome = (<CardHeader
-						className={'card-header'}
-						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + eventData.date}
-					/>)
 	}
+
+	// FIXME: Currently using a random display value (need to get from db)
+	random = (Math.floor(Math.random() * 10));
+	conflicts = (
+		<CardContent className={'card-detail'}>
+			There are {random} students with conflicts.
+		</CardContent>
+	)
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<Link to={`/events/${eventData.id}/details`}>
-				{headerHome}
-				{/*<CardHeader
+			<Link to = {`/coach/events/${eventData.eventId}/details`}>
+				<CardHeader
 					className={'card-header'}
 					title={eventData.sport + ': ' + eventData.opponent}
 					subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-				/>*/}
+				/>
 			</Link>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Time: <br></br> {eventData.time}</CardContent>
 				{departHome}
+			</CardContent>
+			<CardContent className={'card-content'}>
+				{conflicts}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Link to={`/events/${eventData.eventId}/delete`}>
