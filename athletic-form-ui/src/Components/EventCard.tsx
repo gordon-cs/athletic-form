@@ -20,7 +20,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		headerHome = (<CardHeader
 						className={'card-header isHome'}
 						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + getDateTimeAsJs(eventData.date)
+						subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
 					/>)
 	} else {
 		departHome = (
@@ -31,17 +31,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		headerHome = (<CardHeader
 						className={'card-header'}
 						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + getDateTimeAsJs(eventData.date)
+						subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
 					/>)
 	}
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<Link to={`/events/${eventData.id}/details`}>
+			<Link to={`/events/${eventData.eventId}/details`}>
 				{headerHome}
 			</Link>
 			<CardContent className={'card-content'}>
-				<CardContent className={'card-detail'}>Time: <br></br> {eventData.time}</CardContent>
 				{departHome}
 			</CardContent>
 			<CardActions className={'card-content card-action'}>
