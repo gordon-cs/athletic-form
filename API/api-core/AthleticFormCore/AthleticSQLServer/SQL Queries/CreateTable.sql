@@ -1,4 +1,4 @@
--- Create table
+-- Create tables
 create table [AthleticDatabase.AthleticEvents] (
     EventID int identity(1,1),
     IsDeleted bit default 0 not null,
@@ -11,3 +11,22 @@ create table [AthleticDatabase.AthleticEvents] (
     primary key(EventID)
 );
 
+
+create table [AthleticDatabase.Student] (
+    StudentID varchar(8) not null,
+    FirstName varchar(15) not null,
+    LastName varchar(15) not null,
+    primary key(StudentID)
+);
+
+create table [AthleticDatabase.InEvent] (
+    EventID int references [AthleticDatabase.AthleticEvents](EventID),
+    StudentID varchar(8) references [AthleticDatabase.Student] not null,
+    primary key(EventID, StudentID)
+);
+
+create table [AthleticDatabase.Class] (
+    CourseCode varchar(8) not null,
+    CourseMeetingTime DateTime,
+    primary key(CourseCode)
+);
