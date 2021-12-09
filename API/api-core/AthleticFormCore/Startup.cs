@@ -43,8 +43,7 @@ namespace AthleticFormCore
             services.AddDbContext<AthleticEventContext>(options => {
                 options.UseSqlServer(userSecret);
             }); 
-                
-            
+                        
             services.AddControllers();
                         services.AddMvc()
                 .AddControllersAsServices();

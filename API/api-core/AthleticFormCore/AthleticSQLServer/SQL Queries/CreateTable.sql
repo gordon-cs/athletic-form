@@ -1,4 +1,5 @@
 -- Create tables
+
 create table [AthleticDatabase.AthleticEvents] (
     EventID int identity(1,1),
     IsDeleted bit default 0 not null,
@@ -27,6 +28,7 @@ create table [AthleticDatabase.InEvent] (
 
 create table [AthleticDatabase.Class] (
     CourseCode varchar(8) not null,
-    CourseMeetingTime DateTime,
+    CourseStartTime DateTime,
+    CourseEndTime DateTime,
     primary key(CourseCode)
 );

@@ -29,18 +29,16 @@ values
     ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '10/25/2021 4:30 AM');
 
 
-
-
 -- Class inserts
 insert into dbo.[AthleticDatabase.Class]
-    (CourseCode, CourseMeetingTime)
+    (CourseCode, CourseStartTime, CourseEndTime)
 values 
-    ('CPS121', '10/25/2021 2:30 PM')
+    ('CPS121', '10/25/2021 2:30 PM', '10/25/2021 4:15 PM')
 
 insert into dbo.[AthleticDatabase.Class]
-    (CourseCode, CourseMeetingTime)
+    (CourseCode, CourseStartTime, CourseEndTime)
 values 
-    ('CPS222', '12/28/2021 2:00 PM')
+    ('CPS222', '12/28/2021 2:00 PM', '12/28/2021 3:30 PM');
 
 
 
