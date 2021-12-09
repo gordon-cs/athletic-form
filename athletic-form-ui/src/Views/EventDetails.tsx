@@ -64,7 +64,7 @@ export const EventDetails: React.FC = () => {
 					{departHome}
 				</CardContent>
 				<CardContent className={'card-content'}>
-					Players: Me and only me. Also John Howitzer
+					Show coach, maybe coach email?
 				</CardContent>
 				<CardActions className={'card-content card-action'}>
 					<Link to='/events'>

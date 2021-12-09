@@ -13,16 +13,26 @@ export function RemoveCard() {
 }
 
 export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
-	let departHome, conflicts, random;
+	let departHome, conflicts, random, headerHome;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+		headerHome = (<CardHeader
+			className={'card-header isHome'}
+			title={eventData.sport + ': ' + eventData.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+		/>)
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
+		headerHome = (<CardHeader
+			className={'card-header'}
+			title={eventData.sport + ': ' + eventData.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+		/>)
 	}
 
 	// FIXME: Currently using a random display value (need to get from db)
@@ -35,12 +45,8 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<Link to = {`/coach/events/${eventData.eventId}/details`}>
-				<CardHeader
-					className={'card-header'}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-				/>
+			<Link to = {`/coach/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
+				{headerHome}
 			</Link>
 			<CardContent className={'card-content'}>
 				{departHome}
