@@ -20,7 +20,7 @@ export async function updateEvent(id: number, event: any) {
 	apiClient({
 		method: 'put',
 		url: `/events/update/${id}`,
-		data: event,
+		data: { id, event },
 	});
 }
 

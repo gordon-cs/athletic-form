@@ -33,13 +33,16 @@ namespace AthleticFormCore.Controllers
         public void Update(int id, [FromBody]AthleticEvent athleticEvent) {
             AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault
                 (x => x.EventId == id);
-            Console.WriteLine(eventToUpdate.Sport);
-            eventToUpdate.Sport = athleticEvent.Sport;
-            eventToUpdate.Opponent = athleticEvent.Opponent;
-            eventToUpdate.EventDate = athleticEvent.EventDate;
-            eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
-            eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
-            _context.Update<AthleticEvent>(eventToUpdate);
+            if(athleticEvent != null) {
+                Console.WriteLine(athleticEvent.Sport);
+                Console.WriteLine(athleticEvent.Destination);
+                // eventToUpdate.Sport = athleticEvent.Sport;
+                // eventToUpdate.Opponent = athleticEvent.Opponent;
+                // eventToUpdate.EventDate = athleticEvent.EventDate;
+                // eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
+                // eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
+                // _context.Update<AthleticEvent>(athleticEvent);
+            }
             _context.SaveChanges();
         }
 
