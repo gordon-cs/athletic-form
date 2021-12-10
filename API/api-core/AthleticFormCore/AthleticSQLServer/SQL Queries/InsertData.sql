@@ -44,117 +44,82 @@ values
 
 
 -- Student inserts
-insert into dbo.[AthleticDatabase.Student] 
-    (StudentID, FirstName, LastName)
+insert into dbo.[AthleticDatabase.Account] 
+    (Gordon_ID, Nickname, FirstName, LastName, Email)
 values
-    ('50208495', 'Anthony', 'Aardvark');
+    ('50208495', 'Anth', 'Anthony', 'Aardvark', 'Anthony.Aardvark@gordon.edu');
 
-insert into dbo.[AthleticDatabase.Student] 
-    (StudentID, FirstName, LastName)
+insert into dbo.[AthleticDatabase.Account] 
+    (Gordon_ID,  Nickname, FirstName, LastName, Email)
 values
-    ('50208295', 'Charlene', 'Cat');    
+    ('50208295', 'Charlene', 'Charlene', 'Cat', 'Charlene.Cat@gordon.edu');    
 
-insert into dbo.[AthleticDatabase.Student] 
-    (StudentID, FirstName, LastName)
+insert into dbo.[AthleticDatabase.Account] 
+    (Gordon_ID, Nickname, FirstName, LastName, Email)
 values
-    ('42208495', 'Boris', 'Buffalo');
+    ('42208495', 'Boris', 'Boris', 'Buffalo', 'Boris.Buffalo@gordon.edu');
 
 
-insert into dbo.[AthleticDatabase.Student]
-    (StudentID, FirstName, LastName)
+insert into dbo.[AthleticDatabase.Account]
+    (Gordon_ID, Nickname, FirstName, LastName, Email)
 values 
-    ('20408095', 'Audrey', 'Antelope');
+    ('20408095', 'Aud', 'Audrey', 'Antelope', 'Audrey.Antelope@gordon.edu');
 
 
-insert into dbo.[AthleticDatabase.Student]
-    (StudentID, FirstName, LastName)
+insert into dbo.[AthleticDatabase.Account]
+    (Gordon_ID, Nickname, FirstName, LastName, Email)
 values 
-    ('26404093', 'Samantha', 'Squirel');
+    ('26404093', 'Sammy', 'Samantha', 'Squirel', 'Samantha.Squirell@gordon.edu');
 
 
 -- InEvent
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('1', '50208495');
 
 insert into dbo.[AthleticDatabase.InEvent] 
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('1', '20408095');
 
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('2', '26404093');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+insert into db o.[AthleticDatabase.InEvent]
+    (EventID, Gordon_ID)
 values 
     ('2', '42208495');      
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('3', '50208295');
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('3', '50208495');
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('4', '20408095');  
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('4', '26404093');  
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('5', '26404093');  
 
 insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, StudentID)
+    (EventID, Gordon_ID)
 values 
     ('5', '42208495');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS121', '50208495');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS222', '50208495');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS121', '50208295');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS222', '42208495');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS121', '20408095');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS222', '20408095');
-
-insert into dbo.[AthleticDatabase.Enrolled] 
-    (CourseCode, StudentID)
-VALUES
-    ('CPS222', '26404093');
