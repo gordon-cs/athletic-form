@@ -42,7 +42,9 @@ namespace AthleticFormCore
             services.AddCors();
             services.AddDbContext<AthleticEventContext>(options => {
                 options.UseSqlServer(userSecret);
-            }); 
+            }).AddDbContext<AthleticConflictContext>(options => {
+                options.UseSqlServer(userSecret);
+            });
                         
             services.AddControllers();
                         services.AddMvc()

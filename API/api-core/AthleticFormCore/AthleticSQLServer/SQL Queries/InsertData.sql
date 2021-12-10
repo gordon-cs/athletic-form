@@ -29,21 +29,32 @@ values
     ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '10/25/2021 4:30 AM');
 
 
--- Class inserts
-insert into dbo.[AthleticDatabase.Class]
-    (CourseCode, CourseStartTime, CourseEndTime)
+-- Section inserts
+insert into dbo.[AthleticDatabase.SECTION_SCHEDULES]
+    (yr_cde, trm_cde, crs_cde, monday_cde, wednesday_cde, friday_cde, begin_tim, end_tim)
 values 
-    ('CPS121', '10/25/2021 2:30 PM', '10/25/2021 4:15 PM')
+    ('2021', 'SP', 'CPS353', 'M', 'W', 'F', '1900-01-01 12:40 PM', '1900-01-01 1:40 PM')
 
-insert into dbo.[AthleticDatabase.Class]
-    (CourseCode, CourseStartTime, CourseEndTime)
+insert into dbo.[AthleticDatabase.SECTION_SCHEDULES]
+    (yr_cde, trm_cde, crs_cde, tuesday_cde, thursday_cde, begin_tim, end_tim)
 values 
-    ('CPS222', '12/28/2021 2:00 PM', '12/28/2021 3:30 PM');
+    ('2021', 'FA', 'COM101', 'T', 'R ', '1900-01-01 9:45 AM', '1900-01-01 11:20 AM')
 
 
+-- Section Master inserts
+insert into dbo.[AthleticDatabase.Section_Master]
+    (yr_cde, trm_cde, crs_cde, Lead_Instructor_ID, crs_title, sess_cde)
+values
+    ('2021', 'SP', 'CPS353', 1, 'Internet Programming', '821786')
 
 
--- Student inserts
+insert into dbo.[AthleticDatabase.Section_Master]
+    (yr_cde, trm_cde, crs_cde, Lead_Instructor_ID, crs_title, sess_cde)
+values
+    ('2021', 'FA', 'COM101', 2, 'Visual Storytelling', '821776')
+
+
+-- Account inserts
 insert into dbo.[AthleticDatabase.Account] 
     (Gordon_ID, Nickname, FirstName, LastName, Email)
 values
@@ -72,6 +83,45 @@ values
     ('26404093', 'Sammy', 'Samantha', 'Squirel', 'Samantha.Squirell@gordon.edu');
 
 
+-- Class History inserts
+
+insert into dbo.[AthleticDatabase.Student_Crs_Hist]
+    (id_num, yr_cde, trm_cde, crs_cde) 
+values
+    ('50208495', '2021', 'SP', 'CPS353')
+
+
+insert into dbo.[AthleticDatabase.Student_Crs_Hist]
+    (id_num, yr_cde, trm_cde, crs_cde) 
+values
+    ('20408095', '2021', 'SP', 'CPS353')
+
+
+insert into dbo.[AthleticDatabase.Student_Crs_Hist]
+    (id_num, yr_cde, trm_cde, crs_cde) 
+values
+    ('42208495', '2021', 'SP', 'CPS353')
+
+
+
+insert into dbo.[AthleticDatabase.Student_Crs_Hist]
+    (id_num, yr_cde, trm_cde, crs_cde) 
+values
+    ('50208495', '2021', 'FA', 'COM101')
+
+
+insert into dbo.[AthleticDatabase.Student_Crs_Hist]
+    (id_num, yr_cde, trm_cde, crs_cde) 
+values
+    ('20408095', '2021', 'FA', 'COM101')
+
+
+insert into dbo.[AthleticDatabase.Student_Crs_Hist]
+    (id_num, yr_cde, trm_cde, crs_cde) 
+values
+    ('42208495', '2021', 'SP', 'COM101')
+
+
 -- InEvent
 insert into dbo.[AthleticDatabase.InEvent]
     (EventID, Gordon_ID)
@@ -89,7 +139,7 @@ insert into dbo.[AthleticDatabase.InEvent]
 values 
     ('2', '26404093');
 
-insert into db o.[AthleticDatabase.InEvent]
+insert into dbo.[AthleticDatabase.InEvent]
     (EventID, Gordon_ID)
 values 
     ('2', '42208495');      

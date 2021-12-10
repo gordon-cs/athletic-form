@@ -4,11 +4,12 @@
 */
 
 create view Conflicts as (
-    select ie.EventID, s.FirstName, s.LastName, 
-         c.CourseCode, ae.DepartureTime, c.CourseStartTime, c.CourseEndTime
-            from dbo.[AthleticDatabase.AthleticEvents] ae
-                inner join dbo.[AthleticDatabase.InEvent] ie on ie.EventID = ae.EventID
-                inner join dbo.[AthleticDatabase.Student] s on s.StudentID = ie.StudentID
-                inner join dbo.[AthleticDatabase.Class] c on c.CourseStartTime = ae.DepartureTime     
+    select distinct top 1000 ie.EventID, acc.Email, ae.DepartureTime, sched.begin_tim, h.crs_cde as CourseCode from    
+                dbo.[AthleticDatabase.InEvent] ie
+                inner join dbo.[AthleticDatabase.Student_Crs_Hist] h on h.Id_Num = ie.Gordon_ID
+                inner join dbo.[AthleticDatabase.Section_Schedules] sched on  sched.CRS_CDE = h.crs_cde
+                inner join dbo.[AthleticDatabase.AthleticEvents] ae on ae.EventID = ie.EventID
+                inner join dbo.[AthleticDatabase.Account] acc on acc.Gordon_ID = ie.Gordon_ID      
+            
 );
 
