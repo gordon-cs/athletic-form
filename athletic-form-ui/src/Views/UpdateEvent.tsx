@@ -14,12 +14,6 @@ interface Props {}
 
 export const UpdateEvent: React.FC<Props> = () => {
 	const [eventData, setEventData] = useState<any | null>(null);
-	const [sport, setSport] = useState('');
-	const [opponent, setOpponent] = useState('');
-	const [eventDate, setEventDate] = useState('');
-	const [homeOrAway, setHomeOrAway] = useState('');
-	const [destination, setDestination] = useState('');
-	const [departureTime, setDepartureTime] = useState('');
 	let navigate = useNavigate();
 	const params: any = useParams();
 	const id = params.id;
@@ -37,14 +31,8 @@ export const UpdateEvent: React.FC<Props> = () => {
 	}, [id]);
 
 	const handleSubmit = () => {
-		updateEvent(id, {
-			sport,
-			opponent,
-			homeOrAway,
-			destination,
-			eventDate,
-			departureTime,
-		})
+		console.log(updateEvent(id, eventData));
+		updateEvent(id, eventData)
 			.then((a: any) => {
 				navigate('/events');
 			})
@@ -60,22 +48,22 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventData?.sport}
 					onChange={(e: any) => {
-						setSport(e.target.value);
+						setEventData([{ sport: e.target.value }]);
 					}}
 				/>
 				<br></br>
 				<TextField
 					value={eventData?.opponent}
 					onChange={(e: any) => {
-						setOpponent(e.target.value);
+						setEventData([{ opponent: e.target.value }]);
 					}}
 				/>
 				<RadioGroup
 					aria-label='isAway'
-					//value={eventData?.homeOrAway}
+					value={eventData?.homeOrAway}
 					name='radio-buttons-group'
 					onChange={(e: any) => {
-						setHomeOrAway(e.target.value);
+						setEventData([{ homeOrAway: e.target.value }]);
 					}}
 				>
 					<FormControlLabel value='Home' control={<Radio />} label='Home' />
@@ -85,7 +73,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventData?.destination}
 					onChange={(e: any) => {
-						setDestination(e.target.value);
+						setEventData([{ destination: e.target.value }]);
 					}}
 				/>
 				<br></br>
@@ -93,7 +81,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					value={eventData?.eventDate}
 					type='datetime-local'
 					onChange={(e: any) => {
-						setEventDate(e.target.value);
+						setEventData([{ eventDate: e.target.value }]);
 					}}
 				/>
 				<br></br>
@@ -101,7 +89,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					type='datetime-local'
 					value={eventData?.departureTime}
 					onChange={(e: any) => {
-						setDepartureTime(e.target.value);
+						setEventData([{ departureTime: e.target.value }]);
 					}}
 				/>
 				<br></br>
