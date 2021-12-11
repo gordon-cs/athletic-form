@@ -44,6 +44,8 @@ namespace AthleticFormCore
                 options.UseSqlServer(userSecret);
             }).AddDbContext<AthleticConflictContext>(options => {
                 options.UseSqlServer(userSecret);
+            }).AddDbContext<AccountContext>(options => {
+                options.UseSqlServer(userSecret);
             });
                         
             services.AddControllers();
