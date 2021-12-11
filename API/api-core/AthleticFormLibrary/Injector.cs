@@ -5,12 +5,9 @@ using Unity;
 
 namespace AthleticFormLibrary
 {
-    // This is a DI container class. It automates DI so that the programmer doesen't have to do it manually.
-
     public static class Injector
     {
         private static IUnityContainer _container;
-
 
         public static void RegisterTypes(IUnityContainer container)
         {

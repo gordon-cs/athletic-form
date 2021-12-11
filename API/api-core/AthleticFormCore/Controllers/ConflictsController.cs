@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-
 using AthleticFormLibrary.DataAccess;
-using System;
+using AthleticFormLibrary.Models;
 
-[Route("api/[controller]")]
+
+    [Route("api/[controller]")]
     [ApiController]
     public class ConflictsController : ControllerBase {
-        private AthleticConflictContext _conflictContext;
+        private readonly AthleticConflictContext _conflictContext;
 
         public ConflictsController(AthleticConflictContext conflictContext) {
             _conflictContext = conflictContext;
