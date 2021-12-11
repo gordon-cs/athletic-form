@@ -3,8 +3,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
 using AthleticFormLibrary.Models;
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class ConflictsController : ControllerBase {
@@ -16,7 +14,7 @@ using AthleticFormLibrary.Models;
 
         [HttpGet]
         public List<AthleticConflict> GetAll() {
-            return _conflictContext.AthleticConflicts
-                    .ToList().FindAll(e => e.DepartureTime.TimeOfDay <= e.CourseBeginTime.TimeOfDay);
-        }       
+            return _conflictContext.AthleticConflicts.ToList().FindAll
+                (e => e.DepartureTime.TimeOfDay <= e.CourseBeginTime.TimeOfDay);
+        }      
     }
