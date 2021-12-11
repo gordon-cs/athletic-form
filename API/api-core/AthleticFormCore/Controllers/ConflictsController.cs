@@ -16,6 +16,7 @@ using AthleticFormLibrary.Models;
 
         [HttpGet]
         public List<AthleticConflict> GetAll() {
-            return _conflictContext.AthleticConflicts.ToList();
-        }
+            return _conflictContext.AthleticConflicts
+                    .ToList().FindAll(e => e.DepartureTime.TimeOfDay <= e.CourseBeginTime.TimeOfDay);
+        }       
     }

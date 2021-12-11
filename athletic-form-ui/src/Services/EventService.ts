@@ -37,3 +37,10 @@ export async function restoreEvent(id: number) {
 		url: `/events/restore/${id}`,
 	});
 }
+
+export function getConflicts(): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: '/conflics',
+	});
+}
