@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AthleticFormLibrary.Models {
     [Table("AthleticDatabase.Account", Schema ="dbo")]
     public class Account {
-        public string Gordon_ID { get; }
-        public string NickName { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Email { get; }
+        public string Gordon_ID { get; set; }
+        public string Nickname { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
     }
 }
