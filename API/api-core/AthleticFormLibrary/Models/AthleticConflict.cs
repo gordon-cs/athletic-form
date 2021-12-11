@@ -5,7 +5,4 @@ public class AthleticConflict {
     public string CourseCode { get; }
     public DateTime DepartureTime { get; }
     public DateTime CourseBeginTime { get; }
-
-    
-    
 }

@@ -7,7 +7,8 @@ namespace AthleticFormLibrary.DataAccess {
         public DbSet<AthleticConflict> AthleticConflicts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder) {
-            builder.Entity<AthleticConflict>(e => e.ToView("Conflicts", "dbo").HasKey(t => new { t.EventID, t.Email, t.CourseCode }));
+            builder.Entity<AthleticConflict>(e => e.ToView("Conflicts", "dbo")
+                .HasKey(t => new { t.EventID, t.Email, t.CourseCode }));
         }
     }
 }
