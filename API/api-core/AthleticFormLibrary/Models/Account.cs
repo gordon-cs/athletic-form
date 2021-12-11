@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AthleticFormLibrary.Models {
     [Table("AthleticDatabase.Account",Schema ="dbo")]
     public class Account {
-        [Key]
         public string Gordon_ID;
         public string NickName;
         public string FirstName;
