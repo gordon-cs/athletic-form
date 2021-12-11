@@ -11,8 +11,8 @@ namespace AthleticFormCore.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        private readonly AccountContext _context;
-        public AccountsController(AccountContext context) {
+        private readonly AthleticContext _context;
+        public AccountsController(AthleticContext context) {
             _context = context;
         }
 
