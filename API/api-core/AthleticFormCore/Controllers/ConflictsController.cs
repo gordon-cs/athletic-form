@@ -8,7 +8,7 @@ using System;
 [Route("api/[controller]")]
     [ApiController]
     public class ConflictsController : ControllerBase {
-        private AthleticConflictContext _conflictContext;
+        private readonly AthleticConflictContext _conflictContext;
 
         public ConflictsController(AthleticConflictContext conflictContext) {
             _conflictContext = conflictContext;
