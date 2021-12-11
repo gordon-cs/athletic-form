@@ -13,11 +13,11 @@ namespace AthleticFormCore.Controllers
     {
         private readonly AccountContext _context;
         public AccountsController(AccountContext context) {
-            context = _context;
+            _context = context;
         }
 
         [HttpGet]
-        public List<Account> getAll() {
+        public List<Account> GetAll() {
             return _context.Accounts.ToList();
         }
     }

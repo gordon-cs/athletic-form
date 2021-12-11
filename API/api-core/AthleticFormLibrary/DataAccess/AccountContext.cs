@@ -6,5 +6,9 @@ namespace AthleticFormLibrary.DataAccess {
         public AccountContext(DbContextOptions<AccountContext> options)
              : base(options) {}
         public DbSet<Account> Accounts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder) {
+            builder.Entity<Account>(a => a.HasKey(k => k.Gordon_ID));
+        }
     }
 }
