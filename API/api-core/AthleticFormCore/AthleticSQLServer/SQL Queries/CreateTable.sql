@@ -12,7 +12,8 @@ create table [AthleticDatabase.AthleticEvents] (
 
 create table [AthleticDatabase.InEvent] (
     EventID int not null,
-    Gordon_ID varchar(10) not null
+    Gordon_ID varchar(10) not null,
+    primary key(EventID, Gordon_ID)
 );
 
 /* table: Opponent - Address, schoolID, name */

@@ -23,8 +23,8 @@ namespace AthleticFormCore.Controllers
 
 
         [HttpGet]
-        [Route("studentsenrolledin")]
-        public List<StudentsEnrolledIn> GetStudentsEnrolledIns() {
+        [Route("StudentsEnrolledIn")]
+        public List<StudentsEnrolledIn> GetStudentsEnrolledIn() {
             return _context.StudentsEnrolledIn.ToList();
         }
     }
