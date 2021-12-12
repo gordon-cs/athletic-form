@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
-using AthleticFormLibrary.Models;
     [Route("api/[controller]")]
     [ApiController]
     public class ConflictsController : ControllerBase {
@@ -14,18 +13,16 @@ using AthleticFormLibrary.Models;
 
         [HttpGet]
         public List<AthleticConflict> GetAll() {
-            return AllConflicts();
+            return GetAllConflicts();
         }
 
         [HttpGet]
         [Route("{eventId}")]
-        public List<string> GetAllEmailsByEventId(int eventId) {
-            return AllConflicts().Where(c => c.EventID == eventId).
-                Select(c => c.Email).Distinct().ToList();
+        public List<AthleticConflict> GetAllConflictsByEventId(int eventId) {
+            return GetAllConflicts().ToList().FindAll(c => c.EventID == eventId);
         }
 
-        //Helper function for getting all conflicts
-        private List<AthleticConflict> AllConflicts() {
+        private List<AthleticConflict> GetAllConflicts() {
             return _conflictContext.AthleticConflicts.ToList().FindAll
                 (e => e.DepartureTime.TimeOfDay <= e.CourseBeginTime.TimeOfDay);
         }      

@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents, getEmailsByEventId } from '../Services/EventService';
+import { getAllEvents, getConflictsByEventId } from '../Services/EventService';
 import {
 	CardContent,
 	Grid,
@@ -23,7 +23,7 @@ export const CoachEventDetails: React.FC = () => {
 	let id: any = params.id;
 	let departHome;
 	const [eventData, setEventData] = useState<any | null>(null);
-	const [emails, setEmails] = useState<any | null>(null);
+	const [conflicts, setConflicts] = useState<any | null>(null);
 
 	useEffect(() => {
 		getAllEvents()
@@ -35,8 +35,9 @@ export const CoachEventDetails: React.FC = () => {
 				);
 			})
 			.then(() => {
-				getEmailsByEventId(parseInt(id)).then((res: any) => {
-					setEmails(res.data);
+				getConflictsByEventId(parseInt(id)).then((res: any) => {
+					console.log(res.data);
+					setConflicts(res.data);
 				});
 			})
 			.catch((error) => console.log(error.message));
@@ -70,31 +71,27 @@ export const CoachEventDetails: React.FC = () => {
 				<Table sx={{ width: 1000 }}>
 					<TableHead>
 						<TableRow>
-							<TableCell>Name</TableCell>
+							<TableCell>Email</TableCell>
 							<TableCell>Approval Status</TableCell>
 							<TableCell></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{emails === null ? (
+						{conflicts === null ? (
 							<TableRow>
 								<TableCell>No students to show</TableCell>
 							</TableRow>
 						) : (
-							emails?.map((email: any) => (
-								<TableRow key={Math.random()}>
-									<TableCell>{email}</TableCell>
+							conflicts?.map((conflict: any) => (
+								<TableRow key={Math.random() * 3.1415982465}>
+									<TableCell>{conflict['email']} </TableCell>
 									{Math.random() < 0.5 ? (
 										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
 									) : (
 										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
 									)}
 									<TableCell>
-										<Link
-											to=''
-										>
-											View Class Conflicts
-										</Link>
+										<Link to=''>View Class Conflicts</Link>
 									</TableCell>
 								</TableRow>
 							))

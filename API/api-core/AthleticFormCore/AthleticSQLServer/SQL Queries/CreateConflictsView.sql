@@ -4,7 +4,7 @@
 */
 
 create view Conflicts as (
-    select distinct top 1000 ie.EventID, acc.Email, ae.DepartureTime, 
+    select distinct top 1000 ie.EventID, acc.FirstName, acc.LastName, acc.Email, ae.DepartureTime, 
         sched.begin_tim as CourseBeginTime, h.crs_cde as CourseCode from    
             dbo.[AthleticDatabase.InEvent] ie
                 inner join dbo.[AthleticDatabase.Student_Crs_Hist] h on h.Id_Num = ie.Gordon_ID

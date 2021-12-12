@@ -4,23 +4,26 @@ import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { useState, useEffect } from 'react';
-import { getEmailsByEventId } from '../Services/EventService';
+import { getConflictsByEventId } from '../Services/EventService';
 
 interface Props {
 	eventData: any;
 }
 
 export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
-	const [emails, setEmails] = useState<any | null>(null);
+	const [conflicts, setConflicts] = useState<any | null>(null);
 	const [count, setCount] = useState<number>(0);
 	useEffect(() => {
-		getEmailsByEventId(eventData.eventId).then((res: any) => {
-			setEmails(res.data);
-		}).then(() => {
-			setCount(emails.length);
-		}).catch((error) => console.log(error.message));
+		getConflictsByEventId(eventData.eventId)
+			.then((res: any) => {
+				setConflicts(res.data);
+			})
+			.then(() => {
+				setCount(conflicts.length);
+			})
+			.catch((error) => console.log(error.message));
 	});
-	let departHome, conflicts;
+	let departHome, numConflicts;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
@@ -32,7 +35,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 		);
 	}
 
-	conflicts = (
+	numConflicts = (
 		<CardContent className={'card-detail'}>
 			There are {count} students with conflicts.
 		</CardContent>
@@ -48,7 +51,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 				/>
 			</Link>
 			<CardContent className={'card-content'}>{departHome}</CardContent>
-			<CardContent className={'card-content'}>{conflicts}</CardContent>
+			<CardContent className={'card-content'}>{numConflicts}</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}
