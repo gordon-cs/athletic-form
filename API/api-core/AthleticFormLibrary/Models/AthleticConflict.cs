@@ -1,10 +1,10 @@
 using System;
 public class AthleticConflict {
-    public int EventID { get; set; }
-    public string Email { get; set; }
+    public int EventID { get; }
+    public string Email { get; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string CourseCode { get; set; }
-    public DateTime DepartureTime { get; set; }
-    public DateTime CourseBeginTime { get; set; }
+    public string CourseCode { get; }
+    public DateTime DepartureTime { get; }
+    public DateTime CourseBeginTime { get; }
 }
