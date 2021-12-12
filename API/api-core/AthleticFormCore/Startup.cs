@@ -45,8 +45,8 @@ namespace AthleticFormCore
             });
                         
             services.AddControllers();
-                        services.AddMvc()
-                .AddControllersAsServices();
+                    services.AddMvc()
+                        .AddControllersAsServices();
           
         }
 
