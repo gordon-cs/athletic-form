@@ -83,8 +83,8 @@ export const CoachEventDetails: React.FC = () => {
 							</TableRow>
 						) : (
 							conflicts?.map((conflict: any) => (
-								<TableRow key={conflict.id}>
-									<TableCell>{conflict.name}</TableCell>
+								<TableRow key={Math.random()}>
+									<TableCell>{conflict['email']}</TableCell>
 									{conflict['EventID'] === 1 ? (
 										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
 									) : (

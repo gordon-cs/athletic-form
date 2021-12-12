@@ -11,7 +11,7 @@ export function getAllEvents(): AxiosPromise<any> {
 export function getConflicts(): AxiosPromise<any> {
 	return apiClient({
 		method: 'get',
-		url: '/conflics',
+		url: '/conflicts',
 	});
 }
 
