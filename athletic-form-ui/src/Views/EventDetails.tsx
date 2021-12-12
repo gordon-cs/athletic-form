@@ -55,7 +55,7 @@ export const EventDetails: React.FC = () => {
 		/>)
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {eventData?.departOrHome}
+				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
 	}
@@ -66,11 +66,11 @@ export const EventDetails: React.FC = () => {
 			<h1>Event Details</h1>
 				{headerHome}
 				<CardContent className={'card-content'}>
-					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
+					<CardContent className={'card-detail'}>Time: {getDateTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
 				</CardContent>
 				<CardContent className={'card-content'}>
-					Show coach, maybe coach email?
+					Show Robin's details.
 				</CardContent>
 				<TableContainer component={Paper}>
 					<Table sx = {{width: 1000}}>
@@ -78,23 +78,17 @@ export const EventDetails: React.FC = () => {
 							<TableRow>
 								<TableCell>Coach</TableCell>
 								<TableCell>Contact</TableCell>
-								<TableCell></TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
 							{coaches === null ?
 							<TableRow>
-								<TableCell>No students to show</TableCell>
+								<TableCell>Show extra notes here, once added.</TableCell>
 							</TableRow> : 
 								coaches?.map((student: any) => (
 								<TableRow key = {student.id}>
 									<TableCell>{student.name}</TableCell>
-									<TableCell>{student.email}</TableCell> :
-									<TableCell>
-										<Link to = {`/coach/events/${eventData?.eventId}/details/${student.id}/classconflicts`}>
-											View Class Conflicts
-										</Link>
-									</TableCell>
+									<TableCell><a href={`mailto:${student.email}`}>{student.email}</a></TableCell> :
 								</TableRow>
 							))}
 						</TableBody>
