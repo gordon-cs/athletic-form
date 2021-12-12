@@ -72,6 +72,8 @@ export const CoachEventDetails: React.FC = () => {
 					<TableHead>
 						<TableRow>
 							<TableCell>Email</TableCell>
+							<TableCell>First Name</TableCell>
+							<TableCell>Last Name</TableCell>
 							<TableCell>Approval Status</TableCell>
 							<TableCell></TableCell>
 						</TableRow>
@@ -85,6 +87,8 @@ export const CoachEventDetails: React.FC = () => {
 							conflicts?.map((conflict: any) => (
 								<TableRow key={Math.random() * 3.1415982465}>
 									<TableCell>{conflict['email']} </TableCell>
+									<TableCell>{conflict['firstName']}</TableCell>
+									<TableCell>{conflict['lastName']}</TableCell>
 									{Math.random() < 0.5 ? (
 										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
 									) : (

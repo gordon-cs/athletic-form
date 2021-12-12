@@ -18,8 +18,8 @@ using AthleticFormLibrary.DataAccess;
 
         [HttpGet]
         [Route("{eventId}")]
-        public List<AthleticConflict> GetAllConflictsByEventId(int eventId) {
-            return GetAllConflicts().FindAll(c => c.EventID == eventId);
+        public object GetAllConflictsByEventId(int eventId) {
+            return GetAllConflicts().FindAll(c => c.EventID == eventId).Select(c => new {c.Email, c.FirstName, c.LastName}).Distinct();
         }
 
         private List<AthleticConflict> GetAllConflicts() {
