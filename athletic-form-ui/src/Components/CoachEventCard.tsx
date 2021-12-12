@@ -3,13 +3,24 @@ import '../styles/coachEventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
+import { useState, useEffect } from 'react';
+import { getEmailsByEventId } from '../Services/EventService';
 
 interface Props {
 	eventData: any;
 }
 
 export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
-	let departHome, conflicts, random;
+	const [emails, setEmails] = useState<any | null>(null);
+	const [count, setCount] = useState<number>(0);
+	useEffect(() => {
+		getEmailsByEventId(eventData.eventId).then((res: any) => {
+			setEmails(res.data);
+		}).then(() => {
+			setCount(emails.length);
+		}).catch((error) => console.log(error.message));
+	});
+	let departHome, conflicts;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
@@ -21,11 +32,9 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 		);
 	}
 
-	// FIXME: Currently using a random display value (need to get from db)
-	random = Math.floor(Math.random() * 10);
 	conflicts = (
 		<CardContent className={'card-detail'}>
-			There are {random} students with conflicts.
+			There are {count} students with conflicts.
 		</CardContent>
 	);
 
