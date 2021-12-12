@@ -20,5 +20,12 @@ namespace AthleticFormCore.Controllers
         public List<Account> GetAll() {
             return _context.Accounts.ToList();
         }
+
+
+        [HttpGet]
+        [Route("studentsenrolledin")]
+        public List<StudentsEnrolledIn> GetStudentsEnrolledIns() {
+            return _context.StudentsEnrolledIn.ToList();
+        }
     }
 }
