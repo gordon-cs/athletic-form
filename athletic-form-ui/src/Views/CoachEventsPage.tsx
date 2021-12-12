@@ -10,7 +10,6 @@ export const CoachEventsPage: React.FC = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
-		console.log(getAllEvents());
 		getAllEvents()
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {
@@ -53,7 +52,7 @@ export const CoachEventsPage: React.FC = () => {
 								/>
 							</Grid>
 					  ))}
-				<Card className={'add-card'}>
+				{/* <Card className={'add-card'}>
 					<CardHeader className={'add-header'} title={'Add'}></CardHeader>
 					<CardActions className={'add-action'}>
 						<Link to='/events/add'>
@@ -66,7 +65,7 @@ export const CoachEventsPage: React.FC = () => {
 							</Button>
 						</Link>
 					</CardActions>
-				</Card>
+				</Card> */}
 			</Grid>
 		</Grid>
 	);

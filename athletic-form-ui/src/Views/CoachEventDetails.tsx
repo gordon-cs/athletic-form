@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents } from '../Services/EventService';
+import { getAllEvents, getConflicts } from '../Services/EventService';
 import {
 	CardContent,
 	Grid,
@@ -23,7 +23,7 @@ export const CoachEventDetails: React.FC = () => {
 	let id: any = params.id;
 	let departHome;
 	const [eventData, setEventData] = useState<any | null>(null);
-	const [students, setStudents] = useState<any | null>(null);
+	const [conflicts, setConflicts] = useState<any | null>(null);
 
 	useEffect(() => {
 		getAllEvents()
@@ -35,26 +35,10 @@ export const CoachEventDetails: React.FC = () => {
 				);
 			})
 			.then(() => {
-				setStudents([
-					{
-						id: 1,
-						name: 'Anthony Aardvark',
-						email: 'anthony.aardvark@gordon.edu',
-						approved: true,
-					},
-					{
-						id: 2,
-						name: 'Boris Buffalo',
-						email: 'boris.buffalo@gordon.edu',
-						approved: false,
-					},
-					{
-						id: 3,
-						name: 'Charlene Cat',
-						email: 'charlene.cat@gordon.edu',
-						approved: true,
-					},
-				]);
+				getConflicts().then((res: any) => {
+					console.log(res.data);
+					setConflicts(res.data);
+				});
 			})
 			.catch((error) => console.log(error.message));
 	}, [id]);
@@ -93,22 +77,22 @@ export const CoachEventDetails: React.FC = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{students === null ? (
+						{conflicts === null ? (
 							<TableRow>
 								<TableCell>No students to show</TableCell>
 							</TableRow>
 						) : (
-							students?.map((student: any) => (
-								<TableRow key={student.id}>
-									<TableCell>{student.name}</TableCell>
-									{student.approved ? (
+							conflicts?.map((conflict: any) => (
+								<TableRow key={conflict.id}>
+									<TableCell>{conflict.name}</TableCell>
+									{conflict['EventID'] === 1 ? (
 										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
 									) : (
 										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
 									)}
 									<TableCell>
 										<Link
-											to={`/coach/events/${eventData?.eventId}/details/${student.id}/classconflicts`}
+											to={`/coach/events/${eventData?.eventId}/details/${conflict['Gordon_ID']}/classconflicts`}
 										>
 											View Class Conflicts
 										</Link>

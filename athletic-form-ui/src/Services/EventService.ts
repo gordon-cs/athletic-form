@@ -8,6 +8,13 @@ export function getAllEvents(): AxiosPromise<any> {
 	});
 }
 
+export function getConflicts(): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: '/conflics',
+	});
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
@@ -35,12 +42,5 @@ export async function restoreEvent(id: number) {
 	apiClient({
 		method: 'post',
 		url: `/events/restore/${id}`,
-	});
-}
-
-export function getConflicts(): AxiosPromise<any> {
-	return apiClient({
-		method: 'get',
-		url: '/conflics',
 	});
 }
