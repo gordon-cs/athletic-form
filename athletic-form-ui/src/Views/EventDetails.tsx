@@ -33,8 +33,8 @@ export const EventDetails: React.FC = () => {
 				console.log(error);
 			});
 	};*/
-
-	if (eventData?.departOrHome === 'Home') {
+	console.log(eventData?.homeOrAway)
+	if (eventData?.homeOrAway === 'Home') {
 		headerHome = (<CardHeader
 			className={'card-header isHome'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
