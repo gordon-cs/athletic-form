@@ -15,6 +15,13 @@ export function getConflicts(): AxiosPromise<any> {
 	});
 }
 
+export function getEmailsByEventId(eventId: number): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: `/conflicts/${eventId}`,
+	});
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',

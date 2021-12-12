@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents, getConflicts } from '../Services/EventService';
+import { getAllEvents, getEmailsByEventId } from '../Services/EventService';
 import {
 	CardContent,
 	Grid,
@@ -23,7 +23,7 @@ export const CoachEventDetails: React.FC = () => {
 	let id: any = params.id;
 	let departHome;
 	const [eventData, setEventData] = useState<any | null>(null);
-	const [conflicts, setConflicts] = useState<any | null>(null);
+	const [emails, setEmails] = useState<any | null>(null);
 
 	useEffect(() => {
 		getAllEvents()
@@ -35,9 +35,8 @@ export const CoachEventDetails: React.FC = () => {
 				);
 			})
 			.then(() => {
-				getConflicts().then((res: any) => {
-					console.log(res.data);
-					setConflicts(res.data);
+				getEmailsByEventId(parseInt(id)).then((res: any) => {
+					setEmails(res.data);
 				});
 			})
 			.catch((error) => console.log(error.message));
@@ -77,22 +76,22 @@ export const CoachEventDetails: React.FC = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{conflicts === null ? (
+						{emails === null ? (
 							<TableRow>
 								<TableCell>No students to show</TableCell>
 							</TableRow>
 						) : (
-							conflicts?.map((conflict: any) => (
+							emails?.map((email: any) => (
 								<TableRow key={Math.random()}>
-									<TableCell>{conflict['email']}</TableCell>
-									{conflict['EventID'] === 1 ? (
+									<TableCell>{email}</TableCell>
+									{Math.random() < 0.5 ? (
 										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
 									) : (
 										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
 									)}
 									<TableCell>
 										<Link
-											to={`/coach/events/${eventData?.eventId}/details/${conflict['Gordon_ID']}/classconflicts`}
+											to=''
 										>
 											View Class Conflicts
 										</Link>
