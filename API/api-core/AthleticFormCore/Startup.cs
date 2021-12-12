@@ -40,9 +40,7 @@ namespace AthleticFormCore
         {
             userSecret = Configuration["ConnectionString"];  
             services.AddCors();
-            services.AddDbContext<AthleticEventContext>(options => {
-                options.UseSqlServer(userSecret);
-            }).AddDbContext<AthleticConflictContext>(options => {
+            services.AddDbContext<AthleticContext>(options => {
                 options.UseSqlServer(userSecret);
             });
                         

@@ -6,9 +6,9 @@ using AthleticFormLibrary.Models;
     [Route("api/[controller]")]
     [ApiController]
     public class ConflictsController : ControllerBase {
-        private readonly AthleticConflictContext _conflictContext;
+        private readonly AthleticContext _conflictContext;
 
-        public ConflictsController(AthleticConflictContext conflictContext) {
+        public ConflictsController(AthleticContext conflictContext) {
             _conflictContext = conflictContext;
         }
 
