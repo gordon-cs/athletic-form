@@ -10,6 +10,9 @@
 	text-align: center;
 	font-size: 20pt;
 	height: 100px;
+	text-decoration: none;
+} .card-header:hover {
+	background-color: #005106;
 }
 
 .card-detail {
@@ -27,6 +30,7 @@
 .text-header {
 	color: white;
 	font-size: 20pt;
+	text-decoration: none;
 }
 
 .card-content {
@@ -38,4 +42,10 @@
 .card-action {
 	align-items: center;
 	justify-content: center;
+}
+
+.isHome {
+	background-color: #014983;
+} .isHome:hover {
+	background-color: #00306A;
 }

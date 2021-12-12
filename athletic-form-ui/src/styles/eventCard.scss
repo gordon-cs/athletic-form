@@ -33,9 +33,14 @@
 	background-color: #174354;
 	color: white;
 	display: flex;
+	white-space: pre-line;
 }
 
 .card-action {
 	align-items: center;
 	justify-content: center;
+}
+
+.isHome {
+	background-color: #014983;
 }

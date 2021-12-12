@@ -3,6 +3,7 @@ import { EventsPage } from './Views/EventsPage';
 import { AddEvent } from './Views/AddEvent';
 import { DeleteEvent } from './Views/DeleteEvent';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { EventDetails } from './Views/EventDetails';
 import { UpdateEvent } from './Views/UpdateEvent';
 import { CoachEventsPage } from './Views/CoachEventsPage';
 import { DeletedEventsPage } from './Views/DeletedEventsPage';
@@ -22,6 +23,7 @@ export const App = () => {
 						<Route path = "coach/events/:id/details/:studentId/classconflicts" element = {<ClassConflicts />}/>
 						<Route path = "/events/add" element = {<AddEvent />}/>
 						<Route path = "/events/:id/delete" element = {<DeleteEvent />}/>
+						<Route path = "/events/:id/details" element = {<EventDetails />} />
 						<Route path = "/events/:id/update" element = {<UpdateEvent />}/>
 						<Route path = "/events/deleted" element = {<DeletedEventsPage />}/>
 						<Route path = "/events/deleted/:id/recover" element = {<RecoverEvent />}/>
