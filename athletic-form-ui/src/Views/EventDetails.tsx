@@ -1,8 +1,9 @@
-import { Grid } from '@mui/material';
+import { CardContent, Grid, CardHeader, Button, 
+    Card, Paper, TableContainer, Table, TableHead,
+    TableRow, TableCell, TableBody, CardActions } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllEvents, removeEvent } from '../Services/EventService';
-import { Card, CardHeader, CardContent, Button, CardActions } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
@@ -14,16 +15,22 @@ export const EventDetails: React.FC = () => {
     let departHome;
 	let headerHome;
     const [eventData, setEventData] = useState<any | null>(null);
-    const [students, setStudents] = useState<any | null>(null);
+    const [coaches, setCoaches] = useState<any | null>(null);
 
     useEffect(() => {
         getAllEvents().then((res: any) => {
             setEventData(res.data.find((e: any) => {
                 return e.eventId === parseInt(id);
             }));
+        }).then(() => {
+            setCoaches([{ 
+                id: 1,
+                name: "Mr. Sportsmann",
+                email: "sports.mann@gordon.edu"
+            }])
         })
+        .catch((error) => console.log(error.message));
     }, [id]);
-
 	/*const handleClick = () => {
 		removeEvent(params.id)
 			.then((a: any) => {
@@ -33,7 +40,6 @@ export const EventDetails: React.FC = () => {
 				console.log(error);
 			});
 	};*/
-	console.log(eventData?.homeOrAway)
 	if (eventData?.homeOrAway === 'Home') {
 		headerHome = (<CardHeader
 			className={'card-header isHome'}
@@ -66,6 +72,34 @@ export const EventDetails: React.FC = () => {
 				<CardContent className={'card-content'}>
 					Show coach, maybe coach email?
 				</CardContent>
+				<TableContainer component={Paper}>
+					<Table sx = {{width: 1000}}>
+						<TableHead>
+							<TableRow>
+								<TableCell>Coach</TableCell>
+								<TableCell>Contact</TableCell>
+								<TableCell></TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{coaches === null ?
+							<TableRow>
+								<TableCell>No students to show</TableCell>
+							</TableRow> : 
+								coaches?.map((student: any) => (
+								<TableRow key = {student.id}>
+									<TableCell>{student.name}</TableCell>
+									<TableCell>{student.email}</TableCell> :
+									<TableCell>
+										<Link to = {`/coach/events/${eventData?.eventId}/details/${student.id}/classconflicts`}>
+											View Class Conflicts
+										</Link>
+									</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				</TableContainer>
 				<CardActions className={'card-content card-action'}>
 					<Link to='/events'>
 						<Button
