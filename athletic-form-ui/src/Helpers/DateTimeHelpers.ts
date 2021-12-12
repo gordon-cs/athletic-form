@@ -9,6 +9,15 @@ export function getDateTimeAsJs(dateTime: any) {
 	return dateAsJs;
 }
 
+export function getTimeAsJs(dateTime: any) {
+	let time = null;
+	if (dateTime != null) {
+		let parsedDate = new Date(Date.parse(dateTime));
+		time = convertTime(parsedDate.getHours(), parsedDate.getUTCMinutes());
+	}	
+	return time;
+}
+
 function getDateAsJs(date: any) {
 	let dateAsJs = null;
 	if (date !== null) {

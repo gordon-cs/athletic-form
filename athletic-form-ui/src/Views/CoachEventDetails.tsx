@@ -95,7 +95,7 @@ export const CoachEventDetails: React.FC = () => {
 										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
 									)}
 									<TableCell>
-										<Link to=''>View Class Conflicts</Link>
+										<Link to={`/coach/events/${id}/details/${conflict['email']}/classconflicts`}>View Class Conflicts</Link>
 									</TableCell>
 								</TableRow>
 							))

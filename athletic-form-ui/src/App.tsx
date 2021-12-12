@@ -19,7 +19,7 @@ export const App = () => {
 						<Route path = "/events" element = {<EventsPage />}/>
 						<Route path = "coach/events" element = {<CoachEventsPage />}/>
 						<Route path = "coach/events/:id/details" element = {<CoachEventDetails />}/>
-						<Route path = "coach/events/:id/details/:studentId/classconflicts" element = {<ClassConflicts />}/>
+						<Route path = "coach/events/:id/details/:email/classconflicts" element = {<ClassConflicts />}/>
 						<Route path = "/events/add" element = {<AddEvent />}/>
 						<Route path = "/events/:id/delete" element = {<DeleteEvent />}/>
 						<Route path = "/events/:id/update" element = {<UpdateEvent />}/>

@@ -23,9 +23,9 @@ namespace AthleticFormCore.Controllers
 
 
         [HttpGet]
-        [Route("StudentsEnrolledIn")]
-        public List<StudentsEnrolledIn> GetStudentsEnrolledIn() {
-            return _context.StudentsEnrolledIn.ToList();
+        [Route("StudentsEnrolledIn/{email}")]
+        public List<StudentsEnrolledIn> GetStudentsEnrolledIn(string email) {
+            return _context.StudentsEnrolledIn.Where(s => s.Email == email).ToList();
         }
     }
 }

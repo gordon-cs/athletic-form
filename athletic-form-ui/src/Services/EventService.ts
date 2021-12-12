@@ -22,6 +22,13 @@ export function getConflictsByEventId(eventId: number): AxiosPromise<any> {
 	});
 }
 
+export function getClassesEnrolled(email: string) : AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: `/accounts/studentsenrolledin/${email}`,
+	});
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
