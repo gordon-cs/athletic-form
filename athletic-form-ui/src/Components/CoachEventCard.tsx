@@ -3,17 +3,27 @@ import '../styles/coachEventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
+import { useState, useEffect } from 'react';
+import { getConflictsByEventId } from '../Services/EventService';
 
 interface Props {
 	eventData: any;
 }
 
-export function RemoveCard() {
-	console.log('Add delete functionality here I guess');
-}
-
 export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
-	let departHome, conflicts, random, headerHome;
+	const [conflicts, setConflicts] = useState<any | null>(null);
+	const [count, setCount] = useState<number>(0);
+	useEffect(() => {
+		getConflictsByEventId(eventData.eventId)
+			.then((res: any) => {
+				setConflicts(res.data);
+			})
+			.then(() => {
+				setCount(conflicts.length);
+			})
+			.catch((error) => console.log(error.message));
+	});
+	let departHome, numConflicts, headerHome;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
@@ -35,46 +45,38 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 		/>)
 	}
 
-	// FIXME: Currently using a random display value (need to get from db)
-	random = (Math.floor(Math.random() * 10));
-	conflicts = (
+	numConflicts = (
 		<CardContent className={'card-detail'}>
-			There are {random} students with conflicts.
+			There are {count} students with conflicts.
 		</CardContent>
-	)
+	);
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<Link to = {`/coach/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
 				{headerHome}
 			</Link>
-			<CardContent className={'card-content'}>
-				{departHome}
-			</CardContent>
-			<CardContent className={'card-content'}>
-				{conflicts}
-			</CardContent>
+			<CardContent className={'card-content'}>{departHome}</CardContent>
+			<CardContent className={'card-content'}>{numConflicts}</CardContent>
 			<CardActions className={'card-content card-action'}>
-				<Link to={`/events/${eventData.eventId}/delete`}>
-					<Button
-						size='small'
-						sx={{ backgroundColor: '#710F0F', color: 'white' }}
-						variant={'outlined'}
-					>
-						<FaTrashAlt></FaTrashAlt>
-						Delete
-					</Button>
-				</Link>
-				<Link to = {`/events/${eventData.eventId}/update`} >
-					<Button
-						size={'small'}
-						sx={{ backgroundColor: '#066A1F', color: 'white' }}
-						variant={'outlined'}
-					>
-						<FaPencilAlt></FaPencilAlt>
-						Update
-					</Button>
-				</Link>
+				<Button
+					disabled={true}
+					size='small'
+					sx={{ backgroundColor: '#710F0F', color: 'white' }}
+					variant={'outlined'}
+				>
+					<FaTrashAlt></FaTrashAlt>
+					Delete
+				</Button>
+				<Button
+					disabled={true}
+					size={'small'}
+					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					variant={'outlined'}
+				>
+					<FaPencilAlt></FaPencilAlt>
+					Update
+				</Button>
 			</CardActions>
 		</Card>
 	);

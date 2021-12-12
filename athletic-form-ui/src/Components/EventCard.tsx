@@ -8,10 +8,6 @@ interface Props {
 	eventData: any;
 }
 
-export function RemoveCard() {
-	console.log('Add delete functionality here I guess');
-}
-
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	let headerHome;
@@ -54,7 +50,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 						Delete
 					</Button>
 				</Link>
-				<Link to = {`/events/${eventData.eventId}/update`} >
+				<Link to={`/events/${eventData.eventId}/update`}>
 					<Button
 						size={'small'}
 						sx={{ backgroundColor: '#066A1F', color: 'white' }}
