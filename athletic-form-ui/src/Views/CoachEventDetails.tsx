@@ -58,7 +58,7 @@ export const CoachEventDetails: React.FC = () => {
 			</CardContent>
 		);
         headerHome = (<CardHeader
-			className={'card-header isHome'}
+			className={'card-header'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
 			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
 		/>)
