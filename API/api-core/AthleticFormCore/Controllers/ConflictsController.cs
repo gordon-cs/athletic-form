@@ -23,7 +23,6 @@ using AthleticFormLibrary.DataAccess;
         }
 
         private List<AthleticConflict> GetAllConflicts() {
-            return _conflictContext.AthleticConflicts.ToList().FindAll
-                (e => e.DepartureTime.TimeOfDay <= e.CourseBeginTime.TimeOfDay);
+            return _conflictContext.AthleticConflicts.ToList();
         }      
     }
