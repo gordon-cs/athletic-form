@@ -18,7 +18,7 @@ export function getTimeAsJs(dateTime: any) {
 	return time;
 }
 
-function getDateAsJs(date: any) {
+export function getDateAsJs(date: any) {
 	let dateAsJs = null;
 	if (date !== null) {
 		let parsedDate = new Date(Date.parse(date));

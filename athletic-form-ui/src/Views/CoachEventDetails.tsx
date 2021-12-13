@@ -15,7 +15,7 @@ import {
 	TableCell,
 	TableBody,
 } from '@mui/material';
-import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
+import { getDateAsJs, getDateTimeAsJs, getTimeAsJs } from '../Helpers/DateTimeHelpers';
 import '../styles/coachEventCard.scss';
 
 export const CoachEventDetails: React.FC = () => {
@@ -43,27 +43,35 @@ export const CoachEventDetails: React.FC = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
-	if (eventData?.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+    let headerHome;
+	if (eventData?.homeOrAway === 'Home') {
+		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
+        headerHome = (<CardHeader
+			className={'card-header isHome'}
+			title={eventData?.sport + ': ' + eventData?.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+		/>)
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
+				Depart Time: <br></br> {getDateAsJs(eventData?.departureTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
+        headerHome = (<CardHeader
+			className={'card-header isHome'}
+			title={eventData?.sport + ': ' + eventData?.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+		/>)
 	}
 
 	return (
 		<Grid>
-			<h1>Event Details: Coach's View</h1>
+			<h1 className = "card-label">Event Details: Coach's View</h1>
 			<Card>
-				<CardHeader
-					className={'card-header'}
-					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
-				/>
+				{headerHome}
 				<CardContent className={'card-content'}>
-					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
+                    <CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
+						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
 				</CardContent>
 			</Card>

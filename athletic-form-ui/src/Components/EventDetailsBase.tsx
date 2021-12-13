@@ -1,3 +1,5 @@
+//Currently does nothing
+
 import { CardContent, Grid, CardHeader, Button, 
     Card, Paper, TableContainer, Table, TableHead,
     TableRow, TableCell, TableBody, CardActions } from '@mui/material';
@@ -6,11 +8,10 @@ import { useState, useEffect } from 'react';
 import { getAllEvents, removeEvent } from '../Services/EventService';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
-import { EventDetailsHeader } from '../Components/EventDetailsBase';
+import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 
-export const EventDetails: React.FC = () => {
+export const EventDetailsHeader: React.FC = () => {
     let params = useParams();
     let id : any = params.id;
     let departHome;
@@ -56,7 +57,7 @@ export const EventDetails: React.FC = () => {
 		/>)
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: <br></br> {getDateAsJs(eventData?.departureTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
+				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
 	}
@@ -67,8 +68,7 @@ export const EventDetails: React.FC = () => {
 			<h1 className = "card-label">Event Details</h1>
 				{headerHome}
 				<CardContent className={'card-content'}>
-					<CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
-						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
+					<CardContent className={'card-detail'}>Time: {getDateTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
 				</CardContent>
 				<CardContent className={'card-content'}>
