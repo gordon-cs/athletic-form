@@ -43,25 +43,32 @@ export const CoachEventDetails: React.FC = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
+    let headerHome;
 	if (eventData?.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+        headerHome = (<CardHeader
+			className={'card-header isHome'}
+			title={eventData?.sport + ': ' + eventData?.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+		/>)
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
+        headerHome = (<CardHeader
+			className={'card-header isHome'}
+			title={eventData?.sport + ': ' + eventData?.opponent}
+			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+		/>)
 	}
 
 	return (
 		<Grid>
 			<h1 className = "card-label">Event Details: Coach's View</h1>
 			<Card>
-				<CardHeader
-					className={'card-header'}
-					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
-				/>
+				{headerHome}
 				<CardContent className={'card-content'}>
 					<CardContent className={'card-detail'}>Time: {eventData?.time}</CardContent>
 					{departHome}
