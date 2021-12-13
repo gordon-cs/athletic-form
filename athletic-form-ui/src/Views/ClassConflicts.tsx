@@ -48,6 +48,18 @@ export const ClassConflicts: React.FC = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
+	function hasConflict(course: any) {
+		let courseCodes: any = [];
+		let conflictExists = false;
+		conflicts.map((conflict: any) => {
+			courseCodes.push(conflict.courseCode);
+		});
+		if (courseCodes.includes(course.crs_cde)) {
+			conflictExists = true;
+		}
+		return conflictExists;
+	}
+
 	console.log(conflicts);
 	console.log(classes);
 
