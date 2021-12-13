@@ -49,7 +49,6 @@ export const ClassConflicts: React.FC = () => {
 	}, [id]);
 
 	console.log(conflicts);
-	console.log(classes);
 
 	function getDaysOfWeek(course: any) {
 		let daysOfWeek = '';
@@ -75,6 +74,18 @@ export const ClassConflicts: React.FC = () => {
 			daysOfWeek += course.saturdaY_CDE;
 		}
 		return daysOfWeek;
+	}
+
+	function hasConflict(course: any) {
+		let courseCodes: any = [];
+		let conflictExists = false;
+		conflicts.map((conflict: any) => {
+			courseCodes.push(conflict.courseCode);
+		});
+		if (courseCodes.includes(course.crs_cde)) {
+			conflictExists = true;
+		}
+		return conflictExists;
 	}
 
 	return (
