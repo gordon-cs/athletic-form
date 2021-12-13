@@ -48,57 +48,21 @@ export const ClassConflicts: React.FC = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
-	function hasConflict(course: any) {
-		let courseCodes: any = [];
-		let conflictExists = false;
-		conflicts.map((conflict: any) => {
-			courseCodes.push(conflict.courseCode);
-		});
-		if (courseCodes.includes(course.crs_cde)) {
-			conflictExists = true;
-		}
-		return conflictExists;
-	}
-
 	console.log(conflicts);
 
-	function getDaysOfWeek(course: any) {
-		let daysOfWeek = '';
-		if (course.sundaY_CDE != null) {
-			daysOfWeek += course.sundaY_CDE;
-		}
-		if (course.mondaY_CDE != null) {
-			daysOfWeek += course.mondaY_CDE;
-		}
-		if (course.tuesdaY_CDE != null) {
-			daysOfWeek += course.tuesdaY_CDE;
-		}
-		if (course.wednesdaY_CDE != null) {
-			daysOfWeek += course.wednesdaY_CDE;
-		}
-		if (course.thursdaY_CDE != null) {
-			daysOfWeek += course.thursdaY_CDE;
-		}
-		if (course.fridaY_CDE != null) {
-			daysOfWeek += course.fridaY_CDE;
-		}
-		if (course.saturdaY_CDE != null) {
-			daysOfWeek += course.saturdaY_CDE;
-		}
-		return daysOfWeek;
-	}
-
 	function hasConflict(course: any) {
 		let courseCodes: any = [];
 		let conflictExists = false;
-		conflicts.map((conflict: any) => {
+		conflicts?.map((conflict: any) => {
 			courseCodes.push(conflict.courseCode);
 		});
-		if (courseCodes.includes(course.crs_cde)) {
+		if (courseCodes.includes(course.crS_CDE)) {
 			conflictExists = true;
 		}
 		return conflictExists;
 	}
+
+	console.log(classes);
 
 	return (
 		<Grid>
@@ -111,9 +75,6 @@ export const ClassConflicts: React.FC = () => {
 					<TableHead>
 						<TableRow>
 							<TableCell>Course Code</TableCell>
-							<TableCell>Course Title</TableCell>
-							<TableCell>Days of Week</TableCell>
-							<TableCell>Time</TableCell>
 							<TableCell>Conflict?</TableCell>
 						</TableRow>
 					</TableHead>
@@ -125,31 +86,15 @@ export const ClassConflicts: React.FC = () => {
 						) : (
 							classes?.map((course: any) =>
 								hasConflict(course) ? (
-									<TableRow key={course.crs_cde}>
+									<TableRow key={course.crS_CDE}>
 										<TableCell sx={{ color: 'red' }}>
-											{course.crs_cde}
-										</TableCell>
-										<TableCell sx={{ color: 'red' }}>
-											{course.crs_title}
-										</TableCell>
-										<TableCell sx={{ color: 'red' }}>
-											{getDaysOfWeek(course)}
-										</TableCell>
-										<TableCell sx={{ color: 'red' }}>
-											{getTimeAsJs(course.begiN_TIM)}-
-											{getTimeAsJs(course.enD_TIM)}
+											{course.crS_CDE}
 										</TableCell>
 										<TableCell sx={{ color: 'red' }}>Yes</TableCell>
 									</TableRow>
 								) : (
-									<TableRow key={course.crs_cde}>
-										<TableCell>{course.crs_cde}</TableCell>
-										<TableCell>{course.crs_title}</TableCell>
-										<TableCell>{getDaysOfWeek(course)}</TableCell>
-										<TableCell>
-											{getTimeAsJs(course.begiN_TIM)}-
-											{getTimeAsJs(course.enD_TIM)}
-										</TableCell>
+									<TableRow key={course.crS_CDE}>
+										<TableCell>{course.crS_CDE}</TableCell>
 										<TableCell>No</TableCell>
 									</TableRow>
 								),
