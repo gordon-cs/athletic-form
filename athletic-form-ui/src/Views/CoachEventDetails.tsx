@@ -89,7 +89,7 @@ export const CoachEventDetails: React.FC = () => {
 									<TableCell>{conflict['email']} </TableCell>
 									<TableCell>{conflict['firstName']}</TableCell>
 									<TableCell>{conflict['lastName']}</TableCell>
-									{Math.random() < 0.5 ? (
+									{Math.random() < 0.5 ? ( //Leave this for presentation
 										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
 									) : (
 										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
