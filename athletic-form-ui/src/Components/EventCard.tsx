@@ -2,7 +2,7 @@ import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/materia
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
+import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 interface Props {
 	eventData: any;
@@ -21,7 +21,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
+				Depart Time: {getDateAsJs(eventData.departureTime)}<br></br> {getTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
 		headerHome = (<CardHeader

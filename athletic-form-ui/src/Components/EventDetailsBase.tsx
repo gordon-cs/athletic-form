@@ -1,3 +1,5 @@
+//Currently does nothing
+
 import { CardContent, Grid, CardHeader, Button, 
     Card, Paper, TableContainer, Table, TableHead,
     TableRow, TableCell, TableBody, CardActions } from '@mui/material';
@@ -7,10 +9,9 @@ import { getAllEvents, removeEvent } from '../Services/EventService';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
-import { EventDetailsHeader } from '../Components/EventDetailsBase';
 
 
-export const EventDetails: React.FC = () => {
+export const EventDetailsHeader: React.FC = () => {
     let params = useParams();
     let id : any = params.id;
     let departHome;
