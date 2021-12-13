@@ -63,7 +63,7 @@ export const EventDetails: React.FC = () => {
 	return (
         /*I want to rework the layout of this page*/
 		<Grid>
-			<h1>Event Details</h1>
+			<h1 className = "card-label">Event Details</h1>
 				{headerHome}
 				<CardContent className={'card-content'}>
 					<CardContent className={'card-detail'}>Time: {getDateTimeAsJs(eventData?.eventDate)}</CardContent>

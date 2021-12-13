@@ -55,7 +55,7 @@ export const CoachEventDetails: React.FC = () => {
 
 	return (
 		<Grid>
-			<h1>Event Details: Coach's View</h1>
+			<h1 className = "card-label">Event Details: Coach's View</h1>
 			<Card>
 				<CardHeader
 					className={'card-header'}
