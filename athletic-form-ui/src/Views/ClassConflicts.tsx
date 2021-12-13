@@ -40,6 +40,32 @@ export const ClassConflicts: React.FC = () => {
     console.log(conflicts);
     console.log(classes);
 
+    function getDaysOfWeek(course: any) {
+        let daysOfWeek = "";
+        if (course.sundaY_CDE != null) {
+            daysOfWeek += course.sundaY_CDE;
+        }
+        if (course.mondaY_CDE != null) {
+            daysOfWeek += course.mondaY_CDE;
+        }
+        if (course.tuesdaY_CDE != null) {
+            daysOfWeek += course.tuesdaY_CDE;
+        }
+        if (course.wednesdaY_CDE != null) {
+            daysOfWeek += course.wednesdaY_CDE;
+        }
+        if (course.thursdaY_CDE != null) {
+            daysOfWeek += course.thursdaY_CDE;
+        }
+        if (course.fridaY_CDE != null) {
+            daysOfWeek += course.fridaY_CDE;
+        }
+        if (course.saturdaY_CDE != null) {
+            daysOfWeek += course.saturdaY_CDE;
+        }
+        return daysOfWeek;
+    }
+
     return (
         <Grid>
             <h1>{eventData?.sport}: {eventData?.opponent}</h1>
@@ -63,14 +89,14 @@ export const ClassConflicts: React.FC = () => {
                             <TableRow key = {course.crs_cde}>
                                 <TableCell sx = {{color: "red"}}>{course.crs_cde}</TableCell>
                                 <TableCell sx = {{color: "red"}}>{course.crs_title}</TableCell>
-                                <TableCell sx = {{color: "red"}}>{/*course.daysOfWeek*/}</TableCell>
+                                <TableCell sx = {{color: "red"}}>{getDaysOfWeek(course)}</TableCell>
                                 <TableCell sx = {{color: "red"}}>{getTimeAsJs(course.begiN_TIM)}-{getTimeAsJs(course.enD_TIM)}</TableCell>
                                 <TableCell sx = {{color: "red"}}>Yes</TableCell>
                             </TableRow> :
                             <TableRow key = {course.crs_cde}>
                                 <TableCell>{course.crs_cde}</TableCell>
                                 <TableCell>{course.crs_title}</TableCell>
-                                <TableCell>{/*course.daysOfWeek*/}</TableCell>
+                                <TableCell>{getDaysOfWeek(course)}</TableCell>
                                 <TableCell>{getTimeAsJs(course.begiN_TIM)}-{getTimeAsJs(course.enD_TIM)}</TableCell>
                                 <TableCell>No</TableCell>
                             </TableRow>
