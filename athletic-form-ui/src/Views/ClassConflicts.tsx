@@ -113,7 +113,7 @@ export const ClassConflicts: React.FC = () => {
                                 <TableCell>No</TableCell>
                             </TableRow>
                         ))}
-                        </TableBody>*
+                        </TableBody>
                 </Table>
             </TableContainer>
             <Link to={`/coach/events/${id}/details`}>
