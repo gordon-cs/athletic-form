@@ -15,7 +15,7 @@ namespace AthleticFormLibrary.DataAccess {
                 .HasKey(t => new { t.EventID, t.Email, t.CourseCode }));
             builder.Entity<Account>(a => a.HasKey(k => k.Gordon_ID));
             builder.Entity<StudentsEnrolledIn>(e => e.ToView("StudentsEnrolledIn", "dbo")
-                .HasKey(t => new { t.Email, t.crs_cde }));
+                .HasKey(t => new { t.Gordon_ID, t.CRS_CDE }));
         }
     }
 }
