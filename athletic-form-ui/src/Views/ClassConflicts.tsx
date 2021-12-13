@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents, getConflictsByEventId, 
+import { getAllEvents, getConflicts, 
     getClassesEnrolled } from '../Services/EventService';
 import { Grid, Paper, TableContainer, Table, TableHead,
     TableRow, TableCell, TableBody, Button } from '@mui/material';
@@ -22,10 +22,10 @@ export const ClassConflicts: React.FC = () => {
 						return e.eventId === parseInt(id);
 					}));
 			}).then(() => {
-                getConflictsByEventId(parseInt(id)).then((res: any) => {
+                getConflicts().then((res: any) => {
                     setConflicts(
                         res.data.filter((c: any) => {
-                            return c.email === email;
+                            return c.email === email && c.eventID == parseInt(id);
                         })
                     );
                 });
@@ -66,6 +66,18 @@ export const ClassConflicts: React.FC = () => {
         return daysOfWeek;
     }
 
+    function hasConflict(course: any) {
+        let courseCodes: any = [];
+        let conflictExists = false;
+        conflicts.map((conflict: any) => {
+            courseCodes.push(conflict.courseCode);
+        });
+        if (courseCodes.includes(course.crs_cde)) {
+            conflictExists = true;
+        }
+        return conflictExists;
+    }
+
     return (
         <Grid>
             <h1>{eventData?.sport}: {eventData?.opponent}</h1>
@@ -85,7 +97,7 @@ export const ClassConflicts: React.FC = () => {
                         {classes === null ? <TableRow>
                             <TableCell>There are no classes to show.</TableCell>
                         </TableRow> : classes?.map((course: any) => (
-                            Math.random() < 0.5 ?
+                            hasConflict(course) ?
                             <TableRow key = {course.crs_cde}>
                                 <TableCell sx = {{color: "red"}}>{course.crs_cde}</TableCell>
                                 <TableCell sx = {{color: "red"}}>{course.crs_title}</TableCell>
