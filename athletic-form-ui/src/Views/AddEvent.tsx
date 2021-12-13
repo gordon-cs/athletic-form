@@ -60,10 +60,15 @@ export const AddEvent: React.FC<Props> = () => {
 						setOpponent(e.target.value);
 					}}
 				/>
-				<RadioGroup aria-label='isAway' defaultValue='home' name='radio-buttons-group'
-					value={homeOrAway} onChange ={(e: any) => {
+				<RadioGroup
+					aria-label='isAway'
+					defaultValue='home'
+					name='radio-buttons-group'
+					value={homeOrAway}
+					onChange={(e: any) => {
 						setHomeOrAway(e.target.value);
-					}}>
+					}}
+				>
 					<FormControlLabel value='Home' control={<Radio />} label='Home' />
 					<FormControlLabel value='Away' control={<Radio />} label='Away' />
 				</RadioGroup>
@@ -78,7 +83,7 @@ export const AddEvent: React.FC<Props> = () => {
 				<br></br>
 				<TextField
 					value={eventDate}
-					type="datetime-local"
+					type='datetime-local'
 					label={eventDate}
 					onChange={(e: any) => {
 						setEventDate(e.target.value);
@@ -86,7 +91,7 @@ export const AddEvent: React.FC<Props> = () => {
 				/>
 				<br></br>
 				<TextField
-					type="datetime-local"
+					type='datetime-local'
 					value={departureTime}
 					label='Departure Time'
 					onChange={(e: any) => {

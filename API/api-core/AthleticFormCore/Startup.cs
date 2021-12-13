@@ -3,12 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using Unity;
 using AthleticFormLibrary;
 using AthleticFormLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace AthleticFormCore
 {
@@ -42,14 +40,13 @@ namespace AthleticFormCore
         {
             userSecret = Configuration["ConnectionString"];  
             services.AddCors();
-            services.AddDbContext<AthleticEventContext>(options => {
+            services.AddDbContext<AthleticContext>(options => {
                 options.UseSqlServer(userSecret);
-            }); 
-                
-            
+            });
+                        
             services.AddControllers();
-                        services.AddMvc()
-                .AddControllersAsServices();
+                services.AddMvc()
+                    .AddControllersAsServices();
           
         }
 

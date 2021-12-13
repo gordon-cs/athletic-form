@@ -8,6 +8,27 @@ export function getAllEvents(): AxiosPromise<any> {
 	});
 }
 
+export function getConflicts(): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: '/conflicts',
+	});
+}
+
+export function getConflictsByEventId(eventId: number): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: `/conflicts/${eventId}`,
+	});
+}
+
+export function getClassesEnrolled(email: string) : AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: `/accounts/studentsenrolledin/${email}`,
+	});
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',

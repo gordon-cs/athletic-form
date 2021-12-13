@@ -11,8 +11,8 @@ namespace AthleticFormCore.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private readonly AthleticEventContext _context;
-       public EventsController(AthleticEventContext context) {
+        private readonly AthleticContext _context;
+       public EventsController(AthleticContext context) {
            _context = context;
        }
         
@@ -41,8 +41,6 @@ namespace AthleticFormCore.Controllers
             eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
             _context.Update<AthleticEvent>(eventToUpdate);
             _context.SaveChanges();
-
-
         }
 
 

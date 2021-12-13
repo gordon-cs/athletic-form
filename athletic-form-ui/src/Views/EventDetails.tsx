@@ -83,12 +83,12 @@ export const EventDetails: React.FC = () => {
 						<TableBody>
 							{coaches === null ?
 							<TableRow>
-								<TableCell>Show extra notes here, once added.</TableCell>
+								<TableCell>No coaches assigned. This is probably an error.</TableCell>
 							</TableRow> : 
 								coaches?.map((student: any) => (
 								<TableRow key = {student.id}>
 									<TableCell>{student.name}</TableCell>
-									<TableCell><a href={`mailto:${student.email}`}>{student.email}</a></TableCell> :
+									<TableCell><a href={`mailto:${student.email}`}>{student.email}</a></TableCell>
 								</TableRow>
 							))}
 						</TableBody>
