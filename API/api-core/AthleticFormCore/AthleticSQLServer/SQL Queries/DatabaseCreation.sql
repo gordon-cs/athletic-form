@@ -1,2 +1,2 @@
-drop database if exists [AthleticDatabase]
-create database [AthleticDatabase]
+drop database [AthleticDatabase];
+create database [AthleticDatabase];

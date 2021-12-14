@@ -1,10 +1,31 @@
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 import { apiClient } from './AxiosService';
 
 export function getAllEvents(): AxiosPromise<any> {
 	return apiClient({
 		method: 'get',
 		url: '/events',
+	});
+}
+
+export function getConflicts(): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: '/conflicts',
+	});
+}
+
+export function getConflictsByEventId(eventId: number): AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: `/conflicts/${eventId}`,
+	});
+}
+
+export function getClassesEnrolled(email: string) : AxiosPromise<any> {
+	return apiClient({
+		method: 'get',
+		url: `/accounts/studentsenrolledin/${email}`,
 	});
 }
 

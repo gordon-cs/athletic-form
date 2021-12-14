@@ -1,6 +1,6 @@
 .card {
 	width: 250px;
-	height: 250px;
+	height: 350px;
 	background-color: #174354;
 }
 
@@ -10,10 +10,13 @@
 	text-align: center;
 	font-size: 20pt;
 	height: 100px;
+	text-decoration: none;
+} .card-header:hover {
+	background-color: #005106;
 }
 
-.card-label {
-	text-align: center;
+:hover.card-header {
+	background-color: #005106;
 }
 
 .card-detail {
@@ -22,22 +25,21 @@
 	text-align: center;
 	font-size: 8pt;
 	height: 70px;
-	margin-right: 10px;
+	margin-right: 45px;
 	display: block;
 	margin-left: 45px;
-	width: 60%;
 }
 
 .text-header {
 	color: white;
 	font-size: 20pt;
+	text-decoration: none;
 }
 
 .card-content {
 	background-color: #174354;
 	color: white;
 	display: flex;
-	white-space: pre-line;
 }
 
 .card-action {
@@ -47,4 +49,6 @@
 
 .isHome {
 	background-color: #014983;
+} .isHome:hover {
+	background-color: #00306A;
 }
