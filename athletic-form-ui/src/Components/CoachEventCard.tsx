@@ -24,7 +24,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			})
 			.catch((error) => console.log(error.message));
 	});
-	let departHome, numConflicts, headerHome;
+	let departHome, numConflicts, headerHome, arrival;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
@@ -48,6 +48,11 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
 		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: {getDateTimeAsJs(eventData.arrivalTime)}
+			</CardContent>
+		);
 	}
 
 	numConflicts = (
@@ -66,6 +71,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			</Link>
 			<CardContent className={'card-content'}>{departHome}</CardContent>
 			<CardContent className={'card-content'}>{numConflicts}</CardContent>
+			<CardContent className={'card-content'}>{arrival}</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}

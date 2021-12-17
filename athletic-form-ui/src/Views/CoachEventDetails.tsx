@@ -23,6 +23,7 @@ export const CoachEventDetails: React.FC = () => {
 	let params = useParams();
 	let id: any = params.id;
 	let departHome;
+	let arrival;
 	const [eventData, setEventData] = useState<any | null>(null);
 	const [conflicts, setConflicts] = useState<any | null>(null);
 
@@ -63,6 +64,11 @@ export const CoachEventDetails: React.FC = () => {
 			title={eventData?.sport + ': ' + eventData?.opponent}
 			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.arrivalTime)}
+			</CardContent>
+		);
 	}
 
 	return (
@@ -74,6 +80,7 @@ export const CoachEventDetails: React.FC = () => {
                     <CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
 						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
+					{arrival}
 				</CardContent>
 			</Card>
 			<TableContainer component={Paper}>

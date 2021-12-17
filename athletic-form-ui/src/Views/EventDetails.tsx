@@ -15,6 +15,7 @@ export const EventDetails: React.FC = () => {
     let id : any = params.id;
     let departHome;
 	let headerHome;
+	let arrival;
     const [eventData, setEventData] = useState<any | null>(null);
     const [coaches, setCoaches] = useState<any | null>(null);
 
@@ -59,6 +60,11 @@ export const EventDetails: React.FC = () => {
 				Depart Time: <br></br> {getDateAsJs(eventData?.departureTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
+			</CardContent>
+		);
 	}
 
 	return (
@@ -70,6 +76,7 @@ export const EventDetails: React.FC = () => {
 					<CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
 						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
+					{arrival}
 				</CardContent>
 				<CardContent className={'card-content'}>
 					Show Robin's details.

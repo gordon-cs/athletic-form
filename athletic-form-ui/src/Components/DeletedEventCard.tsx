@@ -16,6 +16,7 @@ export function RemoveCard() {
 export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	let headerHome;
+	let arrival;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
@@ -39,6 +40,11 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
 		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: {getDateTimeAsJs(eventData.arrivalTime)}
+			</CardContent>
+		);
 	}
 
 	return (
@@ -47,6 +53,7 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardContent className={'card-content'}>
 				{departHome}
 			</CardContent>
+			<CardContent className={'card-content'}>{arrival}</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Link to={`/events/deleted/${eventData.eventId}/recover`}>
 					<Button

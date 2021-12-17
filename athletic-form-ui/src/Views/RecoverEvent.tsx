@@ -16,6 +16,7 @@ export const RecoverEvent: React.FC<Props> = () => {
 	const [eventData, setEventData] = useState<any | null>(null);
 	let departHome;
 	let headerHome;
+	let arrival;
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -64,6 +65,11 @@ export const RecoverEvent: React.FC<Props> = () => {
 				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 			/>
 		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: {getDateTimeAsJs(eventData?.arrivalTime)}
+			</CardContent>
+		);
 	}
 
 	return (
@@ -73,6 +79,9 @@ export const RecoverEvent: React.FC<Props> = () => {
 				{headerHome}
 				<CardContent className={'card-content'}>
 					{departHome}
+				</CardContent>
+				<CardContent className={'card-content'}>
+					{arrival}
 				</CardContent>
 				<CardActions className={'card-content card-action'}>
 					<Button

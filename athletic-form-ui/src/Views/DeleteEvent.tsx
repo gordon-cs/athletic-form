@@ -16,6 +16,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 	const [eventData, setEventData] = useState<any | null>(null);
 	let departHome;
 	let headerHome;
+	let arrival;
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -57,6 +58,11 @@ export const DeleteEvent: React.FC<Props> = () => {
 				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: {getDateTimeAsJs(eventData?.arrivalTime)}
+			</CardContent>
+		);
 		headerHome = (
 			<CardHeader
 				className={'card-header'}
@@ -73,6 +79,9 @@ export const DeleteEvent: React.FC<Props> = () => {
 				{headerHome}
 				<CardContent className={'card-content'}>
 					{departHome}
+				</CardContent>
+				<CardContent className={'card-content'}>
+					{arrival}
 				</CardContent>
 				<CardActions className={'card-content card-action'}>
 					<Button
