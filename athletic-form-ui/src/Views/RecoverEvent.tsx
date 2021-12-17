@@ -2,7 +2,8 @@ import { Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllEvents, restoreEvent } from '../Services/EventService';
-import { Card, CardHeader, CardContent, Button, CardActions } from '@mui/material';
+import { Card, CardHeader, CardContent, Button, CardActions,
+	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
@@ -56,7 +57,7 @@ export const RecoverEvent: React.FC<Props> = () => {
 				<CardHeader
 					className={'card-header'}
 					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 				/>
 				<CardContent className={'card-content'}>
 					{departHome}

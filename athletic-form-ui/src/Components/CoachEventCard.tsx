@@ -1,4 +1,5 @@
-import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader,
+	Typography } from '@mui/material';
 import '../styles/coachEventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -31,7 +32,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header isHome'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
 		);
 	} else {
@@ -44,7 +45,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
 		);
 	}

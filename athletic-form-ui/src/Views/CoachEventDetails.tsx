@@ -14,6 +14,7 @@ import {
 	TableRow,
 	TableCell,
 	TableBody,
+	Typography
 } from '@mui/material';
 import { getDateAsJs, getDateTimeAsJs, getTimeAsJs } from '../Helpers/DateTimeHelpers';
 import '../styles/coachEventCard.scss';
@@ -49,7 +50,7 @@ export const CoachEventDetails: React.FC = () => {
         headerHome = (<CardHeader
 			className={'card-header isHome'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
 	} else {
 		departHome = (
@@ -60,7 +61,7 @@ export const CoachEventDetails: React.FC = () => {
         headerHome = (<CardHeader
 			className={'card-header'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
 	}
 
