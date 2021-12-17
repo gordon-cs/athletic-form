@@ -15,6 +15,7 @@ export const RecoverEvent: React.FC<Props> = () => {
 	const id = params.id;
 	const [eventData, setEventData] = useState<any | null>(null);
 	let departHome;
+	let headerHome;
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -41,13 +42,27 @@ export const RecoverEvent: React.FC<Props> = () => {
 			});
 	};
 
-	if (eventData?.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+	if (eventData?.homeOrAway === 'Home') {
+		departHome = <CardContent className={'card-detail'}>{eventData.homeOrAway}</CardContent>;
+		headerHome = (
+			<CardHeader
+				className={'card-header isHome'}
+				title={eventData?.sport + ': ' + eventData?.opponent}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+			/>
+		);
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
 			</CardContent>
+		);
+		headerHome = (
+			<CardHeader
+				className={'card-header'}
+				title={eventData?.sport + ': ' + eventData?.opponent}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+			/>
 		);
 	}
 
@@ -55,11 +70,7 @@ export const RecoverEvent: React.FC<Props> = () => {
 		<Grid>
 			<h1>Do you want to recover this event?</h1>
 			<Card className={'card'} variant={'outlined'}>
-				<CardHeader
-					className={'card-header'}
-					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-				/>
+				{headerHome}
 				<CardContent className={'card-content'}>
 					{departHome}
 				</CardContent>

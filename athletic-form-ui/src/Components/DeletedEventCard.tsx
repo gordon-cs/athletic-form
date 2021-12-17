@@ -15,24 +15,35 @@ export function RemoveCard() {
 
 export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
+	let headerHome;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+		headerHome = (
+			<CardHeader
+				className={'card-header isHome'}
+				title={eventData.sport + ': ' + eventData.opponent}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+			/>
+		);
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
-	}
-
-	return (
-		<Card className={'card'} variant={'outlined'}>
+		headerHome = (
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
 				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
+		);
+	}
+
+	return (
+		<Card className={'card'} variant={'outlined'}>
+			{headerHome}
 			<CardContent className={'card-content'}>
 				{departHome}
 			</CardContent>
