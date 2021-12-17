@@ -35,6 +35,7 @@ export const AddEvent: React.FC<Props> = () => {
 		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime })
 			.then((a: any) => {
 				navigate('/events');
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);

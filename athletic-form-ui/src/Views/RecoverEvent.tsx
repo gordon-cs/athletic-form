@@ -34,6 +34,7 @@ export const RecoverEvent: React.FC<Props> = () => {
 		restoreEvent(params.id)
 			.then((a: any) => {
 				navigate("/events/deleted");
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);

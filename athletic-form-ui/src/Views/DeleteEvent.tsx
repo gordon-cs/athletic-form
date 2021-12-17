@@ -34,6 +34,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 		removeEvent(params.id)
 			.then((a: any) => {
 				navigate("/events");
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);
