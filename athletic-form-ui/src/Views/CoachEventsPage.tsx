@@ -26,6 +26,7 @@ export const CoachEventsPage: React.FC = () => {
 			<h1>Athletic Events: Coach's View</h1>
 			<Link to=''>
 				<Button
+					disabled
 					size='small'
 					sx={{ backgroundColor: '#710F0F', color: 'white' }}
 					variant={'outlined'}
