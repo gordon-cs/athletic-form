@@ -84,7 +84,7 @@ export const AddEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventDate}
 					type='datetime-local'
-					label={eventDate}
+					label="Event Date"
 					onChange={(e: any) => {
 						setEventDate(e.target.value);
 					}}
