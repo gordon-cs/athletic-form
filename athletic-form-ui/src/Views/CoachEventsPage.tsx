@@ -32,7 +32,7 @@ export const CoachEventsPage: React.FC = () => {
 					variant={'outlined'}
 				>
 					<FaTrashAlt></FaTrashAlt>
-					View Deleted Events
+					View Previous Events
 				</Button>
 			</Link>
 			<Grid container spacing={3}>

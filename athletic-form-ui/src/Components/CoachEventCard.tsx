@@ -72,7 +72,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardContent className={'card-content'}>{departHome}</CardContent>
 			<CardContent className={'card-content'}>{numConflicts}</CardContent>
 			<CardContent className={'card-content'}>{arrival}</CardContent>
-			<CardActions className={'card-content card-action'}>
+			{/*<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}
 					size='small'
@@ -91,7 +91,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 					<FaPencilAlt></FaPencilAlt>
 					Update
 				</Button>
-			</CardActions>
+			</CardActions>*/}
 		</Card>
 	);
 };
