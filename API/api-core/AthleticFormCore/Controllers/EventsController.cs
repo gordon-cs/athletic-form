@@ -39,6 +39,7 @@ namespace AthleticFormCore.Controllers
             eventToUpdate.EventDate = athleticEvent.EventDate;
             eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
             eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
+            eventToUpdate.ArrivalTime = athleticEvent.ArrivalTime;
             _context.Update<AthleticEvent>(eventToUpdate);
             _context.SaveChanges();
         }

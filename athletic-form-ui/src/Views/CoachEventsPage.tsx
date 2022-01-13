@@ -26,12 +26,13 @@ export const CoachEventsPage: React.FC = () => {
 			<h1>Athletic Events: Coach's View</h1>
 			<Link to=''>
 				<Button
+					disabled
 					size='small'
 					sx={{ backgroundColor: '#710F0F', color: 'white' }}
 					variant={'outlined'}
 				>
 					<FaTrashAlt></FaTrashAlt>
-					View Deleted Events
+					View Previous Events
 				</Button>
 			</Link>
 			<Grid container spacing={3}>
@@ -48,6 +49,7 @@ export const CoachEventsPage: React.FC = () => {
 										departOrHome: entry['homeOrAway'],
 										destination: entry['destination'],
 										departureTime: entry['departureTime'],
+										arrivalTime: entry['arrivalTime']
 									}}
 								/>
 							</Grid>

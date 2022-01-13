@@ -93,6 +93,14 @@ export const UpdateEvent: React.FC<Props> = () => {
 					}}
 				/>
 				<br></br>
+				<TextField
+					type='datetime-local'
+					value={eventData?.arrivalTime}
+					onChange={(e: any) => {
+						setEventData([{ arrivalTime: e.target.value }]);
+					}}
+				/>
+				<br></br>
 				<Button
 					size='small'
 					sx={{ backgroundColor: 'green', color: 'white' }}

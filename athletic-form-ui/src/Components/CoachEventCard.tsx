@@ -1,4 +1,5 @@
-import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader,
+	Typography } from '@mui/material';
 import '../styles/coachEventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -23,7 +24,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			})
 			.catch((error) => console.log(error.message));
 	});
-	let departHome, numConflicts, headerHome;
+	let departHome, numConflicts, headerHome, arrival;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
@@ -31,7 +32,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header isHome'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
 		);
 	} else {
@@ -44,8 +45,13 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			<CardHeader
 				className={'card-header'}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
+				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
+		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: {getDateTimeAsJs(eventData.arrivalTime)}
+			</CardContent>
 		);
 	}
 
@@ -65,7 +71,8 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			</Link>
 			<CardContent className={'card-content'}>{departHome}</CardContent>
 			<CardContent className={'card-content'}>{numConflicts}</CardContent>
-			<CardActions className={'card-content card-action'}>
+			<CardContent className={'card-content'}>{arrival}</CardContent>
+			{/*<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}
 					size='small'
@@ -84,7 +91,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 					<FaPencilAlt></FaPencilAlt>
 					Update
 				</Button>
-			</CardActions>
+			</CardActions>*/}
 		</Card>
 	);
 };

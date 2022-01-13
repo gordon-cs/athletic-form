@@ -14,6 +14,7 @@ import {
 	TableRow,
 	TableCell,
 	TableBody,
+	Typography
 } from '@mui/material';
 import { getDateAsJs, getDateTimeAsJs, getTimeAsJs } from '../Helpers/DateTimeHelpers';
 import '../styles/coachEventCard.scss';
@@ -22,6 +23,7 @@ export const CoachEventDetails: React.FC = () => {
 	let params = useParams();
 	let id: any = params.id;
 	let departHome;
+	let arrival;
 	const [eventData, setEventData] = useState<any | null>(null);
 	const [conflicts, setConflicts] = useState<any | null>(null);
 
@@ -49,7 +51,7 @@ export const CoachEventDetails: React.FC = () => {
         headerHome = (<CardHeader
 			className={'card-header isHome'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
 	} else {
 		departHome = (
@@ -60,8 +62,13 @@ export const CoachEventDetails: React.FC = () => {
         headerHome = (<CardHeader
 			className={'card-header'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.arrivalTime)}
+			</CardContent>
+		);
 	}
 
 	return (
@@ -73,6 +80,7 @@ export const CoachEventDetails: React.FC = () => {
                     <CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
 						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
+					{arrival}
 				</CardContent>
 			</Card>
 			<TableContainer component={Paper}>

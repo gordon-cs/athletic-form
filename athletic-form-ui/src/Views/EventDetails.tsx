@@ -1,6 +1,6 @@
 import { CardContent, Grid, CardHeader, Button, 
     Card, Paper, TableContainer, Table, TableHead,
-    TableRow, TableCell, TableBody, CardActions } from '@mui/material';
+    TableRow, TableCell, TableBody, CardActions, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllEvents, removeEvent } from '../Services/EventService';
@@ -15,6 +15,7 @@ export const EventDetails: React.FC = () => {
     let id : any = params.id;
     let departHome;
 	let headerHome;
+	let arrival;
     const [eventData, setEventData] = useState<any | null>(null);
     const [coaches, setCoaches] = useState<any | null>(null);
 
@@ -45,18 +46,23 @@ export const EventDetails: React.FC = () => {
 		headerHome = (<CardHeader
 			className={'card-header isHome'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
 	} else {
 		headerHome = (<CardHeader
 			className={'card-header'}
 			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={'Date: ' + getDateTimeAsJs(eventData?.eventDate)}
+			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
 		/>)
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: <br></br> {getDateAsJs(eventData?.departureTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
+			</CardContent>
+		);
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Arrival Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
 	}
@@ -70,6 +76,7 @@ export const EventDetails: React.FC = () => {
 					<CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
 						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
+					{arrival}
 				</CardContent>
 				<CardContent className={'card-content'}>
 					Show Robin's details.
