@@ -78,6 +78,11 @@ export const EventDetails: React.FC = () => {
 					{departHome}
 					{arrival}
 				</CardContent>
+				<CardContent sx = {{justifyContent: "center"}} className={'card-content'}>
+					{eventData?.comments ? 
+						<CardContent className={'card-detail'}>Comments: <br></br> {eventData?.comments}</CardContent> : ""
+					}
+				</CardContent>
 				<CardContent className={'card-content'}>
 					Show Robin's details.
 				</CardContent>
