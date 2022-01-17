@@ -7,6 +7,7 @@ import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
+import { setEventFilters } from '../Helpers/FilterHelpers';
 
 
 export const EventsPage: React.FC = () => {
@@ -62,6 +63,13 @@ export const EventsPage: React.FC = () => {
 						setFilter([{ depart: e.target.value }]);
 					}}
 				/>
+				{" "}
+				<Button
+					size='medium'
+					sx={{ backgroundColor: 'green', color: 'white' }}
+					variant={'outlined'}
+					onClick={() => setEventFilters(events, filter)}
+				> Apply </Button>
 			</h3> 
 			<Grid container spacing={3}>
 				{events == null
