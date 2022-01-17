@@ -70,6 +70,7 @@ export const EventDetails: React.FC = () => {
 	return (
         /*I want to rework the layout of this page*/
 		<Grid>
+			{/*<EventDetailsHeader {...eventData}></EventDetailsHeader>*/}
 			<h1 className = "card-label">Event Details</h1>
 				{headerHome}
 				<CardContent className={'card-content'}>
