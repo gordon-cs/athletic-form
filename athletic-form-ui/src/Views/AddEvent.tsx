@@ -20,6 +20,7 @@ export const AddEvent: React.FC<Props> = () => {
 	const [destination, setDestination] = useState('');
 	const [departureTime, setDepartureTime] = useState('');
 	const [arrivalTime, setArrivalTime] = useState('');
+	const [comments, setComments] = useState('');
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -33,7 +34,7 @@ export const AddEvent: React.FC<Props> = () => {
 	}, []);
 
 	const handleSubmit = () => {
-		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime, arrivalTime })
+		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime, arrivalTime, comments })
 			.then((a: any) => {
 				navigate('/events');
 				window.location.reload();
@@ -107,6 +108,14 @@ export const AddEvent: React.FC<Props> = () => {
 					label='Arrival Time'
 					onChange={(e: any) => {
 						setArrivalTime(e.target.value);
+					}}
+				/>
+				<br></br>
+				<TextField
+					value={comments}
+					label='Comments'
+					onChange={(e: any) => {
+						setComments(e.target.value);
 					}}
 				/>
 				<br></br>

@@ -8,7 +8,8 @@ create table [AthleticDatabase.AthleticEvents] (
     Destination varchar(30),
     EventDate DateTime,
     DepartureTime DateTime,
-    ArrivalTime DateTime
+    ArrivalTime DateTime,
+    Comments varchar(255)
 );
 
 create table [AthleticDatabase.InEvent] (

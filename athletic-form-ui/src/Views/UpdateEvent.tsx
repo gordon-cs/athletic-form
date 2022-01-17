@@ -101,6 +101,13 @@ export const UpdateEvent: React.FC<Props> = () => {
 					}}
 				/>
 				<br></br>
+				<TextField
+					value={eventData?.comments}
+					onChange={(e: any) => {
+						setEventData([{ comments: e.target.value }]);
+					}}
+				/>
+				<br></br>
 				<Button
 					size='small'
 					sx={{ backgroundColor: 'green', color: 'white' }}

@@ -82,6 +82,11 @@ export const CoachEventDetails: React.FC = () => {
 					{departHome}
 					{arrival}
 				</CardContent>
+				<CardContent sx = {{justifyContent: "center"}} className={'card-content'}>
+					{eventData?.comments ? 
+						<CardContent className={'card-detail'}>Comments: <br></br> {eventData?.comments}</CardContent> : ""
+					}
+				</CardContent>
 			</Card>
 			<TableContainer component={Paper}>
 				<Table sx={{ width: 1000 }}>
