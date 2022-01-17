@@ -6,9 +6,12 @@ import { Button, Card, CardActions, CardHeader } from '@mui/material';
 import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+
 
 export const EventsPage: React.FC = () => {
 	const [events, setEvents] = useState<any | null>(null);
+	const [filter, setFilter] = useState<any | null>(null);
 
 	useEffect(() => {
 		getAllEvents()
@@ -35,6 +38,31 @@ export const EventsPage: React.FC = () => {
 					View Deleted Events
 				</Button>
 			</Link>
+			<h3>Filter By: {" "}
+				<TextField
+					label='SPORT'
+					value={filter?.sport}
+					onChange={(e: any) => {
+						setFilter([{ sport: e.target.value }]);
+					}}
+				/>
+				{" "}
+				<TextField
+					label='OPPONENT'
+					value={filter?.opponent}
+					onChange={(e: any) => {
+						setFilter([{ opponent: e.target.value }]);
+					}}
+				/>
+				{" "}
+				<TextField
+					value={filter?.depart}
+					type='datetime-local'
+					onChange={(e: any) => {
+						setFilter([{ depart: e.target.value }]);
+					}}
+				/>
+			</h3> 
 			<Grid container spacing={3}>
 				{events == null
 					? 'There are no events to show'
