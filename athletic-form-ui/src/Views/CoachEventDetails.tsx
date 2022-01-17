@@ -17,7 +17,7 @@ import {
 	Typography
 } from '@mui/material';
 import { getDateAsJs, getDateTimeAsJs, getTimeAsJs } from '../Helpers/DateTimeHelpers';
-import '../styles/coachEventCard.scss';
+import '../styles/eventCard.scss';
 
 export const CoachEventDetails: React.FC = () => {
 	let params = useParams();
