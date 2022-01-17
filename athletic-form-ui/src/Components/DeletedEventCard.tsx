@@ -42,7 +42,7 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 		);
 		arrival = (
 			<CardContent className={'card-detail'}>
-				Arrival Time: {getDateTimeAsJs(eventData.arrivalTime)}
+				Return Time: {getDateTimeAsJs(eventData.arrivalTime)}
 			</CardContent>
 		);
 	}

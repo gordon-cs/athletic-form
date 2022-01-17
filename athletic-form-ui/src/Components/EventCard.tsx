@@ -35,7 +35,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		);
 		arrival = (
 			<CardContent className={'card-detail'}>
-				Arrival Time: {getDateAsJs(eventData.arrivalTime)}<br></br> {getTimeAsJs(eventData.arrivalTime)}
+				Return Time: {getDateAsJs(eventData.arrivalTime)}<br></br> {getTimeAsJs(eventData.arrivalTime)}
 			</CardContent>
 		);			
 	}

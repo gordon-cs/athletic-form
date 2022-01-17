@@ -62,7 +62,7 @@ export const EventDetails: React.FC = () => {
 		);
 		arrival = (
 			<CardContent className={'card-detail'}>
-				Arrival Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
+				Return Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
 	}
