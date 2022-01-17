@@ -1,6 +1,6 @@
 .card {
 	width: 250px;
-	height: 450px;
+	height: auto;
 	background-color: #174354;
 }
 
@@ -40,6 +40,20 @@
 	background-color: #174354;
 	color: white;
 	display: flex;
+}
+
+.isSoccer {
+	background-color: #6ecaee;
+} .isVolleyball {
+	background-color: #f5a1a1;
+} .isBasketball {
+	background-color: #b16969;
+} .isRowing {
+	background-color: #9c76c7;
+} .isTennis {
+	background-color: #adf783;
+} .isBaseball {
+	background-color: #e8f8de;
 }
 
 .card-action {

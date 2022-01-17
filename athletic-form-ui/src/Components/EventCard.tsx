@@ -40,18 +40,21 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		);			
 	}
 
+	//Color code stuff
+	let sportColor = 'is' + eventData.sport;
+
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
 				{headerHome}
 			</Link>
-			<CardContent className={'card-content'}>
+			<CardContent className={`card-content ${sportColor}`}>
 				{departHome}
 			</CardContent>
-			<CardContent className={'card-content'}>
+			<CardContent className={`card-content ${sportColor}`}>
 				{arrival}
 			</CardContent>
-			<CardActions className={'card-content card-action'}>
+			<CardActions className={`card-content ${sportColor} card-action`}>
 				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'
