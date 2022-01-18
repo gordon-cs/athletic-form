@@ -65,10 +65,10 @@ export const EventsPage: React.FC = () => {
 				/>
 				{" "}
 				<Button
+					onClick={() => setEvents(setEventFilters(events, filter))}
 					size='medium'
 					sx={{ backgroundColor: 'green', color: 'white' }}
-					variant={'outlined'}
-					onClick={() => setEventFilters(events, filter)}
+					variant={'outlined'}	
 				> Apply </Button>
 			</h3> 
 			<Grid container spacing={3}>
