@@ -1,9 +1,19 @@
-export function setEventFilters(events: any, filters: any)
+export function setEventFilters(events: any, sportFilter: any, opponentFilter: any, dateFilter: any)
 {
-    console.log(filters);
-    if(filters[0].sport != null){
+    console.log(sportFilter)
+    if(sportFilter != null && sportFilter != ""){
         events = events.filter(function (e: { [x: string]: any }) {
-            return e["sport"] == filters[0].sport
+            return e["sport"].toLowerCase() == sportFilter.toLowerCase()
+        });
+    }
+    if(opponentFilter != null && opponentFilter != ""){
+        events = events.filter(function (e: { [x: string]: any }) {
+            return e["opponent"].toLowerCase() == opponentFilter.toLowerCase()
+        });
+    }
+    if(dateFilter != null){
+        events = events.filter(function (e: { [x: string]: any }) {
+            return e["eventDate"] == dateFilter.value
         });
     }
     console.log(events);

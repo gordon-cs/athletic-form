@@ -3,7 +3,7 @@ import { getAllEvents } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Button, Card, CardActions, CardHeader } from '@mui/material';
-import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
+import { FaFilter, FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -11,8 +11,11 @@ import { setEventFilters } from '../Helpers/FilterHelpers';
 
 
 export const EventsPage: React.FC = () => {
+	const [eventBank, setEventBank] = useState<any | null>(null);
 	const [events, setEvents] = useState<any | null>(null);
-	const [filter, setFilter] = useState<any | null>(null);
+	const [sportFilter, setSportFilter] = useState<any | null>(null);
+	const [opponentFilter, setOpponentFilter] = useState<any | null>(null);
+	const [dateFilter, setDateFilter] = useState<any | null>(null);
 
 	useEffect(() => {
 		getAllEvents()
@@ -21,6 +24,7 @@ export const EventsPage: React.FC = () => {
 					return e.isDeleted === false;
 				});
 				console.log(eventList);
+				setEventBank(eventList);
 				setEvents(eventList);
 			})
 			.catch((error) => console.log(error));
@@ -42,34 +46,42 @@ export const EventsPage: React.FC = () => {
 			<h3>Filter By: {" "}
 				<TextField
 					label='SPORT'
-					value={filter?.sport}
+					value={sportFilter}
 					onChange={(e: any) => {
-						setFilter([{ sport: e.target.value }]);
+						setSportFilter(e.target.value);
 					}}
 				/>
 				{" "}
 				<TextField
 					label='OPPONENT'
-					value={filter?.opponent}
+					value={opponentFilter}
 					onChange={(e: any) => {
-						setFilter([{ opponent: e.target.value }]);
+						setOpponentFilter(e.target.value);
 					}}
 				/>
 				{" "}
 				<TextField
-					value={filter?.depart}
+					value={dateFilter}
 					type='datetime-local'
 					onChange={(e: any) => {
-						setFilter([{ depart: e.target.value }]);
+						setDateFilter(e.target.value);
 					}}
 				/>
 				{" "}
 				<Button
-					onClick={() => setEvents(setEventFilters(events, filter))}
+					onClick={() => {
+						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter))
+					}}
 					size='medium'
 					sx={{ backgroundColor: 'green', color: 'white' }}
 					variant={'outlined'}	
 				> Apply </Button>
+				<Button
+					onClick={() => window.location.reload()}
+					size='medium'
+					sx={{ backgroundColor: 'red', color: 'white' }}
+					variant={'outlined'}	
+				> Clear </Button>
 			</h3> 
 			<Grid container spacing={3}>
 				{events == null
