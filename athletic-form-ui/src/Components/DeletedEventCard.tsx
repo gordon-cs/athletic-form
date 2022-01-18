@@ -20,26 +20,48 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		headerHome = (
-			<CardHeader
-				className={'card-header isHome'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-			/>
-		);
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={'card-header isHome scrimmage'}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={'card-header isHome'}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
-		headerHome = (
-			<CardHeader
-				className={'card-header'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-			/>
-		);
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={'card-header scrimmage'}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={'card-header'}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
 		arrival = (
 			<CardContent className={'card-detail'}>
 				Arrival Time: {getDateTimeAsJs(eventData.arrivalTime)}
