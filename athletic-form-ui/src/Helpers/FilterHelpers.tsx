@@ -19,3 +19,10 @@ export function setEventFilters(events: any, sportFilter: any, opponentFilter: a
     console.log(events);
     return events;
 }
+
+export function getSportList(events: any)
+{
+    let unique = [new Set(events.map((item: { sport: any; }) => item.sport))];
+    console.log(unique);
+    return unique;
+}

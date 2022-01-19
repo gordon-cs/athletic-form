@@ -7,7 +7,7 @@ import { FaFilter, FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import { setEventFilters } from '../Helpers/FilterHelpers';
+import { setEventFilters, getSportList } from '../Helpers/FilterHelpers';
 
 
 export const EventsPage: React.FC = () => {
@@ -44,13 +44,27 @@ export const EventsPage: React.FC = () => {
 				</Button>
 			</Link>
 			<h3>Filter By: {" "}
-				<TextField
-					label='SPORT'
-					value={sportFilter}
+				<select 
+					value={sportFilter} 
 					onChange={(e: any) => {
 						setSportFilter(e.target.value);
-					}}
-				/>
+						setEvents(setEventFilters(eventBank, e.target.value, opponentFilter, dateFilter));
+					}} 
+				>
+					<option value="">All Sports (Default)</option>
+					<option value="Baseball">Baseball</option>
+					<option value="Basketball">Basketball</option>
+					<option value="Cross Country">Cross Country</option>
+					<option value="Field Hockey">Field Hockey</option>
+					<option value="Golf">Golf</option>
+					<option value="Lacrosse">Lacrosse</option>
+					<option value="Rowing">Rowing</option>
+					<option value="Soccer">Soccer</option>
+					<option value="Swimming">Swimming</option>
+					<option value="Tennis">Tennis</option>
+					<option value="Track and Field">Track and Field</option>
+					<option value="Volleyball">Volleyball</option>
+				</select>
 				{" "}
 				<TextField
 					label='OPPONENT'
@@ -70,7 +84,7 @@ export const EventsPage: React.FC = () => {
 				{" "}
 				<Button
 					onClick={() => {
-						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter))
+						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter));
 					}}
 					size='medium'
 					sx={{ backgroundColor: 'green', color: 'white' }}
