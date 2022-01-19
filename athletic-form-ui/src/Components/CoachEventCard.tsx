@@ -29,22 +29,44 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={'card-header isHome scrimmage'}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
+			if (count === 0) {
+				headerHome = (
+					<CardHeader
+						className={'card-header isHome scrimmage'}
+						title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
+			else {
+				headerHome = (
+					<CardHeader
+						className={'card-header isHomeConflict scrimmage'}
+						title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
 		}
 		else {
-			headerHome = (
-				<CardHeader
-					className={'card-header isHome'}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
+			if (count === 0) {
+				headerHome = (
+					<CardHeader
+						className={'card-header isHome'}
+						title={eventData.sport + ': ' + eventData.opponent}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
+			else {
+				headerHome = (
+					<CardHeader
+						className={'card-header isHomeConflict'}
+						title={eventData.sport + ': ' + eventData.opponent}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
 		}
 	} else {
 		departHome = (
@@ -53,22 +75,44 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			</CardContent>
 		);
 		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={'card-header scrimmage'}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
+			if (count === 0) {
+				headerHome = (
+					<CardHeader
+						className={'card-header scrimmage'}
+						title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
+			else {
+				headerHome = (
+					<CardHeader
+						className={'card-header scrimmage conflict'}
+						title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
 		}
 		else {
-			headerHome = (
-				<CardHeader
-					className={'card-header'}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
+			if (count === 0) {
+				headerHome = (
+					<CardHeader
+						className={'card-header'}
+						title={eventData.sport + ': ' + eventData.opponent}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
+			else {
+				headerHome = (
+					<CardHeader
+						className={'card-header conflict'}
+						title={eventData.sport + ': ' + eventData.opponent}
+						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					/>
+				);
+			}
 		}
 		arrival = (
 			<CardContent className={'card-detail'}>
@@ -77,11 +121,13 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 		);
 	}
 
-	numConflicts = (
-		<CardContent className={'card-detail'}>
-			There are {count} students with conflicts.
-		</CardContent>
-	);
+	if (count > 0) {
+		numConflicts = (
+			<CardContent className={'card-detail'}>
+				There are {count} students with conflicts.
+			</CardContent>
+		);
+	}
 
 	return (
 		<Card className={'card'} variant={'outlined'}>

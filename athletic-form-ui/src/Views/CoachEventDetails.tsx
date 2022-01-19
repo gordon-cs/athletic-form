@@ -45,22 +45,41 @@ export const CoachEventDetails: React.FC = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
-    let headerHome;
+
+	let headerHome;
 	if (eventData?.homeOrAway === 'Home') {
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
 		if (eventData?.isScrimmage) {
-			headerHome = (<CardHeader
-				className={'card-header isHome scrimmage'}
-				title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-			/>)
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header isHome scrimmage'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header isHomeConflict scrimmage'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
 		}
 		else {
-			headerHome = (<CardHeader
-				className={'card-header isHome'}
-				title={eventData?.sport + ': ' + eventData?.opponent}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-			/>)
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header isHome'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header isHomeConflict'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
 		}
 	} else {
 		departHome = (
@@ -69,18 +88,36 @@ export const CoachEventDetails: React.FC = () => {
 			</CardContent>
 		);
 		if (eventData?.isScrimmage) {
-			headerHome = (<CardHeader
-				className={'card-header scrimmage'}
-				title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-			/>)
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header scrimmage'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header scrimmage conflict'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
 		}
 		else {
-			headerHome = (<CardHeader
-				className={'card-header'}
-				title={eventData?.sport + ': ' + eventData?.opponent}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-			/>)
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header conflict'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
 		}
 		arrival = (
 			<CardContent className={'card-detail'}>

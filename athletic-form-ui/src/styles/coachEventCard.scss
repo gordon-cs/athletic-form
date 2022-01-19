@@ -18,6 +18,26 @@
 	background-color: #005106;
 }
 
+.conflict {
+	background: repeating-linear-gradient(
+		45deg,
+		#ff0000,
+		#ff0000 10px,
+		#066a1f 10px,
+		#066a1f 20px
+	)
+}
+
+.conflict:hover {
+	background: repeating-linear-gradient(
+		45deg,
+		#e82020,
+		#e82020 10px,
+		#005106 10px,
+		#005106 20px
+	)
+}
+
 .card-detail {
 	background-color: #710f0f;
 	color: white;
@@ -54,4 +74,24 @@
 
 .scrimmage {
 	font-style: italic;
+}
+
+.isHomeConflict {
+	background: repeating-linear-gradient(
+		45deg,
+		#ff0000,
+		#ff0000 10px,
+		#014983 10px,
+		#014983 20px
+	)
+}
+
+.isHomeConflict:hover {
+	background: repeating-linear-gradient(
+		45deg,
+		#e82020,
+		#e82020 10px,
+		#00306A 10px,
+		#00306A 20px
+	)
 }
