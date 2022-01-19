@@ -1,2 +1,0 @@
-- name: Require Pull Request approvals
-  uses: manuelmeister/require-approved-pull-request-action@0.0.1
