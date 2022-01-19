@@ -9,7 +9,8 @@ create table [AthleticDatabase.AthleticEvents] (
     EventDate DateTime,
     DepartureTime DateTime,
     ArrivalTime DateTime,
-    Comments varchar(255)
+    Comments varchar(255),
+    IsScrimmage bit default 0 not null
 );
 
 create table [AthleticDatabase.InEvent] (
