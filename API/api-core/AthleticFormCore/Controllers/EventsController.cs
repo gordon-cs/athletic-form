@@ -40,6 +40,8 @@ namespace AthleticFormCore.Controllers
             eventToUpdate.HomeOrAway = athleticEvent.HomeOrAway;
             eventToUpdate.DepartureTime = athleticEvent.DepartureTime;
             eventToUpdate.ArrivalTime = athleticEvent.ArrivalTime;
+            eventToUpdate.Comments = athleticEvent.Comments;
+            eventToUpdate.IsScrimmage = athleticEvent.IsScrimmage;
             _context.Update<AthleticEvent>(eventToUpdate);
             _context.SaveChanges();
         }

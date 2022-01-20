@@ -50,7 +50,9 @@ export const DeletedEventsPage: React.FC = () => {
                                         departOrHome: entry['homeOrAway'],
                                         destination: entry['destination'],
 										departureTime: entry['departureTime'],
-										arrivalTime: entry['arrivalTime']
+										arrivalTime: entry['arrivalTime'],
+										comments: entry['comments'],
+										isScrimmage: entry['isScrimmage']
                                     }}
                                 />
                             </Grid>

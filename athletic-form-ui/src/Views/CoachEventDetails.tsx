@@ -45,25 +45,80 @@ export const CoachEventDetails: React.FC = () => {
 			.catch((error) => console.log(error.message));
 	}, [id]);
 
-    let headerHome;
+
+	let headerHome;
 	if (eventData?.homeOrAway === 'Home') {
 		departHome = <CardContent className={'card-detail'}>Home</CardContent>;
-        headerHome = (<CardHeader
-			className={'card-header isHome'}
-			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-		/>)
+		if (eventData?.isScrimmage) {
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header isHome scrimmage'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header isHomeConflict scrimmage'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+		}
+		else {
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header isHome'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header isHomeConflict'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+		}
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: <br></br> {getDateAsJs(eventData?.departureTime)} <br></br> {getTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
-        headerHome = (<CardHeader
-			className={'card-header'}
-			title={eventData?.sport + ': ' + eventData?.opponent}
-			subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-		/>)
+		if (eventData?.isScrimmage) {
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header scrimmage'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header scrimmage conflict'}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+		}
+		else {
+			if (conflicts?.length === 0) {
+				headerHome = (<CardHeader
+					className={'card-header'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+			else {
+				headerHome = (<CardHeader
+					className={'card-header conflict'}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
+				/>)
+			}
+		}
 		arrival = (
 			<CardContent className={'card-detail'}>
 				Return Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.arrivalTime)}
@@ -81,6 +136,11 @@ export const CoachEventDetails: React.FC = () => {
 						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
 					{departHome}
 					{arrival}
+				</CardContent>
+				<CardContent sx = {{justifyContent: "center"}} className={'card-content'}>
+					{eventData?.comments ? 
+						<CardContent className={'card-detail'}>Comments: <br></br> {eventData?.comments}</CardContent> : ""
+					}
 				</CardContent>
 			</Card>
 			<TableContainer component={Paper}>
