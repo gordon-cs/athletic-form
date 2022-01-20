@@ -10,6 +10,9 @@
 	text-align: center;
 	font-size: 20pt;
 	height: 100px;
+	text-decoration: none;
+} .card-header:hover {
+	background-color: #005106;
 }
 
 .card-label {
@@ -31,6 +34,7 @@
 .text-header {
 	color: white;
 	font-size: 20pt;
+	text-decoration: none;
 }
 
 .card-content {
@@ -38,6 +42,10 @@
 	color: white;
 	display: flex;
 	white-space: pre-line;
+}
+
+.isHome {
+	background-color: #014983;
 }
 
 .isSoccer {
@@ -54,15 +62,65 @@
 	background-color: #e8f8de;
 }
 
+.isSoccer:hover {
+	background-color: #55B1D5;
+} .isVolleyball:hover {
+	background-color: #DC8888;
+} .isBasketball:hover {
+	background-color: #985050;
+} .isRowing:hover {
+	background-color: #835DAE;
+} .isTennis:hover {
+	background-color: #94DE6A;
+} .isBaseball:hover {
+	background-color: #CFDFC5;
+}
+
 .card-action {
 	align-items: center;
 	justify-content: center;
 }
 
-.isHome {
-	background-color: #014983;
-}
-
 .scrimmage {
 	font-style: italic;
+}
+
+.conflict {
+	background: repeating-linear-gradient(
+		45deg,
+		#ff0000,
+		#ff0000 10px,
+		#066a1f 10px,
+		#066a1f 20px
+	)
+}
+
+.conflict:hover {
+	background: repeating-linear-gradient(
+		45deg,
+		#e82020,
+		#e82020 10px,
+		#005106 10px,
+		#005106 20px
+	)
+}
+
+.isHomeConflict {
+	background: repeating-linear-gradient(
+		45deg,
+		#ff0000,
+		#ff0000 10px,
+		#014983 10px,
+		#014983 20px
+	)
+}
+
+.isHomeConflict:hover {
+	background: repeating-linear-gradient(
+		45deg,
+		#e82020,
+		#e82020 10px,
+		#00306A 10px,
+		#00306A 20px
+	)
 }

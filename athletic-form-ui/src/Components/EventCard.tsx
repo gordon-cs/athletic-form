@@ -23,16 +23,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 		if (eventData?.isScrimmage) {
 			headerHome = (<CardHeader
-							className={'card-header isHome scrimmage'}
+							className={`card-header isHome scrimmage ${sportColor}`}
 							title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-							subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+							subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 						/>)
 		}
 		else {
 			headerHome = (<CardHeader
-				className={'card-header isHome'}
+				className={`card-header isHome ${sportColor}`}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>)
 		}
 	} else {
@@ -44,18 +44,18 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		if (eventData?.isScrimmage) {
 			headerHome = (
 				<CardHeader
-					className={'card-header scrimmage'}
+					className={`card-header scrimmage ${sportColor}`}
 					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 				/>
 			);
 		}
 		else {
 			headerHome = (
 				<CardHeader
-					className={'card-header'}
+					className={`card-header ${sportColor}`}
 					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 				/>
 			);
 		}
