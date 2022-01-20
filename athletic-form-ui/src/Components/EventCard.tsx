@@ -13,12 +13,18 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	let headerHome;
 	let arrival;
+
+	//Color code stuff
+	let sportColor = 'is' + eventData.sport;
+	let homeOrNot = "";
+
 	if (eventData.departOrHome === 'Home') {
+		homeOrNot = "isHome";
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 		headerHome = (<CardHeader
-						className={'card-header isHome'}
+						className={`card-header ${sportColor}`}
 						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+						subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 					/>)
 	} else {
 		departHome = (
@@ -28,9 +34,9 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		);
 		headerHome = (
 			<CardHeader
-				className={'card-header'}
+				className={`card-header ${sportColor}`}
 				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>
 		);
 		arrival = (
@@ -40,21 +46,18 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		);			
 	}
 
-	//Color code stuff
-	let sportColor = 'is' + eventData.sport;
-
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
 				{headerHome}
 			</Link>
-			<CardContent className={`card-content ${sportColor}`}>
+			<CardContent className={`card-content ${homeOrNot}`}>
 				{departHome}
 			</CardContent>
-			<CardContent className={`card-content ${sportColor}`}>
+			<CardContent className={`card-content ${homeOrNot}`}>
 				{arrival}
 			</CardContent>
-			<CardActions className={`card-content ${sportColor} card-action`}>
+			<CardActions className={`card-content ${homeOrNot} card-action`}>
 				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'
