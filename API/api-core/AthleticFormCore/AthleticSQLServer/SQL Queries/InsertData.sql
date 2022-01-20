@@ -173,3 +173,109 @@ insert into dbo.[AthleticDatabase.InEvent]
     (EventID, Gordon_ID)
 values 
     ('5', '42208495');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Baseball');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Basketball');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Cross Country');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Golf');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Lacrosse');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Rowing');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Soccer');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Swimming');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values  
+    ('M Tennis');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Track & Field');
+
+    insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Basketball');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Cross Country');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Field Hockey');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Lacrosse');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Rowing');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Soccer');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Softball');
+
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Swimming');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values  
+    ('W Tennis');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Track & Field');
+
+    insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Vollyball');

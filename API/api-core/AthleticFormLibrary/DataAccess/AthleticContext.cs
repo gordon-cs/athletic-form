@@ -9,6 +9,9 @@ namespace AthleticFormLibrary.DataAccess {
         public DbSet<AthleticConflict> AthleticConflicts { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<StudentsEnrolledIn> StudentsEnrolledIn { get; set; }
+        public DbSet<PlayersInEvent> PlayersInEvent { get; set; }
+        public DbSet<Team> Teams { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder) {
             builder.Entity<AthleticConflict>(e => e.ToView("Conflicts", "dbo")
