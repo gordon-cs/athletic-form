@@ -17,7 +17,7 @@ import {
 	Typography
 } from '@mui/material';
 import { getDateAsJs, getDateTimeAsJs, getTimeAsJs } from '../Helpers/DateTimeHelpers';
-import '../styles/coachEventCard.scss';
+import '../styles/eventCard.scss';
 
 export const CoachEventDetails: React.FC = () => {
 	let params = useParams();
@@ -121,7 +121,7 @@ export const CoachEventDetails: React.FC = () => {
 		}
 		arrival = (
 			<CardContent className={'card-detail'}>
-				Arrival Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.arrivalTime)}
+				Return Time: <br></br> {getDateAsJs(eventData?.arrivalTime)} <br></br> {getTimeAsJs(eventData?.arrivalTime)}
 			</CardContent>
 		);
 	}

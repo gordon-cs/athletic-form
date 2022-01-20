@@ -1,14 +1,18 @@
 .card {
 	width: 250px;
+	height: auto;
 	background-color: #174354;
 }
 
 .card-header {
 	background-color: #066a1f;
-	color: white;
+	color: black;
 	text-align: center;
 	font-size: 20pt;
 	height: 100px;
+	text-decoration: none;
+} .card-header:hover {
+	background-color: #005106;
 }
 
 .card-label {
@@ -16,7 +20,7 @@
 }
 
 .card-detail {
-	background-color: #710f0f;
+	background-color: #000000a0;
 	color: white;
 	text-align: center;
 	font-size: 8pt;
@@ -30,13 +34,46 @@
 .text-header {
 	color: white;
 	font-size: 20pt;
+	text-decoration: none;
 }
 
 .card-content {
-	background-color: #174354;
+	background-color: #2f90b6;
 	color: white;
 	display: flex;
 	white-space: pre-line;
+}
+
+.isHome {
+	background-color: #014983;
+}
+
+.isSoccer {
+	background-color: #6ecaee;
+} .isVolleyball {
+	background-color: #f5a1a1;
+} .isBasketball {
+	background-color: #b16969;
+} .isRowing {
+	background-color: #9c76c7;
+} .isTennis {
+	background-color: #adf783;
+} .isBaseball {
+	background-color: #e8f8de;
+}
+
+.isSoccer:hover {
+	background-color: #55B1D5;
+} .isVolleyball:hover {
+	background-color: #DC8888;
+} .isBasketball:hover {
+	background-color: #985050;
+} .isRowing:hover {
+	background-color: #835DAE;
+} .isTennis:hover {
+	background-color: #94DE6A;
+} .isBaseball:hover {
+	background-color: #CFDFC5;
 }
 
 .card-action {
@@ -44,10 +81,46 @@
 	justify-content: center;
 }
 
-.isHome {
-	background-color: #014983;
-}
-
 .scrimmage {
 	font-style: italic;
+}
+
+.conflict {
+	background: repeating-linear-gradient(
+		45deg,
+		#ff0000,
+		#ff0000 10px,
+		#066a1f 10px,
+		#066a1f 20px
+	)
+}
+
+.conflict:hover {
+	background: repeating-linear-gradient(
+		45deg,
+		#e82020,
+		#e82020 10px,
+		#005106 10px,
+		#005106 20px
+	)
+}
+
+.isHomeConflict {
+	background: repeating-linear-gradient(
+		45deg,
+		#ff0000,
+		#ff0000 10px,
+		#014983 10px,
+		#014983 20px
+	)
+}
+
+.isHomeConflict:hover {
+	background: repeating-linear-gradient(
+		45deg,
+		#e82020,
+		#e82020 10px,
+		#00306A 10px,
+		#00306A 20px
+	)
 }
