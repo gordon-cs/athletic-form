@@ -29,11 +29,11 @@ export function setEventFilters(events: any, sportFilter: any, opponentFilter: a
 export function getSportList(events: any)
 {
     let unique = new Set(events?.map((item: { sport: string; }) => item.sport));
-    return unique;
+    return Array.from(unique).sort();
 }
 
 export function getOpponentList(events: any)
 {
     let unique = new Set(events?.map((item: { opponent: string; }) => item.opponent));
-    return unique;
+    return Array.from(unique).sort();
 }
