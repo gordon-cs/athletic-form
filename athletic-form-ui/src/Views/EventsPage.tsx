@@ -3,10 +3,9 @@ import { getAllEvents } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Button, Card, CardActions, CardHeader } from '@mui/material';
-import { FaFilter, FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
+import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
 
 
