@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAllEvents, updateEvent } from '../Services/EventService';
-import { Button } from '@mui/material';
+import { Button, Checkbox } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/addEvent.scss';
 import TextField from '@mui/material/TextField';
@@ -106,6 +106,16 @@ export const UpdateEvent: React.FC<Props> = () => {
 					onChange={(e: any) => {
 						setEventData([{ comments: e.target.value }]);
 					}}
+				/>
+				<br></br>
+				<FormControlLabel 
+					control={<Checkbox 
+						checked={eventData?.isScrimmage} 
+						onChange={(e: any) => { 
+							setEventData([{ isScrimmage: e.target.checked }]);
+						}}
+					/>}
+					label = "Scrimmage?"
 				/>
 				<br></br>
 				<Button

@@ -2,31 +2,31 @@
 use AthleticDatabase;
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
 values 
-    ('Rowing', 'Endicott', 'Home', 'Gull Pond', '12/28/2021 2:30 PM', '12/28/2021 2:00 PM', '12/28/2021 4:00 PM', 'MIT and Harvard are also playing.');
+    ('Rowing', 'Endicott', 'Home', 'Gull Pond', '12/28/2021 2:30 PM', '12/28/2021 2:00 PM', '12/28/2021 4:00 PM', 'MIT and Harvard are also playing.', 1);
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, IsScrimmage) 
 values 
-    ('Soccer', 'EMCC', 'Away', 'EMCC Soccer Field', '12/28/2021 5:30 AM', '12/28/2021 4:45 AM', '12/28/2021 7:30 AM');
+    ('Soccer', 'EMCC', 'Away', 'EMCC Soccer Field', '12/28/2021 5:30 AM', '12/28/2021 4:45 AM', '12/28/2021 7:30 AM', 0);
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
 values 
-    ('Tennis', 'UMO', 'Away', 'UMO Courts', '12/24/2021 2:50 PM', '12/24/2021 5:00 AM', '12/25/2021 3:00 PM', 'Departure time and event date are on Christmas Eve.  Arrival time on Christmas.');
-
-
-insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments) 
-values 
-    ('Baseball', 'PSU', 'Away', 'PSU Stadium', '12/28/2021 3:00 PM', '12/28/2021 1:00 AM', '12/29/2021 3:00 PM', 'Overnight');
+    ('Tennis', 'UMO', 'Away', 'UMO Courts', '12/24/2021 2:50 PM', '12/24/2021 5:00 AM', '12/25/2021 3:00 PM', 'Departure time and event date are on Christmas Eve.  Arrival time on Christmas.', 0);
 
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
 values 
-    ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '10/25/2021 4:30 AM', '10/26/2021 3:00 PM', 'Overnight');
+    ('Baseball', 'PSU', 'Away', 'PSU Stadium', '12/28/2021 3:00 PM', '12/28/2021 1:00 AM', '12/29/2021 3:00 PM', 'Overnight', 0);
+
+
+insert into dbo.[AthleticDatabase.AthleticEvents] 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
+values 
+    ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '10/25/2021 4:30 AM', '10/26/2021 3:00 PM', 'Overnight', 0);
 
 
 -- Section inserts

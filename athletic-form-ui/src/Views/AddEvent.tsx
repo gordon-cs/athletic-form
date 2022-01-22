@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { getAllEvents, addEvent } from '../Services/EventService';
-import { Button } from '@mui/material';
+import { Button, Checkbox } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/addEvent.scss';
 import TextField from '@mui/material/TextField';
@@ -21,6 +21,7 @@ export const AddEvent: React.FC<Props> = () => {
 	const [departureTime, setDepartureTime] = useState('');
 	const [arrivalTime, setArrivalTime] = useState('');
 	const [comments, setComments] = useState('');
+	const [isScrimmage, setIsScrimmage] = useState(false);
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -34,7 +35,8 @@ export const AddEvent: React.FC<Props> = () => {
 	}, []);
 
 	const handleSubmit = () => {
-		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime, arrivalTime, comments })
+		addEvent({ sport, opponent, homeOrAway, destination, eventDate, 
+				departureTime, arrivalTime, comments, isScrimmage })
 			.then((a: any) => {
 				navigate('/events');
 				window.location.reload();
@@ -117,6 +119,16 @@ export const AddEvent: React.FC<Props> = () => {
 					onChange={(e: any) => {
 						setComments(e.target.value);
 					}}
+				/>
+				<br></br>
+				<FormControlLabel 
+					control={<Checkbox 
+						checked={isScrimmage} 
+						onChange={(e: any) => { 
+							setIsScrimmage(e.target.checked)
+						}}
+					/>}
+					label = "Scrimmage?"
 				/>
 				<br></br>
 				<Button

@@ -115,7 +115,8 @@ export const CoachEventsPage: React.FC = () => {
 										destination: entry['destination'],
 										departureTime: entry['departureTime'],
 										arrivalTime: entry['arrivalTime'],
-										comments: entry['comments']
+										comments: entry['comments'],
+										isScrimmage: entry['isScrimmage']
 									}}
 								/>
 							</Grid>
