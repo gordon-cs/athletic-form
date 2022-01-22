@@ -1,6 +1,6 @@
 export function setEventFilters(events: any, sportFilter: any, opponentFilter: any, dateFilter: any)
 {
-    console.log(sportFilter)
+    console.log(dateFilter)
     if(sportFilter != null && sportFilter != ""){
         events = events.filter(function (e: { [x: string]: any }) {
             return e["sport"].toLowerCase() == sportFilter.toLowerCase()
@@ -12,8 +12,10 @@ export function setEventFilters(events: any, sportFilter: any, opponentFilter: a
         });
     }
     if(dateFilter != null){
-        events = events.filter(function (e: { [x: string]: any }) {
-            return e["eventDate"] == dateFilter.value
+        events = events.sort(function(a: any, b: any) {
+            var c = new Date(a.date);
+            var d = new Date(b.date);
+            return c > d ? 1 : -1;
         });
     }
     console.log(events);
@@ -22,7 +24,12 @@ export function setEventFilters(events: any, sportFilter: any, opponentFilter: a
 
 export function getSportList(events: any)
 {
-    let unique = [new Set(events.map((item: { sport: any; }) => item.sport))];
-    console.log(unique);
+    let unique = new Set(events?.map((item: { sport: string; }) => item.sport));
+    return unique;
+}
+
+export function getOpponentList(events: any)
+{
+    let unique = new Set(events?.map((item: { opponent: string; }) => item.opponent));
     return unique;
 }

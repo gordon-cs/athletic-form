@@ -7,7 +7,7 @@ import { FaFilter, FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import { setEventFilters, getSportList } from '../Helpers/FilterHelpers';
+import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
 
 
 export const EventsPage: React.FC = () => {
@@ -44,7 +44,8 @@ export const EventsPage: React.FC = () => {
 				</Button>
 			</Link>
 			<h3>Filter By: {" "}
-				<select 
+				<select
+					id="sportList"
 					value={sportFilter} 
 					onChange={(e: any) => {
 						setSportFilter(e.target.value);
@@ -52,50 +53,54 @@ export const EventsPage: React.FC = () => {
 					}} 
 				>
 					<option value="">All Sports (Default)</option>
-					<option value="Baseball">Baseball</option>
-					<option value="Basketball">Basketball</option>
-					<option value="Cross Country">Cross Country</option>
-					<option value="Field Hockey">Field Hockey</option>
-					<option value="Golf">Golf</option>
-					<option value="Lacrosse">Lacrosse</option>
-					<option value="Rowing">Rowing</option>
-					<option value="Soccer">Soccer</option>
-					<option value="Swimming">Swimming</option>
-					<option value="Tennis">Tennis</option>
-					<option value="Track and Field">Track and Field</option>
-					<option value="Volleyball">Volleyball</option>
+					{Array.from(getSportList(eventBank)).map((sport, index) => (
+						<option
+							key={String(sport)}
+							value={String(sport)}
+						>
+							{String(sport)}
+						</option>
+						))}
 				</select>
 				{" "}
-				<TextField
-					label='OPPONENT'
-					value={opponentFilter}
+				<select
+					id="opponentList" 
+					value={opponentFilter} 
 					onChange={(e: any) => {
 						setOpponentFilter(e.target.value);
-					}}
-				/>
-				{" "}
-				<TextField
-					value={dateFilter}
-					type='datetime-local'
-					onChange={(e: any) => {
-						setDateFilter(e.target.value);
-					}}
-				/>
+						setEvents(setEventFilters(eventBank, sportFilter, e.target.value, dateFilter));
+					}} 
+				>
+					<option value="">All Opponents (Default)</option>
+					{Array.from(getOpponentList(eventBank)).map((opponent, index) => (
+						<option
+							key={String(opponent)}
+							value={String(opponent)}
+						>
+							{String(opponent)}
+						</option>
+						))}
+				</select>
 				{" "}
 				<Button
 					onClick={() => {
+						setDateFilter("newest")
 						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter));
 					}}
-					size='medium'
-					sx={{ backgroundColor: 'green', color: 'white' }}
-					variant={'outlined'}	
-				> Apply </Button>
+					size='small'
+					sx={{ backgroundColor: 'black', color: 'white' }}
+					variant={'outlined'}		
+				> Newest </Button>
+				{" "}
 				<Button
-					onClick={() => window.location.reload()}
-					size='medium'
-					sx={{ backgroundColor: 'red', color: 'white' }}
+					onClick={() => {
+						setDateFilter("oldest")
+						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter)) 
+					}}
+					size='small'
+					sx={{ backgroundColor: 'black', color: 'white' }}
 					variant={'outlined'}	
-				> Clear </Button>
+				> Oldest </Button>
 			</h3> 
 			<Grid container spacing={3}>
 				{events == null
