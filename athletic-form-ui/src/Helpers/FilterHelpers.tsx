@@ -13,9 +13,13 @@ export function setEventFilters(events: any, sportFilter: any, opponentFilter: a
     }
     if(dateFilter != null){
         events = events.sort(function(a: any, b: any) {
-            var c = new Date(a.date);
-            var d = new Date(b.date);
-            return c > d ? 1 : -1;
+            var c = new Date(a.eventDate);
+            var d = new Date(b.eventDate);
+            if(dateFilter=="newest"){
+                return c > d ? 1 : -1;
+            }else{
+                return c < d ? 1 : -1;
+            }
         });
     }
     console.log(events);
