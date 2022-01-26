@@ -1,5 +1,8 @@
 ﻿using AthleticFormLibrary.Interfaces;
 using AthleticFormLibrary.DataAccess;
+using AthleticFormLibrary.Utilities;
+using AthleticFormLibrary.Emailer;
+
 using Unity;
 
 
@@ -15,6 +18,8 @@ namespace AthleticFormLibrary
 
             /* Registrations */
             _container.RegisterSingleton<IDataAccess, DatabaseAccess>();
+            _container.RegisterSingleton<IEmailer, EmailClient>();
+            _container.RegisterSingleton<IReportGeneration, ReportGenerator>();
         }
 
       
