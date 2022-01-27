@@ -279,3 +279,26 @@ values
     (TeamName)
 values
     ('W Vollyball');
+
+
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('W Softball', '26404093');
+
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('W Basketball', '20408095');
+
+
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('M Baseball', '50208495');
+
+
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('M Baseball', '42208495');

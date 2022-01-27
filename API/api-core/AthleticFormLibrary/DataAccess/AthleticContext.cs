@@ -11,6 +11,7 @@ namespace AthleticFormLibrary.DataAccess {
         public DbSet<StudentsEnrolledIn> StudentsEnrolledIn { get; set; }
         public DbSet<PlayersInEvent> PlayersInEvent { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<PlayersInTeam> PlayersInTeam { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder) {
@@ -19,6 +20,8 @@ namespace AthleticFormLibrary.DataAccess {
             builder.Entity<Account>(a => a.HasKey(k => k.Gordon_ID));
             builder.Entity<StudentsEnrolledIn>(e => e.ToView("StudentsEnrolledIn", "dbo")
                 .HasKey(t => new { t.Gordon_ID, t.CRS_CDE }));
+            builder.Entity<PlayersInTeam>(e => e.HasKey(t => new {t.TeamName, t.Gordon_ID}));
+            builder.Entity<PlayersInEvent>(e => e.HasKey(t => new {t.Gordon_ID, t.EventID}));
         }
     }
 }

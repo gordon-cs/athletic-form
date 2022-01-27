@@ -25,6 +25,7 @@ namespace AthleticFormCore.Controllers
         [Route("add")]
         public void Post([FromBody]AthleticEvent athleticEvent) {
             _context.Add<AthleticEvent>(athleticEvent);
+            AddAllPlayersToEvent(athleticEvent);
             _context.SaveChanges();
         }
 
@@ -65,6 +66,19 @@ namespace AthleticFormCore.Controllers
             athleticEvent.IsDeleted = false;
             _context.SaveChanges();
         }
-    }
+
+        private void AddAllPlayersToEvent(AthleticEvent athleticEvent) {
+            if(athleticEvent.Sport == String.Empty) {
+                return;
+            }
+            var players = _context.PlayersInTeam.Where(x => x.TeamName == athleticEvent.Sport);
+            foreach(var player in players) {
+                _context.Add<PlayersInEvent>
+                    (new PlayersInEvent(player.Gordon_ID, athleticEvent.EventId)); 
+            }
+            _context.SaveChanges();
+        }
+
+    }  
 }
 
