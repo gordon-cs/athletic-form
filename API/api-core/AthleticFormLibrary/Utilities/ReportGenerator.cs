@@ -55,7 +55,8 @@ namespace AthleticFormLibrary.Utilities
                 report += tableOpeningTag + tableRowOpeningTag + courseCodeHeader + conflictHeader + tableRowClosingTag;
                 List<StudentsEnrolledIn> courses = _context.StudentsEnrolledIn.Where(s => s.Email == conflict.Email).ToList();
                 foreach (var course in courses) {
-                    AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE).FirstOrDefault();
+                    AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE 
+                        && c.Email == conflict.Email).FirstOrDefault();
                     if (conflictForCourse != null) {
                         report += redTableRowOpeningTag;
                         report += String.Format("<td>{0}</td>", course.CRS_CDE);
