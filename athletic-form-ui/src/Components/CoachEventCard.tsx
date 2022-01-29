@@ -1,5 +1,6 @@
-import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
-import '../styles/coachEventCard.scss';
+import { Button, Card, CardActions, CardContent, CardHeader,
+	Typography } from '@mui/material';
+import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
@@ -23,37 +24,80 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			})
 			.catch((error) => console.log(error.message));
 	});
-	let departHome, numConflicts, headerHome;
+
+	//scss logic. Could probably be even more condensed
+	let departHome, numConflicts, headerHome, arrival;
+	let scrimmage, isHome, conflict = "";
+	let sportColor = 'is' + eventData.sport;
+	if (eventData?.isScrimmage)
+		scrimmage = "scrimmage";
+	if (eventData.departOrHome === 'Home') {
+		isHome = "isHome"
+		if (count !== 0)
+			conflict = "isHomeConflict"
+	} else if (count !== 0) {
+		conflict = "conflict"
+	}
+	let cardHeader = "card-header " + scrimmage + " " + conflict + " " + sportColor;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		headerHome = (
-			<CardHeader
-				className={'card-header isHome'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-			/>
-		);
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={`${cardHeader}`}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={`${cardHeader}`}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
-		headerHome = (
-			<CardHeader
-				className={'card-header'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-			/>
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={`${cardHeader}`}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={`${cardHeader}`}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Return Time: {getDateTimeAsJs(eventData.arrivalTime)}
+			</CardContent>
 		);
 	}
 
-	numConflicts = (
-		<CardContent className={'card-detail'}>
-			There are {count} students with conflicts.
-		</CardContent>
-	);
+	if (count > 0) {
+		numConflicts = (
+			<CardContent className={'card-detail'}>
+				There are {count} students with conflicts.
+			</CardContent>
+		);
+	}
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
@@ -63,9 +107,10 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			>
 				{headerHome}
 			</Link>
-			<CardContent className={'card-content'}>{departHome}</CardContent>
-			<CardContent className={'card-content'}>{numConflicts}</CardContent>
-			<CardActions className={'card-content card-action'}>
+			<CardContent className={`card-content + ${isHome}`}>{departHome}</CardContent>
+			<CardContent className={`card-content + ${isHome}`}>{numConflicts}</CardContent>
+			<CardContent className={`card-content + ${isHome}`}>{arrival}</CardContent>
+			{/*<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}
 					size='small'
@@ -84,7 +129,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 					<FaPencilAlt></FaPencilAlt>
 					Update
 				</Button>
-			</CardActions>
+			</CardActions>*/}
 		</Card>
 	);
 };

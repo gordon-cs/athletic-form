@@ -1,4 +1,5 @@
-import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader,
+	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 import { FaTrashRestoreAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -14,27 +15,67 @@ export function RemoveCard() {
 
 export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
+	let headerHome;
+	let arrival;
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={'card-header isHome scrimmage'}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={'card-header isHome'}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={'card-header scrimmage'}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={'card-header'}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Return Time: {getDateTimeAsJs(eventData.arrivalTime)}
+			</CardContent>
+		);
 	}
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<CardHeader
-				className={'card-header'}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-			/>
+			{headerHome}
 			<CardContent className={'card-content'}>
 				{departHome}
 			</CardContent>
+			<CardContent className={'card-content'}>{arrival}</CardContent>
 			<CardActions className={'card-content card-action'}>
 				<Link to={`/events/deleted/${eventData.eventId}/recover`}>
 					<Button
