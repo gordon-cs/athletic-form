@@ -3,23 +3,20 @@ using System.Net.Mail;
 using System.Net;
 using AthleticFormLibrary.DataAccess;
 using AthleticFormLibrary.Utilities;
-using System.Collections.Generic;
+
 
 namespace AthleticFormLibrary.Emailer
 {
     public class EmailClient : IEmailer
     {
-        private readonly AthleticContext _context;
-        public EmailClient() {
-            
-        }
+        private readonly IReportGeneration _generator;
 
-        public EmailClient(AthleticContext context) {
-            _context = context;
+        public EmailClient(IReportGeneration generator) {
+            _generator = generator;
         }
 
         public void SendMail(string major) {
-            using (var smtp = new SmtpClient()) {
+            using (var smtp = Injector.Resolve<SmtpClient>()) {
                 /*replace with your email */
                 var from_email = "email";
                 var credential = new NetworkCredential {
@@ -38,8 +35,7 @@ namespace AthleticFormLibrary.Emailer
                 message.To.Add("email");
                 message.Subject = "Athletic Conflicts";
 
-                ReportGenerator reportGenerator = new ReportGenerator(_context);
-                message.Body = reportGenerator.GenerateReport(major);
+                message.Body = _generator.GenerateReport(major);
                 message.IsBodyHtml = true;
 
                 smtp.Send(message);

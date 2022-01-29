@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Threading;
 using AthleticFormLibrary.Emailer;
+using AthleticFormLibrary.Interfaces;
 
-namespace AthleticFormLibrary.Scheduler
+namespace AthleticFormLibrary.Utilities
 {
-    public class EmailScheduler
+    public class EmailScheduler : IScheduler
     {
-        private static EmailScheduler _instance;
-        private List<Timer> timers = new List<Timer>();
+       private List<Timer> timers = new List<Timer>();
 
-        private EmailScheduler() { }
+        private readonly IEmailer _emailer;
 
-        public static EmailScheduler Instance => _instance ?? (_instance = new EmailScheduler());
+        public EmailScheduler(IEmailer emailer) {
+            _emailer = emailer;
+         }
 
+        
         public void ScheduleWeeklyTask(DateTime firstRun)
         {
             DateTime now = DateTime.Now;
@@ -27,8 +30,7 @@ namespace AthleticFormLibrary.Scheduler
             }
 
             var timer = new Timer(x => {
-                EmailClient emailer = new EmailClient();
-                emailer.SendMail("");
+                _emailer.SendMail("");
             }, null, timeRemaining, TimeSpan.FromDays(7));
 
             timers.Add(timer);
@@ -48,8 +50,7 @@ namespace AthleticFormLibrary.Scheduler
 
             var timer = new Timer(x => {
                 System.Diagnostics.Debug.WriteLine("Scheduled Task executing at: " + DateTime.Now);
-                EmailClient emailer = new EmailClient();
-                emailer.SendMail("");
+                _emailer.SendMail("");
             }, null, timeRemaining, TimeSpan.FromMinutes(2));
 
             timers.Add(timer);
