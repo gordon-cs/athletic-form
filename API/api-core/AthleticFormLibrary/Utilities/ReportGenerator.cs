@@ -20,6 +20,7 @@ namespace AthleticFormLibrary.Utilities
         public const string redTableRowOpeningTag = "<tr style='color: red;'>";
         public const string nameHeader = "<th>Name</th>";
         public const string emailHeader = "<th>Email</th>";
+        public const string eventHeader = "<th>Event</th>";
         public const string approvalStatusHeader = "<th>Approval Status</th>";
         public const string courseCodeHeader = "<th>Course Code</th>";
         public const string courseTitleHeader = "<th>Course Title</th>";
@@ -36,7 +37,7 @@ namespace AthleticFormLibrary.Utilities
         public string GenerateReport(string major)
         {
             string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag + 
-                nameHeader + emailHeader + approvalStatusHeader + tableRowClosingTag;
+                nameHeader + emailHeader + eventHeader + approvalStatusHeader + tableRowClosingTag;
             List<AthleticConflict> conflicts = _context.AthleticConflicts.Where(c => c.CourseCode.StartsWith(major)).ToList();
             foreach (var conflict in conflicts) {
                 report += tableRowOpeningTag;
