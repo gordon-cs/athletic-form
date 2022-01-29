@@ -6,7 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Unity;
 using AthleticFormLibrary;
 using AthleticFormLibrary.DataAccess;
+using AthleticFormLibrary.Utilities;
 using Microsoft.EntityFrameworkCore;
+using AthleticFormLibrary.Interfaces;
+using System;
 
 namespace AthleticFormCore
 {
@@ -15,6 +18,7 @@ namespace AthleticFormCore
         string userSecret = string.Empty;
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -46,11 +50,11 @@ namespace AthleticFormCore
                         
             services.AddControllers();
                 services.AddMvc()
-                    .AddControllersAsServices();         
+                    .AddControllersAsServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IScheduler scheduler)
         {
             if(env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
@@ -71,6 +75,8 @@ namespace AthleticFormCore
             });
             
             app.UseWelcomePage();
+
+            scheduler.ScheduleTestTask(DateTime.Now.AddSeconds(30));
         }
     }
 }
