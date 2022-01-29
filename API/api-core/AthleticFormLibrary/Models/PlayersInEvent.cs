@@ -6,8 +6,8 @@ public class PlayersInEvent {
     public string Gordon_ID { get; set; }
     public int EventID { get; set; }
 
-    public PlayersInEvent(string gordonId, int eventId) {
-        Gordon_ID = gordonId;
-        EventID = eventId;
+    public PlayersInEvent(string Gordon_ID, int EventID) {
+        this.Gordon_ID = Gordon_ID;
+        this.EventID = EventID;
     }
 }

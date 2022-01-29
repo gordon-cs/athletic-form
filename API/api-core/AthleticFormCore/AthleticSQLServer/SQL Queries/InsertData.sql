@@ -122,57 +122,6 @@ values
     ('42208495', '2021', 'SP', 'COM101')
 
 
--- InEvent
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('1', '50208495');
-
-insert into dbo.[AthleticDatabase.InEvent] 
-    (EventID, Gordon_ID)
-values 
-    ('1', '20408095');
-
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('2', '26404093');
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('2', '42208495');      
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('3', '50208295');
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('3', '50208495');
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('4', '20408095');  
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('4', '26404093');  
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('5', '26404093');  
-
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('5', '42208495');
 
 insert into dbo.[AthleticDatabase.Teams] 
     (TeamName)
