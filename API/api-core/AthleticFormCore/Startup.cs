@@ -78,6 +78,9 @@ namespace AthleticFormCore
 
             // Finally, start the email scheduling service
             emailScheduler.ScheduleWeeklyTask();
+            /*For testing purposes.  Sends every 3 minutes instead
+                of every week.*/
+            //emailScheduler.ScheduleTestTask();
         }
     }
 }

@@ -58,8 +58,10 @@ namespace AthleticFormLibrary.Utilities
         private static TimeSpan timeUntilTask()
         {
             // Set the time of weekly mail
+            /* When testing, time can change. Normal time is 
+                Sunday at 6 AM*/
             int hour = 6;
-            int minute = 00;
+            int minute = 0;
             int day = (int)DayOfWeek.Sunday;
 
             // Create dat objects for now and next sunday
