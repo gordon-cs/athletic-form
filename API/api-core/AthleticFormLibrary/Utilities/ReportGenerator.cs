@@ -47,7 +47,10 @@ namespace AthleticFormLibrary.Utilities
                 else {
                     report += "<td style = 'color: red;'>Not Approved</td>";
                 }
-                report += tableRowClosingTag + tableClosingTag;
+                report += tableRowClosingTag;
+            }
+            report += tableClosingTag;
+            foreach (var conflict in conflicts) {
                 report += String.Format("<h2>{0} {1}</h2>", conflict.FirstName, conflict.LastName);
                 report += tableOpeningTag + tableRowOpeningTag + courseCodeHeader + conflictHeader + tableRowClosingTag;
                 List<StudentsEnrolledIn> courses = _context.StudentsEnrolledIn.Where(s => s.Email == conflict.Email).ToList();
