@@ -3,6 +3,7 @@ using AthleticFormLibrary.DataAccess;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using AthleticFormLibrary.Models;
 
 namespace AthleticFormLibrary.Utilities
 {
@@ -41,6 +42,8 @@ namespace AthleticFormLibrary.Utilities
                 report += tableRowOpeningTag;
                 report += String.Format("<td>{0} {1}</td>", conflict.FirstName, conflict.LastName);
                 report += String.Format("<td>{0}</td>", conflict.Email);
+                AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
+                report += String.Format("<td>{0}: {1}</td>", athleticEvent.Sport, athleticEvent.Opponent);
                 if (Approved) {
                     report += "<td style = 'color: green;'>Approved</td>";
                 }
@@ -52,11 +55,13 @@ namespace AthleticFormLibrary.Utilities
             report += tableClosingTag;
             foreach (var conflict in conflicts) {
                 report += String.Format("<h2>{0} {1}</h2>", conflict.FirstName, conflict.LastName);
+                AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
+                report += String.Format("<h3>{0}: {1}</h3>", athleticEvent.Sport, athleticEvent.Opponent);
                 report += tableOpeningTag + tableRowOpeningTag + courseCodeHeader + conflictHeader + tableRowClosingTag;
                 List<StudentsEnrolledIn> courses = _context.StudentsEnrolledIn.Where(s => s.Email == conflict.Email).ToList();
                 foreach (var course in courses) {
                     AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE 
-                        && c.Email == conflict.Email).FirstOrDefault();
+                        && c.Email == conflict.Email && c.EventID == conflict.EventID).FirstOrDefault();
                     if (conflictForCourse != null) {
                         report += redTableRowOpeningTag;
                         report += String.Format("<td>{0}</td>", course.CRS_CDE);
