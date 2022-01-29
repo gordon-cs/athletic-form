@@ -54,7 +54,7 @@ namespace AthleticFormCore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IScheduler scheduler)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IScheduler emailScheduler)
         {
             if(env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
@@ -76,7 +76,8 @@ namespace AthleticFormCore
             
             app.UseWelcomePage();
 
-            scheduler.ScheduleTestTask(DateTime.Now.AddSeconds(30));
+            // Finally, start the email scheduling service
+            emailScheduler.ScheduleWeeklyTask();
         }
     }
 }
