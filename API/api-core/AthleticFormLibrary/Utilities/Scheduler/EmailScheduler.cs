@@ -34,6 +34,12 @@ namespace AthleticFormLibrary.Utilities
             timers.Add(timer);
         }
 
+        //A function to post updates to an event that has already had it's
+        //notification sent out
+        public void CheckIfLateUpdate() {
+            //null
+        }
+
         public void ScheduleTestTask()
         {
             DateTime now = DateTime.Now;
