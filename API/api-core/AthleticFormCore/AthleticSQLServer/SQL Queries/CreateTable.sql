@@ -77,3 +77,14 @@ CREATE TABLE [AthleticDatabase.STUDENT_CRS_HIST] (
 );
 
 /* Roster - SID, TID */
+
+create table [AthleticDatabase.Teams] (
+    TeamName varchar(50) not null primary key
+);
+
+
+create table [AthleticDatabase.InTeam] (
+    TeamName varchar(50) not null,
+    Gordon_ID varchar(10) not null,
+    primary key(Gordon_ID, TeamName)
+)

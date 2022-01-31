@@ -38,7 +38,7 @@ namespace AthleticFormCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            userSecret = Configuration["ConnectionString"];  
+            userSecret = Configuration["LocalConnectionString"];  
             services.AddCors();
             services.AddDbContext<AthleticContext>(options => {
                 options.UseSqlServer(userSecret);
@@ -46,8 +46,7 @@ namespace AthleticFormCore
                         
             services.AddControllers();
                 services.AddMvc()
-                    .AddControllersAsServices();
-          
+                    .AddControllersAsServices();         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
