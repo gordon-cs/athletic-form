@@ -23,9 +23,10 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
-        public void Post([FromBody]AthleticEvent athleticEvent) {
-            _context.Add<AthleticEvent>(athleticEvent);
-            AddAllPlayersToEvent(athleticEvent);
+        public async void Post([FromBody]AthleticEvent athleticEvent) {
+            await _context.AddAsync<AthleticEvent>(athleticEvent);
+            AthleticEvent thisEvent = _context.AthleticEvents.OrderByDescending(x => x.EventId).FirstOrDefault();
+            AddAllPlayersToEvent(thisEvent);
             _context.SaveChanges();
         }
 
