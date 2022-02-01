@@ -23,8 +23,10 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
-        public void Post([FromBody]AthleticEvent athleticEvent) {
-            _context.Add<AthleticEvent>(athleticEvent);
+        public async void Post([FromBody]AthleticEvent athleticEvent) {
+            await _context.AddAsync<AthleticEvent>(athleticEvent);
+            AthleticEvent thisEvent = _context.AthleticEvents.OrderByDescending(x => x.EventId).FirstOrDefault();
+            AddAllPlayersToEvent(thisEvent);
             _context.SaveChanges();
         }
 
@@ -68,6 +70,19 @@ namespace AthleticFormCore.Controllers
             athleticEvent.IsDeleted = false;
             _context.SaveChanges();
         }
-    }
+
+        private void AddAllPlayersToEvent(AthleticEvent athleticEvent) {
+            if(athleticEvent.Sport == String.Empty) {
+                return;
+            }
+            var players = _context.PlayersInTeam.Where(x => x.TeamName == athleticEvent.Sport);
+            foreach(var player in players) {
+                _context.Add<PlayersInEvent>
+                    (new PlayersInEvent(player.Gordon_ID, athleticEvent.EventId)); 
+            }
+            _context.SaveChanges();
+        }
+
+    }  
 }
 
