@@ -1,4 +1,6 @@
 import { Grid } from '@mui/material';
+import '../styles/eventCard.scss';
+import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllEvents, removeEvent } from '../Services/EventService';
@@ -43,88 +45,17 @@ export const DeleteEvent: React.FC<Props> = () => {
 			});
 	};
 
-	if (eventData?.homeOrAway === 'Home') {
-		departHome = <CardContent className={'card-detail'}>{eventData.homeOrAway}</CardContent>;
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={'card-header isHome scrimmage'}
-					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={'card-header isHome'}
-					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-				/>
-			);
-		}
-	} else {
-		departHome = (
-			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData?.departureTime)}
-			</CardContent>
-		);
-		arrival = (
-			<CardContent className={'card-detail'}>
-				Arrival Time: {getDateTimeAsJs(eventData?.arrivalTime)}
-			</CardContent>
-		);
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={'card-header scrimmage'}
-					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={'card-header'}
-					title={eventData?.sport + ': ' + eventData?.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData?.eventDate)}</Typography>}
-				/>
-			);
-		}
-	}
-
 	return (
-		<Grid>
-			<h1>Are you sure you want to delete this event?</h1>
-			<Card className={'card'} variant={'outlined'}>
-				{headerHome}
-				<CardContent className={'card-content'}>
-					{departHome}
-				</CardContent>
-				<CardContent className={'card-content'}>
-					{arrival}
-				</CardContent>
-				<CardActions className={'card-content card-action'}>
+			<div className="undoPopup">
+				<h1 className="undoText">Undo Delete?</h1>
 					<Button
-						size='small'
-						sx={{ backgroundColor: 'green', color: 'white' }}
+						size={'small'}
+						sx={{ backgroundColor: '#066A1F', color: 'white', left: '40%'}}
 						variant={'outlined'}
-						onClick={handleClick}
 					>
-						Yes
+						<FaPlusCircle></FaPlusCircle>
+						Undo
 					</Button>
-					<Link to='/events'>
-						<Button
-							size='small'
-							sx={{ backgroundColor: 'red', color: 'white' }}
-							variant={'outlined'}
-						>
-							No
-						</Button>
-					</Link>
-				</CardActions>
-			</Card>
-		</Grid>
+			</div>
 	);
 };

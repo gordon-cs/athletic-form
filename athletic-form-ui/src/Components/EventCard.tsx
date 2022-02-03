@@ -17,6 +17,12 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	//Color code stuff
 	let sportColor = 'is' + eventData.sport;
 	let homeOrNot = "";
+	let isPopupShown = false;
+
+	//Delete popup window
+	/*togglePopup() {
+		isPopupShown = true;
+	}*/
 
 	if (eventData.departOrHome === 'Home') {
 		homeOrNot = "isHome";
