@@ -122,6 +122,7 @@ export const AddEvent: React.FC<Props> = () => {
 					onChange={(e: any) => {
 						setComments(e.target.value);
 					}}
+					multiline style={{maxHeight: 80}}
 				/>
 				<br></br>
 				<FormControlLabel 
