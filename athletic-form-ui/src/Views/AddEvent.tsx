@@ -85,34 +85,37 @@ export const AddEvent: React.FC<Props> = () => {
 						setDestination(e.target.value);
 					}}
 				/>
-				<br></br>
+				<br></br><br></br>
 				<TextField
 					value={eventDate}
 					type='datetime-local'
 					label="Event Date"
+					InputLabelProps={{ shrink: true }}
 					onChange={(e: any) => {
 						setEventDate(e.target.value);
 					}}
 				/>
-				<br></br>
+				<br></br><br></br>
 				<TextField
 					type='datetime-local'
 					value={departureTime}
 					label='Departure Time'
+					InputLabelProps={{ shrink: true }}
 					onChange={(e: any) => {
 						setDepartureTime(e.target.value);
 					}}
 				/>
-				<br></br>
+				<br></br><br></br>
 				<TextField
 					type='datetime-local'
 					value={arrivalTime}
 					label='Arrival Time'
+					InputLabelProps={{ shrink: true }}
 					onChange={(e: any) => {
 						setArrivalTime(e.target.value);
 					}}
 				/>
-				<br></br>
+				<br></br><br></br>
 				<TextField
 					value={comments}
 					label='Comments'
