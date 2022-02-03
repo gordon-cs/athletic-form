@@ -4,6 +4,7 @@ import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
+import { removeEvent } from '../Services/EventService';
 
 interface Props {
 	eventData: any;
@@ -20,9 +21,20 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let isPopupShown = false;
 
 	//Delete popup window
-	/*togglePopup() {
+	const togglePopup = () => {
 		isPopupShown = true;
-	}*/
+	}
+
+	const handleDelete = () => {
+		togglePopup();
+		removeEvent(eventData.eventId)
+			.then((a: any) => {
+				window.location.reload();
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	if (eventData.departOrHome === 'Home') {
 		homeOrNot = "isHome";
@@ -84,16 +96,15 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 				{arrival}
 			</CardContent>
 			<CardActions className={`card-content ${homeOrNot} card-action`}>
-				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'
 						sx={{ backgroundColor: '#710F0F', color: 'white' }}
 						variant={'outlined'}
+						onClick={handleDelete}
 					>
 						<FaTrashAlt></FaTrashAlt>
 						Delete
 					</Button>
-				</Link>
 				<Link to={`/events/${eventData.eventId}/update`}>
 					<Button
 						size={'small'}

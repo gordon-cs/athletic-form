@@ -45,6 +45,8 @@ export const DeleteEvent: React.FC<Props> = () => {
 			});
 	};
 
+	
+
 	return (
 			<div className="undoPopup">
 				<h1 className="undoText">Undo Delete?</h1>
@@ -52,6 +54,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 						size={'small'}
 						sx={{ backgroundColor: '#066A1F', color: 'white', left: '40%'}}
 						variant={'outlined'}
+						onClick={handleClick}
 					>
 						<FaPlusCircle></FaPlusCircle>
 						Undo
