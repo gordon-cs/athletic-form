@@ -28,7 +28,7 @@ namespace AthleticFormLibrary.Utilities
 
             // Set a timer to indicate when this service should run agian
             var timer = new Timer(x => {
-                _emailer.SendMail("");
+                _emailer.WeeklyMail();
             }, null, timeRemaining, TimeSpan.FromDays(7));
 
             timers.Add(timer);
@@ -51,7 +51,7 @@ namespace AthleticFormLibrary.Utilities
 
             var timer = new Timer(x => {
                 System.Diagnostics.Debug.WriteLine("Scheduled Task executing at: " + DateTime.Now);
-                _emailer.SendMail("");
+                _emailer.WeeklyMail();
             }, null, timeRemaining, TimeSpan.FromMinutes(3));
 
             timers.Add(timer);
