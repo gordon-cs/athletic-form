@@ -67,4 +67,4 @@ After cloning this repo:
 
 ## Running Tests
 - ```cd repoPath/API/api-core/AthleticFormTest```
-- `dotnet run`
+- `dotnet test`
