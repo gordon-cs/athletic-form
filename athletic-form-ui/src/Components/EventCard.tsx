@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { removeEvent } from '../Services/EventService';
 import { DeleteEvent } from '../Views/DeleteEvent';
-import { EventDetailsHeader } from './EventDetailsBase.js';
+import { EventDetailsHeader } from './EventDetailsBase';
 
 interface Props {
 	eventData: any;
@@ -43,67 +43,12 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		popupObject = <DeleteEvent></DeleteEvent>
 	}
 
-	if (eventData.departOrHome === 'Home') {
-		homeOrNot = "isHome";
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		if (eventData?.isScrimmage) {
-			headerHome = (<CardHeader
-							className={`card-header isHome scrimmage ${sportColor}`}
-							title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-							subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-						/>)
-		}
-		else {
-			headerHome = (<CardHeader
-				className={`card-header isHome ${sportColor}`}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-			/>)
-		}
-	} else {
-		departHome = (
-			<CardContent className={'card-detail'}>
-				Depart Time: {getDateAsJs(eventData.departureTime)}<br></br> {getTimeAsJs(eventData.departureTime)}
-			</CardContent>
-		);
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={`card-header scrimmage ${sportColor}`}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={`card-header ${sportColor}`}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		arrival = (
-			<CardContent className={'card-detail'}>
-				Return Time: {getDateAsJs(eventData.arrivalTime)}<br></br> {getTimeAsJs(eventData.arrivalTime)}
-			</CardContent>
-		);			
-	}
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			{popupObject}
 			<EventDetailsHeader eventData={eventData}></EventDetailsHeader>
-			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
-				{headerHome}
-			</Link>
-			<CardContent className={`card-content ${homeOrNot}`}>
-				{departHome}
-			</CardContent>
-			<CardContent className={`card-content ${homeOrNot}`}>
-				{arrival}
-			</CardContent>
+			
 			<CardActions className={`card-content ${homeOrNot} card-action`}>
 					<Button
 						size='small'
