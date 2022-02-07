@@ -66,5 +66,5 @@ After cloning this repo:
      -  `dotnet run` 
 
 ## Running Tests
-- ```cd repoPath/API/api-core/Tests`
+- `cd repoPath/API/api-core/Tests`
 - `pytest`
