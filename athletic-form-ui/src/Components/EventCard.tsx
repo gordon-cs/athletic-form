@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { removeEvent } from '../Services/EventService';
 import { DeleteEvent } from '../Views/DeleteEvent';
+import { EventDetailsHeader } from './EventDetailsBase.js';
 
 interface Props {
 	eventData: any;
@@ -93,6 +94,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			{popupObject}
+			<EventDetailsHeader eventData={eventData}></EventDetailsHeader>
 			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
 				{headerHome}
 			</Link>
