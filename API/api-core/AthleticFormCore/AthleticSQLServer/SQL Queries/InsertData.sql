@@ -251,3 +251,15 @@ insert into dbo.[AthleticDatabase.InTeam]
     (TeamName, Gordon_ID)
 values
     ('M Baseball', '42208495');
+
+
+-- Professor Inserts (for email testing)
+insert into [AthleticDatabase].[dbo].[AthleticDatabase.Account]
+    (Gordon_ID
+      ,Nickname
+      ,FirstName
+      ,LastName
+      ,Email)
+values
+    ('1', 'Professor', 'Jacob', 'Christopher', 'jacob.christopher@gordon.edu'),
+    ('2', 'Professor', 'Aidan', 'Perez', 'aidan.perez@gordon.edu')

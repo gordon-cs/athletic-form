@@ -12,6 +12,7 @@ namespace AthleticFormLibrary.DataAccess {
         public DbSet<PlayersInEvent> PlayersInEvent { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<PlayersInTeam> PlayersInTeam { get; set; }
+        public DbSet<SectionMaster> SectionMaster { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder) {
@@ -27,6 +28,7 @@ namespace AthleticFormLibrary.DataAccess {
                     e.Property(p => p.Gordon_ID);
                     e.Property(p => p.EventID);
                 });
+            builder.Entity<SectionMaster>(a => a.HasKey(k => k.crs_cde));
         }
     }
 }
