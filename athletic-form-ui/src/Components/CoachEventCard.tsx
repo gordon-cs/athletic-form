@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { useState, useEffect } from 'react';
 import { getConflictsByEventId } from '../Services/EventService';
-import { EventDetailsHeader } from './EventDetailsBase';
+import { EventCardHeader } from './EventCardBase';
 
 interface Props {
 	eventData: any;
@@ -29,7 +29,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 	eventData.conflictCount = count;
 
 	//scss logic. Could probably be even more condensed
-	let departHome, numConflicts, headerHome, arrival;
+	let departHome, numConflicts, arrival;
 	let scrimmage, isHome, conflict = "";
 	let sportColor = 'is' + eventData.sport;
 	if (eventData?.isScrimmage)
@@ -45,48 +45,12 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 
 	if (eventData.departOrHome === 'Home') {
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
 		arrival = (
 			<CardContent className={'card-detail'}>
 				Return Time: {getDateTimeAsJs(eventData.arrivalTime)}
@@ -104,7 +68,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<EventDetailsHeader eventData={eventData} isCoach={true}></EventDetailsHeader>
+			<EventCardHeader eventData={eventData} isCoach={true}></EventCardHeader>
 			<CardContent className={`card-content + ${isHome}`}>{departHome}</CardContent>
 			<CardContent className={`card-content + ${isHome}`}>{numConflicts}</CardContent>
 			<CardContent className={`card-content + ${isHome}`}>{arrival}</CardContent>

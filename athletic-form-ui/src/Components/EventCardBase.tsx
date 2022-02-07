@@ -16,7 +16,7 @@ interface Props {
 	isCoach: boolean;
 }
 
-export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
+export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 
 	let headerHome;
 	let homeOrNot;
@@ -25,14 +25,14 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 	let scrimmage;
 	let isHome;
 	let conflict;
-	let sportColor = 'is' + eventData.sport;
+	let sportColor = 'is' + eventData?.sport;
 	if (eventData?.isScrimmage)
 		scrimmage = "scrimmage";
-	if (eventData.departOrHome === 'Home') {
+	if (eventData?.departOrHome === 'Home') {
 		isHome = "isHome"
-		if (isCoach && eventData.conflictCount !== 0)
+		if (isCoach && eventData?.conflictCount !== 0)
 			conflict = "isHomeConflict"
-	} else if (isCoach && eventData.conflictCount !== 0) {
+	} else if (isCoach && eventData?.conflictCount !== 0) {
 		conflict = "conflict"
 	}
 
@@ -44,20 +44,20 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 	else         //The coach view
 		cardHeader = "card-header " + scrimmage + " " + conflict + " " + sportColor;
 
-	if (eventData.departOrHome === 'Home') {
+	if (eventData?.departOrHome === 'Home') {
 		homeOrNot = "isHome";
 		if (eventData?.isScrimmage) {
 			headerHome = (<CardHeader
 							className={`${cardHeader}`}
-							title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-							subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+							title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+							subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData?.date)}</Typography>}
 						/>)
 		}
 		else {
 			headerHome = (<CardHeader
 				className={`${cardHeader}`}
-				title={eventData.sport + ': ' + eventData.opponent}
-				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				title={eventData?.sport + ': ' + eventData?.opponent}
+				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData?.date)}</Typography>}
 			/>)
 		}
 	} else {
@@ -65,8 +65,8 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 			headerHome = (
 				<CardHeader
 					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					title={eventData?.sport + ': ' + eventData?.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData?.date)}</Typography>}
 				/>
 			);
 		}
@@ -74,8 +74,8 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 			headerHome = (
 				<CardHeader
 					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+					title={eventData?.sport + ': ' + eventData?.opponent}
+					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData?.date)}</Typography>}
 				/>
 			);
 		}		
@@ -83,9 +83,9 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 	
 	let linkTo;
 	if (!isCoach)
-		linkTo = `/events/${eventData.eventId}/details`;
+		linkTo = `/events/${eventData?.eventId}/details`;
 	else
-		linkTo = `/coach/events/${eventData.eventId}/details`;
+		linkTo = `/coach/events/${eventData?.eventId}/details`;
 	return (
 		/*I want to rework the layout of this page*/
 		<Card className={'card'}>
@@ -98,26 +98,26 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 };
 
 
-export const EventDetailsContent: React.FC<Props> = ({ eventData , isCoach}) => {
+export const EventCardContent: React.FC<Props> = ({ eventData , isCoach}) => {
 
 	let departHome;
 	let homeOrNot;
-	let sportColor = 'is' + eventData.sport;
+	let sportColor = 'is' + eventData?.sport;
 	let arrival;
 
 
-	if (eventData.departOrHome === 'Home') {
+	if (eventData?.departOrHome === 'Home') {
 		homeOrNot = "isHome";
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+		departHome = <CardContent className={'card-detail'}>{eventData?.departOrHome}</CardContent>;
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
-				Depart Time: {getDateAsJs(eventData.departureTime)}<br></br> {getTimeAsJs(eventData.departureTime)}
+				Depart Time: {getDateAsJs(eventData?.departureTime)}<br></br> {getTimeAsJs(eventData?.departureTime)}
 			</CardContent>
 		);
 		arrival = (
 			<CardContent className={'card-detail'}>
-				Return Time: {getDateAsJs(eventData.arrivalTime)}<br></br> {getTimeAsJs(eventData.arrivalTime)}
+				Return Time: {getDateAsJs(eventData?.arrivalTime)}<br></br> {getTimeAsJs(eventData?.arrivalTime)}
 			</CardContent>
 		);			
 	}

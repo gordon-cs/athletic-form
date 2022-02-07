@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { removeEvent } from '../Services/EventService';
 import { DeleteEvent } from '../Views/DeleteEvent';
-import { EventDetailsHeader, EventDetailsContent } from './EventDetailsBase';
+import { EventCardHeader, EventCardContent } from './EventCardBase';
 
 interface Props {
 	eventData: any;
@@ -47,9 +47,9 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			{popupObject}
-			<EventDetailsHeader eventData={eventData} isCoach={false}></EventDetailsHeader>
-			<EventDetailsContent eventData={eventData} isCoach={false}></EventDetailsContent>
-			
+			<EventCardHeader eventData={eventData} isCoach={false}></EventCardHeader>
+			<EventCardContent eventData={eventData} isCoach={false}></EventCardContent>
+
 			<CardActions className={`card-content ${homeOrNot} card-action`}>
 					<Button
 						size='small'
