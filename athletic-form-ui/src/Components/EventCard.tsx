@@ -5,6 +5,7 @@ import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { removeEvent } from '../Services/EventService';
+import { DeleteEvent } from '../Views/DeleteEvent';
 
 interface Props {
 	eventData: any;
@@ -19,6 +20,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let sportColor = 'is' + eventData.sport;
 	let homeOrNot = "";
 	let isPopupShown = false;
+	let popupObject = null;
 
 	//Delete popup window
 	const togglePopup = () => {
@@ -29,12 +31,16 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		togglePopup();
 		removeEvent(eventData.eventId)
 			.then((a: any) => {
-				window.location.reload();
+				/*window.location.reload();*/
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	};
+
+	if (isPopupShown) {
+		popupObject = <DeleteEvent></DeleteEvent>
+	}
 
 	if (eventData.departOrHome === 'Home') {
 		homeOrNot = "isHome";
@@ -86,6 +92,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
+			{popupObject}
 			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
 				{headerHome}
 			</Link>
