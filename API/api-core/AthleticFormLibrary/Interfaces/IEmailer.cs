@@ -1,5 +1,6 @@
 namespace AthleticFormLibrary.Interfaces {
     public interface IEmailer {
-       void SendMail();
+        void WeeklyMail();
+        void SendMail(string major, string profEmail);
     }
 }
