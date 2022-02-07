@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { useState, useEffect } from 'react';
 import { getConflictsByEventId } from '../Services/EventService';
+import { EventDetailsHeader } from './EventDetailsBase';
 
 interface Props {
 	eventData: any;
@@ -24,6 +25,8 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			})
 			.catch((error) => console.log(error.message));
 	});
+
+	eventData.conflictCount = count;
 
 	//scss logic. Could probably be even more condensed
 	let departHome, numConflicts, headerHome, arrival;
@@ -101,12 +104,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<Link
-				to={`/coach/events/${eventData.eventId}/details`}
-				style={{ textDecoration: 'none' }}
-			>
-				{headerHome}
-			</Link>
+			<EventDetailsHeader eventData={eventData} isCoach={true}></EventDetailsHeader>
 			<CardContent className={`card-content + ${isHome}`}>{departHome}</CardContent>
 			<CardContent className={`card-content + ${isHome}`}>{numConflicts}</CardContent>
 			<CardContent className={`card-content + ${isHome}`}>{arrival}</CardContent>

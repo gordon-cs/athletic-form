@@ -13,46 +13,58 @@ import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHe
 
 interface Props {
 	eventData: any;
+	isCoach: boolean;
 }
 
-export const EventDetailsHeader: React.FC<Props> = ({ eventData }) => {
+export const EventDetailsHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 
-	let departHome;
 	let headerHome;
 	let homeOrNot;
-	let sportColor = 'is' + eventData.sport;
-	let arrival;
-	//let navigate = useNavigate();
 
-	console.log (sportColor)
-	console.log(getDateTimeAsJs(eventData.date))
+	let cardHeader;
+	let scrimmage;
+	let isHome;
+	let conflict;
+	let sportColor = 'is' + eventData.sport;
+	if (eventData?.isScrimmage)
+		scrimmage = "scrimmage";
+	if (eventData.departOrHome === 'Home') {
+		isHome = "isHome"
+		if (isCoach && eventData.conflictCount !== 0)
+			conflict = "isHomeConflict"
+	} else if (isCoach && eventData.conflictCount !== 0) {
+		conflict = "conflict"
+	}
+
+	console.log(isCoach)
+	
+	//Determines what information should be shown in the header
+	if (!isCoach) //Not the coach view
+		cardHeader = "card-header " + scrimmage + " " + sportColor;
+	else         //The coach view
+		cardHeader = "card-header " + scrimmage + " " + conflict + " " + sportColor;
+
 	if (eventData.departOrHome === 'Home') {
 		homeOrNot = "isHome";
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
 		if (eventData?.isScrimmage) {
 			headerHome = (<CardHeader
-							className={`card-header isHome scrimmage ${sportColor}`}
+							className={`${cardHeader}`}
 							title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
 							subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 						/>)
 		}
 		else {
 			headerHome = (<CardHeader
-				className={`card-header isHome ${sportColor}`}
+				className={`${cardHeader}`}
 				title={eventData.sport + ': ' + eventData.opponent}
 				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 			/>)
 		}
 	} else {
-		departHome = (
-			<CardContent className={'card-detail'}>
-				Depart Time: {getDateAsJs(eventData.departureTime)}<br></br> {getTimeAsJs(eventData.departureTime)}
-			</CardContent>
-		);
 		if (eventData?.isScrimmage) {
 			headerHome = (
 				<CardHeader
-					className={`card-header scrimmage ${sportColor}`}
+					className={`${cardHeader}`}
 					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
 					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 				/>
@@ -61,12 +73,48 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData }) => {
 		else {
 			headerHome = (
 				<CardHeader
-					className={`card-header ${sportColor}`}
+					className={`${cardHeader}`}
 					title={eventData.sport + ': ' + eventData.opponent}
 					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
 				/>
 			);
-		}
+		}		
+	}
+	
+	let linkTo;
+	if (!isCoach)
+		linkTo = `/events/${eventData.eventId}/details`;
+	else
+		linkTo = `/coach/events/${eventData.eventId}/details`;
+	return (
+		/*I want to rework the layout of this page*/
+		<Card className={'card'}>
+			<Link to={`${linkTo}`} style={{ textDecoration: 'none' }}>
+				{headerHome}
+			</Link>
+		</Card>
+	);
+	
+};
+
+
+export const EventDetailsContent: React.FC<Props> = ({ eventData , isCoach}) => {
+
+	let departHome;
+	let homeOrNot;
+	let sportColor = 'is' + eventData.sport;
+	let arrival;
+
+
+	if (eventData.departOrHome === 'Home') {
+		homeOrNot = "isHome";
+		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
+	} else {
+		departHome = (
+			<CardContent className={'card-detail'}>
+				Depart Time: {getDateAsJs(eventData.departureTime)}<br></br> {getTimeAsJs(eventData.departureTime)}
+			</CardContent>
+		);
 		arrival = (
 			<CardContent className={'card-detail'}>
 				Return Time: {getDateAsJs(eventData.arrivalTime)}<br></br> {getTimeAsJs(eventData.arrivalTime)}
@@ -77,9 +125,6 @@ export const EventDetailsHeader: React.FC<Props> = ({ eventData }) => {
 	return (
 		/*I want to rework the layout of this page*/
 		<Card className={'card'}>
-			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
-				{headerHome}
-			</Link>
 			<CardContent className={`card-content ${homeOrNot}`}>
 				{departHome}
 			</CardContent>
