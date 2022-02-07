@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { useState, useEffect } from 'react';
 import { getConflictsByEventId } from '../Services/EventService';
-import { EventCardHeader } from './EventCardBase';
+import { EventCardHeader, EventCardContent } from './EventCardBase';
 
 interface Props {
 	eventData: any;
@@ -69,9 +69,7 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 	return (
 		<Card className={'card'} variant={'outlined'}>
 			<EventCardHeader eventData={eventData} isCoach={true}></EventCardHeader>
-			<CardContent className={`card-content + ${isHome}`}>{departHome}</CardContent>
-			<CardContent className={`card-content + ${isHome}`}>{numConflicts}</CardContent>
-			<CardContent className={`card-content + ${isHome}`}>{arrival}</CardContent>
+			<EventCardContent eventData={eventData} isCoach={true}></EventCardContent>
 			{/*<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}

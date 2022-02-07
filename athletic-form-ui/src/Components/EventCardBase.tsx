@@ -104,6 +104,7 @@ export const EventCardContent: React.FC<Props> = ({ eventData , isCoach}) => {
 	let homeOrNot;
 	let sportColor = 'is' + eventData?.sport;
 	let arrival;
+	let numConflicts;
 
 
 	if (eventData?.departOrHome === 'Home') {
@@ -121,6 +122,16 @@ export const EventCardContent: React.FC<Props> = ({ eventData , isCoach}) => {
 			</CardContent>
 		);			
 	}
+
+	if (isCoach && eventData.conflictCount > 0 ) {
+		numConflicts = (
+			<CardContent className={`card-content ${homeOrNot}`}>
+				<CardContent className={'card-detail'}>
+					There are {eventData.conflictCount} students with conflicts.
+				</CardContent>
+			</CardContent>
+		);
+	}
 	
 	return (
 		/*I want to rework the layout of this page*/
@@ -128,6 +139,7 @@ export const EventCardContent: React.FC<Props> = ({ eventData , isCoach}) => {
 			<CardContent className={`card-content ${homeOrNot}`}>
 				{departHome}
 			</CardContent>
+			{numConflicts}
 			<CardContent className={`card-content ${homeOrNot}`}>
 				{arrival}
 			</CardContent>
