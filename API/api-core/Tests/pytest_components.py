@@ -9,3 +9,4 @@ def get(url):
 def post(url, data):
     fullUrl = test_athleticForm_pytest.hostUrl + url
     return requests.post(fullUrl, data = data, headers = {'Content-Type': 'application/json'})
+    
