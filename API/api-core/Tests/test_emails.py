@@ -1,5 +1,7 @@
 import pytest_components
+import pytest
 
+# @pytest.mark.skip("Reduce Spam")
 def test_sendEmail():
     #Make sure you replace the From Email Address in Email Client before
     #running this
@@ -7,7 +9,7 @@ def test_sendEmail():
     url = "/Email/" + emails
     response = pytest_components.get(url)
     assert response.status_code == 200
-    emailInformation = response.json();
+    emailInformation = response.json()
     assert len(emailInformation) == 4
     for email in emailInformation:
         assert email["toEmails"][0]["displayName"] == ""
