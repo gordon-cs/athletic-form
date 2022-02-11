@@ -18,18 +18,27 @@ namespace AthleticFormLibrary.Emailer
 
         }
 
-        public void WeeklyMail()
+        public List<MailMessage> WeeklyMail(string emails = "")
         {
-            List<string> courses = _context.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
-            foreach (string m in courses)
-            {
-                int profId = _context.SectionMaster.Where(p => p.crs_cde == m).Select(x => x.Lead_Instructor_ID).FirstOrDefault();
-                string emailAddress = _context.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
-                SendMail(m, emailAddress);
+            List<MailMessage> mailMessages = new List<MailMessage>();
+            if (string.IsNullOrEmpty(emails)) {
+                List<string> courses = _context.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
+                foreach (string m in courses)
+                {
+                    int profId = _context.SectionMaster.Where(p => p.crs_cde == m).Select(x => x.Lead_Instructor_ID).FirstOrDefault();
+                    string emailAddress = _context.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
+                    mailMessages.Add(SendMail(m, emailAddress));
+                }
+            } else {
+                string[] emailsAsArray = emails.Split(',');
+                foreach (var email in emailsAsArray) {
+                    mailMessages.Add(SendMail("", email));
+                }
             }
+            return mailMessages;
         }
 
-        public void SendMail(string course, string profEmail) {
+        public MailMessage SendMail(string course, string profEmail) {
             System.Diagnostics.Debug.WriteLine("EMAIL...");
             using (var smtp = Injector.Resolve<SmtpClient>()) {
                 /*replace with your email */
@@ -53,6 +62,7 @@ namespace AthleticFormLibrary.Emailer
                 message.IsBodyHtml = true;
 
                 smtp.Send(message);
+                return message;
             }
         }
     }

@@ -23,9 +23,6 @@ namespace AthleticFormLibrary.Utilities
         public const string eventHeader = "<th>Event</th>";
         public const string approvalStatusHeader = "<th>Approval Status</th>";
         public const string courseCodeHeader = "<th>Course Code</th>";
-        public const string courseTitleHeader = "<th>Course Title</th>";
-        public const string daysOfWeekHeader = "<th>Days of Week</th>";
-        public const string timeHeader = "<th>Time</th>";
         public const string conflictHeader = "<th>Conflict?</th>";
         private readonly AthleticContext _context;
         public bool Approved { get; set; }
