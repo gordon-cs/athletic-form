@@ -27,5 +27,13 @@ namespace AthleticFormCore.Controllers
         public List<StudentsEnrolledIn> GetStudentsEnrolledIn(string email) {
             return _context.StudentsEnrolledIn.Where(s => s.Email == email).ToList();
         }
+
+
+        [HttpGet]
+        [Route("byId/{GORDON_ID}")]
+        public List<StudentsEnrolledIn> GetAccountByID(string GORDON_ID)
+        {
+            return _context.StudentsEnrolledIn.Where(s => s.Gordon_ID == GORDON_ID).ToList();
+        }
     }
 }
