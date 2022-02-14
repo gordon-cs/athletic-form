@@ -31,6 +31,8 @@ namespace AthleticFormLibrary.Utilities
             _context = context;
         }
 
+        //Gets all students with a conflict for a specific class 
+        //(Could possibly be merged with GetAllClassConflicts)
         private string GetAllStudentsInClass(string class) {
 
         }
