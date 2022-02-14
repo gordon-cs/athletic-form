@@ -31,6 +31,33 @@ namespace AthleticFormLibrary.Utilities
             _context = context;
         }
 
+        private string GetAllStudentsInClass(string class) {
+
+        }
+
+        //Gets all classes where at least one student has a conflict
+        private string GetAllClassConflicts(List<AthleticContext> conflicts) {
+            List<string> classConflicts = new List<string>();
+            //Check each conflict
+            foreach (var conflict in conflicts) {
+                AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
+                List<StudentsEnrolledIn> courses = _context.StudentsEnrolledIn.Where(s => s.Email == conflict.Email).ToList();
+                //Check every class involved
+                foreach (var course in courses) {
+                    AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE 
+                        && c.Email == conflict.Email && c.EventID == conflict.EventID).FirstOrDefault();
+                    //If there's a conflict for a student in that class
+                    //and we don't already have it in the classConflicts list,
+                    //add it
+                    if (conflictForCourse != null) {
+                        if(!classConflicts.Contains(course.CRS_CDE)) {
+                            classConflicts.Add(course.CRS_CDE);
+                        }
+                    }
+                }
+            }
+        }
+
         public string GenerateReport(string major)
         {
             string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag + 
