@@ -1,5 +1,9 @@
+using System.Net.Mail;
+using System.Collections.Generic;
+
 namespace AthleticFormLibrary.Interfaces {
     public interface IEmailer {
-       void SendMail();
+        List<MailMessage> WeeklyMail(string emails = "");
+        MailMessage SendMail(string major, string profEmail);
     }
 }
