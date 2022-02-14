@@ -29,42 +29,9 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 	eventData.conflictCount = count;
 
 	//scss logic. Could probably be even more condensed
-	let departHome, numConflicts, arrival;
-	let scrimmage, isHome, conflict = "";
-	let sportColor = 'is' + eventData.sport;
-	if (eventData?.isScrimmage)
-		scrimmage = "scrimmage";
-	if (eventData.departOrHome === 'Home') {
-		isHome = "isHome"
-		if (count !== 0)
-			conflict = "isHomeConflict"
-	} else if (count !== 0) {
-		conflict = "conflict"
-	}
-	let cardHeader = "card-header " + scrimmage + " " + conflict + " " + sportColor;
+	
 
-	if (eventData.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-	} else {
-		departHome = (
-			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
-			</CardContent>
-		);
-		arrival = (
-			<CardContent className={'card-detail'}>
-				Return Time: {getDateTimeAsJs(eventData.arrivalTime)}
-			</CardContent>
-		);
-	}
-
-	if (count > 0) {
-		numConflicts = (
-			<CardContent className={'card-detail'}>
-				There are {count} students with conflicts.
-			</CardContent>
-		);
-	}
+	
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
