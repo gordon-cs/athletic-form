@@ -5,8 +5,7 @@ using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Diagnostics;
 using System.Configuration;
-using AthleticFormCore.Controllers;
-using AthleticFormLibrary.DataAccess;
+using AthleticFormLibrary.UserSession;
 
 namespace AthleticFormCore.AuthorizationServer
 {
@@ -21,8 +20,8 @@ namespace AthleticFormCore.AuthorizationServer
 
     public class TokenIssuer : OAuthAuthorizationServerProvider
     {
-        private readonly AthleticContext _context;
-        public TokenIssuer(AthleticContext context)
+        private readonly UserContext _context;
+        public TokenIssuer(UserContext context)
         {
             _context = context;
         }
@@ -104,28 +103,19 @@ namespace AthleticFormCore.AuthorizationServer
                             return;
                         }
 
-                        // What is a "unit of work" ? Why is there such poor documentation on 360 ??
-                        // IUnitOfWork unitOfWork = new UnitOfWork();
-                        // var adminService = new Account();               // new AdministratorService(unitOfWork);
-                        // var accountService = new Account();             // new AccountService(unitOfWork);
+                        var collegeRole = string.Empty;
 
-                        var accountService = new AccountsController(_context);
-                        var account = accountService.GetAccountByID(personID);
-
-                        var discrim = account[1].Nickname;                  // TODO: add roles field (this currently works because
-                        var collegeRole = string.Empty;                     //       I set the nicknames of profs as "Professor")
-
-                        if (discrim == "Professor")
-                        {
-                            collegeRole = Position.FACSTAFF;
-                        }
-                        else if (discrim == "Admin")
+                        if (_context.UserRoles.SUPERADMIN == true)
                         {
                             collegeRole = Position.SUPERADMIN;
                         }
+                        else if (_context.UserRoles.STAFF == true || _context.UserRoles.COACH == true)
+                        {
+                            collegeRole = Position.FACSTAFF;
+                        }
                         else
                         {
-                            collegeRole = Position.READONLY;
+                            throw new UnauthorizedAccessException("No valid user role found.");
                         }
 
                         var identity = new ClaimsIdentity(context.Options.AuthenticationType);
