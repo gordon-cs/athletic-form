@@ -10,6 +10,7 @@ import { DeletedEventsPage } from './Views/DeletedEventsPage';
 import { RecoverEvent } from './Views/RecoverEvent';
 import { CoachEventDetails } from './Views/CoachEventDetails';
 import { ClassConflicts } from './Views/ClassConflicts';
+import { LoginPage } from './Views/LoginPage';
 
 export const App = () => {
 	return (
@@ -17,6 +18,7 @@ export const App = () => {
 			<Grid item>
 				<Router>
 					<Routes>
+						<Route path = "" element = {<LoginPage />}/>
 						<Route path = "/events" element = {<EventsPage />}/>
 						<Route path = "coach/events" element = {<CoachEventsPage />}/>
 						<Route path = "coach/events/:id/details" element = {<CoachEventDetails />}/>
