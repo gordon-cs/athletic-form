@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { getAllEvents, addEvent } from '../Services/EventService';
-import { Button } from '@mui/material';
+import { Button, Checkbox } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/addEvent.scss';
 import TextField from '@mui/material/TextField';
@@ -19,6 +19,9 @@ export const AddEvent: React.FC<Props> = () => {
 	const [homeOrAway, setHomeOrAway] = useState('');
 	const [destination, setDestination] = useState('');
 	const [departureTime, setDepartureTime] = useState('');
+	const [arrivalTime, setArrivalTime] = useState('');
+	const [comments, setComments] = useState('');
+	const [isScrimmage, setIsScrimmage] = useState(false);
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -32,9 +35,11 @@ export const AddEvent: React.FC<Props> = () => {
 	}, []);
 
 	const handleSubmit = () => {
-		addEvent({ sport, opponent, homeOrAway, destination, eventDate, departureTime })
+		addEvent({ sport, opponent, homeOrAway, destination, eventDate, 
+				departureTime, arrivalTime, comments, isScrimmage })
 			.then((a: any) => {
 				navigate('/events');
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);
@@ -84,7 +89,7 @@ export const AddEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventDate}
 					type='datetime-local'
-					label={eventDate}
+					label="Event Date"
 					onChange={(e: any) => {
 						setEventDate(e.target.value);
 					}}
@@ -97,6 +102,33 @@ export const AddEvent: React.FC<Props> = () => {
 					onChange={(e: any) => {
 						setDepartureTime(e.target.value);
 					}}
+				/>
+				<br></br>
+				<TextField
+					type='datetime-local'
+					value={arrivalTime}
+					label='Arrival Time'
+					onChange={(e: any) => {
+						setArrivalTime(e.target.value);
+					}}
+				/>
+				<br></br>
+				<TextField
+					value={comments}
+					label='Comments'
+					onChange={(e: any) => {
+						setComments(e.target.value);
+					}}
+				/>
+				<br></br>
+				<FormControlLabel 
+					control={<Checkbox 
+						checked={isScrimmage} 
+						onChange={(e: any) => { 
+							setIsScrimmage(e.target.checked)
+						}}
+					/>}
+					label = "Scrimmage?"
 				/>
 				<br></br>
 				<Button

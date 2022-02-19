@@ -14,5 +14,8 @@ namespace AthleticFormLibrary.Models {
         public DateTime? EventDate { get; set; }
         public DateTime? DepartureTime { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTime? ArrivalTime { get; set; }
+        public string Comments { get; set; }
+        public bool IsScrimmage { get; set; }
     }
 }

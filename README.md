@@ -65,3 +65,7 @@ After cloning this repo:
      - ```cd repoPath/API/api-core/AthleticFormCore``` 
      -  `dotnet run` 
 
+## Running Tests
+-  Make sure the backend is running before running your unit tests.
+- Open up a new terminal window and `cd repoPath/API/api-core/Tests`
+- `pytest`

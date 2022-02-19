@@ -1,4 +1,5 @@
-import { Button, Card, CardActions, CardContent, CardHeader } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader, 
+	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -11,24 +12,58 @@ interface Props {
 export const EventCard: React.FC<Props> = ({ eventData }) => {
 	let departHome;
 	let headerHome;
+	let arrival;
+
+	//Color code stuff
+	let sportColor = 'is' + eventData.sport;
+	let homeOrNot = "";
+
 	if (eventData.departOrHome === 'Home') {
+		homeOrNot = "isHome";
 		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		headerHome = (<CardHeader
-						className={'card-header isHome'}
-						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-					/>)
+		if (eventData?.isScrimmage) {
+			headerHome = (<CardHeader
+							className={`card-header isHome scrimmage ${sportColor}`}
+							title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+							subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+						/>)
+		}
+		else {
+			headerHome = (<CardHeader
+				className={`card-header isHome ${sportColor}`}
+				title={eventData.sport + ': ' + eventData.opponent}
+				subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+			/>)
+		}
 	} else {
 		departHome = (
 			<CardContent className={'card-detail'}>
 				Depart Time: {getDateAsJs(eventData.departureTime)}<br></br> {getTimeAsJs(eventData.departureTime)}
 			</CardContent>
 		);
-		headerHome = (<CardHeader
-						className={'card-header'}
-						title={eventData.sport + ': ' + eventData.opponent}
-						subheader={'Date: ' + getDateTimeAsJs(eventData.date)}
-					/>)
+		if (eventData?.isScrimmage) {
+			headerHome = (
+				<CardHeader
+					className={`card-header scrimmage ${sportColor}`}
+					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
+					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		else {
+			headerHome = (
+				<CardHeader
+					className={`card-header ${sportColor}`}
+					title={eventData.sport + ': ' + eventData.opponent}
+					subheader={<Typography sx={{color: "black"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
+				/>
+			);
+		}
+		arrival = (
+			<CardContent className={'card-detail'}>
+				Return Time: {getDateAsJs(eventData.arrivalTime)}<br></br> {getTimeAsJs(eventData.arrivalTime)}
+			</CardContent>
+		);			
 	}
 
 	return (
@@ -36,10 +71,13 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 			<Link to={`/events/${eventData.eventId}/details`} style={{ textDecoration: 'none' }}>
 				{headerHome}
 			</Link>
-			<CardContent className={'card-content'}>
+			<CardContent className={`card-content ${homeOrNot}`}>
 				{departHome}
 			</CardContent>
-			<CardActions className={'card-content card-action'}>
+			<CardContent className={`card-content ${homeOrNot}`}>
+				{arrival}
+			</CardContent>
+			<CardActions className={`card-content ${homeOrNot} card-action`}>
 				<Link to={`/events/${eventData.eventId}/delete`}>
 					<Button
 						size='small'

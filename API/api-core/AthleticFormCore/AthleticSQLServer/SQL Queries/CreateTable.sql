@@ -8,6 +8,9 @@ create table [AthleticDatabase.AthleticEvents] (
     Destination varchar(30),
     EventDate DateTime,
     DepartureTime DateTime,
+    ArrivalTime DateTime,
+    Comments varchar(255),
+    IsScrimmage bit default 0 not null
 );
 
 create table [AthleticDatabase.InEvent] (
@@ -74,3 +77,14 @@ CREATE TABLE [AthleticDatabase.STUDENT_CRS_HIST] (
 );
 
 /* Roster - SID, TID */
+
+create table [AthleticDatabase.Teams] (
+    TeamName varchar(50) not null primary key
+);
+
+
+create table [AthleticDatabase.InTeam] (
+    TeamName varchar(50) not null,
+    Gordon_ID varchar(10) not null,
+    primary key(Gordon_ID, TeamName)
+)

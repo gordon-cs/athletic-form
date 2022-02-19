@@ -2,31 +2,31 @@
 use AthleticDatabase;
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
 values 
-    ('Rowing', 'Endicott', 'Home', 'Gull Pond', '12/28/2021 2:30 PM', '12/28/2021 2:00 PM');
+    ('Rowing', 'Endicott', 'Home', 'Gull Pond', '12/28/2021 2:30 PM', '12/28/2021 2:00 PM', '12/28/2021 4:00 PM', 'MIT and Harvard are also playing.', 1);
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, IsScrimmage) 
 values 
-    ('Soccer', 'EMCC', 'Away', 'EMCC Soccer Field', '12/28/2021 5:30 AM', '12/28/2021 4:45 AM');
+    ('Soccer', 'EMCC', 'Away', 'EMCC Soccer Field', '12/28/2021 5:30 AM', '12/28/2021 4:45 AM', '12/28/2021 7:30 AM', 0);
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
 values 
-    ('Tennis', 'UMO', 'Away', 'UMO Courts', '12/24/2021 2:50 PM', '12/24/2021 5:00 AM');
-
-
-insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime) 
-values 
-    ('Baseball', 'PSU', 'Away', 'PSU Stadium', '12/28/2021 3:00 PM', '12/28/2021 1:00 AM');
+    ('Tennis', 'UMO', 'Away', 'UMO Courts', '12/24/2021 2:50 PM', '12/24/2021 5:00 AM', '12/25/2021 3:00 PM', 'Departure time and event date are on Christmas Eve.  Arrival time on Christmas.', 0);
 
 
 insert into dbo.[AthleticDatabase.AthleticEvents] 
-    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime) 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
 values 
-    ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '10/25/2021 4:30 AM');
+    ('Baseball', 'PSU', 'Away', 'PSU Stadium', '12/28/2021 3:00 PM', '12/28/2021 1:00 AM', '12/29/2021 3:00 PM', 'Overnight', 0);
+
+
+insert into dbo.[AthleticDatabase.AthleticEvents] 
+    (Sport, Opponent, HomeOrAway, Destination, EventDate, DepartureTime, ArrivalTime, Comments, IsScrimmage) 
+values 
+    ('Basketball', 'UMF', 'Away', 'UMF Baseball Field', '10/25/2021 2:30 PM', '10/25/2021 4:30 AM', '10/26/2021 3:00 PM', 'Overnight', 0);
 
 
 -- Section inserts
@@ -122,54 +122,144 @@ values
     ('42208495', '2021', 'SP', 'COM101')
 
 
--- InEvent
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('1', '50208495');
 
-insert into dbo.[AthleticDatabase.InEvent] 
-    (EventID, Gordon_ID)
-values 
-    ('1', '20408095');
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Baseball');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Basketball');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Cross Country');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Golf');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Lacrosse');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Rowing');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Soccer');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Swimming');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values  
+    ('M Tennis');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('M Track & Field');
+
+    insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Basketball');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Cross Country');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Field Hockey');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Lacrosse');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Rowing');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Soccer');
+
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Softball');
 
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('2', '26404093');
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Swimming');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('2', '42208495');      
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values  
+    ('W Tennis');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('3', '50208295');
+insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Track & Field');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('3', '50208495');
+    insert into dbo.[AthleticDatabase.Teams] 
+    (TeamName)
+values
+    ('W Vollyball');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('4', '20408095');  
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('4', '26404093');  
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('W Softball', '26404093');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('5', '26404093');  
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('W Basketball', '20408095');
 
-insert into dbo.[AthleticDatabase.InEvent]
-    (EventID, Gordon_ID)
-values 
-    ('5', '42208495');
+
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('M Baseball', '50208495');
+
+
+insert into dbo.[AthleticDatabase.InTeam] 
+    (TeamName, Gordon_ID)
+values
+    ('M Baseball', '42208495');
+
+
+-- Professor Inserts (for email testing)
+insert into [AthleticDatabase].[dbo].[AthleticDatabase.Account]
+    (Gordon_ID
+      ,Nickname
+      ,FirstName
+      ,LastName
+      ,Email)
+values
+    ('1', 'Professor', 'Jacob', 'Christopher', 'jacob.christopher@gordon.edu'),
+    ('2', 'Professor', 'Aidan', 'Perez', 'aidan.perez@gordon.edu')
