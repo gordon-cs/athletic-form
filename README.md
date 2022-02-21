@@ -10,7 +10,7 @@
 
 ## Design Document:
 
-- https://docs.google.com/document/d/1SeZQBuNud6zT2_0GWvgOuMFjFnYeGXEkpj1ZXIVmTcQ/edit
+- https://docs.google.com/document/d/1My6BqSu2o57S0nU-mNS_pjMHAFhsBtQhQHh938Vvrmw/edit?usp=sharing
 
 ## Lofi UI Usability Test Report:
 
