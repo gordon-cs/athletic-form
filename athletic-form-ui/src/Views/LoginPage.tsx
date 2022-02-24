@@ -19,11 +19,10 @@ export const LoginPage: React.FC = () => {
         try {
             const usernameArray = email.split("@");
             username = usernameArray[0];
-            console.log(usernameArray[1]);
-            // If not a valid email
+            // If not a valid email, fail the try-catch
             if (usernameArray[1] !== 'gordon.edu') { throw new Error("Invalid email address.")}
-            console.log("?")
         } catch {
+            // Show invalid email error messages
             setShowAlert(false);
             setUsernameError(true);
             setTimeout(() => {
@@ -31,12 +30,15 @@ export const LoginPage: React.FC = () => {
             }, 12000);
             return;
         }
+
+        // Format request body with credentials
         const loginInfo = new URLSearchParams({
             username: username,
             password: password,
             grant_type: 'password',
         });
-        console.log(username);
+        
+        // Create request to 360 auth server
         const request = new Request(`https://360Api.gordon.edu/token`, {
             method: 'post',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -45,20 +47,22 @@ export const LoginPage: React.FC = () => {
             body: loginInfo,
         });
 
+        // Retrieve JWT Token
         let token = await fetch(request).then(response => response.json()).then(data => data.access_token);
-        console.log(token);
+        
+        // Check if 360 backend authorized
         if(token != undefined) {
-            console.log("Bearer ", token.toString());
-            // Store the token
+            // Store the token to use as header
             localStorage.setItem('token', "Bearer " + token.toString());
+            // Store email to lookup user roles
             localStorage.setItem('email', email);
-            if( token.toString().startsWith('ey') ){
-                // Redirect to home page
-                window.location.href = "/events";
-            }
+
+            // Redirect to home screen (TODO: redirect based on user role)
+            window.location.href = "/events";
         }
         else // Failed to authenticate
         {
+            // Show username/password error messages
             setUsernameError(false);
             setShowAlert(true);
             setTimeout(() => {
