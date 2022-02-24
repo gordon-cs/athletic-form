@@ -16,7 +16,6 @@ export const LoginPage: React.FC = () => {
 		console.log("User attempted to log into the application.");
         // Username set in try block
         let username = email;
-        var num = 1;
         try {
             const usernameArray = email.split("@");
             username = usernameArray[0];
@@ -45,11 +44,10 @@ export const LoginPage: React.FC = () => {
             credentials: 'include',
             body: loginInfo,
         });
-        
-        let response = await fetch(request);
-        let token = response.json().then(data => data.access_token);
 
-        if(response.status === 200) {
+        let token = await fetch(request).then(response => response.json()).then(data => data.access_token);
+        console.log(token);
+        if(token != undefined) {
             console.log("Bearer ", token.toString());
             // Store the token
             localStorage.setItem('token', token.toString());
