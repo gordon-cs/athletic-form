@@ -50,7 +50,7 @@ export const LoginPage: React.FC = () => {
         if(token != undefined) {
             console.log("Bearer ", token.toString());
             // Store the token
-            localStorage.setItem('token', token.toString());
+            localStorage.setItem('token', "Bearer " + token.toString());
             localStorage.setItem('email', email);
             if( token.toString().startsWith('ey') ){
                 // Redirect to home page
