@@ -4,6 +4,10 @@
 
 - https://trello.com/b/arqAL20O/athletic-form
 
+## Documentation
+- [Documentation](https://gordon-cs.github.io/Athletic-Absence-Documentation/)
+
+
 ## Problem Statement:
 
 - https://docs.google.com/document/d/1WDIsoW0Kt1ZyuIqRdbD_QvH8wQZq6wyaRMwcDqkzhNE/edit?usp=sharing
