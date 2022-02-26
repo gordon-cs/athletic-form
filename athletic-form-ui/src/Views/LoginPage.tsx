@@ -3,12 +3,15 @@ import { Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import '../styles/login.scss';
+import { apiClient } from '../Services/AxiosService';
+import { setTokenSourceMapRange } from 'typescript';
 
 
 export const LoginPage: React.FC = () => {
 
     const [email, setEmail] = useState<any | null>(null);
     const [password, setPassword] = useState<any | null>(null);
+    const [token, setToken] = useState<any | null>(null);
     const [showAlert, setShowAlert] = useState(false);
     const [usernameError, setUsernameError] = useState(false);
 
@@ -32,23 +35,33 @@ export const LoginPage: React.FC = () => {
         }
 
         // Format request body with credentials
-        const loginInfo = new URLSearchParams({
-            username: username,
-            password: password,
-            grant_type: 'password',
-        });
+        // const loginInfo = new URLSearchParams({
+        //     username: username,
+        //     password: password,
+        //     grant_type: 'password',
+        // });
         
         // Create request to 360 auth server
-        const request = new Request(`https://360Api.gordon.edu/token`, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            //mode: 'no-cors',
-            credentials: 'include',
-            body: loginInfo,
-        });
+        // const request = new Request(`https://360Api.gordon.edu/token`, {
+        //     method: 'post',
+        //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        //     //mode: 'no-cors',
+        //     credentials: 'include',
+        //     body: loginInfo,
+        // });
 
-        // Retrieve JWT Token
-        let token = await fetch(request).then(response => response.json()).then(data => data.access_token);
+        var credentials = `${username}:${password}`;
+        apiClient({
+            method: 'get',
+            url: `/authorization/token/${credentials}`,
+        }).then((res) => {
+             let val = res.data;
+             setToken(val);
+        })
+        .catch((error) => console.log(error));
+
+        console.log(token);
+        console.log("x");
         
         // Check if 360 backend authorized
         if(token != undefined) {
@@ -58,7 +71,7 @@ export const LoginPage: React.FC = () => {
             localStorage.setItem('email', email);
 
             // Redirect to home screen (TODO: redirect based on user role)
-            window.location.href = "/events";
+            // window.location.href = "/events";
         }
         else // Failed to authenticate
         {

@@ -6,17 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
 
 
-namespace AthleticFormCore.AuthorizationServer
-{
-    public static class Position
-    {
-        public const string STUDENT = "student";
-        public const string FACSTAFF = "facstaff";
-        public const string SUPERADMIN = "god";      // TODO: change in database to something more reverent
-        public const string READONLY = "readonly";
-    }
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorizationController : ControllerBase
@@ -28,15 +17,16 @@ namespace AthleticFormCore.AuthorizationServer
         }
 
         [HttpGet]
-        [Route("token/{username}/{password}")]
-        public IActionResult Get(string username, string password)
+        [Route("token/{credentials}")]
+        public string GetToken(string credentials)
         {
-
+            var usernamePassword = credentials.Split(':');
             // Get service account credentials
-            var serviceUsername = username;
-            var servicePassword = password;
+            var serviceUsername = usernamePassword[0];
+            var servicePassword = usernamePassword[1];
             // Syntax like : my.server.com:8080 
             var ldapServer = ConfigurationManager.AppSettings["ldapServer"];
+            Debug.WriteLine(ldapServer + " <---------- LDAP SERVER");
             try
             {
                 PrincipalContext ADServiceConnection = new PrincipalContext(
@@ -48,7 +38,7 @@ namespace AthleticFormCore.AuthorizationServer
                     servicePassword);
 
                 UserPrincipal userQuery = new UserPrincipal(ADServiceConnection);
-                userQuery.SamAccountName = username;
+                userQuery.SamAccountName = serviceUsername;
 
                 PrincipalSearcher search = new PrincipalSearcher(userQuery);
                 UserPrincipal userEntry = (UserPrincipal)search.FindOne();
@@ -65,15 +55,15 @@ namespace AthleticFormCore.AuthorizationServer
 
 
                     var areValidCredentials = ADUserConnection.ValidateCredentials(
-                        username,
-                        password,
+                        serviceUsername,
+                        servicePassword,
                         ContextOptions.SimpleBind | ContextOptions.SecureSocketLayer
                         );
 
                     if (areValidCredentials)
                     {
-                        var token = GenerateToken(username, password);
-                        return Ok(token);
+                        var token = GenerateToken(serviceUsername, servicePassword);
+                        return "Gucci";
                     }
                     else
                     {
@@ -90,7 +80,7 @@ namespace AthleticFormCore.AuthorizationServer
                 Debug.WriteLine("Exception caught: " + e.ToString());
             }
 
-            return BadRequest();
+            return "Prada";
         }
 
         private string GenerateToken(string username, string password)
@@ -98,4 +88,3 @@ namespace AthleticFormCore.AuthorizationServer
             return "Bearer xyz";
         }
     }
-}
