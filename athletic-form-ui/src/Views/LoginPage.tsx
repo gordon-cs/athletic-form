@@ -34,22 +34,6 @@ export const LoginPage: React.FC = () => {
             return;
         }
 
-        // Format request body with credentials
-        // const loginInfo = new URLSearchParams({
-        //     username: username,
-        //     password: password,
-        //     grant_type: 'password',
-        // });
-        
-        // Create request to 360 auth server
-        // const request = new Request(`https://360Api.gordon.edu/token`, {
-        //     method: 'post',
-        //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        //     //mode: 'no-cors',
-        //     credentials: 'include',
-        //     body: loginInfo,
-        // });
-
         var credentials = `${username}:${password}`;
         apiClient({
             method: 'get',

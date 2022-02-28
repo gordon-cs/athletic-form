@@ -2,6 +2,7 @@
 using System.DirectoryServices.AccountManagement;
 using System.Diagnostics;
 using System.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
 
@@ -25,14 +26,15 @@ using AthleticFormLibrary.DataAccess;
             var serviceUsername = usernamePassword[0];
             var servicePassword = usernamePassword[1];
             // Syntax like : my.server.com:8080 
-            var ldapServer = ConfigurationManager.AppSettings["ldapServer"];
-            Debug.WriteLine(ldapServer + " <---------- LDAP SERVER");
+            var ldapServer = "gordon.edu";
+            Debug.WriteLine(serviceUsername);
             try
             {
+
+
                 PrincipalContext ADServiceConnection = new PrincipalContext(
                     ContextType.Domain,
-                    ldapServer,
-                    "OU=Gordon College,DC=gordon,DC=edu",
+                    ldapServer, "OU=Gordon College,DC=gordon,DC=edu",
                     ContextOptions.Negotiate | ContextOptions.ServerBind | ContextOptions.SecureSocketLayer,
                     serviceUsername,
                     servicePassword);
@@ -63,11 +65,12 @@ using AthleticFormLibrary.DataAccess;
                     if (areValidCredentials)
                     {
                         var token = GenerateToken(serviceUsername, servicePassword);
-                        return "Gucci";
+                        return "Authorized!";
                     }
                     else
                     {
                         ADServiceConnection.Dispose();
+                        Debug.WriteLine("\n\nHERE\n\n");
                     }
                 }
                 else
@@ -80,7 +83,7 @@ using AthleticFormLibrary.DataAccess;
                 Debug.WriteLine("Exception caught: " + e.ToString());
             }
 
-            return "Prada";
+            return "Unauthorized!";
         }
 
         private string GenerateToken(string username, string password)
