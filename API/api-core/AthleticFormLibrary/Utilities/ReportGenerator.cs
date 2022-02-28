@@ -33,13 +33,13 @@ namespace AthleticFormLibrary.Utilities
 
         //Gets all students with a conflict for a specific class 
         //(Could possibly be merged with GetAllClassConflicts)
-        private string GetAllStudentsInClass(string class) {
-
+        private List<string> GetAllStudentsInClass(string class) {
+            return new List<string>();
         }
 
         //Gets all classes where at least one student has a conflict
-        private string GetAllClassConflicts(List<AthleticContext> conflicts) {
-            List<string> classConflicts = new List<string>();
+        private List<string> GetAllClassConflicts(List<AthleticContext> conflicts) {
+            List<string> classConflicts = new List<string>(); //Stores all classes with at least one conflict
             //Check each conflict
             foreach (var conflict in conflicts) {
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
@@ -58,6 +58,7 @@ namespace AthleticFormLibrary.Utilities
                     }
                 }
             }
+            return classConflicts;
         }
 
         public string GenerateReport(string major)
