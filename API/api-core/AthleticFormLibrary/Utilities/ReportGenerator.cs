@@ -33,12 +33,12 @@ namespace AthleticFormLibrary.Utilities
 
         //Gets all students with a conflict for a specific class 
         //(Could possibly be merged with GetAllClassConflicts)
-        private List<string> GetAllStudentsInClass(string class) {
+        private List<string> GetAllStudentsInClass(string classcode) {
             return new List<string>();
         }
 
         //Gets all classes where at least one student has a conflict
-        private List<string> GetAllClassConflicts(List<AthleticContext> conflicts) {
+        private List<string> GetAllClassConflicts(List<AthleticConflict> conflicts) {
             List<string> classConflicts = new List<string>(); //Stores all classes with at least one conflict
             //Check each conflict
             foreach (var conflict in conflicts) {
@@ -59,7 +59,7 @@ namespace AthleticFormLibrary.Utilities
                 }
             }
             return classConflicts;
-        }
+        }/**/
 
         public string GenerateReport(string major)
         {
