@@ -43,6 +43,10 @@ After cloning this repo:
 - Go to: `athletic-form => API`
 - Open `AthleticFormAPI.sln` in Visual Studio 2019
 
+## Starting the email scheduler
+- Start the backend, then go to
+- localhost:5001/api/Email/{whatever emails you want}
+
 ## Backend (VS Code) (Note, I've only tested this on Linux, so I'm not sure if these steps work on Windows yet)
 - First, make sure you have docker-compose installed on your system (follow instructions [here](https://docs.docker.com/compose/install/) (make sure to select the correct operating system)
 - ```cd clone-path/API/api-core/AthleticFormCore/AthleticSQLServer/ServerConfiguration```
