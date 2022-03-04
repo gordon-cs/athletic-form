@@ -45,15 +45,16 @@ export const LoginPage: React.FC = () => {
         .catch((error) => console.log(error));
 
         console.log(token);
-        console.log("x");
         
         // Check if 360 backend authorized
-        if(token != undefined) {
+        // if(token != undefined) {
+        if (token != "Unauthorized!" && token != undefined) {
             // Store the token to use as header
             localStorage.setItem('token', "Bearer " + token.toString());
             // Store email to lookup user roles
             localStorage.setItem('email', email);
 
+            console.log("redirect")
             // Redirect to home screen (TODO: redirect based on user role)
             // window.location.href = "/events";
         }
@@ -92,6 +93,10 @@ export const LoginPage: React.FC = () => {
 					onChange={(e: any) => {
 						setPassword(e.target.value);
 					}}
+                    onKeyPress={event => {
+                        if (event.key === 'Enter') {
+                            handleLogin()
+                        }}}
                     />
                     <h4> </h4>
                     <Button

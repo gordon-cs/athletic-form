@@ -5,9 +5,11 @@ using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 
-
-    [Route("api/[controller]")]
+[Route("api/[controller]")]
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
@@ -64,8 +66,8 @@ using AthleticFormLibrary.DataAccess;
 
                     if (areValidCredentials)
                     {
-                        var token = GenerateToken(serviceUsername, servicePassword);
-                        return "Authorized!";
+                        var token = GenerateToken(serviceUsername);
+                        return token;
                     }
                     else
                     {
@@ -86,8 +88,27 @@ using AthleticFormLibrary.DataAccess;
             return "Unauthorized!";
         }
 
-        private string GenerateToken(string username, string password)
+        private string GenerateToken(string username)
         {
-            return "Bearer xyz";
+            List<Claim> claims = null;
+            claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, username.Split('.')[0]),
+                new Claim(ClaimTypes.Name, username),
+                // TODO: Implement these
+                new Claim(ClaimTypes.Role, "staff"),
+                new Claim(ClaimTypes.NameIdentifier, "123")
+            };
+
+            var secretToken = new JwtSecurityToken(
+                    null,
+                    null,
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(30)
+                    );
+
+            JwtSecurityTokenHandler jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+
+            return jwtSecurityTokenHandler.WriteToken(secretToken);
         }
     }
