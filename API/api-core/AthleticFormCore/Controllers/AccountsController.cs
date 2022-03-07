@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.Models;
 using AthleticFormLibrary.DataAccess;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AthleticFormCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Staff")]
     public class AccountsController : ControllerBase
     {
         private readonly AthleticContext _context;

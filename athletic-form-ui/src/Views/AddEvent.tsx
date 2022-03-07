@@ -25,6 +25,11 @@ export const AddEvent: React.FC<Props> = () => {
 	let navigate = useNavigate();
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "..";
+		}
 		getAllEvents()
 			.then((res) => {
 				setEvents(res.data);

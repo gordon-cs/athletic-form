@@ -17,6 +17,11 @@ export const EventsPage: React.FC = () => {
 	const [dateFilter, setDateFilter] = useState<any | null>(null);
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "..";
+		}
 		getAllEvents()
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {

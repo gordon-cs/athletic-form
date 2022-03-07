@@ -56,7 +56,7 @@ export const LoginPage: React.FC = () => {
 
             console.log("redirect")
             // Redirect to home screen (TODO: redirect based on user role)
-            // window.location.href = "/events";
+            window.location.href = "/events";
         }
         else // Failed to authenticate
         {
