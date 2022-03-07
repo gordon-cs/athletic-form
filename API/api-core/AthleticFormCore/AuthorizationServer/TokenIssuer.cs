@@ -8,6 +8,8 @@ using AthleticFormLibrary.DataAccess;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 [Route("api/[controller]")]
     [ApiController]
@@ -90,25 +92,21 @@ using System.IdentityModel.Tokens.Jwt;
 
         private string GenerateToken(string username)
         {
-            List<Claim> claims = null;
-            claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, username.Split('.')[0]),
+            var claims = new[] {
                 new Claim(ClaimTypes.Name, username),
                 // TODO: Implement these
-                new Claim(ClaimTypes.Role, "staff"),
+                new Claim(ClaimTypes.Role, "Staff"),
                 new Claim(ClaimTypes.NameIdentifier, "123")
             };
 
-            var secretToken = new JwtSecurityToken(
-                    null,
-                    null,
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(30)
-                    );
+            // TODO: Implement key
+            var key = "tempSecretKey897634563234782347";
+            var issuer = "gordon.edu";
 
-            JwtSecurityTokenHandler jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
-
-            return jwtSecurityTokenHandler.WriteToken(secretToken);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims,
+                expires: DateTime.Now.AddMinutes(30), signingCredentials: credentials);
+            return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
     }

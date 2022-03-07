@@ -10,6 +10,10 @@ using AthleticFormLibrary.Utilities;
 using Microsoft.EntityFrameworkCore;
 using AthleticFormLibrary.Interfaces;
 using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Diagnostics;
 
 namespace AthleticFormCore
 {
@@ -51,6 +55,26 @@ namespace AthleticFormCore
             services.AddControllers();
                 services.AddMvc()
                     .AddControllersAsServices();
+
+
+            // TODO: replace mock values
+            var issuer = "gordon.edu";
+            var mySecret = Encoding.UTF8.GetBytes("tempSecretKey897634563234782347");
+            var mySecurityKey = new SymmetricSecurityKey(mySecret);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                Debug.WriteLine("Auth entered");
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = issuer,
+                    ValidAudience = issuer,
+                    IssuerSigningKey = mySecurityKey
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +85,9 @@ namespace AthleticFormCore
             }
 
             app.UseRouting();
-            
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseCors(builder => {
                     builder.WithOrigins("http://localhost:3000")
