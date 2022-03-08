@@ -50,16 +50,23 @@ export const LoginPage: React.FC = () => {
 
         console.log(token);
         
-        // Check if 360 backend authorized
+        // Check if backend authorized
         if (token !== "Unauthorized!" && token !== null) {
             // Store the token to use as header
+            console.log(JSON.parse(atob(token.split('.')[1])));
+            let role = JSON.parse(atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+            console.log(role);
             localStorage.setItem('token', "Bearer " + token.toString());
             // Store email to lookup user roles
             localStorage.setItem('email', email);
 
             console.log("redirect")
             // Redirect to home screen (TODO: redirect based on user role)
-            window.location.href = "/events";
+            if (role == "Staff") {
+                window.location.href = "coach/events";
+            } else {
+                window.location.href = "/events";
+            }
         }
         else // Failed to authenticate
         {
