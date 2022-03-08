@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AthleticFormLibrary.Models
 {
-    [Table("AthleticDatabase.Account", Schema = "dbo")]
+    [Table("Account", Schema = "dbo")]
     public class Account
     {
         public string Gordon_ID { get; set; }

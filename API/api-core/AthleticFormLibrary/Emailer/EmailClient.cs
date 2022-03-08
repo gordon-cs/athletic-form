@@ -10,23 +10,24 @@ namespace AthleticFormLibrary.Emailer
     public class EmailClient : IEmailer
     {
         private readonly IReportGeneration _generator;
-        private readonly AthleticContext _context;
+        private readonly AthleticContext _athleticContext;
+        private readonly AccountContext _accountContext;
 
-        public EmailClient(AthleticContext context, IReportGeneration generator) {
-            _context = context;
+        public EmailClient(AthleticContext athleticContext, IReportGeneration generator, AccountContext accountContext) {
+            _athleticContext = athleticContext;
             _generator = generator;
-
+            _accountContext = accountContext;
         }
 
         public List<MailMessage> WeeklyMail(string emails = "")
         {
             List<MailMessage> mailMessages = new List<MailMessage>();
             if (string.IsNullOrEmpty(emails)) {
-                List<string> courses = _context.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
+                List<string> courses = _athleticContext.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
                 foreach (string m in courses)
                 {
-                    int profId = _context.SectionMaster.Where(p => p.crs_cde == m).Select(x => x.Lead_Instructor_ID).FirstOrDefault();
-                    string emailAddress = _context.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
+                    int profId = _athleticContext.SectionMaster.Where(p => p.crs_cde == m).Select(x => x.Lead_Instructor_ID).FirstOrDefault();
+                    string emailAddress = _accountContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
                     mailMessages.Add(SendMail(m, emailAddress));
                 }
             } else {
