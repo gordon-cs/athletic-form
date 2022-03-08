@@ -17,6 +17,7 @@ namespace AthleticFormCore
     {
         string userSecret = string.Empty;
         string accountUserSecret = string.Empty;
+        string scheduleUserSecret = string.Empty;
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
 
@@ -55,6 +56,13 @@ namespace AthleticFormCore
             services.AddDbContext<AccountContext>(options => {
                 options.UseSqlServer(accountUserSecret);
             });
+
+            scheduleUserSecret = Configuration["ScheduleConnectionString"];
+            services.AddCors();
+            services.AddDbContext<ScheduleContext>(options =>
+            {
+                options.UseSqlServer(scheduleUserSecret);
+            });
                         
             services.AddControllers();
                 services.AddMvc()
@@ -72,7 +80,6 @@ namespace AthleticFormCore
             
 
             app.UseCors(builder => {
-                    //replace localhost with your ip address
                     builder.WithOrigins("http://localhost:3000")
                         .AllowAnyMethod()
                         .AllowAnyHeader();
