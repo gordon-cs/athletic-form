@@ -76,4 +76,6 @@ After cloning this repo:
 ## Running Tests
 -  Make sure the backend is running before running your unit tests.
 - Open up a new terminal window and `cd repoPath/API/api-core/Tests`
-- `pytest`
+- Make sure python is installed if not install it [here](https://www.python.org/downloads/)
+- To install pytest, run `pip install pytest` or `python -m pip install pytest` or `py -m pip install pytest`.
+- To run the tests, run `pytest` or `python -m pytest` or `py -m pytest`
