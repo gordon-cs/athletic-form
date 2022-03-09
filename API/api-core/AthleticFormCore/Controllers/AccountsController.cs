@@ -12,22 +12,27 @@ namespace AthleticFormCore.Controllers
     public class AccountsController : ControllerBase
     {
         private readonly AthleticContext _athleticContext;
-        private readonly AccountContext _accountContext;
-        public AccountsController(AthleticContext athleticContext, AccountContext accountContext) {
+        public AccountsController(AthleticContext athleticContext) {
             _athleticContext = athleticContext;
-            _accountContext = accountContext;
         }
 
         [HttpGet]
         public List<Account> GetAllAccounts()
         {
-            return _accountContext.Accounts.ToList();
+            return _athleticContext.Accounts.ToList();
         }
 
         [HttpGet]
         [Route("StudentsEnrolledIn/{email}")]
-        public List<StudentsEnrolledIn> GetStudentsEnrolledIn(string email) {
-            return _athleticContext.StudentsEnrolledIn.Where(s => s.Email == email).ToList();
+        public object GetStudentsEnrolledIn(string email) {
+            var enrolledIn = (
+                from a in _athleticContext.Accounts
+                join sch in _athleticContext.StudentCrsHists on a.Gordon_ID equals sch.ID_NUM.ToString()
+                where a.Email == email
+                select new { Gordon_ID = a.Gordon_ID, Nickname = a.Nickname, Firstname = a.FirstName, Lastname = a.LastName, 
+                    Email = a.Email, CRS_CDE = sch.CRS_CDE }
+            );
+            return enrolledIn;
         }
     }
 }

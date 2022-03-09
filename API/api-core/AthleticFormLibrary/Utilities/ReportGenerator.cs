@@ -56,7 +56,20 @@ namespace AthleticFormLibrary.Utilities
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
                 report += String.Format("<h3>{0}: {1}</h3>", athleticEvent.Sport, athleticEvent.Opponent);
                 report += tableOpeningTag + tableRowOpeningTag + courseCodeHeader + conflictHeader + tableRowClosingTag;
-                List<StudentsEnrolledIn> courses = _context.StudentsEnrolledIn.Where(s => s.Email == conflict.Email).ToList();
+                var courses = (
+                    from a in _context.Accounts
+                    join sch in _context.StudentCrsHists on a.Gordon_ID equals sch.ID_NUM.ToString()
+                    where a.Email == conflict.Email
+                    select new
+                    {
+                        Gordon_ID = a.Gordon_ID,
+                        Nickname = a.Nickname,
+                        Firstname = a.FirstName,
+                        Lastname = a.LastName,
+                        Email = a.Email,
+                        CRS_CDE = sch.CRS_CDE
+                    }
+                );
                 foreach (var course in courses) {
                     AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE 
                         && c.Email == conflict.Email && c.EventID == conflict.EventID).FirstOrDefault();

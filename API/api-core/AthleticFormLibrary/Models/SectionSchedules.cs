@@ -1,10 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AthleticFormLibrary.Models
 {
-    [Table("SECTION_SCHEDULES", Schema = "dbo")]
     public class SectionSchedules
     {
         public string yr_cde { get; set; }

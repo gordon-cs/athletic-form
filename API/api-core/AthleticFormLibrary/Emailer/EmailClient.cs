@@ -11,15 +11,10 @@ namespace AthleticFormLibrary.Emailer
     {
         private readonly IReportGeneration _generator;
         private readonly AthleticContext _athleticContext;
-        private readonly AccountContext _accountContext;
-        private readonly ScheduleContext _scheduleContext;
 
-        public EmailClient(AthleticContext athleticContext, IReportGeneration generator, AccountContext accountContext, 
-            ScheduleContext scheduleContext) {
+        public EmailClient(AthleticContext athleticContext, IReportGeneration generator) {
             _athleticContext = athleticContext;
             _generator = generator;
-            _accountContext = accountContext;
-            _scheduleContext = scheduleContext;
         }
 
         public List<MailMessage> WeeklyMail(string emails = "")
@@ -29,8 +24,8 @@ namespace AthleticFormLibrary.Emailer
                 List<string> courses = _athleticContext.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
                 foreach (string m in courses)
                 {
-                    int profId = _scheduleContext.SectionSchedules.Where(p => p.crs_cde == m).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
-                    string emailAddress = _accountContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
+                    int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
+                    string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
                     mailMessages.Add(SendMail(m, emailAddress));
                 }
             } else {

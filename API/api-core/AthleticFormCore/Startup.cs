@@ -10,6 +10,7 @@ using AthleticFormLibrary.Utilities;
 using Microsoft.EntityFrameworkCore;
 using AthleticFormLibrary.Interfaces;
 using System;
+using System.Diagnostics;
 
 namespace AthleticFormCore
 {
@@ -47,13 +48,7 @@ namespace AthleticFormCore
                 options.UseSqlServer(Configuration.GetConnectionString("AthleticsAbsence"));
             });
 
-            services.AddDbContext<AccountContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("AccountData"));
-            });
-
-            services.AddDbContext<ScheduleContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("ScheduleData"));
-            });
+            DiagnosticListener.AllListeners.Subscribe(new GlobalListener());
 
             services.AddControllers();
                 services.AddMvc()
