@@ -46,7 +46,15 @@ namespace AthleticFormCore
             services.AddDbContext<AthleticContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("AthleticsAbsence"));
             });
-                        
+
+            services.AddDbContext<AccountContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("AccountData"));
+            });
+
+            services.AddDbContext<ScheduleContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("ScheduleData"));
+            });
+
             services.AddControllers();
                 services.AddMvc()
                     .AddControllersAsServices();
