@@ -15,9 +15,7 @@ namespace AthleticFormCore
 {
     public class Startup
     {
-        string userSecret = string.Empty;
-        string accountUserSecret = string.Empty;
-        string scheduleUserSecret = string.Empty;
+       
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
 
@@ -44,24 +42,9 @@ namespace AthleticFormCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            userSecret = Configuration["LocalConnectionString"];  
             services.AddCors();
-            services.AddDbContext<AthleticContext>(options =>
-            {
-                options.UseSqlServer(userSecret);
-            });
-
-            accountUserSecret = Configuration["AccountConnectionString"];
-            services.AddCors();
-            services.AddDbContext<AccountContext>(options => {
-                options.UseSqlServer(accountUserSecret);
-            });
-
-            scheduleUserSecret = Configuration["ScheduleConnectionString"];
-            services.AddCors();
-            services.AddDbContext<ScheduleContext>(options =>
-            {
-                options.UseSqlServer(scheduleUserSecret);
+            services.AddDbContext<AthleticContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("AthleticsAbsence"));
             });
                         
             services.AddControllers();

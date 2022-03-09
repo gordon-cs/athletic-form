@@ -4,13 +4,17 @@
 
 - https://trello.com/b/arqAL20O/athletic-form
 
+## Documentation
+- [Documentation](https://gordon-cs.github.io/Athletic-Absence-Documentation/)
+
+
 ## Problem Statement:
 
 - https://docs.google.com/document/d/1WDIsoW0Kt1ZyuIqRdbD_QvH8wQZq6wyaRMwcDqkzhNE/edit?usp=sharing
 
 ## Design Document:
 
-- https://docs.google.com/document/d/1SeZQBuNud6zT2_0GWvgOuMFjFnYeGXEkpj1ZXIVmTcQ/edit
+- https://docs.google.com/document/d/1My6BqSu2o57S0nU-mNS_pjMHAFhsBtQhQHh938Vvrmw/edit?usp=sharing
 
 ## Lofi UI Usability Test Report:
 
@@ -38,6 +42,10 @@ After cloning this repo:
 - Clone this repo
 - Go to: `athletic-form => API`
 - Open `AthleticFormAPI.sln` in Visual Studio 2019
+
+## Starting the email scheduler
+- Start the backend, then go to
+- localhost:5001/api/Email/{whatever emails you want}
 
 ## Backend (VS Code) (Note, I've only tested this on Linux, so I'm not sure if these steps work on Windows yet)
 - First, make sure you have docker-compose installed on your system (follow instructions [here](https://docs.docker.com/compose/install/) (make sure to select the correct operating system)
