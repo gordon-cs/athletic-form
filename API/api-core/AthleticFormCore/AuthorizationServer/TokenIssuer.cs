@@ -92,21 +92,33 @@ using System.Text;
 
         private string GenerateToken(string username)
         {
-            var claims = new[] {
-                new Claim(ClaimTypes.Name, username),
-                // TODO: Implement these
-                new Claim(ClaimTypes.Role, "Staff"),
-                new Claim(ClaimTypes.NameIdentifier, "123")
-            };
+            // TODO: Move this constant
+            const string scheduler = "jacob.christopher";
+            Claim[] claims;
 
-            // TODO: Implement key
+            if (username == scheduler)
+            {
+                claims = new[] {
+                        new Claim(ClaimTypes.Name, username),
+                        new Claim(ClaimTypes.Role, "Scheduler"),
+                    };
+            }
+            else
+            {
+                claims = new[] {
+                        new Claim(ClaimTypes.Name, username),
+                        new Claim(ClaimTypes.Role, "Staff"),
+                    };
+            }
+
+            // TODO: Hidden key
             var key = "tempSecretKey897634563234782347";
             var issuer = "gordon.edu";
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims,
-                expires: DateTime.Now.AddMinutes(30), signingCredentials: credentials);
+                expires: DateTime.Now.AddMinutes(2), signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
     }
