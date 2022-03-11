@@ -39,6 +39,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 			.catch((error) => {
 				console.log(error);
 			});
+		//Call the emailer
 	};
 
 	return (

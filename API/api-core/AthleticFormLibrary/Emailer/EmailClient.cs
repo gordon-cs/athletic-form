@@ -37,6 +37,11 @@ namespace AthleticFormLibrary.Emailer
             return mailMessages;
         }
 
+        public List<MailMessage> LateMail(string emails = "", int number = 0);
+        {
+            
+        }
+
         public MailMessage SendMail(string course, string profEmail, int number = 0) {
             System.Diagnostics.Debug.WriteLine("EMAIL...");
             using (var smtp = Injector.Resolve<SmtpClient>()) {
