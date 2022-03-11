@@ -41,11 +41,11 @@ namespace AthleticFormLibrary.Emailer
             System.Diagnostics.Debug.WriteLine("EMAIL...");
             using (var smtp = Injector.Resolve<SmtpClient>()) {
                 /*replace with your email */
-                var from_email = "first.last@gordon.edu";
+                var from_email = "aidan.perez@gordon.edu";
                 var credential = new NetworkCredential {
                     //replace with your password
-                    UserName = "first.last@gordon.edu",
-                    Password = "password"
+                    UserName = "aidan.perez@gordon.edu",
+                    Password = "Bombante123#"
                 };
                 smtp.Credentials = credential;
                 smtp.Host = "smtp.office365.com";

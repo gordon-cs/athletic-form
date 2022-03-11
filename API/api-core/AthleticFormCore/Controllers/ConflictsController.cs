@@ -2,7 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
-    [Route("api/[controller]")]
+using AthleticFormLibrary.Models;
+using AthleticFormLibrary.Utilities;
+using System;
+
+[Route("api/[controller]")]
     [ApiController]
     public class ConflictsController : ControllerBase {
         private readonly AthleticContext _conflictContext;
@@ -19,7 +23,11 @@ using AthleticFormLibrary.DataAccess;
         [HttpGet]
         [Route("{eventId}")]
         public object GetAllConflictsByEventId(int eventId) {
-            return GetAllConflicts().FindAll(c => c.EventID == eventId).Select(c => new {c.Email, c.FirstName, c.LastName}).Distinct();
+            AthleticEvent athleticEvent = _conflictContext.AthleticEvents.Where(a => a.EventId == eventId).SingleOrDefault();
+            string year = YearTermCodeHelper.CalculateYearCode((DateTime) athleticEvent.EventDate);
+            string term = YearTermCodeHelper.CalculateTermCode((DateTime)athleticEvent.EventDate);
+            return GetAllConflicts().FindAll(c => c.EventID == eventId).Select(c => new { c.Email, c.FirstName, c.LastName, c.YearCode, c.TermCode })
+                .Where(n => n.YearCode == year && n.TermCode == term).Distinct();
         }
 
         private List<AthleticConflict> GetAllConflicts() {
