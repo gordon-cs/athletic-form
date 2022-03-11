@@ -31,14 +31,23 @@ namespace AthleticFormLibrary.Utilities
             _context = context;
         }
 
-        public string GenerateReport(string major)
+        public string GenerateReport(string major, int number = 0)
         {
-            string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag + 
+            string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag +
                 nameHeader + emailHeader + eventHeader + approvalStatusHeader + tableRowClosingTag;
             string termCode = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
             string yearCode = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
-            List<AthleticConflict> conflicts = _context.AthleticConflicts.Where(c => c.CourseCode.StartsWith(major) 
-                && c.YearCode == yearCode && c.TermCode == termCode).ToList();
+            List<AthleticConflict> conflicts = new List<AthleticConflict>();
+            if (number == 0)
+            {
+                conflicts = _context.AthleticConflicts.Where(c => c.CourseCode.StartsWith(major)
+                    && c.YearCode == yearCode && c.TermCode == termCode).ToList();
+            }
+            else
+            {
+                conflicts = _context.AthleticConflicts.Where(c => c.CourseCode.StartsWith(major)
+                    && c.YearCode == yearCode && c.TermCode == termCode).Take(number).ToList();
+            }
             foreach (var conflict in conflicts.Select(c => new { c.Email, c.FirstName, c.LastName, c.EventID }).Distinct().ToList()) {
                 report += tableRowOpeningTag;
                 report += String.Format("<td>{0} {1}</td>", conflict.FirstName, conflict.LastName);

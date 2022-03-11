@@ -17,7 +17,7 @@ namespace AthleticFormLibrary.Emailer
             _generator = generator;
         }
 
-        public List<MailMessage> WeeklyMail(string emails = "")
+        public List<MailMessage> WeeklyMail(string emails = "", int number = 0)
         {
             List<MailMessage> mailMessages = new List<MailMessage>();
             if (string.IsNullOrEmpty(emails)) {
@@ -31,13 +31,13 @@ namespace AthleticFormLibrary.Emailer
             } else {
                 string[] emailsAsArray = emails.Split(',');
                 foreach (var email in emailsAsArray) {
-                    mailMessages.Add(SendMail("", email));
+                    mailMessages.Add(SendMail("", email, number));
                 }
             }
             return mailMessages;
         }
 
-        public MailMessage SendMail(string course, string profEmail) {
+        public MailMessage SendMail(string course, string profEmail, int number = 0) {
             System.Diagnostics.Debug.WriteLine("EMAIL...");
             using (var smtp = Injector.Resolve<SmtpClient>()) {
                 /*replace with your email */
@@ -57,7 +57,7 @@ namespace AthleticFormLibrary.Emailer
                 message.To.Add(profEmail);
                 message.Subject = "Athletic Conflicts";
 
-                message.Body = _generator.GenerateReport(course);
+                message.Body = _generator.GenerateReport(course, number);
                 message.IsBodyHtml = true;
 
                 smtp.Send(message);
