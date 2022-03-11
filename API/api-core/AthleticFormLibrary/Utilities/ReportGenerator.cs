@@ -35,8 +35,11 @@ namespace AthleticFormLibrary.Utilities
         {
             string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag + 
                 nameHeader + emailHeader + eventHeader + approvalStatusHeader + tableRowClosingTag;
-            List<AthleticConflict> conflicts = _context.AthleticConflicts.Where(c => c.CourseCode.StartsWith(major)).ToList();
-            foreach (var conflict in conflicts) {
+            string termCode = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
+            string yearCode = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
+            List<AthleticConflict> conflicts = _context.AthleticConflicts.Where(c => c.CourseCode.StartsWith(major) 
+                && c.YearCode == yearCode && c.TermCode == termCode).ToList();
+            foreach (var conflict in conflicts.Select(c => new { c.Email, c.FirstName, c.LastName, c.EventID }).Distinct().ToList()) {
                 report += tableRowOpeningTag;
                 report += String.Format("<td>{0} {1}</td>", conflict.FirstName, conflict.LastName);
                 report += String.Format("<td>{0}</td>", conflict.Email);
@@ -51,7 +54,7 @@ namespace AthleticFormLibrary.Utilities
                 report += tableRowClosingTag;
             }
             report += tableClosingTag;
-            foreach (var conflict in conflicts) {
+            foreach (var conflict in conflicts.Select(c => new { c.Email, c.FirstName, c.LastName, c.EventID }).Distinct().ToList()) {
                 report += String.Format("<h2>{0} {1}</h2>", conflict.FirstName, conflict.LastName);
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
                 report += String.Format("<h3>{0}: {1}</h3>", athleticEvent.Sport, athleticEvent.Opponent);
@@ -60,6 +63,8 @@ namespace AthleticFormLibrary.Utilities
                     from a in _context.Accounts
                     join sch in _context.StudentCrsHists on a.Gordon_ID equals sch.ID_NUM.ToString()
                     where a.Email == conflict.Email
+                    && sch.YR_CDE == yearCode
+                    && sch.TRM_CDE == termCode
                     select new
                     {
                         Gordon_ID = a.Gordon_ID,
@@ -67,12 +72,14 @@ namespace AthleticFormLibrary.Utilities
                         Firstname = a.FirstName,
                         Lastname = a.LastName,
                         Email = a.Email,
-                        CRS_CDE = sch.CRS_CDE
+                        CRS_CDE = sch.CRS_CDE,
+                        TRM_CDE = sch.TRM_CDE,
+                        YR_CDE = sch.YR_CDE
                     }
-                );
+                ).ToList();
                 foreach (var course in courses) {
-                    AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE 
-                        && c.Email == conflict.Email && c.EventID == conflict.EventID).FirstOrDefault();
+                    AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE && c.YearCode == yearCode
+                        && c.TermCode == termCode && c.Email == conflict.Email && c.EventID == conflict.EventID).FirstOrDefault();
                     if (conflictForCourse != null) {
                         report += redTableRowOpeningTag;
                         report += String.Format("<td>{0}</td>", course.CRS_CDE);
