@@ -8,7 +8,9 @@ namespace AthleticFormLibrary.Utilities
 {
     public class EmailScheduler : IScheduler
     {
-       private List<Timer> timers = new List<Timer>();
+        private List<Timer> timers = new List<Timer>();
+        //Unsure of the best way to do this
+        //private List<> lateUpdates = new List<>();
 
         private readonly IEmailer _emailer;
 

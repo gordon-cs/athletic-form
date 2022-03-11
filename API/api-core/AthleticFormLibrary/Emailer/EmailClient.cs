@@ -39,7 +39,22 @@ namespace AthleticFormLibrary.Emailer
 
         public List<MailMessage> LateMail(string emails = "", int number = 0);
         {
-            
+           List<MailMessage> mailMessages = new List<MailMessage>();
+            if (string.IsNullOrEmpty(emails)) {
+                List<string> courses = _athleticContext.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
+                foreach (string m in courses)
+                {
+                    int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
+                    string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
+                    mailMessages.Add(SendMail(m, emailAddress));
+                }
+            } else {
+                string[] emailsAsArray = emails.Split(',');
+                foreach (var email in emailsAsArray) {
+                    mailMessages.Add(SendMail("", email, number));
+                }
+            }
+            return mailMessages; 
         }
 
         public MailMessage SendMail(string course, string profEmail, int number = 0) {
