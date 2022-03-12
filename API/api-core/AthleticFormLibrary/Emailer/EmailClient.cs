@@ -37,6 +37,8 @@ namespace AthleticFormLibrary.Emailer
             return mailMessages;
         }
 
+
+        //NEED TO UPDATE THE DB
         public List<MailMessage> LateMail(string emails = "", int number = 0);
         {
            List<MailMessage> mailMessages = new List<MailMessage>();

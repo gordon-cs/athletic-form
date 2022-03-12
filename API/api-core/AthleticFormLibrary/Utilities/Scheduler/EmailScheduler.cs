@@ -37,9 +37,24 @@ namespace AthleticFormLibrary.Utilities
         }
 
         //A function to post updates to an event that has already had it's
-        //notification sent out
+        //notification sent out. Checks every 'hoursToNextCheck' hours (default '2').
         public void CheckIfLateUpdate() {
-            //null
+            float hoursToNextCheck = 2;
+
+            // Calculate period until first run
+            DateTime now = DateTime.Now;
+            TimeSpan timeRemaining = timeUntilTask();
+            if (timeRemaining <= TimeSpan.Zero)
+            {
+                timeRemaining = TimeSpan.Zero;
+            }
+
+            // Set a timer to indicate when this service should run agian
+            var timer = new Timer(x => {
+                _emailer.LateMail();
+            }, null, timeRemaining, TimeSpan.FromMinutes(hoursToNextCheck * 60));
+
+            timers.Add(timer);
         }
 
         public void ScheduleTestTask()
