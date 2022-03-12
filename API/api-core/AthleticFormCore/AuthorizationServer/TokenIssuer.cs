@@ -1,12 +1,9 @@
 ﻿using System;
 using System.DirectoryServices.AccountManagement;
 using System.Diagnostics;
-using System.Configuration;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
 using System.Security.Claims;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -93,10 +90,10 @@ using System.Text;
         private string GenerateToken(string username)
         {
             // TODO: Move this constant file
-            const string scheduler = "jacob.christopher";
+            string[] scheduler = new string[1] { "jacob.christopher" };
 
             Claim[] claims;
-            if (username == scheduler)
+            if (Array.IndexOf(scheduler, username) != -1)
             {
                 claims = new[] {
                         new Claim(ClaimTypes.Name, username),
