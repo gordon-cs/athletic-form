@@ -83,6 +83,8 @@ namespace AthleticFormCore
             /*For testing purposes.  Sends every 3 minutes instead
                 of every week.*/
             //emailScheduler.ScheduleTestTask();
+            //Start the late update scheduling service
+            emailScheduler.CheckIfLateUpdate();
         }
     }
 }

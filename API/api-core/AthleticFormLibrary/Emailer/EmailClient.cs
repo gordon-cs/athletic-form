@@ -21,7 +21,7 @@ namespace AthleticFormLibrary.Emailer
         {
             List<MailMessage> mailMessages = new List<MailMessage>();
             if (string.IsNullOrEmpty(emails)) {
-                List<string> courses = _athleticContext.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
+                List<string> courses = _athleticContext.AthleticConflicts.Where(u => c.LastUpdate >= c.LastEmail).Select(c => c.CourseCode).Distinct().ToList();
                 foreach (string m in courses)
                 {
                     int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
