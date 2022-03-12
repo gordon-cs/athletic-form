@@ -6,14 +6,17 @@ using Microsoft.Extensions.Hosting;
 using Unity;
 using AthleticFormLibrary;
 using AthleticFormLibrary.DataAccess;
-using AthleticFormLibrary.Utilities;
 using Microsoft.EntityFrameworkCore;
 using AthleticFormLibrary.Interfaces;
-using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace AthleticFormCore
 {
@@ -56,15 +59,17 @@ namespace AthleticFormCore
                 services.AddMvc()
                     .AddControllersAsServices();
 
+            // Write key and roles from user secrets to secure file
+            // TODO: Add roles with similar mechanism
+            string keyJson = Configuration["LoginKey"];
+            File.WriteAllText(@"./Properties/loginKey.json", keyJson);
 
-            // TODO: replace mock values
             var issuer = "gordon.edu";
-            var mySecret = Encoding.UTF8.GetBytes("tempSecretKey897634563234782347");
+            var mySecret = Encoding.UTF8.GetBytes(keyJson);
             var mySecurityKey = new SymmetricSecurityKey(mySecret);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
-                Debug.WriteLine("Auth entered");
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

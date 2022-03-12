@@ -92,10 +92,10 @@ using System.Text;
 
         private string GenerateToken(string username)
         {
-            // TODO: Move this constant
+            // TODO: Move this constant file
             const string scheduler = "jacob.christopher";
-            Claim[] claims;
 
+            Claim[] claims;
             if (username == scheduler)
             {
                 claims = new[] {
@@ -111,14 +111,14 @@ using System.Text;
                     };
             }
 
-            // TODO: Hidden key
-            var key = "tempSecretKey897634563234782347";
+            // TODO: Add key generation
+            var key = System.IO.File.ReadAllText(@"./Properties/loginKey.json");
             var issuer = "gordon.edu";
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims,
-                expires: DateTime.Now.AddMinutes(2), signingCredentials: credentials);
+                expires: DateTime.Now.AddMinutes(90), signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
     }
