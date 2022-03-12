@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { getAllEvents } from '../Services/EventService';
+import { getAllEvents, removeEvent } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Button, Card, CardActions, CardHeader } from '@mui/material';
@@ -7,6 +7,8 @@ import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
+import { getDateTimeAsInt } from '../Helpers/DateTimeHelpers';
+import { time } from 'console';
 
 
 export const EventsPage: React.FC = () => {
@@ -20,6 +22,11 @@ export const EventsPage: React.FC = () => {
 		getAllEvents()
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {
+					const d = new Date();
+					//Deletes events that have already happened
+					if (getDateTimeAsInt(e.eventDate) < getDateTimeAsInt(d) - 1) {
+						removeEvent(e.eventId)
+					}
 					return e.isDeleted === false;
 				});
 				console.log(eventList);
