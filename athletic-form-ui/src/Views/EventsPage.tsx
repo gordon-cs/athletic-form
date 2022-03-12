@@ -46,7 +46,7 @@ export const EventsPage: React.FC = () => {
 					variant={'outlined'}
 				>
 					<FaTrashAlt></FaTrashAlt>
-					View Deleted Events
+					View Previous / Deleted Events
 				</Button>
 			</Link>
 			<h3>Filter By: {" "}
