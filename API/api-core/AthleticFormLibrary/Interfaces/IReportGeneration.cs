@@ -5,6 +5,6 @@ namespace AthleticFormLibrary.Interfaces
 {
     public interface IReportGeneration {
         //Eventually, replace with actual student data
-         string GenerateReport(string major);
+         string GenerateReport(string major, int number = 0);
     }
 }

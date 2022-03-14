@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AthleticFormLibrary.Models {
-    [Table("AthleticDatabase.AthleticEvents",Schema ="dbo")]
+    [Table("AthleticEvent",Schema ="AthleticAbsence")]
     public class AthleticEvent {
         [Key]
         public int EventId { get; set; }
