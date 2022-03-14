@@ -4,13 +4,17 @@
 
 - https://trello.com/b/arqAL20O/athletic-form
 
+## Documentation
+- [Documentation](https://gordon-cs.github.io/Athletic-Absence-Documentation/)
+
+
 ## Problem Statement:
 
 - https://docs.google.com/document/d/1WDIsoW0Kt1ZyuIqRdbD_QvH8wQZq6wyaRMwcDqkzhNE/edit?usp=sharing
 
 ## Design Document:
 
-- https://docs.google.com/document/d/1SeZQBuNud6zT2_0GWvgOuMFjFnYeGXEkpj1ZXIVmTcQ/edit
+- https://docs.google.com/document/d/1My6BqSu2o57S0nU-mNS_pjMHAFhsBtQhQHh938Vvrmw/edit?usp=sharing
 
 ## Lofi UI Usability Test Report:
 
@@ -38,6 +42,10 @@ After cloning this repo:
 - Clone this repo
 - Go to: `athletic-form => API`
 - Open `AthleticFormAPI.sln` in Visual Studio 2019
+
+## Starting the email scheduler
+- Start the backend, then go to
+- localhost:5001/api/Email/{whatever emails you want}
 
 ## Backend (VS Code) (Note, I've only tested this on Linux, so I'm not sure if these steps work on Windows yet)
 - First, make sure you have docker-compose installed on your system (follow instructions [here](https://docs.docker.com/compose/install/) (make sure to select the correct operating system)
@@ -68,4 +76,8 @@ After cloning this repo:
 ## Running Tests
 -  Make sure the backend is running before running your unit tests.
 - Open up a new terminal window and `cd repoPath/API/api-core/Tests`
-- `pytest`
+- Make sure python is installed if not install it [here](https://www.python.org/downloads/)
+- To install pytest, run `pip install pytest` or `python -m pip install pytest` or `py -m pip install pytest`.
+- Change the from_email and username in EmailClient.cs are set to your Gordon email and the password to your Gordon password.
+- To run the tests, run `pytest` or `python -m pytest` or `py -m pytest`
+- If you get an SSLError when running the tests, comment out line 7 in pytest_components.py where it says `return requests.get(fullUrl)` and remove the comment in line 9 where it says `return requests.get(fullUrl, verify=False)` and run the tests again

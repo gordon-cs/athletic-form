@@ -22,10 +22,11 @@ export function getConflictsByEventId(eventId: number): AxiosPromise<any> {
 	});
 }
 
-export function getClassesEnrolled(email: string) : AxiosPromise<any> {
+export function getClassesEnrolled(email: string, yearCode: string, 
+	termCode: string) : AxiosPromise<any> {
 	return apiClient({
 		method: 'get',
-		url: `/accounts/studentsenrolledin/${email}`,
+		url: `/accounts/studentsenrolledin/${email}/${yearCode}/${termCode}`,
 	});
 }
 

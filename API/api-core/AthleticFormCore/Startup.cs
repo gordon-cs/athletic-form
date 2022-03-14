@@ -10,12 +10,13 @@ using AthleticFormLibrary.Utilities;
 using Microsoft.EntityFrameworkCore;
 using AthleticFormLibrary.Interfaces;
 using System;
+using System.Diagnostics;
 
 namespace AthleticFormCore
 {
     public class Startup
     {
-        string userSecret = string.Empty;
+       
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
 
@@ -42,12 +43,13 @@ namespace AthleticFormCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            userSecret = Configuration["LocalConnectionString"];  
             services.AddCors();
             services.AddDbContext<AthleticContext>(options => {
-                options.UseSqlServer(userSecret);
+                options.UseSqlServer(Configuration.GetConnectionString("AthleticsAbsence"));
             });
-                        
+
+            DiagnosticListener.AllListeners.Subscribe(new GlobalListener());
+
             services.AddControllers();
                 services.AddMvc()
                     .AddControllersAsServices();

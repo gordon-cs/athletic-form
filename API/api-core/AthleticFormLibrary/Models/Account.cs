@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AthleticFormLibrary.Models {
-    [Table("AthleticDatabase.Account", Schema ="dbo")]
-    public class Account {
+namespace AthleticFormLibrary.Models
+{
+    public class Account
+    {
         public string Gordon_ID { get; set; }
         public string Nickname { get; set; }
         public string FirstName { get; set; }
