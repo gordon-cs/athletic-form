@@ -1,22 +1,17 @@
+using AthleticFormLibrary;
+using AthleticFormLibrary.DataAccess;
+using AthleticFormLibrary.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Unity;
-using AthleticFormLibrary;
-using AthleticFormLibrary.DataAccess;
-using Microsoft.EntityFrameworkCore;
-using AthleticFormLibrary.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Diagnostics;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
+using System.Text;
+using Unity;
 
 namespace AthleticFormCore
 {
