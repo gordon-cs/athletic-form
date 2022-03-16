@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-[Table("AthleticDatabase.InEvent", Schema="dbo")]
+[Table("InEvent", Schema="AthleticAbsence")]
 public class PlayersInEvent {
     public string Gordon_ID { get; set; }
     public int EventID { get; set; }

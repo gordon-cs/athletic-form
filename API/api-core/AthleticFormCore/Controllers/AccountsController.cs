@@ -13,21 +13,28 @@ namespace AthleticFormCore.Controllers
     [Authorize(Roles = "Staff")]
     public class AccountsController : ControllerBase
     {
-        private readonly AthleticContext _context;
-        public AccountsController(AthleticContext context) {
-            _context = context;
+        private readonly AthleticContext _athleticContext;
+        public AccountsController(AthleticContext athleticContext) {
+            _athleticContext = athleticContext;
         }
 
         [HttpGet]
-        public List<Account> GetAll() {
-            return _context.Accounts.ToList();
+        public List<Account> GetAllAccounts()
+        {
+            return _athleticContext.Accounts.ToList();
         }
 
-
         [HttpGet]
-        [Route("StudentsEnrolledIn/{email}")]
-        public List<StudentsEnrolledIn> GetStudentsEnrolledIn(string email) {
-            return _context.StudentsEnrolledIn.Where(s => s.Email == email).ToList();
+        [Route("StudentsEnrolledIn/{email}/{yearCode}/{termCode}")]
+        public object GetStudentsEnrolledIn(string email, string yearCode, string termCode) {
+            var enrolledIn = (
+                from a in _athleticContext.Accounts
+                join sch in _athleticContext.StudentCrsHists on a.Gordon_ID equals sch.ID_NUM.ToString()
+                where a.Email == email && sch.YR_CDE == yearCode && sch.TRM_CDE == termCode
+                select new { Gordon_ID = a.Gordon_ID, Nickname = a.Nickname, Firstname = a.FirstName, Lastname = a.LastName, 
+                    Email = a.Email, CRS_CDE = sch.CRS_CDE, YR_CDE = sch.YR_CDE, TRM_CDE = sch.TRM_CDE }
+            );
+            return enrolledIn;
         }
 
 

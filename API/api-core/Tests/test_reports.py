@@ -1,7 +1,7 @@
 import pytest_components
 
 def test_getReport():
-    response = pytest_components.get("/Reports")
+    response = pytest_components.get("/Reports/20")
     assert response.status_code == 200
     report = response.content
     report = report.decode()
