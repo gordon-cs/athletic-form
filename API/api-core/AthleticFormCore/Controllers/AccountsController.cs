@@ -14,7 +14,8 @@ namespace AthleticFormCore.Controllers
     public class AccountsController : ControllerBase
     {
         private readonly AthleticContext _athleticContext;
-        public AccountsController(AthleticContext athleticContext) {
+        public AccountsController(AthleticContext athleticContext)
+        {
             _athleticContext = athleticContext;
         }
 
@@ -26,23 +27,25 @@ namespace AthleticFormCore.Controllers
 
         [HttpGet]
         [Route("StudentsEnrolledIn/{email}/{yearCode}/{termCode}")]
-        public object GetStudentsEnrolledIn(string email, string yearCode, string termCode) {
+        public object GetStudentsEnrolledIn(string email, string yearCode, string termCode)
+        {
             var enrolledIn = (
                 from a in _athleticContext.Accounts
                 join sch in _athleticContext.StudentCrsHists on a.Gordon_ID equals sch.ID_NUM.ToString()
                 where a.Email == email && sch.YR_CDE == yearCode && sch.TRM_CDE == termCode
-                select new { Gordon_ID = a.Gordon_ID, Nickname = a.Nickname, Firstname = a.FirstName, Lastname = a.LastName, 
-                    Email = a.Email, CRS_CDE = sch.CRS_CDE, YR_CDE = sch.YR_CDE, TRM_CDE = sch.TRM_CDE }
+                select new
+                {
+                    Gordon_ID = a.Gordon_ID,
+                    Nickname = a.Nickname,
+                    Firstname = a.FirstName,
+                    Lastname = a.LastName,
+                    Email = a.Email,
+                    CRS_CDE = sch.CRS_CDE,
+                    YR_CDE = sch.YR_CDE,
+                    TRM_CDE = sch.TRM_CDE
+                }
             );
             return enrolledIn;
-        }
-
-
-        [HttpGet]
-        [Route("byId/{GORDON_ID}")]
-        public List<StudentsEnrolledIn> GetAccountByID(string GORDON_ID)
-        {
-            return _context.StudentsEnrolledIn.Where(s => s.Gordon_ID == GORDON_ID).ToList();
         }
     }
 }

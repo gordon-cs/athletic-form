@@ -2,7 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.DataAccess;
-    [Route("api/[controller]")]
+using Microsoft.AspNetCore.Authorization;
+using AthleticFormLibrary.Models;
+using AthleticFormLibrary.Utilities;
+using System;
+
+[Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "Staff")]
     public class ConflictsController : ControllerBase {
