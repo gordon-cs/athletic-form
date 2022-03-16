@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.Models;
 using AthleticFormLibrary.DataAccess;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AthleticFormCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Staff, Scheduler")]
     public class EventsController : ControllerBase
     {
         private readonly AthleticContext _context;
@@ -23,6 +25,7 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
+        [Authorize(Roles = "Scheduler")]
         public async void Post([FromBody]AthleticEvent athleticEvent) {
             await _context.AddAsync<AthleticEvent>(athleticEvent);
             AthleticEvent thisEvent = _context.AthleticEvents.OrderByDescending(x => x.EventId).FirstOrDefault();
@@ -32,6 +35,7 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(Roles = "Scheduler")]
         public void Update(int id, [FromBody]AthleticEvent athleticEvent) {
             AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault
                 (x => x.EventId == id);
@@ -55,6 +59,7 @@ namespace AthleticFormCore.Controllers
         */
         [HttpPost]
         [Route("delete/{id}")]
+        [Authorize(Roles = "Scheduler")]
         public void MarkAsDeleted(int id) {
             if (ModelState.IsValid) {
                 AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
@@ -65,6 +70,7 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("restore/{id}")]
+        [Authorize(Roles = "Scheduler")]
         public void Restore(int id) {
             AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
             athleticEvent.IsDeleted = false;
