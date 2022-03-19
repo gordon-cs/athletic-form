@@ -6,7 +6,8 @@ import {
 	TableHead,
 	TableRow,
 	TableCell,
-	TableBody
+	TableBody,
+    Button
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 import { getAllTeams } from '../Services/EventService';
@@ -16,13 +17,21 @@ interface Props {}
 
 export const Teams: React.FC<Props> = () => {
     const [teams, setTeams] = useState<any | null>(null);
+    const [previousPage, setPreviousPage] = useState<string>("");
     
     useEffect(() => {
         const token = localStorage.getItem('token');
 		// TODO: Add timeout validation on redirect
 		if (token == undefined) {
 			window.location.href = "..";
-		}
+		} else {
+            let role = JSON.parse(atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+            if (role == "Scheduler") {
+                setPreviousPage("/events");
+            } else {
+                setPreviousPage("/coach/events");
+            }
+        }
         getAllTeams().then((res: any) => {
             setTeams(res.data);
         }).catch((error) => console.log(error));
@@ -49,6 +58,15 @@ export const Teams: React.FC<Props> = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Link to={previousPage}>
+				<Button
+					size='small'
+					sx={{ backgroundColor: 'red', color: 'white' }}
+					variant={'outlined'}
+				>
+					Back
+				</Button>
+			</Link>
         </Grid>
     );
 }
