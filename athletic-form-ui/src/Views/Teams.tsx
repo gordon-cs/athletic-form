@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 import { getAllTeams } from '../Services/EventService';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -40,7 +41,9 @@ export const Teams: React.FC<Props> = () => {
                     <TableBody>
                         {teams?.map((team: any) => (
                             <TableRow>
-                                <TableCell key={team.teamName}>{team.teamName}</TableCell>
+                                <Link to={`/teams/${team.teamName}/rosterdata`}>
+                                    <TableCell key={team.teamName}>{team.teamName}</TableCell>
+                                </Link>
                             </TableRow>
                         ))}
                     </TableBody>

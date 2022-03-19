@@ -37,6 +37,13 @@ export async function getAllTeams() {
 	})
 }
 
+export async function getRosterData(sport: string) {
+	return apiClient({
+		method: 'get',
+		url: `/teams/${sport}`
+	})
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',

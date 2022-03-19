@@ -25,5 +25,22 @@ namespace AthleticFormCore.Controllers
             return _athleticContext.Teams.ToList();
         }
 
+        [HttpGet]
+        [Route("{sport}")]
+        public object GetRosterData(string sport)
+        {
+            var rosterData = (
+                from a in _athleticContext.Accounts 
+                join pit in _athleticContext.PlayersInTeam on a.Gordon_ID equals pit.Gordon_ID
+                where pit.TeamName == sport
+                select new
+                {
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Email = a.Email
+                }
+            );
+            return rosterData;
+        }
     }
 }
