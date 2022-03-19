@@ -30,6 +30,13 @@ export function getClassesEnrolled(email: string, yearCode: string,
 	});
 }
 
+export async function getAllTeams() {
+	return apiClient({
+		method: 'get',
+		url: '/teams'
+	})
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',

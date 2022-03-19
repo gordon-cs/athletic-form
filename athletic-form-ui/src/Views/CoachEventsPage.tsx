@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { CoachEventCard } from '../Components/CoachEventCard';
 import { Grid, Button } from '@mui/material';
 import { FaTrashAlt } from 'react-icons/fa';
+import { AiOutlineTeam } from 'react-icons/ai';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
@@ -51,6 +52,16 @@ export const CoachEventsPage: React.FC = () => {
 				>
 					<FaTrashAlt></FaTrashAlt>
 					View Previous Events
+				</Button>
+			</Link>
+			<Link to="/teams">
+				<Button
+					size='small'
+					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					variant={'outlined'}
+				>
+					<AiOutlineTeam />
+					View Team Information
 				</Button>
 			</Link>
 			<h3>Filter By: {" "}

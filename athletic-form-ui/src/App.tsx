@@ -11,6 +11,7 @@ import { RecoverEvent } from './Views/RecoverEvent';
 import { CoachEventDetails } from './Views/CoachEventDetails';
 import { ClassConflicts } from './Views/ClassConflicts';
 import { LoginPage } from './Views/LoginPage';
+import { Teams } from './Views/Teams';
 
 export const App = () => {
 	return (
@@ -29,6 +30,7 @@ export const App = () => {
 						<Route path = "/events/:id/update" element = {<UpdateEvent />}/>
 						<Route path = "/events/deleted" element = {<DeletedEventsPage />}/>
 						<Route path = "/events/deleted/:id/recover" element = {<RecoverEvent />}/>
+						<Route path = "/teams" element = {<Teams />} />
 					</Routes>
 				</Router>
 			</Grid>
