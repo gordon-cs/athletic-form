@@ -13,6 +13,7 @@ import { ClassConflicts } from './Views/ClassConflicts';
 import { LoginPage } from './Views/LoginPage';
 import { Teams } from './Views/Teams';
 import { RosterData } from './Views/RosterData';
+import { AddToTeam } from './Views/AddToTeam';
 
 export const App = () => {
 	return (
@@ -33,6 +34,7 @@ export const App = () => {
 						<Route path = "/events/deleted/:id/recover" element = {<RecoverEvent />}/>
 						<Route path = "/teams" element = {<Teams />} />
 						<Route path = "/teams/:sport/rosterdata" element={<RosterData />}/>
+						<Route path = "/teams/:sport/rosterdata/add" element={<AddToTeam />}/>
 					</Routes>
 				</Router>
 			</Grid>

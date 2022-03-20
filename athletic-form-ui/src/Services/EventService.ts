@@ -44,6 +44,13 @@ export async function getRosterData(sport: string) {
 	})
 }
 
+export async function getAccountByEmail(email: string) {
+	return apiClient({
+		method: 'get',
+		url: `/accounts/${email}`
+	})
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
@@ -72,4 +79,12 @@ export async function restoreEvent(id: number) {
 		method: 'post',
 		url: `/events/restore/${id}`,
 	});
+}
+
+export async function addToTeamRoster(playerInTeam: any) {
+	apiClient({
+		method: 'post',
+		url: '/teams/add/',
+		data: playerInTeam
+	})
 }

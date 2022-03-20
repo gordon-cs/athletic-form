@@ -42,5 +42,13 @@ namespace AthleticFormCore.Controllers
             );
             return rosterData;
         }
+
+        [HttpPost]
+        [Route("add")]
+        public void AddToTeamRoster([FromBody]PlayersInTeam playerInTeam)
+        {
+            _athleticContext.Add<PlayersInTeam>(playerInTeam);
+            _athleticContext.SaveChanges();
+        }
     }
 }

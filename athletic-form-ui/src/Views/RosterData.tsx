@@ -12,6 +12,7 @@ import {
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getRosterData } from '../Services/EventService';
+import { FaPlusCircle } from 'react-icons/fa';
 
 interface Props {}
 
@@ -55,6 +56,17 @@ export const RosterData: React.FC<Props> = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Link to={`/teams/${sport}/rosterdata/add`}>
+			    <Button
+				    size='large'
+				    sx={{ backgroundColor: '#710F0F', color: 'white' }}
+					variant={'outlined'}
+				>
+				    <FaPlusCircle></FaPlusCircle>
+				</Button>
+			</Link>
+            <br></br>
+            <br></br>
             <Link to='/teams'>
 				<Button
 					size='small'
