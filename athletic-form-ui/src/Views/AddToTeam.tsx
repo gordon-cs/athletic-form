@@ -33,17 +33,18 @@ export const AddToTeam = () => {
                 );
             } else {
                 setAccount(res.data);
-                let Gordon_ID = account?.gordon_ID;
-                console.log(Gordon_ID)
-                if (onTeam(email)) {
-                    errorMessage = (
-                        <p style={{color: "red"}}>This athlete is already on the team</p>
-                    );
-                } else {
-                    addToTeamRoster({ TeamName: TeamName, Gordon_ID: Gordon_ID }).then(() => {
-                        navigate(`/teams/${TeamName}/rosterdata`);
-                        window.location.reload();
-                    }).catch((error) => console.log(error));
+                console.log(account);
+                if (account != null) {
+                    if (onTeam(email)) {
+                        errorMessage = (
+                            <p style={{color: "red"}}>This athlete is already on the team</p>
+                        );
+                    } else {
+                        addToTeamRoster({TeamName: TeamName, Gordon_ID: account?.gordon_ID }).then(() => {
+                            navigate(`/teams/${TeamName}/rosterdata`);
+                            window.location.reload();
+                        }).catch((error) => console.log(error));
+                    }
                 }
             }
         }).catch((error) => console.log(error));
@@ -65,7 +66,7 @@ export const AddToTeam = () => {
         <Grid>
             <h1>Add to Team {TeamName} </h1>
             <h2>Enter Email of Person Joining the Team</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <TextField 
                     value={email}
                     label="Email"
@@ -80,7 +81,7 @@ export const AddToTeam = () => {
 					size='small'
 					sx={{ backgroundColor: 'green', color: 'white' }}
 					variant={'outlined'}
-                    type='submit'
+                    onClick={handleSubmit}
 				>
 					Save
 				</Button>
