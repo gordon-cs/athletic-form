@@ -60,6 +60,7 @@ namespace AthleticFormCore.Controllers
         public void DeleteFromTeamRoster(string sport, string gordonId)
         {
             PlayersInTeam playerToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
+            deletePlayerFromEvents(playerToDelete);
             _athleticContext.PlayersInTeam.Remove(playerToDelete);
             _athleticContext.SaveChanges();
         }
@@ -74,5 +75,16 @@ namespace AthleticFormCore.Controllers
             }
             _athleticContext.SaveChanges();
         }
-    }
+
+        private void deletePlayerFromEvents(PlayersInTeam playerInTeam)
+        {
+            List<AthleticEvent> athleticEvents = _athleticContext.AthleticEvents.Where(a => a.Sport == playerInTeam.TeamName).ToList();
+            foreach (var athleticEvent in athleticEvents)
+            {
+                _athleticContext.Remove<PlayersInEvent>(
+                    new PlayersInEvent(playerInTeam.Gordon_ID, athleticEvent.EventId));
+            }
+            _athleticContext.SaveChanges();
+        }
+     }
 }
