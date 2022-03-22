@@ -35,6 +35,7 @@ namespace AthleticFormCore.Controllers
                 where pit.TeamName == sport
                 select new
                 {
+                    Gordon_ID = a.Gordon_ID,
                     FirstName = a.FirstName,
                     LastName = a.LastName,
                     Email = a.Email
@@ -48,6 +49,15 @@ namespace AthleticFormCore.Controllers
         public void AddToTeamRoster([FromBody]PlayersInTeam playerInTeam)
         {
             _athleticContext.Add<PlayersInTeam>(playerInTeam);
+            _athleticContext.SaveChanges();
+        }
+
+        [HttpPost]
+        [Route("{sport}/delete/{gordonId}")]
+        public void DeleteFromTeamRoster(string sport, string gordonId)
+        {
+            PlayersInTeam playerToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
+            _athleticContext.PlayersInTeam.Remove(playerToDelete);
             _athleticContext.SaveChanges();
         }
     }

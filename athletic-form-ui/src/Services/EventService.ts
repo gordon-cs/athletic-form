@@ -88,3 +88,11 @@ export async function addToTeamRoster(playerInTeam: any) {
 		data: playerInTeam
 	})
 }
+
+export async function removeFromTeamRoster(sport: String, 
+	gordonId: String) {
+	apiClient({
+		method: 'post',
+		url: `/teams/${sport}/delete/${gordonId}`
+	})
+}

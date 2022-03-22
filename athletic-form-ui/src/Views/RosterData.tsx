@@ -12,7 +12,7 @@ import {
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getRosterData } from '../Services/EventService';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
 
 interface Props {}
 
@@ -43,6 +43,7 @@ export const RosterData: React.FC<Props> = () => {
                             <TableCell>Email</TableCell>
                             <TableCell>First Name</TableCell>
                             <TableCell>Last Name</TableCell>
+                            <TableCell>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -51,6 +52,17 @@ export const RosterData: React.FC<Props> = () => {
                                 <TableCell>{athlete.email}</TableCell>
                                 <TableCell>{athlete.firstName}</TableCell>
                                 <TableCell>{athlete.lastName}</TableCell>
+                                <TableCell>
+                                    <Link to={`/teams/${sport}/rosterdata/${athlete.gordon_ID}/delete`}>
+                                        <Button
+                                            size='small'
+                                            sx={{ backgroundColor: '#710F0F', color: 'white' }}
+                                            variant={'outlined'}
+                                        >
+                                            <FaTrashAlt></FaTrashAlt>
+                                        </Button>
+                                    </Link>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
