@@ -46,10 +46,13 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
-        public void AddToTeamRoster([FromBody]PlayersInTeam playerInTeam)
+        public async void AddToTeamRoster([FromBody]PlayersInTeam playerInTeam)
         {
-            _athleticContext.Add<PlayersInTeam>(playerInTeam);
+            playerInTeam.dateAdded = DateTime.Now;
+            await _athleticContext.AddAsync<PlayersInTeam>(playerInTeam);
             _athleticContext.SaveChanges();
+            PlayersInTeam thisPlayer = _athleticContext.PlayersInTeam.OrderByDescending(p => p.dateAdded).FirstOrDefault();
+            addPlayerToEvents(thisPlayer);
         }
 
         [HttpPost]
@@ -58,6 +61,17 @@ namespace AthleticFormCore.Controllers
         {
             PlayersInTeam playerToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
             _athleticContext.PlayersInTeam.Remove(playerToDelete);
+            _athleticContext.SaveChanges();
+        }
+
+        private void addPlayerToEvents(PlayersInTeam playerInTeam)
+        {
+            List<AthleticEvent> athleticEvents = _athleticContext.AthleticEvents.Where(a => a.Sport == playerInTeam.TeamName).ToList();
+            foreach (var athleticEvent in athleticEvents)
+            {
+                _athleticContext.Add<PlayersInEvent>(
+                    new PlayersInEvent(playerInTeam.Gordon_ID, athleticEvent.EventId));
+            }
             _athleticContext.SaveChanges();
         }
     }
