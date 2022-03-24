@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Button, Card, CardActions, CardHeader } from '@mui/material';
 import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
+import { AiOutlineTeam } from 'react-icons/ai';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
@@ -52,6 +53,16 @@ export const EventsPage: React.FC = () => {
 				>
 					<FaTrashAlt></FaTrashAlt>
 					View Deleted Events
+				</Button>
+			</Link>
+			<Link to="/teams">
+				<Button
+					size='small'
+					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					variant={'outlined'}
+				>
+					<AiOutlineTeam />
+					View Team Information
 				</Button>
 			</Link>
 			<h3>Filter By: {" "}

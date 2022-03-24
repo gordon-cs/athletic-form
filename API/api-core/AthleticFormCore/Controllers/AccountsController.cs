@@ -47,5 +47,12 @@ namespace AthleticFormCore.Controllers
             );
             return enrolledIn;
         }
+
+        [HttpGet]
+        [Route("{email}")]
+        public Account GetAccountByEmail(string email)
+        {
+            return _athleticContext.Accounts.Where(a => a.Email == email).SingleOrDefault();
+        }
     }
 }

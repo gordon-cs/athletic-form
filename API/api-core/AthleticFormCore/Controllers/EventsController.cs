@@ -28,9 +28,9 @@ namespace AthleticFormCore.Controllers
         [Authorize(Roles = "Scheduler")]
         public async void Post([FromBody]AthleticEvent athleticEvent) {
             await _context.AddAsync<AthleticEvent>(athleticEvent);
+            _context.SaveChanges();
             AthleticEvent thisEvent = _context.AthleticEvents.OrderByDescending(x => x.EventId).FirstOrDefault();
             AddAllPlayersToEvent(thisEvent);
-            _context.SaveChanges();
         }
 
         [HttpPost]

@@ -111,7 +111,7 @@ namespace AthleticFormCore
             app.UseWelcomePage();
 
             // Finally, start the email scheduling service
-            emailScheduler.ScheduleWeeklyTask();
+            //emailScheduler.ScheduleWeeklyTask();
             /*For testing purposes.  Sends every 3 minutes instead
                 of every week.*/
             //emailScheduler.ScheduleTestTask();
