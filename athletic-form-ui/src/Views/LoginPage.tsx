@@ -13,10 +13,6 @@ export const LoginPage: React.FC = () => {
 	const [showAlert, setShowAlert] = useState(false);
 	const [usernameError, setUsernameError] = useState(false);
 
-	useEffect(() => {
-
-	}, [email, password, token]);
-
 	const fetchToken = (username: string, password: string) => {
 		var credentials = `${username}:${password}`;
 		apiClient({
