@@ -7,7 +7,7 @@ import { getAllEvents, removeEvent } from '../Services/EventService';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
-import { EventDetailsHeader } from '../Components/EventDetailsBase';
+import { EventCardHeader } from '../Components/EventCardBase';
 
 
 export const EventDetails: React.FC = () => {
@@ -93,7 +93,6 @@ export const EventDetails: React.FC = () => {
 	return (
         /*I want to rework the layout of this page*/
 		<Grid>
-			{/*<EventDetailsHeader {...eventData}></EventDetailsHeader>*/}
 			<h1 className = "card-label">Event Details</h1>
 				{headerHome}
 				<CardContent className={'card-content'}>

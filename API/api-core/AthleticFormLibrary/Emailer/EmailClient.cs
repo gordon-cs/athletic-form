@@ -55,7 +55,7 @@ namespace AthleticFormLibrary.Emailer
                 message.From = new MailAddress(from_email);
                 //message.Bcc.Add(new MailAddress(from_email));
                 message.To.Add(profEmail);
-                message.Subject = "Athletic Conflicts";
+                message.Subject = "Athletics Conflicts for " + course;
 
                 message.Body = _generator.GenerateReport(course, number);
                 message.IsBodyHtml = true;

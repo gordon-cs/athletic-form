@@ -28,6 +28,19 @@ export function getDateAsJs(date: any) {
 	return dateAsJs;
 }
 
+//Returns dateTime as an int to compare if a dateTime is before or after another one
+//Not numerically accurate, but accurate relative to other returns, as it assumes each month is 31 days
+export function getDateTimeAsInt(dateTime: any) {
+	let iTime = 0;
+	if (dateTime != null) {
+		let parsedDate = new Date(Date.parse(dateTime));
+		iTime += (parsedDate.getFullYear() - 2000) * 372; //(31 * 12)
+		iTime += parsedDate.getMonth() * 31;
+		iTime += parsedDate.getDay();
+	}	
+	return iTime;
+}
+
 function convertTime(hour: number, minute: number) {
 	let timeAsJs = '';
 	let hour12 = hour % 12;

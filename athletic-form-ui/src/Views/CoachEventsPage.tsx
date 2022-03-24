@@ -1,4 +1,4 @@
-import { getAllEvents } from '../Services/EventService';
+import { getAllEvents, removeEvent } from '../Services/EventService';
 import { useEffect, useState } from 'react';
 import { CoachEventCard } from '../Components/CoachEventCard';
 import { Grid, Button } from '@mui/material';
@@ -7,6 +7,7 @@ import { AiOutlineTeam } from 'react-icons/ai';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
+import { getDateTimeAsInt } from '../Helpers/DateTimeHelpers';
 
 export const CoachEventsPage: React.FC = () => {
 	const [eventBank, setEventBank] = useState<any | null>(null);
@@ -31,6 +32,11 @@ export const CoachEventsPage: React.FC = () => {
 		getAllEvents()
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {
+					const d = new Date();
+					//Deletes events that have already happened
+					if (getDateTimeAsInt(e.eventDate) < getDateTimeAsInt(d) - 1) {
+						removeEvent(e.eventId)
+					}
 					return e.isDeleted === false;
 				});
 				console.log(eventList);

@@ -124,3 +124,15 @@
 		#00306A 20px
 	)
 }
+
+.undoPopup {
+	background-color: #bbbbbb;
+	position: fixed;
+	top: 0px;
+	left: calc(50vw - 150px);
+	width: 300px;
+}
+
+.undoText {
+	text-align: center;
+}
