@@ -7,7 +7,7 @@ import { AiOutlineTeam } from 'react-icons/ai';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
-import { getDateTimeAsInt } from '../Helpers/DateTimeHelpers.js';
+import { getDateTimeAsInt } from '../Helpers/DateTimeHelpers';
 
 export const CoachEventsPage: React.FC = () => {
 	const [eventBank, setEventBank] = useState<any | null>(null);
