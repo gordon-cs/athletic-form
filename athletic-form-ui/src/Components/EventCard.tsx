@@ -32,7 +32,7 @@ export const EventCard: React.FC<Props> = ({ eventData }) => {
 		togglePopup();
 		removeEvent(eventData.eventId)
 			.then((a: any) => {
-				/*window.location.reload();*/
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);
