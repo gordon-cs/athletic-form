@@ -10,6 +10,11 @@ import { DeletedEventsPage } from './Views/DeletedEventsPage';
 import { RecoverEvent } from './Views/RecoverEvent';
 import { CoachEventDetails } from './Views/CoachEventDetails';
 import { ClassConflicts } from './Views/ClassConflicts';
+import { LoginPage } from './Views/LoginPage';
+import { Teams } from './Views/Teams';
+import { RosterData } from './Views/RosterData';
+import { AddToTeam } from './Views/AddToTeam';
+import { DeleteFromTeam } from './Views/DeleteFromTeam';
 
 export const App = () => {
 	return (
@@ -17,6 +22,7 @@ export const App = () => {
 			<Grid item>
 				<Router>
 					<Routes>
+						<Route path = "" element = {<LoginPage />}/>
 						<Route path = "/events" element = {<EventsPage />}/>
 						<Route path = "coach/events" element = {<CoachEventsPage />}/>
 						<Route path = "coach/events/:id/details" element = {<CoachEventDetails />}/>
@@ -27,6 +33,10 @@ export const App = () => {
 						<Route path = "/events/:id/update" element = {<UpdateEvent />}/>
 						<Route path = "/events/deleted" element = {<DeletedEventsPage />}/>
 						<Route path = "/events/deleted/:id/recover" element = {<RecoverEvent />}/>
+						<Route path = "/teams" element = {<Teams />} />
+						<Route path = "/teams/:sport/rosterdata" element={<RosterData />}/>
+						<Route path = "/teams/:sport/rosterdata/add" element={<AddToTeam />}/>
+						<Route path = "/teams/:sport/rosterdata/:gordonId/delete" element={<DeleteFromTeam />}/>
 					</Routes>
 				</Router>
 			</Grid>

@@ -30,6 +30,27 @@ export function getClassesEnrolled(email: string, yearCode: string,
 	});
 }
 
+export async function getAllTeams() {
+	return apiClient({
+		method: 'get',
+		url: '/teams'
+	})
+}
+
+export async function getRosterData(sport: string) {
+	return apiClient({
+		method: 'get',
+		url: `/teams/${sport}`
+	})
+}
+
+export async function getAccountByEmail(email: string) {
+	return apiClient({
+		method: 'get',
+		url: `/accounts/${email}`
+	})
+}
+
 export async function addEvent(event: any) {
 	apiClient({
 		method: 'post',
@@ -58,4 +79,20 @@ export async function restoreEvent(id: number) {
 		method: 'post',
 		url: `/events/restore/${id}`,
 	});
+}
+
+export async function addToTeamRoster(playerInTeam: any) {
+	apiClient({
+		method: 'post',
+		url: '/teams/add/',
+		data: playerInTeam
+	})
+}
+
+export async function removeFromTeamRoster(sport: String, 
+	gordonId: String) {
+	apiClient({
+		method: 'post',
+		url: `/teams/${sport}/delete/${gordonId}`
+	})
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { EventCard } from '../Components/EventCard';
 import { Button, Card, CardActions, CardHeader } from '@mui/material';
 import { FaPlusCircle, FaTrashAlt } from 'react-icons/fa';
+import { AiOutlineTeam } from 'react-icons/ai';
 import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
@@ -19,6 +20,18 @@ export const EventsPage: React.FC = () => {
 	const [dateFilter, setDateFilter] = useState<any | null>(null);
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "..";
+		} else {
+			let role = JSON.parse(atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+			// Redirect scheduler to correct page
+			if (role == "Staff") {
+				window.location.href = "../coach/events";
+			}
+		}
+
 		getAllEvents()
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {
@@ -47,6 +60,16 @@ export const EventsPage: React.FC = () => {
 				>
 					<FaTrashAlt></FaTrashAlt>
 					View Previous / Deleted Events
+				</Button>
+			</Link>
+			<Link to="/teams">
+				<Button
+					size='small'
+					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					variant={'outlined'}
+				>
+					<AiOutlineTeam />
+					View Team Information
 				</Button>
 			</Link>
 			<h3>Filter By: {" "}

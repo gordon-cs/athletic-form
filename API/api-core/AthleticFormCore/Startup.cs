@@ -1,8 +1,16 @@
+using AthleticFormLibrary;
+using AthleticFormLibrary.DataAccess;
+using AthleticFormLibrary.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System.IO;
+using System.Text;
 using Unity;
 using AthleticFormLibrary;
 using AthleticFormLibrary.DataAccess;
@@ -53,6 +61,28 @@ namespace AthleticFormCore
             services.AddControllers();
                 services.AddMvc()
                     .AddControllersAsServices();
+
+            // Write key and roles from user secrets to secure file
+            // TODO: Add roles with similar mechanism
+            string keyJson = Configuration["LoginKey"];
+            File.WriteAllText(@"./Properties/loginKey.json", keyJson);
+
+            var issuer = "gordon.edu";
+            var mySecret = Encoding.UTF8.GetBytes(keyJson);
+            var mySecurityKey = new SymmetricSecurityKey(mySecret);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = issuer,
+                    ValidAudience = issuer,
+                    IssuerSigningKey = mySecurityKey
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +93,9 @@ namespace AthleticFormCore
             }
 
             app.UseRouting();
-            
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseCors(builder => {
                     builder.WithOrigins("http://localhost:3000")
@@ -79,7 +111,7 @@ namespace AthleticFormCore
             app.UseWelcomePage();
 
             // Finally, start the email scheduling service
-            emailScheduler.ScheduleWeeklyTask();
+            //emailScheduler.ScheduleWeeklyTask();
             /*For testing purposes.  Sends every 3 minutes instead
                 of every week.*/
             //emailScheduler.ScheduleTestTask();

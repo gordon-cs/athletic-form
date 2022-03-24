@@ -20,6 +20,11 @@ export const EventDetails: React.FC = () => {
     const [coaches, setCoaches] = useState<any | null>(null);
 
     useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "..";
+		}
         getAllEvents().then((res: any) => {
             setEventData(res.data.find((e: any) => {
                 return e.eventId === parseInt(id);
