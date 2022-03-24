@@ -1,9 +1,10 @@
 import { Grid, Alert } from '@mui/material';
 import { Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import '../styles/login.scss';
 import { apiClient } from '../Services/AxiosService';
+import React from 'react';
 
 export const LoginPage: React.FC = () => {
 	const [email, setEmail] = useState<any | null>(null);
@@ -12,27 +13,23 @@ export const LoginPage: React.FC = () => {
 	const [showAlert, setShowAlert] = useState(false);
 	const [usernameError, setUsernameError] = useState(false);
 
-	useEffect(() => {
-		setEmail('');
-		setPassword('');
-	}, []);
-
-	const fetchToken = async (username: string, password: string) => {
+	const fetchToken = (username: string, password: string) => {
 		var credentials = `${username}:${password}`;
-		await apiClient({
+		apiClient({
 			method: 'get',
 			url: `/authorization/token/${credentials}`,
 		})
 			.then((res) => {
 				let val = res.data;
 				setToken(val);
+				checkAuthorization(val);
 			})
 			.catch((error) => console.log(error));
 
 		console.log(token);
 	};
 
-	const checkAuthorization = () => {
+	const checkAuthorization = (token: any) => {
 		if (token !== 'Unauthorized!' && token !== null) {
 			// Store the token to use as header
 			localStorage.setItem('token', 'Bearer ' + token.toString());
@@ -60,6 +57,7 @@ export const LoginPage: React.FC = () => {
 
 	const handleLogin = async () => {
 		console.log('User attempted to log into the application.');
+
 		// Username set in try block
 		let username = email;
 		try {
@@ -80,8 +78,7 @@ export const LoginPage: React.FC = () => {
 		}
 
 		// TODO: Force update username and password react hook here
-		await fetchToken(username, password);
-		checkAuthorization();
+		fetchToken(username, password);
 	};
 
 	return (
