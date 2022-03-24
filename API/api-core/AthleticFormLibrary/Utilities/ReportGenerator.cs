@@ -43,6 +43,8 @@ namespace AthleticFormLibrary.Utilities
             //Check each conflict
             foreach (var conflict in conflicts) {
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
+                string termCode = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
+                string yearCode = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
                 var courses = (
                     from a in _context.Accounts
                     join sch in _context.StudentCrsHists on a.Gordon_ID equals sch.ID_NUM.ToString()
@@ -60,7 +62,7 @@ namespace AthleticFormLibrary.Utilities
                         TRM_CDE = sch.TRM_CDE,
                         YR_CDE = sch.YR_CDE
                     }
-                ).ToList();
+                ).ToList(); 
                 //Check every class involved
                 foreach (var course in courses) {
                     AthleticConflict conflictForCourse = _context.AthleticConflicts.Where(c => c.CourseCode == course.CRS_CDE 
