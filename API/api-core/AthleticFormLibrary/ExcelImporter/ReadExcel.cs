@@ -2,34 +2,23 @@
 //Examples link: https://csharp.hotexamples.com/examples/-/IExcelDataReader/AsDataSet/php-iexceldatareader-asdataset-method-examples.html
 
 using ExcelDataReader;
-using ExcelDataReader.DataSet;
+using System.IO;
+//using ExcelDataReader;
 
 
 public class ExcelReader {
 
-    private var worksheet;
+    private string worksheet;
 
     public void ReadExcelFile(string filePath) {
-        using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read)){
-            // Auto-detect format, supports:
-            //  - Binary Excel files (2.0-2003 format; *.xls)
-            //  - OpenXml Excel files (2007 format; *.xlsx, *.xlsb)
-            using (worksheet = ExcelReaderFactory.CreateReader(stream))
-            {
-
-                Use the AsDataSet extension method
-                var result = reader.AsDataSet();
-
-                // The result of each spreadsheet is in result.Tables
-                foreach (var t in result.Tables) {
-                    Console.WriteLine(t);
-                }
-            }
-        }
+        FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
+        ExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+        excelReader.IsFirstRowAsColumnNames = true;
+        result = excelReader.AsDataSet();
     }
 
     private void GetTable(string tableName) {
-        List<DataRow> rows = (from DataRow r in worksheet.Rows Select r).ToList();
+        List<DataRow> rows = ("from DataRow r in worksheet.Rows Select r").ToList();
 
     }
 
