@@ -11,6 +11,11 @@ export const DeletedEventsPage: React.FC = () => {
 	const [events, setEvents] = useState<any | null>(null);
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "..";
+		}
 		console.log(getAllEvents());
 		getAllEvents()
 			.then((res) => {

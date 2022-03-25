@@ -387,3 +387,4 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 athletic-form-ui/src/data/db.json
+API/api-core/AthleticFormCore/Properties/loginKey.json

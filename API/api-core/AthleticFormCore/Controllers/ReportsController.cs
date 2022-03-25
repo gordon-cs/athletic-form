@@ -5,7 +5,7 @@ using AthleticFormLibrary.Utilities;
 namespace AthleticFormCore.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReportsController : ControllerBase 
+    public class ReportsController : ControllerBase
     {
         private readonly IReportGeneration _generator;
         public ReportsController(IReportGeneration generator) {
@@ -13,8 +13,9 @@ namespace AthleticFormCore.Controllers {
         }
 
         [HttpGet]
-        public string GetReport() {
-            return _generator.GenerateReport("");
+        [Route("{number}")]
+        public string GetReport(int number) {
+            return _generator.GenerateReport("", number);
         }
     }
 }

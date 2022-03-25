@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { useState, useEffect } from 'react';
 import { getConflictsByEventId } from '../Services/EventService';
+import { EventCardHeader, EventCardContent } from './EventCardBase';
 
 interface Props {
 	eventData: any;
@@ -25,91 +26,17 @@ export const CoachEventCard: React.FC<Props> = ({ eventData }) => {
 			.catch((error) => console.log(error.message));
 	});
 
+	eventData.conflictCount = count;
+
 	//scss logic. Could probably be even more condensed
-	let departHome, numConflicts, headerHome, arrival;
-	let scrimmage, isHome, conflict = "";
-	let sportColor = 'is' + eventData.sport;
-	if (eventData?.isScrimmage)
-		scrimmage = "scrimmage";
-	if (eventData.departOrHome === 'Home') {
-		isHome = "isHome"
-		if (count !== 0)
-			conflict = "isHomeConflict"
-	} else if (count !== 0) {
-		conflict = "conflict"
-	}
-	let cardHeader = "card-header " + scrimmage + " " + conflict + " " + sportColor;
+	
 
-	if (eventData.departOrHome === 'Home') {
-		departHome = <CardContent className={'card-detail'}>{eventData.departOrHome}</CardContent>;
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-	} else {
-		departHome = (
-			<CardContent className={'card-detail'}>
-				Depart Time: {getDateTimeAsJs(eventData.departureTime)}
-			</CardContent>
-		);
-		if (eventData?.isScrimmage) {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent + ' (scrimmage)'}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		else {
-			headerHome = (
-				<CardHeader
-					className={`${cardHeader}`}
-					title={eventData.sport + ': ' + eventData.opponent}
-					subheader={<Typography sx={{color: "white"}}>{'Date: ' + getDateTimeAsJs(eventData.date)}</Typography>}
-				/>
-			);
-		}
-		arrival = (
-			<CardContent className={'card-detail'}>
-				Return Time: {getDateTimeAsJs(eventData.arrivalTime)}
-			</CardContent>
-		);
-	}
-
-	if (count > 0) {
-		numConflicts = (
-			<CardContent className={'card-detail'}>
-				There are {count} students with conflicts.
-			</CardContent>
-		);
-	}
+	
 
 	return (
 		<Card className={'card'} variant={'outlined'}>
-			<Link
-				to={`/coach/events/${eventData.eventId}/details`}
-				style={{ textDecoration: 'none' }}
-			>
-				{headerHome}
-			</Link>
-			<CardContent className={`card-content + ${isHome}`}>{departHome}</CardContent>
-			<CardContent className={`card-content + ${isHome}`}>{numConflicts}</CardContent>
-			<CardContent className={`card-content + ${isHome}`}>{arrival}</CardContent>
+			<EventCardHeader eventData={eventData} isCoach={true}></EventCardHeader>
+			<EventCardContent eventData={eventData} isCoach={true}></EventCardContent>
 			{/*<CardActions className={'card-content card-action'}>
 				<Button
 					disabled={true}

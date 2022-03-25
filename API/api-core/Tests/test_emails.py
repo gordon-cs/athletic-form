@@ -6,7 +6,7 @@ def test_sendEmail():
     #Make sure you replace the From Email Address in Email Client before
     #running this
     emails = "aidan.perez@gordon.edu,jacob.christopher@gordon.edu,josiah.kangas@gordon.edu,hudson.finn@gordon.edu"
-    url = "/Email/" + emails
+    url = "/Email/" + emails + "/20"
     response = pytest_components.get(url)
     assert response.status_code == 200
     emailInformation = response.json()

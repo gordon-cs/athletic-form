@@ -28,6 +28,11 @@ export const CoachEventDetails: React.FC = () => {
 	const [conflicts, setConflicts] = useState<any | null>(null);
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "...";
+		}
 		getAllEvents()
 			.then((res: any) => {
 				setEventData(
@@ -171,7 +176,7 @@ export const CoachEventDetails: React.FC = () => {
 										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
 									)}
 									<TableCell>
-										<Link to={`/coach/events/${id}/details/${conflict['email']}/classconflicts`}>View Class Conflicts</Link>
+										<Link to={`/coach/events/${id}/details/${conflict['email']}/${conflict['yearCode']}/${conflict['termCode']}/classconflicts`}>View Class Conflicts</Link>
 									</TableCell>
 								</TableRow>
 							))

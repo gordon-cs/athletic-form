@@ -18,11 +18,18 @@ export const ClassConflicts: React.FC = () => {
 	let params = useParams();
 	let id: any = params.id;
 	let email: any = params.email;
+	let yearCode: any = params.yearCode;
+	let termCode: any = params.termCode;
 	const [eventData, setEventData] = useState<any | null>(null);
 	const [conflicts, setConflicts] = useState<any | null>(null);
 	const [classes, setClasses] = useState<any | null>(null);
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		// TODO: Add timeout validation on redirect
+		if (token == undefined) {
+			window.location.href = "..";
+		}
 		getAllEvents()
 			.then((res) => {
 				setEventData(
@@ -41,7 +48,7 @@ export const ClassConflicts: React.FC = () => {
 				});
 			})
 			.then(() => {
-				getClassesEnrolled(email).then((res: any) => {
+				getClassesEnrolled(email, yearCode, termCode).then((res: any) => {
 					setClasses(res.data);
 				});
 			})
