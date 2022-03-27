@@ -3,6 +3,7 @@
 
 using ExcelDataReader;
 using System.IO;
+using System.Data;
 //using ExcelDataReader;
 
 
@@ -12,9 +13,8 @@ public class ExcelReader {
 
     public void ReadExcelFile(string filePath) {
         FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
-        ExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-        excelReader.IsFirstRowAsColumnNames = true;
-        result = excelReader.AsDataSet();
+        IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+        DataSet result = excelReader.AsDataSet();
     }
 
     private void GetTable(string tableName) {
