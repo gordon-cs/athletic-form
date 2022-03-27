@@ -10,7 +10,6 @@ using AthleticFormLibrary.Utilities;
 using Microsoft.EntityFrameworkCore;
 using AthleticFormLibrary.Interfaces;
 using System;
-using ReadExcelFile;
 
 namespace AthleticFormCore
 {
@@ -83,7 +82,7 @@ namespace AthleticFormCore
                 of every week.*/
             //emailScheduler.ScheduleTestTask();
 
-            ExcelDataReader dr = new ExcelDataReader();
+            ExcelReader dr = new ExcelReader();
             dr.ReadExcelFile("./AthleticFormLibrary/ExcelImporter/test.xlsx");
         }
     }

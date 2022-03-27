@@ -2,8 +2,11 @@
 //Examples link: https://csharp.hotexamples.com/examples/-/IExcelDataReader/AsDataSet/php-iexceldatareader-asdataset-method-examples.html
 
 using ExcelDataReader;
+using System;
 using System.IO;
 using System.Data;
+using System.Collections;
+using System.Collections.Generic;
 //using ExcelDataReader;
 
 
@@ -15,10 +18,13 @@ public class ExcelReader {
         FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
         IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
         DataSet result = excelReader.AsDataSet();
+        while (excelReader.Read()) {
+            Console.Write(excelReader.GetString(0));
+        }
     }
 
     private void GetTable(string tableName) {
-        List<DataRow> rows = ("from DataRow r in worksheet.Rows Select r").ToList();
+        //List<DataRow> rows = ("from DataRow r in worksheet.Rows Select r").ToList();
 
     }
 
