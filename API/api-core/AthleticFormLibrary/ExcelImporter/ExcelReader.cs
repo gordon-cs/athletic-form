@@ -19,18 +19,10 @@ public class ExcelReader {
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
         IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-        string[] sheets = reader.GetWorksheetList();
-        foreach (string s in sheets) {
-            Console.WriteLine(s);
-        }
-
-        //Get a specific sheet
-        DataTable table = reader.GetWorksheet(sheets[1]);
-
 
         DataSet result = reader.AsDataSet();
         while (reader.Read()) {
-            Console.Write(reader.GetType());
+            Console.WriteLine(reader.Name);
             Console.Write(reader.GetString(0));
         }
     }
