@@ -7,6 +7,7 @@ using System.IO;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Text.Encoding;
 //using ExcelDataReader;
 
 
@@ -15,6 +16,7 @@ public class ExcelReader {
     private string worksheet;
 
     public void ReadExcelFile(string filePath) {
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
         IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
         DataSet result = excelReader.AsDataSet();
