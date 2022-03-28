@@ -7,7 +7,7 @@ import { App } from './App';
 const theme = createTheme({
     palette: {  
         background: {
-            default: "#333333"        
+            default: "#E0C9A6"        
         }
     }
 
@@ -17,7 +17,7 @@ const theme = createTheme({
 ReactDOM.render(
 	<React.StrictMode>
     <ThemeProvider theme={theme}>
-		<CssBaseline />    {/*Possibly remove to allow us to be funky with the css. Can't change bg-color currently*/} 
+		<CssBaseline />   
 		<App />
     </ThemeProvider>
 	</React.StrictMode>,
