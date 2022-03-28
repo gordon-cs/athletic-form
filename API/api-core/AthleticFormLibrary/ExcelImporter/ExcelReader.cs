@@ -30,7 +30,7 @@ public class ExcelReader {
                 Console.WriteLine(reader.Name);
                 lastName = reader.Name;
             }
-            Console.Write(reader.GetString(0));
+            Console.Write(reader.GetValue(0));
             curCol++;
             if (curCol > cols) {
                 curCol = 0;
