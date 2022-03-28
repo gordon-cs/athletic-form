@@ -22,13 +22,7 @@ export const App = () => {
 			<Grid item>
 				<Router>
 					<Routes>
-                        {
-                            /* 
-                            * *** IMPORTANT *** 
-                            * Change first path back to <LoginPage />  
-                            */
-                        }
-						<Route path = "" element = {<EventsPage />}/>
+						<Route path = "" element = {<LoginPage />}/>
 						<Route path = "/events" element = {<EventsPage />}/>
 						<Route path = "coach/events" element = {<CoachEventsPage />}/>
 						<Route path = "coach/events/:id/details" element = {<CoachEventDetails />}/>
