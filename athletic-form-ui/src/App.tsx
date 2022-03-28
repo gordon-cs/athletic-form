@@ -22,6 +22,12 @@ export const App = () => {
 			<Grid item>
 				<Router>
 					<Routes>
+                        {
+                            /* 
+                            * *** IMPORTANT *** 
+                            * Change first path back to <LoginPage />  
+                            */
+                        }
 						<Route path = "" element = {<EventsPage />}/>
 						<Route path = "/events" element = {<EventsPage />}/>
 						<Route path = "coach/events" element = {<CoachEventsPage />}/>
