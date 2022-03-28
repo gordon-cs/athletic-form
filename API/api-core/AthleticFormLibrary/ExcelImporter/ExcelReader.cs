@@ -21,9 +21,21 @@ public class ExcelReader {
         IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
         DataSet result = reader.AsDataSet();
+        int cols = reader.FieldCount;
+        int curCol = 0;
+        string lastName = null;
         while (reader.Read()) {
-            Console.WriteLine(reader.Name);
+            if (lastName != reader.Name) {
+                Console.WriteLine();
+                Console.WriteLine(reader.Name);
+                lastName = reader.Name;
+            }
             Console.Write(reader.GetString(0));
+            curCol++;
+            if (curCol > cols) {
+                curCol = 0;
+                Console.WriteLine();
+            }
         }
     }
 
