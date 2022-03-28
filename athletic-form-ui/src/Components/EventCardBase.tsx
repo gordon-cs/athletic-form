@@ -26,8 +26,10 @@ export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 	let isHome;
 	let conflict;
 	let sportColor = 'is' + eventData?.sport;
+
 	if (eventData?.isScrimmage)
 		scrimmage = "scrimmage";
+
 	if (eventData?.departOrHome === 'Home') {
 		isHome = "isHome"
 		if (isCoach && eventData?.conflictCount !== 0)
