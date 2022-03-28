@@ -24,18 +24,25 @@ public class ExcelReader {
         int cols = reader.FieldCount;
         int curCol = 0;
         string lastName = null;
-        while (reader.Read()) {
-            if (lastName != reader.Name) {
-                Console.WriteLine();
-                Console.WriteLine(reader.Name);
-                lastName = reader.Name;
+        int numSheets = reader.ResultsCount;
+        int curSheet = 0;
+        Console.WriteLine("Sheets:  " + numSheets);
+        while (curSheet < numSheets) {
+            while (reader.Read()) {
+                if (lastName != reader.Name) {
+                    Console.WriteLine();
+                    Console.WriteLine(reader.Name);
+                    lastName = reader.Name;
+                }
+                Console.Write(reader.GetValue(0));
+                curCol++;
+                if (curCol > cols) {
+                    curCol = 0;
+                    Console.WriteLine();
+                }
             }
-            Console.Write(reader.GetValue(0));
-            curCol++;
-            if (curCol > cols) {
-                curCol = 0;
-                Console.WriteLine();
-            }
+            curSheet++;
+            reader.NextResult();
         }
     }
 
