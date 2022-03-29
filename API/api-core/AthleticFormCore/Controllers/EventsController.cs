@@ -77,6 +77,17 @@ namespace AthleticFormCore.Controllers
             _context.SaveChanges();
         }
 
+        // Actually will delete event from database
+        [HttpPost]
+        [Route("harddelete/{id}")]
+        [Authorize(Roles = "Scheduler")]
+        public void HardDelete(int id)
+        {
+            AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
+            _context.AthleticEvents.Remove(athleticEvent);
+            _context.SaveChanges();
+        }
+ 
         private void AddAllPlayersToEvent(AthleticEvent athleticEvent) {
             if(athleticEvent.Sport == String.Empty) {
                 return;

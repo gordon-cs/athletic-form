@@ -15,6 +15,7 @@ import { Teams } from './Views/Teams';
 import { RosterData } from './Views/RosterData';
 import { AddToTeam } from './Views/AddToTeam';
 import { DeleteFromTeam } from './Views/DeleteFromTeam';
+import { HardDelEvent } from './Views/HardDelEvent';
 
 export const App = () => {
 	return (
@@ -31,6 +32,7 @@ export const App = () => {
 						<Route path = "/events/:id/delete" element = {<DeleteEvent />}/>
 						<Route path = "/events/:id/details" element = {<EventDetails />} />
 						<Route path = "/events/:id/update" element = {<UpdateEvent />}/>
+						<Route path = "/events/deleted/:id/harddelete" element = {<HardDelEvent />}/>
 						<Route path = "/events/deleted" element = {<DeletedEventsPage />}/>
 						<Route path = "/events/deleted/:id/recover" element = {<RecoverEvent />}/>
 						<Route path = "/teams" element = {<Teams />} />

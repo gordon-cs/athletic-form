@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardHeader,
 	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
-import { FaTrashRestoreAlt, FaPencilAlt } from 'react-icons/fa';
+import { FaTrashRestoreAlt, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
@@ -85,6 +85,16 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 					>
                         <FaTrashRestoreAlt></FaTrashRestoreAlt>
 						Recover
+					</Button>
+				</Link>
+				<Link to={`/events/deleted/${eventData.eventId}/harddelete`}>
+					<Button
+						size='small'
+						sx={{ backgroundColor: '#710F0F', color: 'white' }}
+						variant={'outlined'}
+					>
+                        <FaTrashAlt></FaTrashAlt>
+						Permanent Delete
 					</Button>
 				</Link>
 			</CardActions>
