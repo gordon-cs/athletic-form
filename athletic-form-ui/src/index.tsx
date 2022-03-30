@@ -7,11 +7,10 @@ import { App } from './App';
 const theme = createTheme({
     palette: {  
         background: {
-            default: "#E0C9A6",
+            default: "#E0C9A6",  /* Default background */
         },
         secondary: {
-            main: "#FCE3BD",
-        }
+            main: "#FCE3BD",     /* Card header (default) */ }
     }
 })
 
