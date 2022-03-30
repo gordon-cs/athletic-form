@@ -14,7 +14,6 @@ export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 
 	let headerHome;
 	let homeOrNot;
-
 	let cardHeader;
 	let scrimmage;
 	let isHome;
