@@ -7,8 +7,7 @@ import { App } from './App';
 const theme = createTheme({
     palette: {  
         background: {
-            default: "#D4C9A6",
-            
+            default: "#E0C9A6" 
         }
     }
 
