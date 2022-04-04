@@ -1,3 +1,6 @@
+/*Handles the appearance and functionality of Cards in the Scheduler/Admin View
+ */
+
 import { Button, Card, CardActions, CardContent, CardHeader, 
 	Typography } from '@mui/material';
 import '../styles/eventCard.scss';

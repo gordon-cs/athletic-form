@@ -1,4 +1,7 @@
-﻿using System;
+﻿/* Generates Tokens for Gordon 360 to use for login
+*/
+
+using System;
 using System.DirectoryServices.AccountManagement;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;

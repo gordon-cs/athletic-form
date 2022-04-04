@@ -1,3 +1,6 @@
+/* Checks if the tokens from the Login Page are valid
+ */
+
 import { setUncaughtExceptionCaptureCallback } from 'process';
 import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';

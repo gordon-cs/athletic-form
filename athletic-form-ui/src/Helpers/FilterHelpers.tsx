@@ -1,3 +1,6 @@
+/* Provides functionality to sorting our Card views into different categories
+ */
+
 export function setEventFilters(events: any, sportFilter: any, opponentFilter: any, dateFilter: any)
 {
     console.log(dateFilter)
