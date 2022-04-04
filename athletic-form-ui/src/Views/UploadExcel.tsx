@@ -1,22 +1,19 @@
 import axios from 'axios';
-import React from 'react';
- 
-export class UploadExcel extends React.Component{
-    
-    selectedFile: any;
+import React,{Component} from 'react';
+
+//Helpful link
+//https://www.geeksforgeeks.org/file-uploading-in-react-js/
+
+export class UploadExcel extends Component{
     
     state = {
- 
       // Initially, no file is selected
-      selectedFile: null
+      selectedFile = null;
     };
-
-    constructor(props: any) {
-        super(props);
-    }
     
     // On file select (from the pop up)
-    onFileChange = event => {
+    //Added some stuff
+    onFileChange = (event: { target: { files: any[]; }; }) => {
     
       // Update the state
       this.setState({ selectedFile: event.target.files[0] });
@@ -88,7 +85,7 @@ export class UploadExcel extends React.Component{
               File Upload using React!
             </h3>
             <div>
-                <input type="file" onChange={this.onFileChange} />
+                {/*<input type="file" onChange={this.onFileChange} />*/}
                 <button onClick={this.onFileUpload}>
                   Upload!
                 </button>

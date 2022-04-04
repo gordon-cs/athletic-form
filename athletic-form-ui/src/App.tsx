@@ -10,7 +10,7 @@ import { DeletedEventsPage } from './Views/DeletedEventsPage';
 import { RecoverEvent } from './Views/RecoverEvent';
 import { CoachEventDetails } from './Views/CoachEventDetails';
 import { ClassConflicts } from './Views/ClassConflicts';
-import { UploadExcel } from './Views/UploadExcel.js';
+import { UploadExcel } from './Views/UploadExcel';
 
 export const App = () => {
 	return (
