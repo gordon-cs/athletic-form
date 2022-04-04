@@ -1,3 +1,7 @@
+//Handles uploading and reading in an excel document,
+//and then transferring that information to our database
+
+
 //Important link for this: https://github.com/ExcelDataReader/ExcelDataReader
 //Examples link: https://csharp.hotexamples.com/examples/-/IExcelDataReader/AsDataSet/php-iexceldatareader-asdataset-method-examples.html
 
@@ -9,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using System.Text.Encoding;
 //using ExcelDataReader;
+
 
 
 public class ExcelReader {
