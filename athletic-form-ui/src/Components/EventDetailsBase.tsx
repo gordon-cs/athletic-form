@@ -1,5 +1,3 @@
-//Currently does nothing
-
 import { CardContent, Grid, CardHeader, Button, 
     Card, Paper, TableContainer, Table, TableHead,
     TableRow, TableCell, TableBody, CardActions } from '@mui/material';
