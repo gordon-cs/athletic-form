@@ -65,9 +65,12 @@ public class ExcelReader {
                     if (reader.GetValue(5) != null)
                         notes = reader.GetValue(5).ToString();
 
-                    Console.WriteLine(sport + " " + eventDate + " " + subSport + " " + 
-                                    opponent + " " + eventTime + " " + departTime 
-                                    + " " + notes);
+                    /*Console.WriteLine(sport + " | " + eventDate + " | " + subSport + " | " + 
+                          opponent + " | " + eventTime + " | " + departTime 
+                          + " | " + notes);*/
+
+                    ExcelEvent e = new ExcelEvent(sport, opponent, eventDate, 
+                                                  eventTime, departTime, notes);
                     /*curCol++;
                     if (curCol > cols) {
                         curCol = 0;
@@ -88,9 +91,9 @@ public class ExcelReader {
 
     }
 
-    private ExcelEvent MakeEvent() {
+    /*private ExcelEvent MakeEvent() {
         return new ExcelEvent();
-    }
+    }*/
 
     //IRELLEVANT FOR NOW
     private void GetTable(string tableName) {
@@ -114,4 +117,41 @@ public class ExcelReader {
 class ExcelEvent {
     string eventName;
     string sport;
+    string opponent;
+    string eventDate;
+    string eventTime; //Part of date in our cards
+    bool homeOrAway;
+    string destination;
+    string departureTime;
+    string arrivalTime;
+    string comments;
+    bool isScrimmage;
+
+    public ExcelEvent(string _sport, string _opponent, string _eventDate,
+                      string _eventTime, string _departTime, string _comments) {
+        sport = _sport;
+        opponent = _opponent;
+        eventDate = _eventDate;
+        eventTime = _eventTime;
+        departureTime = _departTime;
+        comments = _comments;
+        PrintEvent();
+
+    }
+
+    public void PrintEvent() {
+        Console.WriteLine(sport + " | " + opponent + " | " + eventDate + " | " + 
+                          eventTime + " | " + departureTime + " | " + comments);
+    }
+
+    /*const [events, setEvents] = useState<any | null>(null);
+	const [sport, setSport] = useState('');
+	const [opponent, setOpponent] = useState('');
+	const [eventDate, setEventDate] = useState('');
+	const [homeOrAway, setHomeOrAway] = useState('');
+	const [destination, setDestination] = useState('');
+	const [departureTime, setDepartureTime] = useState('');
+	const [arrivalTime, setArrivalTime] = useState('');
+	const [comments, setComments] = useState('');
+	const [isScrimmage, setIsScrimmage] = useState(false);*/
 }
