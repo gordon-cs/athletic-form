@@ -27,18 +27,52 @@ public class ExcelReader {
         int numSheets = reader.ResultsCount;
         int curSheet = 0;
         Console.WriteLine("Sheets:  " + numSheets);
+
+        //Declare all the variables
+        string sport, eventDate, subSport, opponent, 
+               eventTime, departTime, notes;
+
         while (curSheet < numSheets) {
+            
+            //Print name of new sheet
+            if (lastName != reader.Name) {
+                Console.WriteLine();
+                Console.WriteLine(reader.Name);
+                lastName = reader.Name;
+            }
+            //SKIP FIRST 2 lines to get to the data
+            for (int l = 0; l < 2; l++) {
+                reader.Read();
+            }
+            //Read each event on each row
             while (reader.Read()) {
-                if (lastName != reader.Name) {
-                    Console.WriteLine();
-                    Console.WriteLine(reader.Name);
-                    lastName = reader.Name;
-                }
-                Console.Write(reader.GetValue(0));
-                curCol++;
-                if (curCol > cols) {
-                    curCol = 0;
-                    Console.WriteLine();
+                
+                sport = eventDate = subSport = opponent = 
+                eventTime = departTime = notes = null;
+
+                sport = lastName;
+                //Have to have all these values because the values are sometimes left empty
+                if (reader.GetValue(0) != null) {
+                    eventDate = reader.GetValue(0).ToString();
+                    if (reader.GetValue(1) != null)
+                        subSport = reader.GetValue(1).ToString();
+                    if (reader.GetValue(2) != null)
+                        opponent = reader.GetValue(2).ToString();
+                    if (reader.GetValue(3) != null)
+                        eventTime = reader.GetValue(3).ToString();
+                    if (reader.GetValue(4) != null)
+                        departTime = reader.GetValue(4).ToString();
+                    if (reader.GetValue(5) != null)
+                        notes = reader.GetValue(5).ToString();
+
+                    Console.WriteLine(sport + " " + eventDate + " " + subSport + " " + 
+                                    opponent + " " + eventTime + " " + departTime 
+                                    + " " + notes);
+                    /*curCol++;
+                    if (curCol > cols) {
+                        curCol = 0;
+                        Console.WriteLine();
+                    }*/
                 }
             }
             curSheet++;
@@ -46,6 +80,19 @@ public class ExcelReader {
         }
     }
 
+    private void GetAllTables() {
+
+    }
+
+    private void GetEventsInTable() {
+
+    }
+
+    private ExcelEvent MakeEvent() {
+        return new ExcelEvent();
+    }
+
+    //IRELLEVANT FOR NOW
     private void GetTable(string tableName) {
         //List<DataRow> rows = ("from DataRow r in worksheet.Rows Select r").ToList();
 
@@ -61,4 +108,10 @@ public class ExcelReader {
     private void Id_Event() {
 
     }
+}
+
+
+class ExcelEvent {
+    string eventName;
+    string sport;
 }

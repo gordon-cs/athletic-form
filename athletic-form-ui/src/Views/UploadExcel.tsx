@@ -8,7 +8,7 @@ export class UploadExcel extends Component{
     
     state = {
       // Initially, no file is selected
-      selectedFile = null;
+      selectedFile: null
     };
     
     // On file select (from the pop up)
@@ -85,7 +85,7 @@ export class UploadExcel extends Component{
               File Upload using React!
             </h3>
             <div>
-                {/*<input type="file" onChange={this.onFileChange} />*/}
+                <input type="file" onChange={this.onFileChange} />
                 <button onClick={this.onFileUpload}>
                   Upload!
                 </button>
