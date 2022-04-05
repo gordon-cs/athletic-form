@@ -2,8 +2,8 @@ import { Grid, Alert } from '@mui/material';
 import { Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import axios from 'axios';
 import '../styles/login.scss';
-import { apiClient } from '../Services/AxiosService';
 import React from 'react';
 
 export const LoginPage: React.FC = () => {
@@ -15,13 +15,10 @@ export const LoginPage: React.FC = () => {
 
 	const fetchToken = (username: string, password: string) => {
 		var credentials = `${username}:${password}`;
-		apiClient({
-			method: 'post',
-			url: `/authorization/token/',
-            ${credentials} 
-        
+		axios.post('/authorization/token/', {
+            credentials
 		})
-			.then((res) => {
+			.then((res: any) => {
 				let val = res.data;
 				setToken(val);
 				checkAuthorization(val);
