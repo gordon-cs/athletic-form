@@ -53,7 +53,7 @@ export const CoachEventsPage: React.FC = () => {
 				<Button
 					disabled
 					size='small'
-					sx={{ backgroundColor: '#710F0F', color: 'white' }}
+					sx={{ backgroundColor: '#615748', color: 'white' }}
 					variant={'outlined'}
 				>
 					<FaTrashAlt></FaTrashAlt>
@@ -63,7 +63,7 @@ export const CoachEventsPage: React.FC = () => {
 			<Link to="/teams">
 				<Button
 					size='small'
-					sx={{ backgroundColor: '#066A1F', color: 'white' }}
+					sx={{ backgroundColor: '#615748', color: 'white' }}
 					variant={'outlined'}
 				>
 					<AiOutlineTeam />
