@@ -1,4 +1,8 @@
-import { Card } from '@mui/material';
+/*Handles the appearance and functionality of Cards in the Coach Events View
+ */
+
+import { Button, Card, CardActions, CardContent, CardHeader,
+	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 import { useState, useEffect } from 'react';
 import { getConflictsByEventId } from '../Services/EventService';

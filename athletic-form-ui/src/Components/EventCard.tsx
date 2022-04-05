@@ -1,4 +1,8 @@
-import { Button, Card, CardActions } from '@mui/material';
+/*Handles the appearance and functionality of Cards in the Scheduler/Admin View
+ */
+
+import { Button, Card, CardActions, CardContent, CardHeader, 
+	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';

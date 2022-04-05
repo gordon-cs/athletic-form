@@ -1,3 +1,6 @@
+/*Handles the appearance and functionality of Cards in the Deleted Events View
+ */
+
 import { Button, Card, CardActions, CardContent, CardHeader,
 	Typography } from '@mui/material';
 import '../styles/eventCard.scss';

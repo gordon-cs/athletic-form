@@ -1,3 +1,7 @@
+/* Important axios functions, mainly for getting and pushing information
+   to/from our database
+ */
+
 import { AxiosPromise } from 'axios';
 import { apiClient } from './AxiosService';
 

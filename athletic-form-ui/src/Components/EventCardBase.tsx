@@ -1,4 +1,7 @@
-//Currently does nothing
+/* Handles the default style of Cards, and contains the building blocks they're
+   made of. This is used so that our styles are consistent across our views with
+   minimal copy/pasted code.
+ */
 
 import { CardContent, CardHeader, Card, Typography } from '@mui/material';
 import '../styles/eventCard.scss';

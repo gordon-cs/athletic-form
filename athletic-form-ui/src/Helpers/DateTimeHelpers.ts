@@ -1,3 +1,7 @@
+/* Contains many handy functions for converting dates and times to and from
+   various formats.
+ */
+
 export function getDateTimeAsJs(dateTime: any) {
 	let dateAsJs = null;
 	if (dateTime != null) {
