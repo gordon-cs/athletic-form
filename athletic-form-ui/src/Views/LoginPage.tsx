@@ -14,10 +14,10 @@ export const LoginPage: React.FC = () => {
 	const [usernameError, setUsernameError] = useState(false);
 
 	const fetchToken = (username: string, password: string) => {
-		var credentials = `${username}:${password}`;
-		axios.post('/authorization/token/', {
-            credentials
-		})
+	    const json = JSON.stringify({username, password})
+        axios.post('/authorization/token/', {
+            json
+        })
 			.then((res: any) => {
 				let val = res.data;
 				setToken(val);
