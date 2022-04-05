@@ -21,7 +21,7 @@ using System.Text;
             _context = context;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("token/{credentials}")]
         public string GetToken(string credentials)
         {
