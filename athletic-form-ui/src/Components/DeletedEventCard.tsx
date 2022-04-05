@@ -31,18 +31,19 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 	let headerHome;
 	let arrival;
 	let sportIcon;
+	const iconSize = 45;
 
 	switch (eventData?.sport) {
 		case "M Baseball":
 		case "W Softball":
 			sportIcon = (
-				<MdSportsBaseball />
+				<MdSportsBaseball size={iconSize} />
 			);
 			break;
 		case "M Basketball":
 		case "W Basketball":
 			sportIcon = (
-				<MdSportsBasketball />
+				<MdSportsBasketball size={iconSize} />
 			);
 			break;
 		case "M Cross Country":
@@ -50,51 +51,51 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 		case "M Track & Field":
 		case "W Track & Field":
 			sportIcon = (
-				<MdDirectionsRun />
+				<MdDirectionsRun size={iconSize} />
 			);
 			break;
 		case "W Field Hockey":
 			sportIcon = (
-				<MdSportsHockey />
+				<MdSportsHockey size={iconSize} />
 			);
 			break;
 		case "M Golf":
 			sportIcon = (
-				<MdSportsGolf />
+				<MdSportsGolf size={iconSize} />
 			);
 			break;
 		case "M Rowing":
 		case "W Rowing":
 			sportIcon = (
-				<MdRowing />
+				<MdRowing size={iconSize} />
 			);
 			break;
 		case "M Soccer":
 		case "W Soccer":
 			sportIcon = (
-				<MdSportsSoccer />
+				<MdSportsSoccer size={iconSize} />
 			);
 			break;
 		case "M Swimming":
 		case "W Swimming":
 			sportIcon = (
-				<FaSwimmer />
+				<FaSwimmer size={iconSize} />
 			);
 			break;
 		case "M Tennis":
 		case "W Tennis":
 			sportIcon = (
-				<MdSportsTennis />
+				<MdSportsTennis size={iconSize} />
 			);
 			break;
 		case "W Volleyball":
 			sportIcon = (
-				<MdSportsVolleyball />
+				<MdSportsVolleyball size={iconSize} />
 			);
 			break;
 		default:
 			sportIcon = (
-				<GiLion />
+				<GiLion size={iconSize} />
 			);
 			break;
 	}
