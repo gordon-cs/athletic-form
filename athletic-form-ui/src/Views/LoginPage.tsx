@@ -17,7 +17,9 @@ export const LoginPage: React.FC = () => {
 		var credentials = `${username}:${password}`;
 		apiClient({
 			method: 'post',
-			url: `/authorization/token/${credentials}`,
+			url: `/authorization/token/',
+            ${credentials} 
+        
 		})
 			.then((res) => {
 				let val = res.data;
