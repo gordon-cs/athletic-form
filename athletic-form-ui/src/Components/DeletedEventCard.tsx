@@ -16,6 +16,7 @@ import {
 	MdSportsVolleyball
 } from 'react-icons/md';
 import { FaSwimmer } from 'react-icons/fa';
+import { GiLion } from 'react-icons/gi';
 
 interface Props {
 	eventData: any;
@@ -89,6 +90,11 @@ export const DeletedEventCard: React.FC<Props> = ({ eventData }) => {
 		case "W Volleyball":
 			sportIcon = (
 				<MdSportsVolleyball />
+			);
+			break;
+		default:
+			sportIcon = (
+				<GiLion />
 			);
 			break;
 	}
