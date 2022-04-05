@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents, removeEvent } from '../Services/EventService';
+import { getAllEvents, hardDeleteEvent } from '../Services/EventService';
 import { Card, CardHeader, CardContent, Button, CardActions,
 	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
@@ -10,7 +10,7 @@ import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 interface Props {}
 
-export const DeleteEvent: React.FC<Props> = () => {
+export const HardDelEvent: React.FC<Props> = () => {
 	const params: any = useParams();
 	const id = params.id;
 	const [eventData, setEventData] = useState<any | null>(null);
@@ -33,9 +33,9 @@ export const DeleteEvent: React.FC<Props> = () => {
 
 	console.log(eventData);
 	const handleClick = () => {
-		removeEvent(params.id)
+		hardDeleteEvent(params.id)
 			.then((a: any) => {
-				navigate("/events");
+				navigate("/events/deleted");
 				window.location.reload();
 			})
 			.catch((error) => {
@@ -96,7 +96,7 @@ export const DeleteEvent: React.FC<Props> = () => {
 
 	return (
 		<Grid>
-			<h1>Are you sure you want to delete this event?</h1>
+			<h1>Are you sure you want to delete this event?  Deleting this event cannot be undone.</h1>
 			<Card className={'card'} variant={'outlined'}>
 				{headerHome}
 				<CardContent className={'card-content'}>
