@@ -4,9 +4,6 @@
 import { Button, Card, CardActions, CardContent, CardHeader,
 	Typography } from '@mui/material';
 import '../styles/eventCard.scss';
-import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 import { useState, useEffect } from 'react';
 import { getConflictsByEventId } from '../Services/EventService';
 import { EventCardHeader, EventCardContent } from './EventCardBase';

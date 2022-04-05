@@ -85,6 +85,13 @@ export async function restoreEvent(id: number) {
 	});
 }
 
+export async function hardDeleteEvent(id: number) {
+	apiClient({
+		method: 'post',
+		url: `/events/harddelete/${id}`
+	})
+}
+
 export async function addToTeamRoster(playerInTeam: any) {
 	apiClient({
 		method: 'post',

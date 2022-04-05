@@ -1,12 +1,26 @@
 import { CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme  } from '@mui/material/styles'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 
+const theme = createTheme({
+    palette: {  
+        background: {
+            default: "#E0C9A6",  /* Default background */
+        },
+        secondary: {
+            main: "#FCE3BD",     /* Card header (default) */ }
+    }
+})
+
+
 ReactDOM.render(
 	<React.StrictMode>
-		<CssBaseline />    {/*Possibly remove to allow us to be funky with the css. Can't change bg-color currently*/} 
+    <ThemeProvider theme={theme}>
+		<CssBaseline />   
 		<App />
+    </ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),
 );

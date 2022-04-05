@@ -5,7 +5,7 @@
 }
 
 .card-header {
-	background-color: #066a1f;
+	background-color: #FCE3BD;
 	color: black;
 	text-align: center;
 	font-size: 20pt;
@@ -38,7 +38,7 @@
 }
 
 .card-content {
-	background-color: #2f90b6;
+	background-color: #615748;
 	color: white;
 	display: flex;
 	white-space: pre-line;
@@ -86,23 +86,11 @@
 }
 
 .conflict {
-	background: repeating-linear-gradient(
-		45deg,
-		#ff0000,
-		#ff0000 10px,
-		#066a1f 10px,
-		#066a1f 20px
-	)
+    background-color: #FF8A7C
 }
 
 .conflict:hover {
-	background: repeating-linear-gradient(
-		45deg,
-		#e82020,
-		#e82020 10px,
-		#005106 10px,
-		#005106 20px
-	)
+    background-color: #BF817C
 }
 
 .isHomeConflict {
