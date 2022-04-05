@@ -16,7 +16,7 @@ export const LoginPage: React.FC = () => {
 	const fetchToken = (username: string, password: string) => {
 		var credentials = `${username}:${password}`;
 		apiClient({
-			method: 'get',
+			method: 'post',
 			url: `/authorization/token/${credentials}`,
 		})
 			.then((res) => {
