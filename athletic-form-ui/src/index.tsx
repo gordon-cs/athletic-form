@@ -10,7 +10,7 @@ const theme = createTheme({
             default: "#E0C9A6",  /* Default background */
         },
         secondary: {
-            main: "#FCE3BD",     /* Card header (default) */ }
+            main: "#FCE3BD"/* Card header (default) */ }
     }
 })
 
