@@ -1,14 +1,8 @@
 //Currently does nothing
 
-import { CardContent, Grid, CardHeader, Button, 
-    Card, Paper, TableContainer, Table, TableHead,
-    TableRow, TableCell, TableBody, CardActions } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { getAllEvents, removeEvent } from '../Services/EventService';
-import { Typography } from '@mui/material';
+import { CardContent, CardHeader, Card, Typography } from '@mui/material';
 import '../styles/eventCard.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
 
 interface Props {
@@ -20,14 +14,15 @@ export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 
 	let headerHome;
 	let homeOrNot;
-
 	let cardHeader;
 	let scrimmage;
 	let isHome;
 	let conflict;
 	let sportColor = 'is' + eventData?.sport;
+
 	if (eventData?.isScrimmage)
 		scrimmage = "scrimmage";
+
 	if (eventData?.departOrHome === 'Home') {
 		isHome = "isHome"
 		if (isCoach && eventData?.conflictCount !== 0)
@@ -102,7 +97,6 @@ export const EventCardContent: React.FC<Props> = ({ eventData , isCoach}) => {
 
 	let departHome;
 	let homeOrNot;
-	let sportColor = 'is' + eventData?.sport;
 	let arrival;
 	let numConflicts;
 
