@@ -15,7 +15,7 @@ export const LoginPage: React.FC = () => {
 
 	const fetchToken = (username: string, password: string) => {
 	    const json = JSON.stringify({username, password})
-        axios.post('/authorization/token/', {
+        axios.post('https://athleticsabsenceapi.gordon.edu/api/authorization/token/', {
             json
         })
 			.then((res: any) => {
