@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import '../styles/login.scss';
 import { apiClient } from '../Services/AxiosService';
+import { Loader } from './Loader';
 import React from 'react';
 
 export const LoginPage: React.FC = () => {
@@ -11,7 +12,9 @@ export const LoginPage: React.FC = () => {
 	const [password, setPassword] = useState<any | null>(null);
 	const [token, setToken] = useState<any | null>(null);
 	const [showAlert, setShowAlert] = useState(false);
-	const [usernameError, setUsernameError] = useState(false);
+    const [usernameError, setUsernameError] = useState(false);
+    const [loading, setLoading] = useState(false);
+
 
 	const fetchToken = (username: string, password: string) => {
 		var credentials = `${username}:${password}`;
@@ -22,7 +25,7 @@ export const LoginPage: React.FC = () => {
 			.then((res) => {
 				let val = res.data;
 				setToken(val);
-				checkAuthorization(val);
+                checkAuthorization(val);
 			})
 			.catch((error) => console.log(error));
 
@@ -48,14 +51,16 @@ export const LoginPage: React.FC = () => {
 		} else {
 			// Show username/password error messages
 			setUsernameError(false);
-			setShowAlert(true);
+            setShowAlert(true);
+            setLoading(false);
 			setTimeout(() => {
 				setShowAlert(false);
 			}, 12000);
 		}
 	};
 
-	const handleLogin = async () => {
+    const handleLogin = async () => {
+        setLoading(true);
 		console.log('User attempted to log into the application.');
 
 		// Username set in try block
@@ -73,58 +78,62 @@ export const LoginPage: React.FC = () => {
 			setUsernameError(true);
 			setTimeout(() => {
 				setUsernameError(false);
-			}, 12000);
-			return;
+            }, 12000);
+            setLoading(false);
+            return;     
 		}
 
-		// TODO: Force update username and password react hook here
-		fetchToken(username, password);
+        fetchToken(username, password);
 	};
 
-	return (
-		<Grid>
-			<Box
-				height='100vh'
-				width='100vh'
-				display='flex'
-				flexDirection='column'
-				alignItems='center'
-				justifyContent='center'
-			>
-				<h1>Athletic Form</h1>
+    if (loading) {
+        return (<Loader />)
+    } else {
+        return (
+            <Grid>
+                <Box
+                    height='100vh'
+                    width='100vh'
+                    display='flex'
+                    flexDirection='column'
+                    alignItems='center'
+                    justifyContent='center'
+                >
+                    <h1>Athletic Form</h1>
 
-				<TextField
-					value={email}
-					label='Email'
-					onChange={(e: any) => {
-						setEmail(e.target.value);
-					}}
-				/>
-				<TextField
-					type={'password'}
-					value={password}
-					label='Password'
-					onChange={(e: any) => {
-						setPassword(e.target.value);
-					}}
-					onKeyPress={(event) => {
-						if (event.key === 'Enter') {
-							handleLogin();
-						}
-					}}
-				/>
-				<h4> </h4>
-				<Button onClick={handleLogin} variant='contained' size='large' className='button'>
-					Login
-				</Button>
-				<h1> </h1>
-				{showAlert && (
-					<Alert severity='error'>Your username or password was incorrect.</Alert>
-				)}
-				{usernameError && (
-					<Alert severity='error'>Please enter a valid Gordon email address.</Alert>
-				)}
-			</Box>
-		</Grid>
-	);
+                    <TextField
+                        value={email}
+                        label='Email'
+                        onChange={(e: any) => {
+                            setEmail(e.target.value);
+                        }}
+                    />
+                    <TextField
+                        type={'password'}
+                        value={password}
+                        label='Password'
+                        onChange={(e: any) => {
+                            setPassword(e.target.value);
+                        }}
+                        onKeyPress={(event) => {
+                            if (event.key === 'Enter') {
+                                handleLogin();
+                            }
+                        }}
+                    />
+                    <h4> </h4>
+                    <Button onClick={handleLogin} variant='contained' size='large' className='button'>
+                        Login
+                    </Button>
+                    <h1> </h1>
+                    {showAlert && (
+                        <Alert severity='error'>Your username or password was incorrect.</Alert>
+                    )}
+                    {usernameError && (
+                        <Alert severity='error'>Please enter a valid Gordon email address.</Alert>
+                    )}
+                </Box>
+            </Grid>
+        );
+    }
 };

@@ -40,7 +40,8 @@ export const EventsPage: React.FC = () => {
 					//Deletes events that have already happened more than a week ago
 					if (getDateTimeAsInt(e.eventDate) < getDateTimeAsInt(d) - 7) {
 						removeEvent(e.eventId)
-					}
+                    }
+                    setLoading(false);
 					return e.isDeleted === false;
 				});
 				console.log(eventList);
@@ -48,7 +49,6 @@ export const EventsPage: React.FC = () => {
 				setEvents(eventList);
 			})
 			.catch((error) => console.log(error));
-			setLoading(false);
 	}, []);
 
 	if (loading) {

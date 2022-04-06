@@ -12,7 +12,8 @@ export const Loader: React.FC = () => {
 				alignItems='center'
 				justifyContent='center'
 			>
-				<h1>Athletic Form</h1>
+                <h1>Athletic Form</h1>
+                <h3>Loading...</h3>
 			</Box>
 		</Grid>
 	);
