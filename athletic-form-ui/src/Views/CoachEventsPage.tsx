@@ -8,6 +8,7 @@ import '../styles/eventsPage.scss';
 import { Link } from 'react-router-dom';
 import { setEventFilters, getSportList, getOpponentList } from '../Helpers/FilterHelpers';
 import { getDateTimeAsInt } from '../Helpers/DateTimeHelpers';
+import { Loader } from './Loader';
 
 export const CoachEventsPage: React.FC = () => {
 	const [eventBank, setEventBank] = useState<any | null>(null);
@@ -15,6 +16,7 @@ export const CoachEventsPage: React.FC = () => {
 	const [sportFilter, setSportFilter] = useState<any | null>(null);
 	const [opponentFilter, setOpponentFilter] = useState<any | null>(null);
 	const [dateFilter, setDateFilter] = useState<any | null>(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -44,127 +46,132 @@ export const CoachEventsPage: React.FC = () => {
 				setEvents(eventList);
 			})
 			.catch((error) => console.log(error));
+			setLoading(false);
 	}, []);
 
-	return (
-		<Grid>
-			<h1>Athletic Events: Coach's View</h1>
-			<Link to=''>
-				<Button
-					disabled
-					size='small'
-					sx={{ backgroundColor: '#615748', color: 'white' }}
-					variant={'outlined'}
-				>
-					<FaTrashAlt></FaTrashAlt>
-					View Previous Events
-				</Button>
-			</Link>
-			<Link to="/teams">
-				<Button
-					size='small'
-					sx={{ backgroundColor: '#615748', color: 'white' }}
-					variant={'outlined'}
-				>
-					<AiOutlineTeam />
-					View Team Information
-				</Button>
-			</Link>
-			<h3>Filter By: {" "}
-				<select
-					id="sportList"
-					value={sportFilter} 
-					onChange={(e: any) => {
-						setSportFilter(e.target.value);
-						setEvents(setEventFilters(eventBank, e.target.value, opponentFilter, dateFilter));
-					}} 
-				>
-					<option value="">All Sports (Default)</option>
-					{Array.from(getSportList(eventBank)).map((sport, index) => (
-						<option
-							key={String(sport)}
-							value={String(sport)}
-						>
-							{String(sport)}
-						</option>
-						))}
-				</select>
-				{" "}
-				<select
-					id="opponentList" 
-					value={opponentFilter} 
-					onChange={(e: any) => {
-						setOpponentFilter(e.target.value);
-						setEvents(setEventFilters(eventBank, sportFilter, e.target.value, dateFilter));
-					}} 
-				>
-					<option value="">All Opponents (Default)</option>
-					{Array.from(getOpponentList(eventBank)).map((opponent, index) => (
-						<option
-							key={String(opponent)}
-							value={String(opponent)}
-						>
-							{String(opponent)}
-						</option>
-						))}
-				</select>
-				{" "}
-				<Button
-					onClick={() => {
-						setDateFilter("newest")
-						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter));
-					}}
-					size='small'
-					sx={{ backgroundColor: 'black', color: 'white' }}
-					variant={'outlined'}		
-				> Newest </Button>
-				{" "}
-				<Button
-					onClick={() => {
-						setDateFilter("oldest")
-						setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter)) 
-					}}
-					size='small'
-					sx={{ backgroundColor: 'black', color: 'white' }}
-					variant={'outlined'}	
-				> Oldest </Button>
-			</h3> 
-			<Grid container spacing={3}>
-				{events == null
-					? 'There are no events to show'
-					: events.map((entry: any) => (
-							<Grid item key={entry['eventId']}>
-								<CoachEventCard
-									eventData={{
-										eventId: entry['eventId'],
-										sport: entry['sport'],
-										opponent: entry['opponent'],
-										date: entry['eventDate'],
-										departOrHome: entry['homeOrAway'],
-										destination: entry['destination'],
-										departureTime: entry['departureTime'],
-										arrivalTime: entry['arrivalTime'],
-										comments: entry['comments'],
-										isScrimmage: entry['isScrimmage']
-									}}
-								/>
-							</Grid>
-					  ))}
-				{/* <Card className={'add-card'}>
-					<CardHeader className={'add-header'} title={'Add'}></CardHeader>
-					<CardActions className={'add-action'}>
-						<Link to='/events/add'>
-							<Button
-								size='large'
-								sx={{ backgroundColor: '#710F0F', color: 'white' }}
-								variant={'outlined'}
+	if (loading) {
+		return ( <Loader />)
+	} else {
+		return (
+			<Grid>
+				<h1>Athletic Events: Coach's View</h1>
+				<Link to=''>
+					<Button
+						disabled
+						size='small'
+						sx={{ backgroundColor: '#615748', color: 'white' }}
+						variant={'outlined'}
+					>
+						<FaTrashAlt></FaTrashAlt>
+						View Previous Events
+					</Button>
+				</Link>
+				<Link to="/teams">
+					<Button
+						size='small'
+						sx={{ backgroundColor: '#615748', color: 'white' }}
+						variant={'outlined'}
+					>
+						<AiOutlineTeam />
+						View Team Information
+					</Button>
+				</Link>
+				<h3>Filter By: {" "}
+					<select
+						id="sportList"
+						value={sportFilter} 
+						onChange={(e: any) => {
+							setSportFilter(e.target.value);
+							setEvents(setEventFilters(eventBank, e.target.value, opponentFilter, dateFilter));
+						}} 
+					>
+						<option value="">All Sports (Default)</option>
+						{Array.from(getSportList(eventBank)).map((sport, index) => (
+							<option
+								key={String(sport)}
+								value={String(sport)}
 							>
-								<FaPlusCircle></FaPlusCircle>
-							</Button>
-						</Link>
-					</CardActions>
-				</Card> */}
+								{String(sport)}
+							</option>
+							))}
+					</select>
+					{" "}
+					<select
+						id="opponentList" 
+						value={opponentFilter} 
+						onChange={(e: any) => {
+							setOpponentFilter(e.target.value);
+							setEvents(setEventFilters(eventBank, sportFilter, e.target.value, dateFilter));
+						}} 
+					>
+						<option value="">All Opponents (Default)</option>
+						{Array.from(getOpponentList(eventBank)).map((opponent, index) => (
+							<option
+								key={String(opponent)}
+								value={String(opponent)}
+							>
+								{String(opponent)}
+							</option>
+							))}
+					</select>
+					{" "}
+					<Button
+						onClick={() => {
+							setDateFilter("newest")
+							setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter));
+						}}
+						size='small'
+						sx={{ backgroundColor: 'black', color: 'white' }}
+						variant={'outlined'}		
+					> Newest </Button>
+					{" "}
+					<Button
+						onClick={() => {
+							setDateFilter("oldest")
+							setEvents(setEventFilters(eventBank, sportFilter, opponentFilter, dateFilter)) 
+						}}
+						size='small'
+						sx={{ backgroundColor: 'black', color: 'white' }}
+						variant={'outlined'}	
+					> Oldest </Button>
+				</h3> 
+				<Grid container spacing={3}>
+					{events == null
+						? 'There are no events to show'
+						: events.map((entry: any) => (
+								<Grid item key={entry['eventId']}>
+									<CoachEventCard
+										eventData={{
+											eventId: entry['eventId'],
+											sport: entry['sport'],
+											opponent: entry['opponent'],
+											date: entry['eventDate'],
+											departOrHome: entry['homeOrAway'],
+											destination: entry['destination'],
+											departureTime: entry['departureTime'],
+											arrivalTime: entry['arrivalTime'],
+											comments: entry['comments'],
+											isScrimmage: entry['isScrimmage']
+										}}
+									/>
+								</Grid>
+						))}
+					{/* <Card className={'add-card'}>
+						<CardHeader className={'add-header'} title={'Add'}></CardHeader>
+						<CardActions className={'add-action'}>
+							<Link to='/events/add'>
+								<Button
+									size='large'
+									sx={{ backgroundColor: '#710F0F', color: 'white' }}
+									variant={'outlined'}
+								>
+									<FaPlusCircle></FaPlusCircle>
+								</Button>
+							</Link>
+						</CardActions>
+					</Card> */}
+				</Grid>
 			</Grid>
-		</Grid>
-	);
+		);
+	}
 };
