@@ -39,6 +39,7 @@ export const CoachEventsPage: React.FC = () => {
 					if (getDateTimeAsInt(e.eventDate) < getDateTimeAsInt(d) - 1) {
 						removeEvent(e.eventId)
 					}
+					setLoading(false);
 					return e.isDeleted === false;
 				});
 				console.log(eventList);
@@ -46,7 +47,6 @@ export const CoachEventsPage: React.FC = () => {
 				setEvents(eventList);
 			})
 			.catch((error) => console.log(error));
-			setLoading(false);
 	}, []);
 
 	if (loading) {
