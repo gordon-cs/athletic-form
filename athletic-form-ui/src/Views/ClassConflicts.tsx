@@ -13,6 +13,7 @@ import {
 	Button,
 } from '@mui/material';
 import { getTimeAsJs } from '../Helpers/DateTimeHelpers';
+import { Loader } from './Loader';
 
 export const ClassConflicts: React.FC = () => {
 	let params = useParams();
@@ -23,6 +24,7 @@ export const ClassConflicts: React.FC = () => {
 	const [eventData, setEventData] = useState<any | null>(null);
 	const [conflicts, setConflicts] = useState<any | null>(null);
 	const [classes, setClasses] = useState<any | null>(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -51,6 +53,7 @@ export const ClassConflicts: React.FC = () => {
 				getClassesEnrolled(email, yearCode, termCode).then((res: any) => {
 					setClasses(res.data);
 				});
+				setLoading(false);
 			})
 			.catch((error) => console.log(error.message));
 	}, [id]);
@@ -71,54 +74,58 @@ export const ClassConflicts: React.FC = () => {
 
 	console.log(classes);
 
-	return (
-		<Grid>
-			<h1>
-				{eventData?.sport}: {eventData?.opponent}
-			</h1>
-			<h2>{conflicts && conflicts[0].firstName + ' ' + conflicts[0].lastName}</h2>
-			<TableContainer component={Paper}>
-				<Table sx={{ width: 1000 }}>
-					<TableHead>
-						<TableRow>
-							<TableCell>Course Code</TableCell>
-							<TableCell>Conflict?</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{classes === null ? (
+	if (loading) {
+		return ( <Loader />)
+	} else {
+		return (
+			<Grid>
+				<h1>
+					{eventData?.sport}: {eventData?.opponent}
+				</h1>
+				<h2>{conflicts && conflicts[0].firstName + ' ' + conflicts[0].lastName}</h2>
+				<TableContainer component={Paper}>
+					<Table sx={{ width: 1000 }}>
+						<TableHead>
 							<TableRow>
-								<TableCell>There are no classes to show.</TableCell>
+								<TableCell>Course Code</TableCell>
+								<TableCell>Conflict?</TableCell>
 							</TableRow>
-						) : (
-							classes?.map((course: any) =>
-								hasConflict(course) ? (
-									<TableRow key={course.crS_CDE}>
-										<TableCell sx={{ color: 'red' }}>
-											{course.crS_CDE}
-										</TableCell>
-										<TableCell sx={{ color: 'red' }}>Yes</TableCell>
-									</TableRow>
-								) : (
-									<TableRow key={course.crS_CDE}>
-										<TableCell>{course.crS_CDE}</TableCell>
-										<TableCell>No</TableCell>
-									</TableRow>
-								),
-							)
-						)}
-					</TableBody>
-				</Table>
-			</TableContainer>
-			<Link to={`/coach/events/${id}/details`}>
-				<Button
-					size='small'
-					sx={{ backgroundColor: 'red', color: 'white' }}
-					variant={'outlined'}
-				>
-					Back to Details
-				</Button>
-			</Link>
-		</Grid>
-	);
+						</TableHead>
+						<TableBody>
+							{classes === null ? (
+								<TableRow>
+									<TableCell>There are no classes to show.</TableCell>
+								</TableRow>
+							) : (
+								classes?.map((course: any) =>
+									hasConflict(course) ? (
+										<TableRow key={course.crS_CDE}>
+											<TableCell sx={{ color: 'red' }}>
+												{course.crS_CDE}
+											</TableCell>
+											<TableCell sx={{ color: 'red' }}>Yes</TableCell>
+										</TableRow>
+									) : (
+										<TableRow key={course.crS_CDE}>
+											<TableCell>{course.crS_CDE}</TableCell>
+											<TableCell>No</TableCell>
+										</TableRow>
+									),
+								)
+							)}
+						</TableBody>
+					</Table>
+				</TableContainer>
+				<Link to={`/coach/events/${id}/details`}>
+					<Button
+						size='small'
+						sx={{ backgroundColor: 'red', color: 'white' }}
+						variant={'outlined'}
+					>
+						Back to Details
+					</Button>
+				</Link>
+			</Grid>
+		);
+	}
 };
