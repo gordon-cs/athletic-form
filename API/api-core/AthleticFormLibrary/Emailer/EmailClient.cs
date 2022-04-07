@@ -4,6 +4,8 @@ using System.Net;
 using AthleticFormLibrary.DataAccess;
 using System.Collections.Generic;
 using System.Linq;
+using AthleticFormLibrary.Utilities;
+using System;
 
 namespace AthleticFormLibrary.Emailer
 {
@@ -21,10 +23,14 @@ namespace AthleticFormLibrary.Emailer
         {
             List<MailMessage> mailMessages = new List<MailMessage>();
             if (string.IsNullOrEmpty(emails)) {
-                List<string> courses = _athleticContext.AthleticConflicts.Select(c => c.CourseCode).Distinct().ToList();
+                string year = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
+                string term = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
+                List<string> courses = _athleticContext.AthleticConflicts.Where(a => a.YearCode == year 
+                    && a.TermCode == term).Select(c => c.CourseCode).Distinct().ToList();
                 foreach (string m in courses)
                 {
-                    int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
+                    int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m 
+                        && p.yr_cde == year && p.trm_cde == term).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
                     string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
                     mailMessages.Add(SendMail(m, emailAddress));
                 }
