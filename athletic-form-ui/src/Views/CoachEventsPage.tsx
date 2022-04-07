@@ -39,13 +39,15 @@ export const CoachEventsPage: React.FC = () => {
 					if (getDateTimeAsInt(e.eventDate) < getDateTimeAsInt(d) - 1) {
 						removeEvent(e.eventId)
 					}
-					setLoading(false);
 					return e.isDeleted === false;
 				});
 				console.log(eventList);
 				setEventBank(eventList)
 				setEvents(eventList);
-			})
+            })
+            .then(() => {
+                setLoading(false);
+            })
 			.catch((error) => console.log(error));
 	}, []);
 
