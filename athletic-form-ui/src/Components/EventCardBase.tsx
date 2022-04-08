@@ -7,19 +7,8 @@ import { CardContent, CardHeader, Card, Typography } from '@mui/material';
 import '../styles/eventCard.scss';
 import { Link } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
-import { 
-	MdSportsBaseball, 
-	MdSportsBasketball,
-	MdDirectionsRun,
-	MdSportsHockey,
-	MdSportsGolf,
-	MdRowing,
-	MdSportsSoccer,
-	MdSportsTennis,
-	MdSportsVolleyball
-} from 'react-icons/md';
-import { FaSwimmer } from 'react-icons/fa';
-import { GiLion } from 'react-icons/gi';
+import { setSportIcon } from './sportIconService';
+import { useEffect } from 'react';
 
 interface Props {
 	eventData: any;
@@ -34,9 +23,14 @@ export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 	let scrimmage;
 	let isHome;
 	let conflict;
-	let sportIcon;
-	const iconSize = 45;
+	let sportIcon: any;
 	let sportColor = 'is' + eventData?.sport;
+
+    
+    useEffect(() => {
+            setSportIcon(sportIcon, eventData)
+        })
+
 
 	if (eventData?.isScrimmage)
 		scrimmage = "scrimmage";
@@ -49,7 +43,6 @@ export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 		conflict = "conflict"
 	}
 
-	console.log(isCoach)
 	
 	//Determines what information should be shown in the header
 	if (!isCoach) //Not the coach view
@@ -57,74 +50,9 @@ export const EventCardHeader: React.FC<Props> = ({ eventData , isCoach}) => {
 	else         //The coach view
 		cardHeader = "card-header " + scrimmage + " " + conflict;
 
+    
 
 
-	switch (eventData?.sport) {
-		case "M Baseball":
-		case "W Softball":
-			sportIcon = (
-				<MdSportsBaseball size={iconSize} />
-			);
-			break;
-		case "M Basketball":
-		case "W Basketball":
-			sportIcon = (
-				<MdSportsBasketball size={iconSize} />
-			);
-			break;
-		case "M Cross Country":
-		case "W Cross Country":
-		case "M Track & Field":
-		case "W Track & Field":
-			sportIcon = (
-				<MdDirectionsRun size={iconSize} />
-			);
-			break;
-		case "W Field Hockey":
-			sportIcon = (
-				<MdSportsHockey size={iconSize} />
-			);
-			break;
-		case "M Golf":
-			sportIcon = (
-				<MdSportsGolf size={iconSize} />
-			);
-			break;
-		case "M Rowing":
-		case "W Rowing":
-			sportIcon = (
-				<MdRowing size={iconSize} />
-			);
-			break;
-		case "M Soccer":
-		case "W Soccer":
-			sportIcon = (
-				<MdSportsSoccer size={iconSize} />
-			);
-			break;
-		case "M Swimming":
-		case "W Swimming":
-			sportIcon = (
-				<FaSwimmer size={iconSize} />
-			);
-			break;
-		case "M Tennis":
-		case "W Tennis":
-			sportIcon = (
-				<MdSportsTennis size={iconSize} />
-			);
-			break;
-		case "W Volleyball":
-			sportIcon = (
-				<MdSportsVolleyball size={iconSize} />
-			);
-			break;
-		default: 
-			sportIcon = (
-				<GiLion size={iconSize} />
-			);
-			break;
-	}
 
 	if (eventData?.departOrHome === 'Home') {
 		homeOrNot = "isHome";
