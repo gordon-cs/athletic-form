@@ -66,9 +66,9 @@ namespace AthleticFormLibrary.Utilities
             // Set the time of weekly mail
             /* When testing, time can change. Normal time is 
                 Sunday at 6 AM*/
-            int hour = 6;
-            int minute = 0;
-            int day = (int)DayOfWeek.Sunday;
+            int hour = 21;
+            int minute = 19;
+            int day = (int)DayOfWeek.Thursday;
 
             // Create dat objects for now and next sunday
             DateTime now = DateTime.Now;
