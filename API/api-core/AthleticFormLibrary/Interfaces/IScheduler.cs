@@ -3,7 +3,7 @@ using System;
 namespace AthleticFormLibrary.Interfaces
 {
     public interface IScheduler {
-         void ScheduleWeeklyTask();
-         void ScheduleTestTask();
+         void ScheduleWeeklyTask(string email, string password);
+         void ScheduleTestTask(string email, string password);
     }
 }

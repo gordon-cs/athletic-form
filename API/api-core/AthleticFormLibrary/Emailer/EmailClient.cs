@@ -19,10 +19,10 @@ namespace AthleticFormLibrary.Emailer
             _generator = generator;
         }
 
-        public List<MailMessage> WeeklyMail(string emails = "", int number = 0)
+        public List<MailMessage> WeeklyMail(string fromEmail, string password, string toEmails = "", int number = 0)
         {
             List<MailMessage> mailMessages = new List<MailMessage>();
-            if (string.IsNullOrEmpty(emails)) {
+            if (string.IsNullOrEmpty(toEmails)) {
                 string year = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
                 string term = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
                 List<string> courses = _athleticContext.AthleticConflicts.Where(a => a.YearCode == year 
@@ -32,26 +32,26 @@ namespace AthleticFormLibrary.Emailer
                     int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m 
                         && p.yr_cde == year && p.trm_cde == term).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
                     string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
-                    mailMessages.Add(SendMail(m, emailAddress));
+                    mailMessages.Add(SendMail(fromEmail, password, m, emailAddress));
                 }
             } else {
-                string[] emailsAsArray = emails.Split(',');
-                foreach (var email in emailsAsArray) {
-                    mailMessages.Add(SendMail("", email, number));
+                string[] toEmailsAsArray = toEmails.Split(',');
+                foreach (var toEmail in toEmailsAsArray) {
+                    mailMessages.Add(SendMail(fromEmail, password, "", toEmail, number));
                 }
             }
             return mailMessages;
         }
 
-        public MailMessage SendMail(string course, string profEmail, int number = 0) {
+        public MailMessage SendMail(string fromEmail, string password, string course, string profEmail, int number = 0) {
             System.Diagnostics.Debug.WriteLine("EMAIL...");
             using (var smtp = Injector.Resolve<SmtpClient>()) {
                 /*replace with your email */
-                var from_email = "first.last@gordon.edu";
+                var from_email = fromEmail;
                 var credential = new NetworkCredential {
                     //replace with your password
-                    UserName = "first.last@gordon.edu",
-                    Password = "password"
+                    UserName = fromEmail,
+                    Password = password
                 };
                 smtp.Credentials = credential;
                 smtp.Host = "smtp.office365.com";

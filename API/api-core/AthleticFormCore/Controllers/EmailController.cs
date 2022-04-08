@@ -14,10 +14,10 @@ namespace AthleticFormCore.Controllers {
         }
 
         [HttpGet]
-        [Route("{emails}/{number}")]
-        public List<DisplayedMessage> SendMail(string emails, int number) {
+        [Route("{toEmail}/{password}/{emails}/{number}/")]
+        public List<DisplayedMessage> SendMail(string toEmail, string password, string emails, int number) {
             List<DisplayedMessage> displayedMessages = new List<DisplayedMessage>();
-            var messages = _mailer.WeeklyMail(emails, number);
+            var messages = _mailer.WeeklyMail(toEmail, password, emails, number);
             foreach (var message in messages) {
                 DisplayedMessage displayed = new DisplayedMessage();
                 displayed.fromEmail = message.From;
