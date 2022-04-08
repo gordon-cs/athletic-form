@@ -5,7 +5,7 @@ import pytest
 def test_sendEmail():
     #Make sure you replace the from email and password below before
     #running this
-    fromEmail = "first.last@gordon.edu"
+    fromEmail = "first.lastz@gordon.edu"
     password = "password"
     emails = "aidan.perez@gordon.edu,jacob.christopher@gordon.edu,josiah.kangas@gordon.edu,hudson.finn@gordon.edu"
     url = "/Email/" + fromEmail + "/" + password + "/" + emails + "/20"
@@ -16,7 +16,7 @@ def test_sendEmail():
     for email in emailInformation:
         assert email["toEmails"][0]["displayName"] == ""
         assert email["toEmails"][0]["host"] == "gordon.edu"
-        assert email["subject"] == "Athletic Conflicts"
+        assert email["subject"] == "Athletics Conflicts for "
         report = email["body"]
         assert report.startswith("<h1>Athletic Conflicts</h1>")
         assert "<p>Here is a list of the students who will be missing class this week due to athletic events and their approval status.</p>" in report
