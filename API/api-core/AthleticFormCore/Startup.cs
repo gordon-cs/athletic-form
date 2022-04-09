@@ -12,12 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.IO;
 using System.Text;
 using Unity;
-using AthleticFormLibrary;
-using AthleticFormLibrary.DataAccess;
-using AthleticFormLibrary.Utilities;
-using Microsoft.EntityFrameworkCore;
-using AthleticFormLibrary.Interfaces;
-using System;
 using System.Diagnostics;
 
 namespace AthleticFormCore

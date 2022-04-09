@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.Interfaces;
 using System.Collections.Generic;
 using System.Net.Mail;
-using System.Text.Json;
 
-namespace AthleticFormCore.Controllers {
+namespace AthleticFormCore.Controllers
+{
     [Route("api/[controller]")]
     [ApiController]
     public class EmailController : ControllerBase {
