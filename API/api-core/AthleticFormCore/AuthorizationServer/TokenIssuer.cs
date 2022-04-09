@@ -31,7 +31,7 @@ namespace AthleticFormCore.AuthorizationServer
             // Get service account credentials
             var serviceUsername = usernamePassword[0];
             var servicePassword = usernamePassword[1];
-            // Syntax like : my.server.com:8080 
+
             var ldapServer = "gordon.edu";
             Debug.WriteLine(serviceUsername);
             try
@@ -99,9 +99,6 @@ namespace AthleticFormCore.AuthorizationServer
 
         private string GenerateToken(string username, bool isAdmin)
         {
-            // This will need to be maintained if scheduler 
-
-
             Claim[] claims;
             if (isAdmin)
             {
@@ -125,7 +122,6 @@ namespace AthleticFormCore.AuthorizationServer
                     };
             }
 
-            // TODO: Add key generation
             var key = System.IO.File.ReadAllText(@"./Properties/loginKey.json");
             var issuer = "gordon.edu";
 
