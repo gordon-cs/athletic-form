@@ -78,6 +78,17 @@ export const CoachEventsPage: React.FC = () => {
 						View Team Information
 					</Button>
 				</Link>
+				<Button
+					size='small'
+					sx={{ backgroundColor: '#615748', color: 'white' }}
+					style={{display: 'flex', justifyContent: 'flex-end'}}
+					onClick= {() => {
+						localStorage.removeItem('token');
+						window.location.href = "..";	
+					}}
+				>
+					Logout
+				</Button>
 				<h3>Filter By: {" "}
 					<select
 						id="sportList"
