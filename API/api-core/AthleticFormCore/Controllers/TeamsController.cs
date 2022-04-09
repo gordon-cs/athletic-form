@@ -10,7 +10,7 @@ namespace AthleticFormCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Staff, Scheduler")]
+    [Authorize(Roles = "Staff, Scheduler, Admin")]
     public class TeamsController : ControllerBase
     {
         private readonly AthleticContext _athleticContext;
@@ -30,7 +30,7 @@ namespace AthleticFormCore.Controllers
         public object GetRosterData(string sport)
         {
             var rosterData = (
-                from a in _athleticContext.Accounts 
+                from a in _athleticContext.Accounts
                 join pit in _athleticContext.PlayersInTeam on a.Gordon_ID equals pit.Gordon_ID
                 where pit.TeamName == sport
                 select new
@@ -46,7 +46,7 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
-        public async void AddToTeamRoster([FromBody]PlayersInTeam playerInTeam)
+        public async void AddToTeamRoster([FromBody] PlayersInTeam playerInTeam)
         {
             playerInTeam.dateAdded = DateTime.Now;
             await _athleticContext.AddAsync<PlayersInTeam>(playerInTeam);
@@ -86,5 +86,5 @@ namespace AthleticFormCore.Controllers
             }
             _athleticContext.SaveChanges();
         }
-     }
+    }
 }

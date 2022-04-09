@@ -22,7 +22,6 @@ export const EventsPage: React.FC = () => {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		// TODO: Add timeout validation on redirect
 		if (token == undefined) {
 			window.location.href = "..";
 		} else {
@@ -78,7 +77,19 @@ export const EventsPage: React.FC = () => {
 						<AiOutlineTeam />
 						View Team Information
 					</Button>
-				</Link>
+                </Link>
+                <Button
+                    size='small'
+                    sx={{ backgroundColor: '#615748', color: 'white' }}
+                    style={{ float: 'right', marginRight: '16px' }}
+                    variant={'outlined'}
+                    onClick={() => {
+                        localStorage.removeItem('token');
+                        window.location.href = "..";
+                    }}
+                >
+                    Logout
+                </Button>
 				<h3>Filter By: {" "}
 					<select
 						id="sportList"

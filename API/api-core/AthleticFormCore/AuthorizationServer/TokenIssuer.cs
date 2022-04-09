@@ -11,7 +11,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-[Route("api/[controller]")]
+namespace AthleticFormCore.AuthorizationServer
+{
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
@@ -29,7 +31,7 @@ using System.Text;
             // Get service account credentials
             var serviceUsername = usernamePassword[0];
             var servicePassword = usernamePassword[1];
-            // Syntax like : my.server.com:8080 
+
             var ldapServer = "gordon.edu";
             Debug.WriteLine(serviceUsername);
             try
@@ -59,7 +61,6 @@ using System.Text;
                         "OU=Gordon College,DC=gordon,DC=edu"
                         );
 
-
                     var areValidCredentials = ADUserConnection.ValidateCredentials(
                         serviceUsername,
                         servicePassword,
@@ -68,7 +69,13 @@ using System.Text;
 
                     if (areValidCredentials)
                     {
-                        var token = GenerateToken(serviceUsername);
+                        // Check if user is an admin
+                        UserPrincipal user = UserPrincipal.FindByIdentity(ADUserConnection, serviceUsername);
+                        GroupPrincipal group = GroupPrincipal.FindByIdentity(ADUserConnection, Roles.ADMIN_GROUP);
+                        bool isAdmin = user.IsMemberOf(group);
+
+                        // Get bearer token
+                        var token = GenerateToken(serviceUsername, isAdmin);
                         return token;
                     }
                     else
@@ -90,13 +97,17 @@ using System.Text;
             return "Unauthorized!";
         }
 
-        private string GenerateToken(string username)
+        private string GenerateToken(string username, bool isAdmin)
         {
-            // TODO: Move this constant file
-            string[] scheduler = new string[1] { "jacob.christopher" };
-
             Claim[] claims;
-            if (Array.IndexOf(scheduler, username) != -1)
+            if (isAdmin)
+            {
+                claims = new[] {
+                        new Claim(ClaimTypes.Name, username),
+                        new Claim(ClaimTypes.Role, "Admin"),
+                    };
+            }
+            else if (Array.IndexOf(Roles.SCHEDULER, username) != -1)
             {
                 claims = new[] {
                         new Claim(ClaimTypes.Name, username),
@@ -111,7 +122,6 @@ using System.Text;
                     };
             }
 
-            // TODO: Add key generation
             var key = System.IO.File.ReadAllText(@"./Properties/loginKey.json");
             var issuer = "gordon.edu";
 
@@ -122,3 +132,4 @@ using System.Text;
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
     }
+}

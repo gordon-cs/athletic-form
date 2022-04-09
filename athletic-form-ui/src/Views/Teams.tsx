@@ -21,7 +21,6 @@ export const Teams: React.FC<Props> = () => {
     
     useEffect(() => {
         const token = localStorage.getItem('token');
-		// TODO: Add timeout validation on redirect
 		if (token == undefined) {
 			window.location.href = "..";
 		} else {
