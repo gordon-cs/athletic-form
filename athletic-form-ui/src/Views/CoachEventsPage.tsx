@@ -81,7 +81,8 @@ export const CoachEventsPage: React.FC = () => {
 				<Button
 					size='small'
 					sx={{ backgroundColor: '#615748', color: 'white' }}
-					style={{display: 'flex', justifyContent: 'flex-end'}}
+                    style={{ float: 'right', marginRight: '16px' }}
+                    variant={'outlined'}
 					onClick= {() => {
 						localStorage.removeItem('token');
 						window.location.href = "..";	
