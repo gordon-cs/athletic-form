@@ -28,9 +28,9 @@ namespace AthleticFormCore
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             
-            if(env.IsDevelopment()) {
+            //if(env.IsDevelopment()) {
                 builder.AddUserSecrets<Startup>();
-            }
+            //}
 
             Configuration = builder.Build();
         }
@@ -109,10 +109,12 @@ namespace AthleticFormCore
             app.UseWelcomePage();
 
             // Finally, start the email scheduling service
-            //emailScheduler.ScheduleWeeklyTask();
+            string email = Configuration["email"];
+            string password = Configuration["password"];
+            emailScheduler.ScheduleWeeklyTask(email, password);
             /*For testing purposes.  Sends every 3 minutes instead
                 of every week.*/
-            //emailScheduler.ScheduleTestTask();
+            //emailScheduler.ScheduleTestTask(email, password);
         }
     }
 }

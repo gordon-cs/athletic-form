@@ -13,32 +13,10 @@ namespace AthleticFormCore.Controllers
             _mailer = mailer;
         }
 
-        [HttpGet]
-        [Route("{emails}/{number}")]
-        public List<DisplayedMessage> SendMail(string emails, int number) {
-            List<DisplayedMessage> displayedMessages = new List<DisplayedMessage>();
-            var messages = _mailer.WeeklyMail(emails, number);
-            foreach (var message in messages) {
-                DisplayedMessage displayed = new DisplayedMessage();
-                displayed.fromEmail = message.From;
-                displayed.toEmails = new List<MailAddress>();
-                foreach (var toAddress in message.To) {
-                    displayed.toEmails.Add(toAddress);
-                }
-                displayed.subject = message.Subject;
-                displayed.body = message.Body;
-                displayed.isBodyHtml = message.IsBodyHtml;
-                displayedMessages.Add(displayed);
-            }
-            return displayedMessages;
+        [HttpPost]
+        [Route("{fromEmail}/{password}/{emails}/{number}/")]
+        public void SendMail(string fromEmail, string password, string emails, int number) {
+            _mailer.WeeklyMail(fromEmail, password, emails, number);
         }
-    }
-
-    public class DisplayedMessage {
-        public MailAddress fromEmail { get; set; }
-        public List<MailAddress> toEmails { get; set; }
-        public string subject { get; set; }
-        public string body { get; set; }
-        public bool isBodyHtml { get; set; }
     }
 }
