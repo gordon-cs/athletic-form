@@ -19,9 +19,8 @@ namespace AthleticFormLibrary.Emailer
             _generator = generator;
         }
 
-        public List<MailMessage> WeeklyMail(string fromEmail, string password, string toEmails = "", int number = 0)
+        public void WeeklyMail(string fromEmail, string password, string toEmails = "", int number = 0)
         {
-            List<MailMessage> mailMessages = new List<MailMessage>();
             if (string.IsNullOrEmpty(toEmails)) {
                 string year = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
                 string term = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
@@ -34,19 +33,18 @@ namespace AthleticFormLibrary.Emailer
                     string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
                     if (emailAddress != null)
                     {
-                        mailMessages.Add(SendMail(fromEmail, password, m, emailAddress));
+                        SendMail(fromEmail, password, m, emailAddress);
                     }
                 }
             } else {
                 string[] toEmailsAsArray = toEmails.Split(',');
                 foreach (var toEmail in toEmailsAsArray) {
-                    mailMessages.Add(SendMail(fromEmail, password, "", toEmail, number));
+                    SendMail(fromEmail, password, "", toEmail, number);
                 }
             }
-            return mailMessages;
         }
 
-        public MailMessage SendMail(string fromEmail, string password, string course, string profEmail, int number = 0) {
+        public void SendMail(string fromEmail, string password, string course, string profEmail, int number = 0) {
             System.Diagnostics.Debug.WriteLine("EMAIL...");
             using (var smtp = Injector.Resolve<SmtpClient>()) {
                 /*replace with your email */
@@ -70,7 +68,6 @@ namespace AthleticFormLibrary.Emailer
                 message.IsBodyHtml = true;
 
                 smtp.Send(message);
-                return message;
             }
         }
     }
