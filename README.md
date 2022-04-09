@@ -5,7 +5,8 @@
 - https://trello.com/b/arqAL20O/athletic-form
 
 ## Documentation
-- [Documentation](https://gordon-cs.github.io/Athletic-Absence-Documentation/)
+- [Documentation Website](https://gordon-cs.github.io/Athletic-Absence-Documentation/)
+- [Repository](https://github.com/gordon-cs/Athletic-Absence-Documentation)
 
 
 ## Problem Statement:
