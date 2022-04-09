@@ -5,7 +5,7 @@
      */
     public static class Roles
     {
-        public const string ADMIN_GROUP = "AthleticScheduler-SG";
+        public const string ADMIN_GROUP = "AthleticsScheduler-SG";
         public static readonly string[] SCHEDULER = { "robyn.kefalas" };
     }
 }
