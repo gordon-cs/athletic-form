@@ -16,16 +16,15 @@ export const LoginPage: React.FC = () => {
 
 
 	const fetchToken = (username: string, password: string) => {
-        var data = new  URLSearchParams({
-                username,
-                password
-        })
-
+        var data = {
+                username: username,
+                password: password,
+        }
+        var json = JSON.stringify(data);
 		apiClient({
 			method: 'post',
 			url: `/authorization/token`,
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: data
+			data: json
 		})
 			.then((res) => {
 				let val = res.data;
