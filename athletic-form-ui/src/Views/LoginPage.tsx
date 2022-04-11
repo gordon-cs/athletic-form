@@ -1,4 +1,4 @@
-import { Button, Box } from '@mui/material';
+import { Button, Box, Grid, Alert } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import '../styles/login.scss';
@@ -26,8 +26,7 @@ export const LoginPage: React.FC = () => {
 				let val = res.data;
 				setToken(val);
                 checkAuthorization(val);
-			})
-			.catch((error) => console.log(error));
+			}).catch((error) => console.log(error));
 
 		console.log(token);
 	};
