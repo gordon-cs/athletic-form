@@ -16,7 +16,7 @@ namespace AthleticFormLibrary.Utilities
             _emailer = emailer;
          }
 
-        public void ScheduleWeeklyTask()
+        public void ScheduleWeeklyTask(string email, string password)
         {
             // Calculate period until first run
             DateTime now = DateTime.Now;
@@ -28,7 +28,7 @@ namespace AthleticFormLibrary.Utilities
 
             // Set a timer to indicate when this service should run agian
             var timer = new Timer(x => {
-                _emailer.WeeklyMail();
+                _emailer.WeeklyMail(email, password);
             }, null, timeRemaining, TimeSpan.FromDays(7));
 
             timers.Add(timer);
@@ -40,7 +40,7 @@ namespace AthleticFormLibrary.Utilities
             //null
         }
 
-        public void ScheduleTestTask()
+        public void ScheduleTestTask(string email, string password)
         {
             DateTime now = DateTime.Now;
             TimeSpan timeRemaining = timeUntilTask();
@@ -51,7 +51,7 @@ namespace AthleticFormLibrary.Utilities
 
             var timer = new Timer(x => {
                 System.Diagnostics.Debug.WriteLine("Scheduled Task executing at: " + DateTime.Now);
-                _emailer.WeeklyMail();
+                _emailer.WeeklyMail(email, password);
             }, null, timeRemaining, TimeSpan.FromMinutes(3));
 
             timers.Add(timer);
