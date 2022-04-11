@@ -44,7 +44,7 @@ export const LoginPage: React.FC = () => {
 			let role = JSON.parse(atob(token.split('.')[1]))[
 				'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
 			];
-			// Redirect to home screen (TODO: redirect based on user role)
+			// Redirect to home screen
 			if (role === 'Staff') {
 				window.location.href = 'coach/events';
 			} else {
