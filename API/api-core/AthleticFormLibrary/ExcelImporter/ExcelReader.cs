@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 
 
-public class ExcelReader {
+public class ExcelReader : ControllerBase {
 
     private string worksheet;
 
@@ -132,6 +132,8 @@ class ExcelEvent {
     string comments;
     bool isScrimmage;
 
+    private AthleticEvent ae;
+
     public ExcelEvent(string _sport, string _opponent, string _eventDate,
                       string _eventTime, string _departTime, string _comments) {
         sport = _sport;
@@ -141,8 +143,25 @@ class ExcelEvent {
         departureTime = _departTime;
         comments = _comments;
         PrintEvent();
-
+        
     }
+
+    private void MapToAthleticEvent() {
+        ae = new AthleticEvent();
+        //ae.EventId = "don't worry about it"
+        ae.Sport = sport;
+        ae.Opponent = opponent;
+        ae.HomeOrAway {get; set; }
+        ae.Destination { get; set; }
+        public DateTime? EventDate { get; set; }
+        public DateTime? DepartureTime { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? ArrivalTime { get; set; }
+        ae.Comments { get; set; }
+        public bool IsScrimmage { get; set; }
+    }
+
+    
 
     public void PrintEvent() {
         Console.WriteLine(sport + " | " + opponent + " | " + eventDate + " | " + 
