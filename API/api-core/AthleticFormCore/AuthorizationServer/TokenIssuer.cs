@@ -29,7 +29,7 @@ namespace AthleticFormCore.AuthorizationServer {
 
         [HttpPost]
         [Route("token")]
-        public string GetToken(string json) {
+        public string GetToken([FromBody]string json) {
 
             Credentials credentials = JsonConvert.DeserializeObject<Credentials>(json);
 
