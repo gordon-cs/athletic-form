@@ -11,7 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-[Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
@@ -21,36 +21,26 @@ using System.Text;
             _context = context;
         }
 
-        [HttpGet]
-        [Route("token/{credentials}")]
-        public string GetToken(string credentials)
-        {
-            var usernamePassword = credentials.Split(':');
-            // Get service account credentials
-            var serviceUsername = usernamePassword[0];
-            var servicePassword = usernamePassword[1];
-            // Syntax like : my.server.com:8080 
+        [HttpPost]
+        [Route("token")]
+        public string GetToken(string username, string password)
+        {         
             var ldapServer = "gordon.edu";
-            Debug.WriteLine(serviceUsername);
             try
             {
-
-
                 PrincipalContext ADServiceConnection = new PrincipalContext(
                     ContextType.Domain,
                     ldapServer, "OU=Gordon College,DC=gordon,DC=edu",
                     ContextOptions.Negotiate | ContextOptions.ServerBind | ContextOptions.SecureSocketLayer,
-                    serviceUsername,
-                    servicePassword);
+                    username,   
+                    password);
 
                 UserPrincipal userQuery = new UserPrincipal(ADServiceConnection);
-                userQuery.SamAccountName = serviceUsername;
+                userQuery.SamAccountName = username;
 
                 PrincipalSearcher search = new PrincipalSearcher(userQuery);
                 UserPrincipal userEntry = (UserPrincipal)search.FindOne();
                 search.Dispose();
-
-
                 if (userEntry != null)
                 {
                     PrincipalContext ADUserConnection = new PrincipalContext(
@@ -61,14 +51,14 @@ using System.Text;
 
 
                     var areValidCredentials = ADUserConnection.ValidateCredentials(
-                        serviceUsername,
-                        servicePassword,
+                        username,
+                        password,
                         ContextOptions.SimpleBind | ContextOptions.SecureSocketLayer
                         );
 
                     if (areValidCredentials)
                     {
-                        var token = GenerateToken(serviceUsername);
+                        var token = GenerateToken(username);
                         return token;
                     }
                     else

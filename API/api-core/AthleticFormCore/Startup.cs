@@ -98,11 +98,7 @@ namespace AthleticFormCore
             app.UseAuthorization();
 
             app.UseCors(builder => {
-                    builder.WithOrigins("http://localhost:3000")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-
-                builder.WithOrigins("http://localhost:3001")
+                builder.WithOrigins("http://localhost:3000", "https://athleticabsence.gordon.edu")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });     
