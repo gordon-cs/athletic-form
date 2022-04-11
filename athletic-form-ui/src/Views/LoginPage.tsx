@@ -16,18 +16,20 @@ export const LoginPage: React.FC = () => {
 
 
 	const fetchToken = (username: string, password: string) => {
-		var json = JSON.stringify({username, password});
+        var data = {
+                username: username,
+                password: password,
+            }
 		apiClient({
 			method: 'post',
 			url: `/authorization/token`,
-			data: json
+			data: data
 		})
 			.then((res) => {
 				let val = res.data;
 				setToken(val);
                 checkAuthorization(val);
-			})
-			.catch((error) => console.log(error));
+			}).catch((error) => console.log(error));
 
 		console.log(token);
 	};
