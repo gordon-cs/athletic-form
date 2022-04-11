@@ -16,10 +16,11 @@ export const LoginPage: React.FC = () => {
 
 
 	const fetchToken = (username: string, password: string) => {
-		var credentials = `${username}:${password}`;
+		var json = JSON.stringify({username, password});
 		apiClient({
-			method: 'get',
-			url: `/authorization/token/${credentials}`,
+			method: 'post',
+			url: `/authorization/token`,
+			data: json
 		})
 			.then((res) => {
 				let val = res.data;
