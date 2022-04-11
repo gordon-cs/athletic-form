@@ -19,12 +19,6 @@ namespace AthleticFormCore.Controllers
         }
 
         [HttpGet]
-        public List<Account> GetAllAccounts()
-        {
-            return _athleticContext.Accounts.ToList();
-        }
-
-        [HttpGet]
         [Route("StudentsEnrolledIn/{email}/{yearCode}/{termCode}")]
         public object GetStudentsEnrolledIn(string email, string yearCode, string termCode)
         {
