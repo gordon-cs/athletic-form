@@ -17,8 +17,8 @@ export const LoginPage: React.FC = () => {
 
 	const fetchToken = (username: string, password: string) => {
         var data = {
-                username: username,
-                password: password,
+            username: username,
+            password: password,
         }
         var json = JSON.stringify(data);
 		apiClient({
