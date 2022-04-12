@@ -160,7 +160,6 @@ export const CoachEventDetails: React.FC = () => {
 								<TableCell>Email</TableCell>
 								<TableCell>First Name</TableCell>
 								<TableCell>Last Name</TableCell>
-								<TableCell>Approval Status</TableCell>
 								<TableCell></TableCell>
 							</TableRow>
 						</TableHead>
@@ -175,11 +174,6 @@ export const CoachEventDetails: React.FC = () => {
 										<TableCell>{conflict['email']} </TableCell>
 										<TableCell>{conflict['firstName']}</TableCell>
 										<TableCell>{conflict['lastName']}</TableCell>
-										{Math.random() < 0.5 ? ( //Leave this for presentation
-											<TableCell sx={{ color: 'green' }}>Approved</TableCell>
-										) : (
-											<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
-										)}
 										<TableCell>
 											<Link to={`/coach/events/${id}/details/${conflict['email']}/${conflict['yearCode']}/${conflict['termCode']}/classconflicts`}>View Class Conflicts</Link>
 										</TableCell>
