@@ -32,6 +32,8 @@ namespace AthleticFormCore.AuthorizationServer {
         public string GetToken([FromBody]string json) {
 
             Credentials credentials = JsonConvert.DeserializeObject<Credentials>(json);
+            Console.WriteLine(credentials.Username);
+            Console.WriteLine(credentials.Password);
 
             var ldapServer = "gordon.edu";
             try {
