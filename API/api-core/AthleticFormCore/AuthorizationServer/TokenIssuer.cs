@@ -13,7 +13,7 @@ using System.Text;
 using Newtonsoft.Json;
 
 namespace AthleticFormCore.AuthorizationServer {
-    struct Credentials {
+    public struct Credentials {
         public string Username { get; set; }
         public string Password { get; set; }
     }
@@ -29,9 +29,8 @@ namespace AthleticFormCore.AuthorizationServer {
 
         [HttpPost]
         [Route("token")]
-        public string GetToken([FromBody]string json) {
+        public string GetToken([FromBody]Credentials credentials) {
 
-            Credentials credentials = JsonConvert.DeserializeObject<Credentials>(json);
             Console.WriteLine(credentials.Username);
             Console.WriteLine(credentials.Password);
 
