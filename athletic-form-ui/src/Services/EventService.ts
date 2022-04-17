@@ -48,6 +48,13 @@ export async function getRosterData(sport: string) {
 	})
 }
 
+export async function getCoachRosterData(sport: string) {
+	return apiClient({
+		method: 'get',
+		url: `/teams/${sport}/coaches`
+	})
+}
+
 export async function getAccountByEmail(email: string) {
 	return apiClient({
 		method: 'get',

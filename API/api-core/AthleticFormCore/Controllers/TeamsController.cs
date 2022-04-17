@@ -44,6 +44,26 @@ namespace AthleticFormCore.Controllers
             return rosterData;
         }
 
+        [HttpGet]
+        [Route("{sport}/coaches")]
+        public object GetCoachRosterData(string sport)
+        {
+            var rosterData = (
+                from a in _athleticContext.Accounts
+                join pit in _athleticContext.PlayersInTeam on a.Gordon_ID equals pit.Gordon_ID
+                where pit.TeamName == sport && pit.IsCoach
+                select new
+                {
+                    Gordon_ID = a.Gordon_ID,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Email = a.Email,
+                    CoachTitle = pit.CoachTitle
+                }
+            );
+            return rosterData;
+        }
+
         [HttpPost]
         [Route("add")]
         public async void AddToTeamRoster([FromBody] PlayersInTeam playerInTeam)
