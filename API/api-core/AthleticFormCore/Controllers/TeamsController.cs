@@ -32,7 +32,7 @@ namespace AthleticFormCore.Controllers
             var rosterData = (
                 from a in _athleticContext.Accounts
                 join pit in _athleticContext.PlayersInTeam on a.Gordon_ID equals pit.Gordon_ID
-                where pit.TeamName == sport
+                where pit.TeamName == sport && !pit.IsCoach
                 select new
                 {
                     Gordon_ID = a.Gordon_ID,

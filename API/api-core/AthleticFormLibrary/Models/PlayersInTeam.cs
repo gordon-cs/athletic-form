@@ -10,5 +10,7 @@ namespace AthleticFormLibrary.Models
         public string TeamName { get; set; }
         public string Gordon_ID { get; set; }
         public DateTime dateAdded { get; set; }
+        public bool IsCoach { get; set; }
+        public string CoachTitle { get; set; }
     }
 }
