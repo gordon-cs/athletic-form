@@ -69,10 +69,22 @@ namespace AthleticFormCore.Controllers
         public async void AddToTeamRoster([FromBody] PlayersInTeam playerInTeam)
         {
             playerInTeam.dateAdded = DateTime.Now;
+            playerInTeam.IsCoach = false;
             await _athleticContext.AddAsync<PlayersInTeam>(playerInTeam);
             _athleticContext.SaveChanges();
             PlayersInTeam thisPlayer = _athleticContext.PlayersInTeam.OrderByDescending(p => p.dateAdded).FirstOrDefault();
             addPlayerToEvents(thisPlayer);
+        }
+
+        [HttpPost]
+        [Route("addcoach")]
+        public async void AddCoachToRoster([FromBody] PlayersInTeam coach)
+        {
+            coach.dateAdded = DateTime.Now;
+            coach.IsCoach = true;
+            await _athleticContext.AddAsync<PlayersInTeam>(coach);
+            _athleticContext.SaveChanges();
+
         }
 
         [HttpPost]

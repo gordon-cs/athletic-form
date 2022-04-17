@@ -121,7 +121,7 @@ export const RosterData: React.FC<Props> = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Link to={``}>
+            <Link to={`/teams/${sport}/rosterdata/addcoach`}>
 			    <Button
 				    size='large'
 				    sx={{ backgroundColor: '#710F0F', color: 'white' }}

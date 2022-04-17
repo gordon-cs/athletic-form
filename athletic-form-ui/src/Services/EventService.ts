@@ -107,6 +107,14 @@ export async function addToTeamRoster(playerInTeam: any) {
 	})
 }
 
+export async function addCoachToTeamRoster(coach: any) {
+	apiClient({
+		method: 'post',
+		url: '/teams/addcoach',
+		data: coach
+	})
+}
+
 export async function removeFromTeamRoster(sport: String, 
 	gordonId: String) {
 	apiClient({
