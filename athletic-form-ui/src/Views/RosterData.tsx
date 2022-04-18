@@ -106,7 +106,7 @@ export const RosterData: React.FC<Props> = () => {
                                 <TableCell>{coach.lastName}</TableCell>
                                 <TableCell>{coach.coachTitle}</TableCell>
                                 <TableCell>
-                                    <Link to={``}>
+                                    <Link to={`/teams/${sport}/rosterdata/${coach.gordon_ID}/deletecoach`}>
                                         <Button
                                             size='small'
                                             sx={{ backgroundColor: '#710F0F', color: 'white' }}

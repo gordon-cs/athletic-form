@@ -97,6 +97,15 @@ namespace AthleticFormCore.Controllers
             _athleticContext.SaveChanges();
         }
 
+        [HttpPost]
+        [Route("{sport}/deletecoach/{gordonId}")]
+        public void DeleteCoachFromTeamRoster(string sport, string gordonId)
+        {
+            PlayersInTeam coachToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
+            _athleticContext.PlayersInTeam.Remove(coachToDelete);
+            _athleticContext.SaveChanges();
+        }
+
         private void addPlayerToEvents(PlayersInTeam playerInTeam)
         {
             List<AthleticEvent> athleticEvents = _athleticContext.AthleticEvents.Where(a => a.Sport == playerInTeam.TeamName).ToList();

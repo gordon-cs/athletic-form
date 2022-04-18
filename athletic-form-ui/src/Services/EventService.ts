@@ -122,3 +122,11 @@ export async function removeFromTeamRoster(sport: String,
 		url: `/teams/${sport}/delete/${gordonId}`
 	})
 }
+
+export async function removeCoachFromTeamRoster(sport: String, 
+	gordonId: String) {
+		apiClient({
+			method: 'post',
+			url: `/teams/${sport}/deletecoach/${gordonId}`
+		})
+}

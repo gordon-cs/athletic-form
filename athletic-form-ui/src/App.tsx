@@ -17,6 +17,7 @@ import { AddToTeam } from './Views/AddToTeam';
 import { DeleteFromTeam } from './Views/DeleteFromTeam';
 import { HardDelEvent } from './Views/HardDelEvent';
 import { AddCoachToTeam } from './Views/AddCoachToTeam';
+import { DeleteCoachFromTeam } from './Views/DeleteCoachFromTeam';
 
 export const App = () => {
 	return (
@@ -41,6 +42,7 @@ export const App = () => {
 						<Route path = "/teams/:sport/rosterdata/add" element={<AddToTeam />}/>
 						<Route path = "/teams/:sport/rosterdata/addcoach" element={<AddCoachToTeam />}/>
 						<Route path = "/teams/:sport/rosterdata/:gordonId/delete" element={<DeleteFromTeam />}/>
+						<Route path = "/teams/:sport/rosterdata/:gordonId/deletecoach" element={<DeleteCoachFromTeam />}/>
 					</Routes>
 				</Router>
 			</Grid>
