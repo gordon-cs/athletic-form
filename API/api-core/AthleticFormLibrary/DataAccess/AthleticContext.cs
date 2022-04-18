@@ -9,7 +9,7 @@ namespace AthleticFormLibrary.DataAccess {
         public DbSet<AthleticConflict> AthleticConflicts { get; set; }
         public DbSet<PlayersInEvent> PlayersInEvent { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<PlayersInTeam> PlayersInTeam { get; set; }
+        public DbSet<InTeam> PlayersInTeam { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<SectionSchedules> SectionSchedules { get; set; }
         public DbSet<StudentCrsHist> StudentCrsHists { get; set; }
@@ -18,7 +18,7 @@ namespace AthleticFormLibrary.DataAccess {
         protected override void OnModelCreating(ModelBuilder builder) {
             builder.Entity<AthleticConflict>(e => e.ToView("Conflict", "AthleticAbsence")
                 .HasKey(t => new { t.EventID, t.Email, t.CourseCode }));
-            builder.Entity<PlayersInTeam>(e => e.HasKey(t => new {t.TeamName, t.Gordon_ID}));
+            builder.Entity<InTeam>(e => e.HasKey(t => new {t.TeamName, t.Gordon_ID}));
             builder.Entity<Account>(a => a.ToTable("Account", "webSQL.dbo").HasKey(k => k.Gordon_ID));
             builder.Entity<PlayersInEvent>(
                 e => {

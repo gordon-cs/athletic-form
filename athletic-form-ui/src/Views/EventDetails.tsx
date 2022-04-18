@@ -3,7 +3,7 @@ import { CardContent, Grid, CardHeader, Button,
     TableRow, TableCell, TableBody, CardActions, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAllEvents, removeEvent } from '../Services/EventService';
+import { getAllEvents, getCoachRosterData } from '../Services/EventService';
 import '../styles/eventCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDateAsJs, getTimeAsJs, getDateTimeAsJs } from '../Helpers/DateTimeHelpers';
@@ -25,27 +25,18 @@ export const EventDetails: React.FC = () => {
 			window.location.href = "..";
 		}
         getAllEvents().then((res: any) => {
-            setEventData(res.data.find((e: any) => {
+			let val = res.data.find((e: any) => {
                 return e.eventId === parseInt(id);
-            }));
-        }).then(() => {
-            setCoaches([{ 
-                id: 1,
-                name: "Mr. Sportsmann",
-                email: "sports.mann@gordon.edu"
-            }])
-        })
-        .catch((error) => console.log(error.message));
+            })
+            setEventData(val);
+			getCoachRosterData(val.sport).then((res: any) => {
+				console.log(res.data);
+				setCoaches(res.data);
+			}).catch((error) => console.log(error));
+        }).catch((error) => console.log(error.message));
+		console.log(eventData);
     }, [id]);
-	/*const handleClick = () => {
-		removeEvent(params.id)
-			.then((a: any) => {
-				navigate('/events');
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};*/
+
 	if (eventData?.homeOrAway === 'Home') {
 		if (eventData?.isScrimmage) {
 			headerHome = (<CardHeader
@@ -113,6 +104,7 @@ export const EventDetails: React.FC = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell>Coach</TableCell>
+								<TableCell>Title</TableCell>
 								<TableCell>Contact</TableCell>
 							</TableRow>
 						</TableHead>
@@ -121,10 +113,11 @@ export const EventDetails: React.FC = () => {
 							<TableRow>
 								<TableCell>No coaches assigned. This is probably an error.</TableCell>
 							</TableRow> : 
-								coaches?.map((student: any) => (
-								<TableRow key = {student.id}>
-									<TableCell>{student.name}</TableCell>
-									<TableCell><a href={`mailto:${student.email}`}>{student.email}</a></TableCell>
+								coaches?.map((coach: any) => (
+								<TableRow key = {coach.gordon_ID}>
+									<TableCell>{coach.firstName + " " + coach.lastName}</TableCell>
+									<TableCell>{coach.coachTitle}</TableCell>
+									<TableCell><a href={`mailto:${coach.email}`}>{coach.email}</a></TableCell>
 								</TableRow>
 							))}
 						</TableBody>
