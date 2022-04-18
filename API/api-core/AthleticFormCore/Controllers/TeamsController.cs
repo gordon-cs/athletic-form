@@ -66,23 +66,23 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
-        public async void AddToTeamRoster([FromBody] PlayersInTeam playerInTeam)
+        public async void AddToTeamRoster([FromBody] InTeam playerInTeam)
         {
             playerInTeam.dateAdded = DateTime.Now;
             playerInTeam.IsCoach = false;
-            await _athleticContext.AddAsync<PlayersInTeam>(playerInTeam);
+            await _athleticContext.AddAsync<InTeam>(playerInTeam);
             _athleticContext.SaveChanges();
-            PlayersInTeam thisPlayer = _athleticContext.PlayersInTeam.OrderByDescending(p => p.dateAdded).FirstOrDefault();
+            InTeam thisPlayer = _athleticContext.PlayersInTeam.OrderByDescending(p => p.dateAdded).FirstOrDefault();
             addPlayerToEvents(thisPlayer);
         }
 
         [HttpPost]
         [Route("addcoach")]
-        public async void AddCoachToRoster([FromBody] PlayersInTeam coach)
+        public async void AddCoachToRoster([FromBody] InTeam coach)
         {
             coach.dateAdded = DateTime.Now;
             coach.IsCoach = true;
-            await _athleticContext.AddAsync<PlayersInTeam>(coach);
+            await _athleticContext.AddAsync<InTeam>(coach);
             _athleticContext.SaveChanges();
 
         }
@@ -91,7 +91,7 @@ namespace AthleticFormCore.Controllers
         [Route("{sport}/delete/{gordonId}")]
         public void DeleteFromTeamRoster(string sport, string gordonId)
         {
-            PlayersInTeam playerToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
+            InTeam playerToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
             deletePlayerFromEvents(playerToDelete);
             _athleticContext.PlayersInTeam.Remove(playerToDelete);
             _athleticContext.SaveChanges();
@@ -101,12 +101,12 @@ namespace AthleticFormCore.Controllers
         [Route("{sport}/deletecoach/{gordonId}")]
         public void DeleteCoachFromTeamRoster(string sport, string gordonId)
         {
-            PlayersInTeam coachToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
+            InTeam coachToDelete = _athleticContext.PlayersInTeam.Where(pit => pit.TeamName == sport && pit.Gordon_ID == gordonId).SingleOrDefault();
             _athleticContext.PlayersInTeam.Remove(coachToDelete);
             _athleticContext.SaveChanges();
         }
 
-        private void addPlayerToEvents(PlayersInTeam playerInTeam)
+        private void addPlayerToEvents(InTeam playerInTeam)
         {
             List<AthleticEvent> athleticEvents = _athleticContext.AthleticEvents.Where(a => a.Sport == playerInTeam.TeamName).ToList();
             foreach (var athleticEvent in athleticEvents)
@@ -117,7 +117,7 @@ namespace AthleticFormCore.Controllers
             _athleticContext.SaveChanges();
         }
 
-        private void deletePlayerFromEvents(PlayersInTeam playerInTeam)
+        private void deletePlayerFromEvents(InTeam playerInTeam)
         {
             List<AthleticEvent> athleticEvents = _athleticContext.AthleticEvents.Where(a => a.Sport == playerInTeam.TeamName).ToList();
             foreach (var athleticEvent in athleticEvents)
