@@ -111,7 +111,10 @@ namespace AthleticFormCore
             // Finally, start the email scheduling service
             string email = Configuration["email"];
             string password = Configuration["password"];
-            emailScheduler.ScheduleWeeklyTask(email, password);
+            if (env.IsProduction())
+            {
+                emailScheduler.ScheduleWeeklyTask(email, password);
+            }
             /*For testing purposes.  Sends every 3 minutes instead
                 of every week.*/
             //emailScheduler.ScheduleTestTask(email, password);
