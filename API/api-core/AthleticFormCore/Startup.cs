@@ -21,16 +21,11 @@ namespace AthleticFormCore
        
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            
-            //if(env.IsDevelopment()) {
-                builder.AddUserSecrets<Startup>();
-            //}
 
             Configuration = builder.Build();
         }
@@ -92,7 +87,8 @@ namespace AthleticFormCore
             app.UseAuthorization();
 
             app.UseCors(builder => {
-                builder.WithOrigins("http://localhost:3000", "https://athleticabsence.gordon.edu")
+                builder.WithOrigins("http://localhost:3000", "http://athleticabsence.gordon.edu")
+                    .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });     
