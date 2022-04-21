@@ -5,6 +5,7 @@ using AthleticFormLibrary.Models;
 using AthleticFormLibrary.DataAccess;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace AthleticFormCore.Controllers
 {
@@ -62,6 +63,19 @@ namespace AthleticFormCore.Controllers
                 }
             );
             return rosterData;
+        }
+
+        [HttpGet]
+        [Route("{username}/isCoach")]
+        public Boolean IsCoach(string username)
+        {
+            // Retrieve the user's Gordon ID to use in our query
+            var email = username + "@gordon.edu";
+            var gordonId = _athleticContext.Accounts.Where(a => a.Email == email).SingleOrDefault().Gordon_ID;
+
+            var rosterData = _athleticContext.PlayersInTeam.Where(a => a.Gordon_ID == gordonId).SingleOrDefault();
+
+            return rosterData != null;
         }
 
         [HttpPost]

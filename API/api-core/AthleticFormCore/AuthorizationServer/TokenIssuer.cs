@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AthleticFormCore.Controllers;
 
 namespace AthleticFormCore.AuthorizationServer
 {
@@ -18,9 +19,11 @@ namespace AthleticFormCore.AuthorizationServer
     public class AuthorizationController : ControllerBase
     {
         private readonly AthleticContext _context;
-        public AuthorizationController(AthleticContext context)
+        private readonly TeamsController _teamsController;
+        public AuthorizationController(AthleticContext context, TeamsController teamsController)
         {
             _context = context;
+            _teamsController = teamsController;
         }
 
         [HttpGet]
@@ -116,10 +119,18 @@ namespace AthleticFormCore.AuthorizationServer
             }
             else
             {
-                claims = new[] {
+                if (_teamsController.IsCoach(username))
+                {
+                    claims = new[] {
                         new Claim(ClaimTypes.Name, username),
                         new Claim(ClaimTypes.Role, "Staff"),
                     };
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
             }
 
             var key = System.IO.File.ReadAllText(@"./Properties/loginKey.json");
