@@ -125,11 +125,12 @@ namespace AthleticFormCore.AuthorizationServer
                         new Claim(ClaimTypes.Name, username),
                         new Claim(ClaimTypes.Role, "Staff"),
                     };
-                } else
+                }
+                else
                 {
                     throw new UnauthorizedAccessException();
                 }
-                
+
             }
 
             var key = System.IO.File.ReadAllText(@"./Properties/loginKey.json");

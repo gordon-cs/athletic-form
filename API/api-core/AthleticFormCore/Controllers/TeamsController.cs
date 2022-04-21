@@ -5,6 +5,7 @@ using AthleticFormLibrary.Models;
 using AthleticFormLibrary.DataAccess;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace AthleticFormCore.Controllers
 {
@@ -65,26 +66,14 @@ namespace AthleticFormCore.Controllers
         }
 
         [HttpGet]
-        [Route("{username}/coaches")]
+        [Route("{username}/isCoach")]
         public Boolean IsCoach(string username)
         {
             // Retrieve the user's Gordon ID to use in our query
             var email = username + "@gordon.edu";
             var gordonId = _athleticContext.Accounts.Where(a => a.Email == email).SingleOrDefault().Gordon_ID;
-            
-            var rosterData = (
-                from a in _athleticContext.Accounts
-                join pit in _athleticContext.PlayersInTeam on a.Gordon_ID equals pit.Gordon_ID
-                where pit.IsCoach && pit.Gordon_ID == gordonId
-                select new
-                {
-                    Gordon_ID = a.Gordon_ID,
-                    FirstName = a.FirstName,
-                    LastName = a.LastName,
-                    Email = a.Email,
-                    CoachTitle = pit.CoachTitle
-                }
-            );
+
+            var rosterData = _athleticContext.PlayersInTeam.Where(a => a.Gordon_ID == gordonId).SingleOrDefault();
 
             return rosterData != null;
         }
