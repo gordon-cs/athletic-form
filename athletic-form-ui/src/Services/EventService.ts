@@ -55,6 +55,20 @@ export async function getCoachRosterData(sport: string) {
 	})
 }
 
+export async function getYearCode(date: any) {
+	return apiClient({
+		method: 'get',
+		url: `/yearterm/year/${date}`
+	})
+}
+
+export async function getTermCode(date: any) {
+	return apiClient({
+		method: 'get',
+		url: `yearterm/term/${date}`
+	})
+}
+
 export async function getAccountByEmail(email: string) {
 	return apiClient({
 		method: 'get',
