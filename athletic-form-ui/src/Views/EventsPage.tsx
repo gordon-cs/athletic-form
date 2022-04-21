@@ -36,8 +36,9 @@ export const EventsPage: React.FC = () => {
 			.then((res) => {
 				let eventList = res.data.filter((e: any) => {
 					const d = new Date();
-					//Deletes events that have already happened more than a week ago
-					if (getDateTimeAsInt(e.eventDate) < getDateTimeAsInt(d) - 7) {
+					const parsedEventDate = new Date(Date.parse(e.eventDate));
+					//Deletes past events
+					if (d > parsedEventDate) {
 						removeEvent(e.eventId)
                     }
 					return e.isDeleted === false;

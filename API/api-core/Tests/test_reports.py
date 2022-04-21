@@ -13,5 +13,7 @@ def test_getReport():
     assert "<th>Email</th>" in report
     assert "<th>Event</th>" in report
     assert "<th>Event Date</th>" in report
+    assert "<th>Expected Departure Time</th>" in report
+    assert "<th>Expected Return Time</th>" in report
     assert "</tr>" in report
     assert report.endswith("</table>")

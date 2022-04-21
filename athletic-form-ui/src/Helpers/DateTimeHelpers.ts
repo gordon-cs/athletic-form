@@ -32,6 +32,16 @@ export function getDateAsJs(date: any) {
 	return dateAsJs;
 }
 
+export function getDateWithDashes(date: any) {
+	let dateAsJs = null;
+	if (date !== null) {
+		let parsedDate = new Date(Date.parse(date));
+		dateAsJs =
+			parsedDate.getMonth() + 1 + '-' + parsedDate.getDate() + '-' + parsedDate.getFullYear();
+	}
+	return dateAsJs;
+}
+
 //Returns dateTime as an int to compare if a dateTime is before or after another one
 //Not numerically accurate, but accurate relative to other returns, as it assumes each month is 31 days
 export function getDateTimeAsInt(dateTime: any) {

@@ -24,6 +24,8 @@ namespace AthleticFormLibrary.Utilities
         public const string courseCodeHeader = "<th>Course Code</th>";
         public const string conflictHeader = "<th>Conflict?</th>";
         public const string eventDateHeader = "<th>Event Date</th>";
+        public const string expectedDepartureHeader = "<th>Expected Departure Time</th>";
+        public const string expectedReturnHeader = "<th>Expected Return Time</th>";
         private readonly AthleticContext _context;
         
         public ReportGenerator(AthleticContext context) {
@@ -82,7 +84,8 @@ namespace AthleticFormLibrary.Utilities
         public string GenerateReport(string major, int number = 0)
         {
             string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag +
-                nameHeader + emailHeader + eventHeader + eventDateHeader + tableRowClosingTag;
+                nameHeader + emailHeader + eventHeader + eventDateHeader + expectedDepartureHeader + expectedReturnHeader 
+                + tableRowClosingTag;
             string termCode = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
             string yearCode = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
             List<AthleticConflict> conflicts = new List<AthleticConflict>();
@@ -103,6 +106,8 @@ namespace AthleticFormLibrary.Utilities
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
                 report += String.Format("<td>{0}: {1}</td>", athleticEvent.Sport, athleticEvent.Opponent);
                 report += String.Format("<td>{0}</td>", athleticEvent.EventDate);
+                report += String.Format("<td>{0}</td>", athleticEvent.DepartureTime);
+                report += String.Format("<td>{0}</td>", athleticEvent.ArrivalTime);
                 report += tableRowClosingTag;
             }
             report += tableClosingTag;
@@ -111,6 +116,10 @@ namespace AthleticFormLibrary.Utilities
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
                 report += String.Format("<h3>{0}: {1}</h3>", athleticEvent.Sport, athleticEvent.Opponent);
                 report += String.Format("<h3>{0}</h3>", athleticEvent.EventDate);
+                report += String.Format("<h4>Leaving on {0} <em>(Expected Departure Time: {1})</em></h4>", 
+                    athleticEvent.DepartureTime?.ToString("M/d/yyyy"), athleticEvent.DepartureTime?.ToString("h:mm tt"));
+                report += String.Format("<h4>Returning to Campus on {0} <em>(Expected Return Time: {1})</em></h4>",
+                    athleticEvent.ArrivalTime?.ToString("M/d/yyyy"), athleticEvent.ArrivalTime?.ToString("h:mm tt"));
                 report += tableOpeningTag + tableRowOpeningTag + courseCodeHeader + conflictHeader + tableRowClosingTag;
                 var courses = (
                     from a in _context.Accounts
