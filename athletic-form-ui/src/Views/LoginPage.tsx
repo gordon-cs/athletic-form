@@ -24,6 +24,7 @@ export const LoginPage: React.FC = () => {
 		apiClient({
 			method: 'post',
             headers: {'ContentType': 'application/x-www-form-urlencoded'},
+            withCredentials: true,
 			url: `/authorization/token`,
 			data: json
 		})
