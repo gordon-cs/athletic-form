@@ -30,11 +30,13 @@ namespace AthleticFormLibrary.Emailer
                 {
                     int profId = _athleticContext.SectionSchedules.Where(p => p.crs_cde == m 
                         && p.yr_cde == year && p.trm_cde == term).Select(x => x.PROFESSOR_ID_NUM).FirstOrDefault();
-                    string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
+                    //string emailAddress = _athleticContext.Accounts.Where(x => x.Gordon_ID == profId.ToString()).Select(c => c.Email).FirstOrDefault();
+                    string emailAddress = "hudson.finn@gordon.edu";
                     if (emailAddress != null)
                     {
                         SendMail(fromEmail, password, m, emailAddress);
                     }
+                    return;
                 }
             } else {
                 string[] toEmailsAsArray = toEmails.Split(',');
