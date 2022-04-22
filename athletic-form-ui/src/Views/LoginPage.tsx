@@ -23,6 +23,8 @@ export const LoginPage: React.FC = () => {
         var json = JSON.stringify(data);
 		apiClient({
 			method: 'post',
+            headers: {'ContentType': 'application/x-www-form-urlencoded'},
+            withCredentials: true,
 			url: `/authorization/token`,
 			data: json
 		})
