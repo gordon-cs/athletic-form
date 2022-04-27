@@ -52,7 +52,12 @@ namespace AthleticFormCore.Controllers
             eventToUpdate.ArrivalTime = athleticEvent.ArrivalTime;
             eventToUpdate.Comments = athleticEvent.Comments;
             eventToUpdate.IsScrimmage = athleticEvent.IsScrimmage;
-            _context.Update<AthleticEvent>(eventToUpdate);
+
+            // FIXME: "Update" not working initally so this is a work around. Obviously, this
+            //         is a sub-ideal solution, but it'll suffice for now
+            HardDelete(eventToUpdate.EventId);
+            Post(eventToUpdate);
+
             _context.SaveChanges();
         }
 
