@@ -38,7 +38,8 @@ export const UpdateEvent: React.FC<Props> = () => {
 		console.log(updateEvent(id, eventData));
 		updateEvent(id, eventData)
 			.then((a: any) => {
-				navigate('/events');
+                navigate('/events');
+                window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);
