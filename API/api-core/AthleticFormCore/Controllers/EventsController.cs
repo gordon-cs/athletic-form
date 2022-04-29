@@ -41,7 +41,6 @@ namespace AthleticFormCore.Controllers
         [Authorize(Roles = "Scheduler, Admin")]
         public void Update(int id, [FromBody] AthleticEvent athleticEvent)
         {
-            Console.WriteLine("1");
             AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault
                 (x => x.EventId == id);
             Console.WriteLine(eventToUpdate.Sport);
@@ -53,17 +52,9 @@ namespace AthleticFormCore.Controllers
             eventToUpdate.ArrivalTime = athleticEvent.ArrivalTime;
             eventToUpdate.Comments = athleticEvent.Comments;
             eventToUpdate.IsScrimmage = athleticEvent.IsScrimmage;
-            Console.WriteLine("2");
-
-            // FIXME: "Update" not working initally so this is a work around. Obviously, this
-            //         is a sub-ideal solution, but it'll suffice for now
-            // HardDelete(eventToUpdate.EventId);
-            // Post(eventToUpdate);
 
             _context.Update(eventToUpdate);
-
             _context.SaveChanges();
-            Console.WriteLine("3");
         }
 
 
