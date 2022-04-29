@@ -52,14 +52,14 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventData?.sport}
 					onChange={(e: any) => {
-						setEventData([{ sport: e.target.value }]);
+						setEventData([{ ...eventData, sport: e.target.value }]);
 					}}
 				/>
 				<br></br>
 				<TextField
 					value={eventData?.opponent}
 					onChange={(e: any) => {
-						setEventData([{ opponent: e.target.value }]);
+						setEventData([{ ...eventData, opponent: e.target.value }]);
 					}}
 				/>
 				<RadioGroup
@@ -67,7 +67,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					value={eventData?.homeOrAway}
 					name='radio-buttons-group'
 					onChange={(e: any) => {
-						setEventData([{ homeOrAway: e.target.value }]);
+						setEventData([{ ...eventData, homeOrAway: e.target.value }]);
 					}}
 				>
 					<FormControlLabel value='Home' control={<Radio />} label='Home' />
@@ -77,7 +77,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 				<TextField
 					value={eventData?.destination}
 					onChange={(e: any) => {
-						setEventData([{ destination: e.target.value }]);
+						setEventData([{ ...eventData, destination: e.target.value }]);
 					}}
 				/>
 				<br></br>
@@ -85,7 +85,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					value={eventData?.eventDate}
 					type='datetime-local'
 					onChange={(e: any) => {
-						setEventData([{ eventDate: e.target.value }]);
+						setEventData([{ ...eventData, eventDate: e.target.value }]);
 					}}
 				/>
 				<br></br>
@@ -93,7 +93,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					type='datetime-local'
 					value={eventData?.departureTime}
 					onChange={(e: any) => {
-						setEventData([{ departureTime: e.target.value }]);
+						setEventData([{ ...eventData, departureTime: e.target.value }]);
 					}}
 				/>
 				<br></br>
@@ -101,14 +101,14 @@ export const UpdateEvent: React.FC<Props> = () => {
 					type='datetime-local'
 					value={eventData?.arrivalTime}
 					onChange={(e: any) => {
-						setEventData([{ arrivalTime: e.target.value }]);
+						setEventData([{ ...eventData, arrivalTime: e.target.value }]);
 					}}
 				/>
 				<br></br>
 				<TextField
 					value={eventData?.comments}
 					onChange={(e: any) => {
-						setEventData([{ comments: e.target.value }]);
+						setEventData([{ ...eventData, comments: e.target.value }]);
 					}}
 				/>
 				<br></br>
@@ -116,7 +116,7 @@ export const UpdateEvent: React.FC<Props> = () => {
 					control={<Checkbox 
 						checked={eventData?.isScrimmage} 
 						onChange={(e: any) => { 
-							setEventData([{ isScrimmage: e.target.checked }]);
+							setEventData([{ ...eventData, isScrimmage: e.target.checked }]);
 						}}
 					/>}
 					label = "Scrimmage?"
