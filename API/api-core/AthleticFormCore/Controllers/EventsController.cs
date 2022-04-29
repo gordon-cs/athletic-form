@@ -27,7 +27,7 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("add")]
-        [Authorize(Roles = "Scheduler")]
+        [Authorize(Roles = "Scheduler, Admin")]
         public async void Post([FromBody] AthleticEvent athleticEvent)
         {
             await _context.AddAsync<AthleticEvent>(athleticEvent);
@@ -36,11 +36,12 @@ namespace AthleticFormCore.Controllers
             AddAllPlayersToEvent(thisEvent);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("update/{id}")]
-        [Authorize(Roles = "Scheduler")]
+        [Authorize(Roles = "Scheduler, Admin")]
         public void Update(int id, [FromBody] AthleticEvent athleticEvent)
         {
+            Console.WriteLine("1");
             AthleticEvent eventToUpdate = _context.AthleticEvents.FirstOrDefault
                 (x => x.EventId == id);
             Console.WriteLine(eventToUpdate.Sport);
@@ -52,13 +53,17 @@ namespace AthleticFormCore.Controllers
             eventToUpdate.ArrivalTime = athleticEvent.ArrivalTime;
             eventToUpdate.Comments = athleticEvent.Comments;
             eventToUpdate.IsScrimmage = athleticEvent.IsScrimmage;
+            Console.WriteLine("2");
 
             // FIXME: "Update" not working initally so this is a work around. Obviously, this
             //         is a sub-ideal solution, but it'll suffice for now
-            HardDelete(eventToUpdate.EventId);
-            Post(eventToUpdate);
+            // HardDelete(eventToUpdate.EventId);
+            // Post(eventToUpdate);
+
+            _context.Update(eventToUpdate);
 
             _context.SaveChanges();
+            Console.WriteLine("3");
         }
 
 
@@ -68,7 +73,7 @@ namespace AthleticFormCore.Controllers
         */
         [HttpPost]
         [Route("delete/{id}")]
-        [Authorize(Roles = "Scheduler")]
+        [Authorize(Roles = "Scheduler, Admin")]
         public void MarkAsDeleted(int id)
         {
             if (ModelState.IsValid)
@@ -81,7 +86,7 @@ namespace AthleticFormCore.Controllers
 
         [HttpPost]
         [Route("restore/{id}")]
-        [Authorize(Roles = "Scheduler")]
+        [Authorize(Roles = "Scheduler, Admin")]
         public void Restore(int id)
         {
             AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
@@ -92,7 +97,7 @@ namespace AthleticFormCore.Controllers
         // Actually will delete event from database
         [HttpPost]
         [Route("harddelete/{id}")]
-        [Authorize(Roles = "Scheduler")]
+        [Authorize(Roles = "Scheduler, Admin")]
         public void HardDelete(int id)
         {
             AthleticEvent athleticEvent = _context.AthleticEvents.Find(id);
