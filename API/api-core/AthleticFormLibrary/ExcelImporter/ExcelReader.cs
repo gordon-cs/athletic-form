@@ -11,12 +11,16 @@ using System.IO;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
+
+using AthleticFormLibrary.Models;
+using AthleticFormLibrary.DataAccess;
+
 //using System.Text.Encoding;
 //using ExcelDataReader;
 
 
 
-public class ExcelReader : ControllerBase {
+public class ExcelReader /*: ControllerBase*/ {
 
     private string worksheet;
 
@@ -151,14 +155,14 @@ class ExcelEvent {
         //ae.EventId = "don't worry about it"
         ae.Sport = sport;
         ae.Opponent = opponent;
-        ae.HomeOrAway {get; set; }
+        /*ae.HomeOrAway {get; set; }
         ae.Destination { get; set; }
         public DateTime? EventDate { get; set; }
         public DateTime? DepartureTime { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? ArrivalTime { get; set; }
         ae.Comments { get; set; }
-        public bool IsScrimmage { get; set; }
+        public bool IsScrimmage { get; set; }*/
     }
 
     
