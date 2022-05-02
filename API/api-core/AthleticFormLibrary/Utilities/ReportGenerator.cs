@@ -11,7 +11,7 @@ namespace AthleticFormLibrary.Utilities
     {
         public const string title = "<h1>Athletic Conflicts</h1>";
         public const string reportDescription = "<p>" +
-            "Here is a list of the students who will be missing class this week due to athletic events and " +  
+            "Here is a list of the students who are requesting to miss class this week due to athletic events and " +  
             "their approval status.</p>";
         public const string tableOpeningTag = "<table>";
         public const string tableClosingTag = "</table>";

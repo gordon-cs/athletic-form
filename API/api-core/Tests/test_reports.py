@@ -6,7 +6,7 @@ def test_getReport():
     report = response.content
     report = report.decode()
     assert report.startswith("<h1>Athletic Conflicts</h1>")
-    assert "<p>Here is a list of the students who will be missing class this week due to athletic events and their approval status.</p>" in report
+    assert "<p>Here is a list of the students who are requesting to miss class this week due to athletic events and their approval status.</p>" in report
     assert "<table>" in report
     assert "<tr>" in report
     assert "<th>Name</th>" in report
