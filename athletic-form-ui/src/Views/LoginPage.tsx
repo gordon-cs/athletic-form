@@ -2,6 +2,7 @@ import { Grid, Alert } from '@mui/material';
 import { Button, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import axios from 'axios';
 import '../styles/login.scss';
 import { apiClient } from '../Services/AxiosService';
 import { Loader } from './Loader';
@@ -17,12 +18,11 @@ export const LoginPage: React.FC = () => {
 
 
 	const fetchToken = (username: string, password: string) => {
-		var credentials = `${username}:${password}`;
-		apiClient({
-			method: 'get',
-			url: `/authorization/token/${credentials}`,
-		})
-			.then((res) => {
+	    const json = JSON.stringify({username, password})
+        axios.post('https://athleticsabsenceapi.gordon.edu/api/authorization/token/', {
+            json
+        })
+			.then((res: any) => {
 				let val = res.data;
 				setToken(val);
                 checkAuthorization(val);

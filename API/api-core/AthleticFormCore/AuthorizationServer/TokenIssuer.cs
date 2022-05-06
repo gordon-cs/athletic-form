@@ -26,17 +26,17 @@ namespace AthleticFormCore.AuthorizationServer
             _teamsController = teamsController;
         }
 
-        [HttpGet]
-        [Route("token/{credentials}")]
-        public string GetToken(string credentials)
+        [HttpPost]
+        [Route("token")]
+        public string GetToken(string username, string password)
         {
             var usernamePassword = credentials.Split(':');
             // Get service account credentials
             var serviceUsername = usernamePassword[0];
             var servicePassword = usernamePassword[1];
 
+            // Syntax like : my.server.com:8080 
             var ldapServer = "gordon.edu";
-            Debug.WriteLine(serviceUsername);
             try
             {
 
@@ -45,11 +45,11 @@ namespace AthleticFormCore.AuthorizationServer
                     ContextType.Domain,
                     ldapServer, "OU=Gordon College,DC=gordon,DC=edu",
                     ContextOptions.Negotiate | ContextOptions.ServerBind | ContextOptions.SecureSocketLayer,
-                    serviceUsername,
-                    servicePassword);
+                    username,
+                    password);
 
                 UserPrincipal userQuery = new UserPrincipal(ADServiceConnection);
-                userQuery.SamAccountName = serviceUsername;
+                userQuery.SamAccountName = username;
 
                 PrincipalSearcher search = new PrincipalSearcher(userQuery);
                 UserPrincipal userEntry = (UserPrincipal)search.FindOne();
@@ -65,8 +65,8 @@ namespace AthleticFormCore.AuthorizationServer
                         );
 
                     var areValidCredentials = ADUserConnection.ValidateCredentials(
-                        serviceUsername,
-                        servicePassword,
+                        username,
+                        password,
                         ContextOptions.SimpleBind | ContextOptions.SecureSocketLayer
                         );
 
