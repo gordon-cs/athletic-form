@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import { getDateAsJs, getDateTimeAsJs, getTimeAsJs } from '../Helpers/DateTimeHelpers';
 import '../styles/eventCard.scss';
+import { Loader } from './Loader';
 
 export const CoachEventDetails: React.FC = () => {
 	let params = useParams();
@@ -26,10 +27,10 @@ export const CoachEventDetails: React.FC = () => {
 	let arrival;
 	const [eventData, setEventData] = useState<any | null>(null);
 	const [conflicts, setConflicts] = useState<any | null>(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		// TODO: Add timeout validation on redirect
 		if (token == undefined) {
 			window.location.href = "...";
 		}
@@ -45,6 +46,7 @@ export const CoachEventDetails: React.FC = () => {
 				getConflictsByEventId(parseInt(id)).then((res: any) => {
 					console.log(res.data);
 					setConflicts(res.data);
+					setLoading(false);
 				});
 			})
 			.catch((error) => console.log(error.message));
@@ -131,68 +133,66 @@ export const CoachEventDetails: React.FC = () => {
 		);
 	}
 
-	return (
-		<Grid>
-			<h1 className = "card-label">Event Details: Coach's View</h1>
-			<Card>
-				{headerHome}
-				<CardContent className={'card-content'}>
-                    <CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
-						<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
-					{departHome}
-					{arrival}
-				</CardContent>
-				<CardContent sx = {{justifyContent: "center"}} className={'card-content'}>
-					{eventData?.comments ? 
-						<CardContent className={'card-detail'}>Comments: <br></br> {eventData?.comments}</CardContent> : ""
-					}
-				</CardContent>
-			</Card>
-			<TableContainer component={Paper}>
-				<Table sx={{ width: 1000 }}>
-					<TableHead>
-						<TableRow>
-							<TableCell>Email</TableCell>
-							<TableCell>First Name</TableCell>
-							<TableCell>Last Name</TableCell>
-							<TableCell>Approval Status</TableCell>
-							<TableCell></TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{conflicts === null ? (
+	if (loading) {
+		return ( <Loader />)
+	} else {
+		return (
+			<Grid>
+				<h1 className = "card-label">Event Details: Coach's View</h1>
+				<Card>
+					{headerHome}
+					<CardContent className={'card-content'}>
+						<CardContent className={'card-detail'}>Time: <br></br> {getDateAsJs(eventData?.eventDate)}
+							<br></br> {getTimeAsJs(eventData?.eventDate)}</CardContent>
+						{departHome}
+						{arrival}
+					</CardContent>
+					<CardContent sx = {{justifyContent: "center"}} className={'card-content'}>
+						{eventData?.comments ? 
+							<CardContent className={'card-detail'}>Comments: <br></br> {eventData?.comments}</CardContent> : ""
+						}
+					</CardContent>
+				</Card>
+				<TableContainer component={Paper}>
+					<Table sx={{ width: 1000 }}>
+						<TableHead>
 							<TableRow>
-								<TableCell>No students to show</TableCell>
+								<TableCell>Email</TableCell>
+								<TableCell>First Name</TableCell>
+								<TableCell>Last Name</TableCell>
+								<TableCell></TableCell>
 							</TableRow>
-						) : (
-							conflicts?.map((conflict: any) => (
-								<TableRow key={Math.random() * 3.1415982465}>
-									<TableCell>{conflict['email']} </TableCell>
-									<TableCell>{conflict['firstName']}</TableCell>
-									<TableCell>{conflict['lastName']}</TableCell>
-									{Math.random() < 0.5 ? ( //Leave this for presentation
-										<TableCell sx={{ color: 'green' }}>Approved</TableCell>
-									) : (
-										<TableCell sx={{ color: 'red' }}>Not Approved</TableCell>
-									)}
-									<TableCell>
-										<Link to={`/coach/events/${id}/details/${conflict['email']}/${conflict['yearCode']}/${conflict['termCode']}/classconflicts`}>View Class Conflicts</Link>
-									</TableCell>
+						</TableHead>
+						<TableBody>
+							{conflicts === null ? (
+								<TableRow>
+									<TableCell>No students to show</TableCell>
 								</TableRow>
-							))
-						)}
-					</TableBody>
-				</Table>
-			</TableContainer>
-			<Link to='/coach/events'>
-				<Button
-					size='small'
-					sx={{ backgroundColor: 'red', color: 'white' }}
-					variant={'outlined'}
-				>
-					Back
-				</Button>
-			</Link>
-		</Grid>
-	);
+							) : (
+								conflicts?.map((conflict: any) => (
+									<TableRow key={Math.random() * 3.1415982465}>
+										<TableCell>{conflict['email']} </TableCell>
+										<TableCell>{conflict['firstName']}</TableCell>
+										<TableCell>{conflict['lastName']}</TableCell>
+										<TableCell>
+											<Link to={`/coach/events/${id}/details/${conflict['email']}/${conflict['yearCode']}/${conflict['termCode']}/classconflicts`}>View Class Conflicts</Link>
+										</TableCell>
+									</TableRow>
+								))
+							)}
+						</TableBody>
+					</Table>
+				</TableContainer>
+				<Link to='/coach/events'>
+					<Button
+						size='small'
+						sx={{ backgroundColor: 'red', color: 'white' }}
+						variant={'outlined'}
+					>
+						Back
+					</Button>
+				</Link>
+			</Grid>
+		);
+	}
 };

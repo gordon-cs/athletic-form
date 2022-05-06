@@ -1,6 +1,11 @@
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { getAllEvents, addEvent } from '../Services/EventService';
+import { 
+	getAllEvents, 
+	addEvent, 
+	getYearCode, 
+	getTermCode 
+} from '../Services/EventService';
 import { Button, Checkbox } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/addEvent.scss';
@@ -8,6 +13,7 @@ import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { getDateWithDashes } from '../Helpers/DateTimeHelpers';
 
 interface Props {}
 
@@ -22,11 +28,15 @@ export const AddEvent: React.FC<Props> = () => {
 	const [arrivalTime, setArrivalTime] = useState('');
 	const [comments, setComments] = useState('');
 	const [isScrimmage, setIsScrimmage] = useState(false);
+	const [currentTerm, setCurrentTerm] = useState<any | null>(null);
+	const [currentYear, setCurrentYear] = useState<any | null>(null);
+	const [eventTerm, setEventTerm] = useState<any | null>(null);
+	const [eventYear, setEventYear] = useState<any | null>(null);
+	let errorMessage: any;
 	let navigate = useNavigate();
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		// TODO: Add timeout validation on redirect
 		if (token == undefined) {
 			window.location.href = "..";
 		}
@@ -37,19 +47,50 @@ export const AddEvent: React.FC<Props> = () => {
 			.catch((error) => {
 				console.log(error);
 			});
+		const d = new Date();
+		const dateWithDashes = getDateWithDashes(d);
+		getYearCode(dateWithDashes).then((res) => {
+			setCurrentYear(res.data);
+		}).catch((error) => {
+			console.log(error);
+		});
+		getTermCode(dateWithDashes).then((res) => {
+			setCurrentTerm(res.data);
+		}).catch((error) => {
+			console.log(error);
+		});
 	}, []);
 
 	const handleSubmit = () => {
-		addEvent({ sport, opponent, homeOrAway, destination, eventDate, 
-				departureTime, arrivalTime, comments, isScrimmage })
-			.then((a: any) => {
-				navigate('/events');
-				window.location.reload();
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		if (eventTerm != currentTerm || eventYear != currentYear) {
+			errorMessage = "The event must be the same as the current semester";
+		} else {
+			addEvent({ sport, opponent, homeOrAway, destination, eventDate, 
+					departureTime, arrivalTime, comments, isScrimmage })
+				.then((a: any) => {
+					navigate('/events');
+					window.location.reload();
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 	};
+
+	function setTermYearAndDate(date: any) {
+		setEventDate(date);
+		const eventDateWithDashes = getDateWithDashes(date);
+		getYearCode(eventDateWithDashes).then((res) => {
+			setEventYear(res.data);
+		}).catch((error) => {
+			console.log(error);
+		});
+		getTermCode(eventDateWithDashes).then((res) => {
+			setEventTerm(res.data);
+		}).catch((error) => {
+			console.log(error);
+		});
+	}
 
 	return (
 		<Grid className='add-event'>
@@ -97,7 +138,7 @@ export const AddEvent: React.FC<Props> = () => {
 					label="Event Date"
 					InputLabelProps={{ shrink: true }}
 					onChange={(e: any) => {
-						setEventDate(e.target.value);
+						setTermYearAndDate(e.target.value);
 					}}
 				/>
 				<br></br><br></br>
@@ -140,6 +181,7 @@ export const AddEvent: React.FC<Props> = () => {
 					label = "Scrimmage?"
 				/>
 				<br></br>
+				<p style={{color: "red"}}>{errorMessage}</p>
 				<Button
 					size='small'
 					sx={{ backgroundColor: 'green', color: 'white' }}

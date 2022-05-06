@@ -11,7 +11,7 @@ namespace AthleticFormLibrary.Utilities
     {
         public const string title = "<h1>Athletic Conflicts</h1>";
         public const string reportDescription = "<p>" +
-            "Here is a list of the students who will be missing class this week due to athletic events and " +  
+            "Here is a list of the students who are requesting to miss class this week due to athletic events and " +  
             "their approval status.</p>";
         public const string tableOpeningTag = "<table>";
         public const string tableClosingTag = "</table>";
@@ -21,11 +21,12 @@ namespace AthleticFormLibrary.Utilities
         public const string nameHeader = "<th>Name</th>";
         public const string emailHeader = "<th>Email</th>";
         public const string eventHeader = "<th>Event</th>";
-        public const string approvalStatusHeader = "<th>Approval Status</th>";
         public const string courseCodeHeader = "<th>Course Code</th>";
         public const string conflictHeader = "<th>Conflict?</th>";
+        public const string eventDateHeader = "<th>Event Date</th>";
+        public const string expectedDepartureHeader = "<th>Expected Departure Time</th>";
+        public const string expectedReturnHeader = "<th>Expected Return Time</th>";
         private readonly AthleticContext _context;
-        public bool Approved { get; set; }
         
         public ReportGenerator(AthleticContext context) {
             _context = context;
@@ -83,7 +84,8 @@ namespace AthleticFormLibrary.Utilities
         public string GenerateReport(string major, int number = 0)
         {
             string report = title + reportDescription + tableOpeningTag + tableRowOpeningTag +
-                nameHeader + emailHeader + eventHeader + approvalStatusHeader + tableRowClosingTag;
+                nameHeader + emailHeader + eventHeader + eventDateHeader + expectedDepartureHeader + expectedReturnHeader 
+                + tableRowClosingTag;
             string termCode = YearTermCodeHelper.CalculateTermCode(DateTime.Now);
             string yearCode = YearTermCodeHelper.CalculateYearCode(DateTime.Now);
             List<AthleticConflict> conflicts = new List<AthleticConflict>();
@@ -103,12 +105,9 @@ namespace AthleticFormLibrary.Utilities
                 report += String.Format("<td>{0}</td>", conflict.Email);
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
                 report += String.Format("<td>{0}: {1}</td>", athleticEvent.Sport, athleticEvent.Opponent);
-                if (Approved) {
-                    report += "<td style = 'color: green;'>Approved</td>";
-                }
-                else {
-                    report += "<td style = 'color: red;'>Not Approved</td>";
-                }
+                report += String.Format("<td>{0}</td>", athleticEvent.EventDate);
+                report += String.Format("<td>{0}</td>", athleticEvent.DepartureTime);
+                report += String.Format("<td>{0}</td>", athleticEvent.ArrivalTime);
                 report += tableRowClosingTag;
             }
             report += tableClosingTag;
@@ -116,6 +115,11 @@ namespace AthleticFormLibrary.Utilities
                 report += String.Format("<h2>{0} {1}</h2>", conflict.FirstName, conflict.LastName);
                 AthleticEvent athleticEvent = _context.AthleticEvents.Where(a => a.EventId == conflict.EventID).FirstOrDefault();
                 report += String.Format("<h3>{0}: {1}</h3>", athleticEvent.Sport, athleticEvent.Opponent);
+                report += String.Format("<h3>{0}</h3>", athleticEvent.EventDate);
+                report += String.Format("<h4>Leaving on {0} <em>(Expected Departure Time: {1})</em></h4>", 
+                    athleticEvent.DepartureTime?.ToString("M/d/yyyy"), athleticEvent.DepartureTime?.ToString("h:mm tt"));
+                report += String.Format("<h4>Returning to Campus on {0} <em>(Expected Return Time: {1})</em></h4>",
+                    athleticEvent.ArrivalTime?.ToString("M/d/yyyy"), athleticEvent.ArrivalTime?.ToString("h:mm tt"));
                 report += tableOpeningTag + tableRowOpeningTag + courseCodeHeader + conflictHeader + tableRowClosingTag;
                 var courses = (
                     from a in _context.Accounts

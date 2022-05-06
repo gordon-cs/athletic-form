@@ -48,6 +48,27 @@ export async function getRosterData(sport: string) {
 	})
 }
 
+export async function getCoachRosterData(sport: string) {
+	return apiClient({
+		method: 'get',
+		url: `/teams/${sport}/coaches`
+	})
+}
+
+export async function getYearCode(date: any) {
+	return apiClient({
+		method: 'get',
+		url: `/yearterm/year/${date}`
+	})
+}
+
+export async function getTermCode(date: any) {
+	return apiClient({
+		method: 'get',
+		url: `yearterm/term/${date}`
+	})
+}
+
 export async function getAccountByEmail(email: string) {
 	return apiClient({
 		method: 'get',
@@ -100,10 +121,26 @@ export async function addToTeamRoster(playerInTeam: any) {
 	})
 }
 
+export async function addCoachToTeamRoster(coach: any) {
+	apiClient({
+		method: 'post',
+		url: '/teams/addcoach',
+		data: coach
+	})
+}
+
 export async function removeFromTeamRoster(sport: String, 
 	gordonId: String) {
 	apiClient({
 		method: 'post',
 		url: `/teams/${sport}/delete/${gordonId}`
 	})
+}
+
+export async function removeCoachFromTeamRoster(sport: String, 
+	gordonId: String) {
+		apiClient({
+			method: 'post',
+			url: `/teams/${sport}/deletecoach/${gordonId}`
+		})
 }

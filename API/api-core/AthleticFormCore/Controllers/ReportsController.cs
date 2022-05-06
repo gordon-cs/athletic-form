@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using AthleticFormLibrary.Interfaces;
-using AthleticFormLibrary.Utilities;
 
-namespace AthleticFormCore.Controllers {
+namespace AthleticFormCore.Controllers
+{
     [Route("api/[controller]")]
     [ApiController]
     public class ReportsController : ControllerBase

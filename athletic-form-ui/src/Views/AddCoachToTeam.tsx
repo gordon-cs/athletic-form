@@ -1,14 +1,15 @@
 import { Grid, TextField, Button } from "@mui/material"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import { addToTeamRoster, getAccountByEmail, getRosterData } from "../Services/EventService";
+import { addCoachToTeamRoster, getAccountByEmail, getRosterData } from "../Services/EventService";
 
-export const AddToTeam = () => {
+export const AddCoachToTeam = () => {
     const params = useParams();
     let TeamName : any = params.sport;
     const [rosterData, setRosterData] = useState<any | null>(null);
     const [email, setEmail] = useState('');
     const [account, setAccount] = useState<any | null>(null);
+    const [title, setTitle] = useState('');
     let errorMessage;
     let navigate = useNavigate();
 
@@ -27,19 +28,17 @@ export const AddToTeam = () => {
         getAccountByEmail(email).then((res) => {
             console.log(res.data);
             if (res.data === null) {
-                errorMessage = (
-                    <p style={{color: "red"}}>No student with this name exists</p>
-                );
+                errorMessage = "No coach with this name exists";
             } else {
                 setAccount(res.data);
                 console.log(account);
                 if (account != null) {
-                    if (onTeam(email)) {
-                        errorMessage = (
-                            <p style={{color: "red"}}>This athlete is already on the team</p>
-                        );
+                    if (account?.gordon_ID === null) {
+                        errorMessage = "No coach with this name exists";
+                    } else if (onTeam(email)) {
+                        errorMessage = "This coach is already on the team";
                     } else {
-                        addToTeamRoster({TeamName: TeamName, Gordon_ID: account?.gordon_ID }).then(() => {
+                        addCoachToTeamRoster({TeamName: TeamName, Gordon_ID: account?.gordon_ID, CoachTitle: title }).then(() => {
                             navigate(`/teams/${TeamName}/rosterdata`);
                             window.location.reload();
                         }).catch((error) => console.log(error));
@@ -64,7 +63,7 @@ export const AddToTeam = () => {
     return (
         <Grid>
             <h1>Add to Team {TeamName} </h1>
-            <h2>Enter Email of Person Joining the Team</h2>
+            <h2>Enter Email of Coach Joining the Team and Title of Coach</h2>
             <form>
                 <TextField 
                     value={email}
@@ -74,7 +73,15 @@ export const AddToTeam = () => {
                     }}
                 />
                 <br></br>
-                {errorMessage}
+                <TextField 
+                    value={title}
+                    label="Title"
+                    onChange={(e: any) => {
+                        setTitle(e.target.value);
+                    }}
+                />
+                <br></br>
+                <p style={{color: "red"}}>{errorMessage}</p>
                 <br></br>
                 <Button
 					size='small'
